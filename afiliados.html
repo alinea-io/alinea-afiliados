@@ -3,50 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ALINEA — Programa de Afiliados</title>
+<title>ALINEA — Affiliate Program</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#06050f; --surface:#0c0a18; --card:#121020; --card2:#1a1730;
-  --border:#1f1b35; --border2:#342e55;
-  --a:#8b5cf6; --a2:#c4b5fd; --a3:#7c3aed; --a4:#4c1d95;
-  --glow:rgba(139,92,246,.15); --glow2:rgba(139,92,246,.07);
-  --text:#f0eeff; --muted:#8b87b0; --dim:#332e52;
-  --ok:#6ee7b7; --gold:#fbbf24;
+  --bg:#06050f;--surface:#0c0a18;--card:#121020;--card2:#1a1730;
+  --border:#1f1b35;--border2:#342e55;
+  --a:#8b5cf6;--a2:#c4b5fd;--a3:#7c3aed;--a4:#4c1d95;
+  --glow:rgba(139,92,246,.15);--glow2:rgba(139,92,246,.07);
+  --text:#f0eeff;--muted:#8b87b0;--dim:#332e52;
+  --ok:#6ee7b7;--gold:#fbbf24;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background:var(--bg);overflow-x:hidden;}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:'Lato',sans-serif;font-weight:300;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
-  min-height:100vh;
-}
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 15%,rgba(139,92,246,.07) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 70% at 85% 75%,rgba(109,40,217,.06) 0%,transparent 60%),
-    radial-gradient(ellipse 90% 40% at 50% 105%,rgba(67,20,128,.05) 0%,transparent 70%);
-}
+body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 15%,rgba(139,92,246,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 75%,rgba(109,40,217,.06) 0%,transparent 60%),radial-gradient(ellipse 90% 40% at 50% 105%,rgba(67,20,128,.05) 0%,transparent 70%);}
 #starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
 /* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:300;height:62px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 5%;
-  background:rgba(6,5,15,.0);
-  transition:background .5s,backdrop-filter .5s;
-}
-nav.solid{
-  background:rgba(6,5,15,.92);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(139,92,246,.12);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(6,5,15,.0);transition:background .5s,backdrop-filter .5s;}
+nav.solid{background:rgba(6,5,15,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(139,92,246,.12);}
 .nav-logo{font-family:'DM Mono',monospace;font-size:.9rem;letter-spacing:.34em;color:var(--a2);text-decoration:none;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
 .nav-badge{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(139,92,246,.5);border:1px solid rgba(139,92,246,.2);border-radius:20px;padding:.22rem .7rem;}
+.lang-btn{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .9rem;border-radius:8px;border:1px solid rgba(139,92,246,.3);color:var(--a2);background:rgba(139,92,246,.06);cursor:pointer;transition:all .3s;}
+.lang-btn:hover{background:rgba(139,92,246,.14);border-color:rgba(139,92,246,.55);}
 
 /* ── SHARED ── */
 section{position:relative;z-index:1;}
@@ -55,50 +37,27 @@ section{position:relative;z-index:1;}
 .section-head em{font-style:italic;font-weight:400;color:var(--a2);}
 
 /* ── HERO ── */
-#hero{
-  min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:80px 6% 60px;position:relative;z-index:1;
-}
-.hero-orb{
-  width:110px;height:110px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);
-  box-shadow:0 0 50px rgba(139,92,246,.6),0 0 120px rgba(109,40,217,.3),0 0 200px rgba(109,40,217,.12);
-  margin:0 auto 2rem;
-  animation:orbFloat 7s ease-in-out infinite;
-}
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 6% 60px;position:relative;z-index:1;}
+.hero-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 50px rgba(139,92,246,.6),0 0 120px rgba(109,40,217,.3),0 0 200px rgba(109,40,217,.12);margin:0 auto 2rem;animation:orbFloat 7s ease-in-out infinite;}
 @keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 .hero-eyebrow{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(139,92,246,.5);margin-bottom:1.2rem;display:block;}
-.hero-hl{
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:clamp(2.6rem,6vw,5.5rem);line-height:1.04;letter-spacing:-.025em;
-  color:var(--text);margin-bottom:1.2rem;
-  animation:hlIn 1.1s .1s cubic-bezier(.16,1,.3,1) both;
+.hero-hl{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.6rem,6vw,5.5rem);line-height:1.04;letter-spacing:-.025em;color:var(--text);margin-bottom:1.2rem;animation:hlIn 1.1s .1s cubic-bezier(.16,1,.3,1) both;min-height:2.2em;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-hl-line{display:block;text-align:center;transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1);}
+.hero-hl-line.fade-out{opacity:0;transform:translateX(-80px);}
+.hero-hl-line.fade-in{opacity:0;transform:translateX(80px);}
+.hero-hl-line em{font-style:italic;font-weight:900;color:var(--a2);}
+.hero-hl-accent{
+  color:#fff;
+  font-style:italic;
 }
-.hero-hl em{font-style:italic;font-weight:400;color:var(--a2);}
 @keyframes hlIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero-sub{
-  font-family:'Playfair Display',serif;font-style:italic;font-weight:300;
-  font-size:clamp(1rem,2vw,1.3rem);color:var(--muted);line-height:1.78;
-  max-width:600px;margin:0 auto 2.5rem;
-  animation:hlIn 1.1s .4s cubic-bezier(.16,1,.3,1) both;opacity:0;
-}
-.hero-stats{
-  display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;
-  margin-bottom:3rem;
-  animation:hlIn 1.1s .6s cubic-bezier(.16,1,.3,1) both;opacity:0;
-}
+.hero-sub{font-family:'Lato',sans-serif;font-weight:300;font-size:clamp(.85rem,1.4vw,1rem);color:var(--muted);line-height:1.85;letter-spacing:.01em;max-width:560px;margin:0 auto 2.5rem;animation:hlIn 1.1s .4s cubic-bezier(.16,1,.3,1) both;opacity:0;}
+.stat-prefix{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,181,253,.35);display:block;margin-bottom:.1rem;}
+.hero-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;animation:hlIn 1.1s .6s cubic-bezier(.16,1,.3,1) both;opacity:0;}
 .stat-item{text-align:center;}
 .stat-num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.2rem;color:var(--a2);line-height:1;}
 .stat-label{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:.4rem;display:block;}
-.hero-cta{
-  font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;
-  padding:1.1rem 3.2rem;border-radius:12px;
-  background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));
-  color:#fff;border:none;cursor:pointer;text-decoration:none;display:inline-block;
-  box-shadow:0 0 28px rgba(139,92,246,.35),0 4px 20px rgba(0,0,0,.4);
-  transition:all .35s;position:relative;overflow:hidden;
-  animation:hlIn 1.1s .8s cubic-bezier(.16,1,.3,1) both;opacity:0;
-}
+.hero-cta{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;padding:1.1rem 3.2rem;border-radius:12px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;border:none;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 0 28px rgba(139,92,246,.35),0 4px 20px rgba(0,0,0,.4);transition:all .35s;animation:hlIn 1.1s .8s cubic-bezier(.16,1,.3,1) both;opacity:0;}
 .hero-cta:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(139,92,246,.55),0 8px 28px rgba(0,0,0,.5);}
 .hero-cta-note{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(139,92,246,.3);margin-top:.9rem;display:block;}
 .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);opacity:0;animation:fadeIn .8s 2s ease forwards;display:flex;flex-direction:column;align-items:center;gap:.5rem;}
@@ -106,23 +65,22 @@ section{position:relative;z-index:1;}
 .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(139,92,246,.45),transparent);animation:scrollPulse 2.2s ease-in-out infinite;}
 @keyframes scrollPulse{0%{opacity:0;transform:scaleY(0);transform-origin:top}55%{opacity:1;transform:scaleY(1)}100%{opacity:0;}}
 
-/* ── COMMISSION TABLE ── */
+/* ── COLOR DOTS ── */
+#color-picker{padding:2.5vh 6%;text-align:center;position:relative;z-index:1;}
+.cdots{display:flex;gap:1rem;justify-content:center;flex-wrap:nowrap;margin:.8rem auto;}
+.cdot{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .3s;flex-shrink:0;box-shadow:0 0 8px currentColor;}
+.cdot:hover{transform:scale(1.35);box-shadow:0 0 20px currentColor;}
+.cdot.on{border-color:rgba(255,255,255,.55);transform:scale(1.22);box-shadow:0 0 26px currentColor;}
+.cdot-label{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,181,253,.35);display:block;margin-bottom:.6rem;}
+
+/* ── COMMISSIONS ── */
 #commissions{padding:8vh 6%;max-width:1000px;margin:0 auto;text-align:center;}
 .comm-head{margin-bottom:4rem;}
-.comm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem;}
-.comm-card{
-  background:rgba(12,10,24,.65);border:1.5px solid rgba(139,92,246,.18);
-  border-radius:24px;padding:2rem 1.5rem;
-  transition:all .4s cubic-bezier(.16,1,.3,1);
-  position:relative;overflow:hidden;
-}
+.comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;max-width:700px;margin:3rem auto 0;}
+.comm-card{background:rgba(12,10,24,.65);border:1.5px solid rgba(139,92,246,.18);border-radius:24px;padding:2rem 1.5rem;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;}
 .comm-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.08) 0%,transparent 70%);pointer-events:none;}
 .comm-card:hover{border-color:rgba(196,181,253,.45);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.45),0 0 30px rgba(139,92,246,.12);}
-.comm-card.featured{
-  background:linear-gradient(160deg,rgba(20,14,42,.99),rgba(12,8,28,.99));
-  border-color:rgba(139,92,246,.5);
-  box-shadow:0 0 0 1px rgba(139,92,246,.25),0 0 50px rgba(109,40,217,.15),0 24px 50px rgba(0,0,0,.5);
-}
+.comm-card.featured{background:linear-gradient(160deg,rgba(20,14,42,.99),rgba(12,8,28,.99));border-color:rgba(139,92,246,.5);box-shadow:0 0 0 1px rgba(139,92,246,.25),0 0 50px rgba(109,40,217,.15),0 24px 50px rgba(0,0,0,.5);}
 .comm-tier{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;display:block;}
 .comm-amount{font-family:'Playfair Display',serif;font-weight:900;font-size:3rem;color:var(--a2);line-height:1;}
 .comm-currency{font-family:'DM Mono',monospace;font-size:.9rem;color:var(--muted);vertical-align:top;margin-top:.4rem;display:inline-block;}
@@ -135,135 +93,224 @@ section{position:relative;z-index:1;}
 /* ── HOW IT WORKS ── */
 #how{padding:8vh 6%;max-width:900px;margin:0 auto;text-align:center;}
 .how-steps{display:flex;flex-direction:column;gap:0;margin-top:4rem;}
-.how-step{display:flex;gap:2rem;align-items:flex-start;text-align:left;padding:2rem 0;position:relative;}
-.how-step:not(:last-child)::after{
-  content:'';position:absolute;left:1.5rem;top:4rem;bottom:0;
-  width:1px;background:linear-gradient(to bottom,rgba(139,92,246,.3),rgba(139,92,246,.05));
-}
-.step-num{
-  width:3rem;height:3rem;border-radius:50%;flex-shrink:0;
-  border:1px solid rgba(139,92,246,.35);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:1.1rem;
-  color:var(--a2);background:rgba(139,92,246,.06);
-  position:relative;z-index:1;
-}
-.step-body{}
+.how-step{display:flex;gap:2rem;align-items:flex-start;text-align:left;padding:2rem 0;position:relative;opacity:0;transform:translateX(-24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
+.how-step.visible{opacity:1;transform:translateX(0);}
+.how-step:not(:last-child)::after{content:'';position:absolute;left:1.5rem;top:4rem;bottom:0;width:1px;background:linear-gradient(to bottom,rgba(139,92,246,.3),rgba(139,92,246,.05));}
+.step-num{width:3rem;height:3rem;border-radius:50%;flex-shrink:0;border:1px solid rgba(139,92,246,.35);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:1.1rem;color:var(--a2);background:rgba(139,92,246,.06);position:relative;z-index:1;}
 .step-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:var(--text);margin-bottom:.5rem;}
 .step-desc{font-family:'Lato',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.72;}
 
-/* ── PRICE ANCHOR ── */
+/* ── PRICE CAROUSEL ── */
 #anchor{padding:6vh 6%;max-width:800px;margin:0 auto;text-align:center;}
-.anchor-box{
-  background:rgba(12,10,24,.65);border:1px solid rgba(139,92,246,.2);border-radius:24px;
-  padding:3rem 2.5rem;position:relative;overflow:hidden;
-}
+.anchor-box{background:rgba(12,10,24,.65);border:1px solid rgba(139,92,246,.2);border-radius:24px;padding:3rem 2.5rem;position:relative;overflow:hidden;}
 .anchor-box::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.07) 0%,transparent 70%);pointer-events:none;}
-.price-flow{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:2rem 0;}
-.price-tag{text-align:center;}
-.price-label{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem;}
-.price-val{font-family:'Playfair Display',serif;font-weight:900;font-size:2.5rem;color:var(--text);}
-.price-val.strike{color:var(--muted);text-decoration:line-through;font-size:1.8rem;}
-.price-val.final{color:var(--ok);}
-.price-arrow{color:rgba(139,92,246,.4);font-size:1.5rem;}
-.price-code{
-  display:inline-flex;align-items:center;gap:.6rem;
-  font-family:'DM Mono',monospace;font-size:.8rem;letter-spacing:.08em;
-  color:var(--a2);background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);
-  border-radius:8px;padding:.6rem 1.2rem;margin-top:.5rem;
+.price-arrow-btn{
+  position:absolute;top:50%;transform:translateY(-60%);
+  background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);
+  color:var(--a2);border-radius:50%;width:36px;height:36px;
+  font-size:1.4rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s;z-index:2;
 }
-.price-code-icon{opacity:.5;}
+.price-arrow-btn:hover{background:rgba(139,92,246,.25);border-color:var(--a2);}
+.price-arrow-btn.prev{left:0;}
+.price-arrow-btn.next{right:0;}
+.price-carousel{position:relative;overflow:hidden;margin:2rem 2.5rem 1rem;}
+.price-carousel::before{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:320px;height:120px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(139,92,246,.12) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+  animation:carouselGlow 3s ease-in-out infinite;
+}
+@keyframes carouselGlow{
+  0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1);}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.15);}
+}
+.price-carousel-track{
+  display:flex;transition:transform .6s cubic-bezier(.16,1,.3,1);
+  will-change:transform;position:relative;z-index:1;
+}
+.price-slide{
+  min-width:100%;display:flex;flex-direction:column;align-items:center;
+  gap:.5rem;padding:.5rem 0;
+}
+.price-slide-hint{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:300;
+  font-size:.95rem;color:rgba(139,92,246,.45);line-height:1.5;margin-top:.3rem;
+}
+.price-dots{display:flex;gap:.6rem;justify-content:center;margin-top:1.2rem;}
+.price-dot{
+  width:28px;height:3px;border-radius:2px;
+  background:rgba(139,92,246,.2);cursor:pointer;
+  transition:background .4s,width .4s;
+}
+.price-dot.active{background:var(--a2);width:40px;}
+.price-label{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem;}
+.price-val{font-family:'Playfair Display',serif;font-weight:900;font-size:3.5rem;color:var(--text);line-height:1;}
+.price-val.strike{color:rgba(139,92,246,.3);text-decoration:line-through;font-size:2.8rem;}
+.price-val.final{color:var(--ok);}
+.price-code{display:inline-flex;align-items:center;gap:.6rem;font-family:'DM Mono',monospace;font-size:.8rem;letter-spacing:.08em;color:var(--a2);background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);border-radius:8px;padding:.6rem 1.2rem;margin-top:.5rem;}
 .anchor-note{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:var(--muted);line-height:1.72;margin-top:1.5rem;}
+
+/* ── TRANSPARENCY ── */
+.transp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:left;}
+.transp-card{background:rgba(12,10,24,.65);border:1px solid rgba(139,92,246,.15);border-radius:20px;padding:1.8rem 1.6rem;transition:all .4s cubic-bezier(.16,1,.3,1);}
+.transp-card:hover{border-color:rgba(139,92,246,.35);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.transp-icon{font-size:1.8rem;margin-bottom:.9rem;}
+.transp-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--text);margin-bottom:.6rem;line-height:1.3;}
+.transp-desc{font-family:'Lato',sans-serif;font-size:.88rem;color:var(--muted);line-height:1.72;}
 
 /* ── CALCULATOR ── */
 #calculator{padding:8vh 6%;max-width:800px;margin:0 auto;text-align:center;}
-.calc-box{
-  background:rgba(12,10,24,.75);border:1px solid rgba(139,92,246,.25);border-radius:28px;
-  padding:3rem 2.5rem;position:relative;overflow:hidden;margin-top:3rem;
-}
+.calc-box{background:rgba(12,10,24,.75);border:1px solid rgba(139,92,246,.25);border-radius:28px;padding:3rem 2.5rem;position:relative;overflow:hidden;margin-top:3rem;}
 .calc-inputs{display:flex;flex-direction:column;gap:2rem;margin-bottom:2.5rem;}
-.calc-field{}
 .calc-field-label{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(139,92,246,.6);display:block;margin-bottom:.8rem;text-align:left;}
 .calc-field-value{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;color:var(--text);display:block;margin-bottom:.8rem;text-align:left;}
-.calc-slider{
-  -webkit-appearance:none;appearance:none;
-  width:100%;height:4px;border-radius:2px;
-  background:linear-gradient(to right,var(--a) 0%,var(--a) var(--pct,50%),rgba(139,92,246,.15) var(--pct,50%),rgba(139,92,246,.15) 100%);
-  outline:none;cursor:pointer;
-}
-.calc-slider::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;
-  width:20px;height:20px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff 0%,#c4b5fd 40%,#8b5cf6 100%);
-  box-shadow:0 0 12px rgba(139,92,246,.6);cursor:pointer;
-}
-.calc-slider::-moz-range-thumb{
-  width:20px;height:20px;border-radius:50%;border:none;
-  background:radial-gradient(circle at 35% 30%,#fff 0%,#c4b5fd 40%,#8b5cf6 100%);
-  box-shadow:0 0 12px rgba(139,92,246,.6);cursor:pointer;
-}
+.calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:linear-gradient(to right,var(--a) 0%,var(--a) var(--pct,50%),rgba(139,92,246,.15) var(--pct,50%),rgba(139,92,246,.15) 100%);outline:none;cursor:pointer;}
+.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0%,#c4b5fd 40%,#8b5cf6 100%);box-shadow:0 0 12px rgba(139,92,246,.6);cursor:pointer;}
+.calc-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;border:none;background:radial-gradient(circle at 35% 30%,#fff 0%,#c4b5fd 40%,#8b5cf6 100%);box-shadow:0 0 12px rgba(139,92,246,.6);cursor:pointer;}
 .calc-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,.15),transparent);margin:2rem 0;}
+.calc-level-wrap{display:flex;align-items:center;gap:1rem;justify-content:center;margin-bottom:1.8rem;flex-wrap:wrap;}
+.calc-level-label{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.calc-level-toggle{display:flex;gap:.5rem;background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.15);border-radius:12px;padding:.3rem;}
+.lvl-btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.6rem 1.4rem;border-radius:9px;border:none;cursor:pointer;background:none;transition:all .3s cubic-bezier(.16,1,.3,1);}
+.lvl-btn.active{background:linear-gradient(135deg,var(--a4),var(--a3));box-shadow:0 0 16px rgba(139,92,246,.25);}
+.lvl-btn-title{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+.lvl-btn.active .lvl-btn-title{color:var(--a2);}
+.lvl-btn-price{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;color:var(--text);line-height:1;}
+.calc-toggle-wrap{margin:.8rem auto 0;max-width:800px;text-align:center;}
+.calc-toggle-btn{
+  font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(139,92,246,.45);background:none;border:none;cursor:pointer;
+  transition:color .25s;padding:.4rem 0;
+}
+.calc-toggle-btn:hover{color:var(--a2);}
+.calc-toggle-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .4s;
+  opacity:0;
+}
+.calc-toggle-body.open{max-height:200px;opacity:1;}background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12);border-radius:12px;padding:1rem 1.2rem;margin-top:1.5rem;text-align:left;}
+.calc-explain-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem;}
+.calc-explain span{font-family:'Lato',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.7;}
+.calc-explain strong{color:rgba(196,181,253,.7);font-weight:700;}
 .scenarios{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;}
 .scenario{
-  border-radius:16px;padding:1.2rem .8rem;text-align:center;
-  border:1px solid rgba(139,92,246,.12);background:rgba(6,5,15,.5);
-  transition:all .4s cubic-bezier(.16,1,.3,1);
+  border-radius:18px;padding:1.6rem 1rem 1.4rem;text-align:center;
+  border:1px solid rgba(139,92,246,.1);
+  background:rgba(8,6,18,.7);
+  transition:border-color .5s,box-shadow .5s,transform .5s,background .5s;
+  display:flex;flex-direction:column;align-items:center;
+  cursor:pointer;opacity:0;transform:translateY(12px);
+  position:relative;overflow:hidden;
 }
-.scenario.active{
-  border-color:rgba(139,92,246,.5);background:rgba(139,92,246,.08);
-  box-shadow:0 0 24px rgba(139,92,246,.12);transform:translateY(-3px);
+.scenario::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(139,92,246,.04) 0%,transparent 70%);
+  pointer-events:none;
 }
-.sc-label{font-family:'DM Mono',monospace;font-size:.4rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem;}
-.sc-copies{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--text);line-height:1;}
-.sc-copies-label{font-family:'DM Mono',monospace;font-size:.38rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin:.3rem 0 .6rem;}
-.sc-earn{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;color:var(--a2);line-height:1;}
-.sc-earn-label{font-family:'DM Mono',monospace;font-size:.38rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-top:.3rem;}
-.sc-rate{font-family:'DM Mono',monospace;font-size:.38rem;letter-spacing:.04em;color:var(--muted);display:block;margin-top:.5rem;opacity:.6;}
-.calc-note{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:var(--muted);margin-top:1.5rem;line-height:1.7;}
+.scenario.visible{opacity:1;transform:translateY(0);transition:border-color .5s,box-shadow .5s,transform .6s cubic-bezier(.16,1,.3,1),background .5s,opacity .5s;}
+.scenario:hover{border-color:rgba(139,92,246,.25);background:rgba(12,9,24,.85);}
+.scenario.active{border-color:rgba(139,92,246,.55);background:rgba(12,8,26,.95);box-shadow:0 0 40px rgba(139,92,246,.15),0 0 0 1px rgba(139,92,246,.2);transform:translateY(-6px)!important;}
+
+/* % — big but subtle, top of card */
+.sc-rate-big{
+  font-family:'Playfair Display',serif;font-weight:400;font-style:italic;
+  font-size:2.2rem;color:rgba(196,181,253,.35);line-height:1;
+  margin-bottom:.3rem;
+}
+.scenario.active .sc-rate-big{color:rgba(196,181,253,.55);}
+
+/* label — tiny mono above divider */
+.sc-label{
+  font-family:'DM Mono',monospace;font-size:.4rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;
+}
+
+/* divider */
+.sc-divider{width:40px;height:1px;background:rgba(139,92,246,.15);margin:.5rem 0 .8rem;}
+.scenario.active .sc-divider{background:rgba(139,92,246,.4);width:60px;}
+
+/* sales count — medium, secondary */
+.sc-copies{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:1.5rem;color:rgba(240,238,255,.55);line-height:1;
+}
+.scenario.active .sc-copies{color:var(--text);}
+.sc-copies-label{
+  font-family:'DM Mono',monospace;font-size:.34rem;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(139,92,246,.3);margin-top:.2rem;margin-bottom:.6rem;
+}
+
+/* USD earn — THE hero number */
+.sc-earn-wrap{display:flex;align-items:baseline;gap:.2rem;}
+.sc-earn{
+  font-family:'Playfair Display',serif;font-weight:900;
+  font-size:2rem;color:var(--a2);line-height:1;
+}
+.scenario.active .sc-earn{font-size:2.2rem;}
+.sc-earn-label{
+  font-family:'DM Mono',monospace;font-size:.38rem;letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(139,92,246,.45);
+}
+
+/* MXN — small, dimmed */
+.sc-mxn{
+  font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.03em;
+  color:rgba(139,92,246,.3);margin-top:.35rem;
+}
+.calc-note{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:var(--muted);margin-top:1.5rem;line-height:1.7;text-align:center;}
+.calc-sources{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(139,92,246,.08);}
+.calc-sources-title{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(139,92,246,.35);display:block;margin-bottom:.7rem;}
+.calc-sources-list{display:flex;flex-direction:column;gap:.4rem;}
+.calc-source-link{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.03em;color:rgba(139,92,246,.35);text-decoration:none;transition:color .2s;line-height:1.6;}
+.calc-source-link:hover{color:var(--a2);text-decoration:underline;}
+
+/* ── COUNTRY PICKER ── */
+.country-picker{position:relative;}
+.country-search-wrap{background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:.6rem .8rem;transition:border-color .3s,box-shadow .3s;cursor:text;}
+.country-search-wrap:focus-within{border-color:rgba(139,92,246,.5);box-shadow:0 0 0 3px rgba(139,92,246,.08);}
+.country-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.4rem;}
+.country-tag{display:inline-flex;align-items:center;gap:.35rem;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.04em;color:var(--a2);background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);border-radius:6px;padding:.25rem .55rem;}
+.country-tags:empty{margin-bottom:0;}
+.country-tag-x{cursor:pointer;opacity:.6;font-size:.7rem;line-height:1;transition:opacity .2s;}
+.country-tag-x:hover{opacity:1;}
+#country-search{background:none;border:none;outline:none;font-family:'DM Mono',monospace;font-size:.8rem;color:var(--text);width:100%;padding:.3rem .2rem;}
+#country-search::placeholder{color:rgba(139,92,246,.2);}
+.country-dropdown{position:absolute;left:0;right:0;top:calc(100% + 6px);background:rgba(10,8,22,.98);border:1px solid rgba(139,92,246,.25);border-radius:12px;max-height:200px;overflow-y:auto;z-index:50;display:none;box-shadow:0 16px 40px rgba(0,0,0,.7);}
+.country-dropdown.open{display:block;}
+.country-dropdown::-webkit-scrollbar{width:4px;}
+.country-dropdown::-webkit-scrollbar-track{background:transparent;}
+.country-dropdown::-webkit-scrollbar-thumb{background:rgba(139,92,246,.25);border-radius:2px;}
+.country-opt{display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;cursor:pointer;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.04em;color:var(--muted);transition:background .15s,color .15s;border-bottom:1px solid rgba(139,92,246,.06);}
+.country-opt:last-child{border-bottom:none;}
+.country-opt:hover{background:rgba(139,92,246,.1);color:var(--text);}
+.country-flag{font-size:1rem;width:1.4rem;text-align:center;}
 
 /* ── QUESTIONNAIRE ── */
 #apply{padding:8vh 6%;max-width:700px;margin:0 auto;text-align:center;}
-.q-wrap{
-  background:rgba(12,10,24,.8);border:1px solid rgba(139,92,246,.25);border-radius:28px;
-  padding:3rem 2.5rem;margin-top:3rem;position:relative;overflow:hidden;
-}
-/* progress bar */
+.q-wrap{background:rgba(12,10,24,.8);border:1px solid rgba(139,92,246,.25);border-radius:28px;padding:3rem 2.5rem;margin-top:3rem;position:relative;overflow:hidden;}
 .q-progress-wrap{margin-bottom:2.5rem;}
 .q-progress-label{display:flex;justify-content:space-between;margin-bottom:.6rem;}
 .q-progress-step{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
 .q-progress-of{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(139,92,246,.4);}
 .q-progress-bar{height:2px;background:rgba(139,92,246,.1);border-radius:1px;overflow:hidden;}
 .q-progress-fill{height:100%;background:linear-gradient(90deg,var(--a3),var(--a2));border-radius:1px;transition:width .6s cubic-bezier(.16,1,.3,1);}
-
-/* steps */
 .q-step{display:none;animation:stepIn .5s cubic-bezier(.16,1,.3,1) both;}
 .q-step.active{display:block;}
 @keyframes stepIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .q-question{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.2rem,2.5vw,1.6rem);color:var(--text);line-height:1.3;margin-bottom:.7rem;}
 .q-question em{font-style:italic;font-weight:400;color:var(--a2);}
 .q-hint{font-family:'Lato',sans-serif;font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:2rem;}
-
-/* inputs */
-.q-input{
-  width:100%;background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.2);
-  border-radius:12px;padding:1rem 1.2rem;
-  font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);
-  outline:none;transition:border-color .3s,box-shadow .3s;
-}
+.q-input{width:100%;background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:1rem 1.2rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;transition:border-color .3s,box-shadow .3s;}
 .q-input:focus{border-color:rgba(139,92,246,.5);box-shadow:0 0 0 3px rgba(139,92,246,.08);}
 .q-input::placeholder{color:rgba(139,92,246,.2);}
-
-/* platform checkboxes */
 .platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.5rem;}
-.platform-opt{
-  display:flex;align-items:center;gap:.8rem;
-  background:rgba(6,5,15,.6);border:1px solid rgba(139,92,246,.15);
-  border-radius:12px;padding:.9rem 1.1rem;cursor:pointer;
-  transition:all .3s cubic-bezier(.16,1,.3,1);user-select:none;
-}
+.platform-opt{display:flex;align-items:center;gap:.8rem;background:rgba(6,5,15,.6);border:1px solid rgba(139,92,246,.15);border-radius:12px;padding:.9rem 1.1rem;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);user-select:none;}
 .platform-opt:hover{border-color:rgba(139,92,246,.35);}
 .platform-opt.selected{border-color:rgba(139,92,246,.55);background:rgba(139,92,246,.08);box-shadow:0 0 16px rgba(139,92,246,.1);}
-.platform-opt input{display:none;}
 .platform-icon{font-size:1.3rem;}
 .platform-name{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
 .platform-opt.selected .platform-name{color:var(--a2);}
@@ -271,46 +318,17 @@ section{position:relative;z-index:1;}
 .platform-opt.selected .platform-check{background:var(--a);border-color:var(--a);}
 .platform-check-mark{color:#fff;font-size:.65rem;opacity:0;transition:opacity .2s;}
 .platform-opt.selected .platform-check-mark{opacity:1;}
-
-/* format selector */
 .format-opts{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:1.5rem;}
-.format-opt{
-  font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;
-  padding:.65rem 1.3rem;border-radius:50px;cursor:pointer;
-  background:rgba(12,10,24,.85);border:1.5px solid rgba(139,92,246,.18);
-  color:rgba(196,181,253,.45);transition:all .3s cubic-bezier(.16,1,.3,1);
-  user-select:none;
-}
+.format-opt{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;padding:.65rem 1.3rem;border-radius:50px;cursor:pointer;background:rgba(12,10,24,.85);border:1.5px solid rgba(139,92,246,.18);color:rgba(196,181,253,.45);transition:all .3s cubic-bezier(.16,1,.3,1);user-select:none;}
 .format-opt:hover{border-color:rgba(196,181,253,.45);color:var(--text);}
-.format-opt.selected{
-  background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(76,29,149,.28));
-  border-color:var(--a2);color:var(--text);
-  box-shadow:0 0 20px rgba(139,92,246,.18);
-}
-
-/* nav buttons */
+.format-opt.selected{background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(76,29,149,.28));border-color:var(--a2);color:var(--text);box-shadow:0 0 20px rgba(139,92,246,.18);}
 .q-nav{display:flex;gap:1rem;justify-content:flex-end;margin-top:2rem;}
-.q-btn-back{
-  font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
-  padding:.75rem 1.5rem;border-radius:8px;background:none;
-  border:1px solid rgba(139,92,246,.2);color:var(--muted);cursor:pointer;transition:all .3s;
-}
+.q-btn-back{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.5rem;border-radius:8px;background:none;border:1px solid rgba(139,92,246,.2);color:var(--muted);cursor:pointer;transition:all .3s;}
 .q-btn-back:hover{border-color:rgba(139,92,246,.4);color:var(--text);}
-.q-btn-next{
-  font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
-  padding:.75rem 2rem;border-radius:8px;
-  background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));
-  color:#fff;border:none;cursor:pointer;
-  box-shadow:0 0 18px rgba(139,92,246,.3);transition:all .3s;
-}
+.q-btn-next{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 2rem;border-radius:8px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;border:none;cursor:pointer;box-shadow:0 0 18px rgba(139,92,246,.3);transition:all .3s;}
 .q-btn-next:hover{box-shadow:0 0 30px rgba(139,92,246,.5);transform:translateY(-1px);}
 .q-btn-next:disabled{opacity:.3;cursor:not-allowed;transform:none;}
-
-/* summary / send */
-.q-summary{
-  background:rgba(6,5,15,.6);border:1px solid rgba(139,92,246,.15);
-  border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;
-}
+.q-summary{background:rgba(6,5,15,.6);border:1px solid rgba(139,92,246,.15);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;}
 .q-summary-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(139,92,246,.08);}
 .q-summary-row:last-child{border-bottom:none;}
 .q-summary-key{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
@@ -318,22 +336,10 @@ section{position:relative;z-index:1;}
 .send-question{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--text);margin-bottom:.6rem;}
 .send-sub{font-family:'Lato',sans-serif;font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:2rem;}
 .send-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.btn-send{
-  font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:1rem 2.5rem;border-radius:12px;
-  background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));
-  color:#fff;border:none;cursor:pointer;
-  box-shadow:0 0 28px rgba(139,92,246,.35);transition:all .35s;
-}
+.btn-send{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.5rem;border-radius:12px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;border:none;cursor:pointer;box-shadow:0 0 28px rgba(139,92,246,.35);transition:all .35s;}
 .btn-send:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(139,92,246,.55);}
-.btn-skip{
-  font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:1rem 2rem;border-radius:12px;background:none;
-  border:1px solid rgba(139,92,246,.2);color:var(--muted);cursor:pointer;transition:all .3s;
-}
+.btn-skip{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2rem;border-radius:12px;background:none;border:1px solid rgba(139,92,246,.2);color:var(--muted);cursor:pointer;transition:all .3s;}
 .btn-skip:hover{border-color:rgba(139,92,246,.4);color:var(--text);}
-
-/* success */
 .q-success{text-align:center;padding:2rem 0;display:none;}
 .success-orb{width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,#6ee7b7 0%,#059669 60%,#064e3b 100%);box-shadow:0 0 40px rgba(110,231,183,.35);margin:0 auto 1.5rem;animation:orbFloat 4s ease-in-out infinite;}
 .success-title{font-family:'Playfair Display',serif;font-weight:900;font-size:2rem;color:var(--ok);margin-bottom:.8rem;}
@@ -346,65 +352,29 @@ section{position:relative;z-index:1;}
 footer{padding:4vh 6%;text-align:center;position:relative;z-index:1;border-top:1px solid rgba(139,92,246,.06);}
 .f-logo{font-family:'DM Mono',monospace;font-size:.9rem;letter-spacing:.34em;color:rgba(196,181,253,.25);display:block;margin-bottom:.8rem;}
 .f-note{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(139,92,246,.2);}
+.f-sources{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(139,92,246,.06);}
+.f-sources-title{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(139,92,246,.25);display:block;margin-bottom:.7rem;}
+.f-sources-list{display:flex;flex-direction:column;gap:.35rem;}
+.f-source-link{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.03em;color:rgba(139,92,246,.2);text-decoration:none;transition:color .2s;line-height:1.6;}
+.f-source-link:hover{color:var(--a2);}
 
-/* ── COUNTRY PICKER ── */
-.country-picker{position:relative;}
-.country-search-wrap{
-  background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.2);
-  border-radius:12px;padding:.6rem .8rem;
-  transition:border-color .3s,box-shadow .3s;
-  cursor:text;
+/* ── MANUAL INPUT ── */
+.calc-field-row{display:flex;align-items:baseline;gap:1rem;margin-bottom:.8rem;}
+.calc-manual{
+  background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.18);
+  border-radius:8px;padding:.3rem .7rem;
+  font-family:'DM Mono',monospace;font-size:.6rem;color:var(--a2);
+  outline:none;width:110px;transition:border-color .3s;
+  -moz-appearance:textfield;
 }
-.country-search-wrap:focus-within{border-color:rgba(139,92,246,.5);box-shadow:0 0 0 3px rgba(139,92,246,.08);}
-.country-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.4rem;}
-.country-tag{
-  display:inline-flex;align-items:center;gap:.35rem;
-  font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.04em;
-  color:var(--a2);background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);
-  border-radius:6px;padding:.25rem .55rem;
-}
-.country-tags:empty{margin-bottom:0;}
-.country-tag-x{cursor:pointer;opacity:.6;font-size:.7rem;line-height:1;transition:opacity .2s;}
-.country-tag-x:hover{opacity:1;}
-#country-search{
-  background:none;border:none;outline:none;
-  font-family:'DM Mono',monospace;font-size:.8rem;color:var(--text);
-  width:100%;padding:.3rem .2rem;
-}
-#country-search::placeholder{color:rgba(139,92,246,.2);}
-.country-dropdown{
-  position:absolute;left:0;right:0;top:calc(100% + 6px);
-  background:rgba(10,8,22,.98);border:1px solid rgba(139,92,246,.25);
-  border-radius:12px;max-height:200px;overflow-y:auto;
-  z-index:50;display:none;
-  box-shadow:0 16px 40px rgba(0,0,0,.7);
-}
-.country-dropdown.open{display:block;}
-.country-dropdown::-webkit-scrollbar{width:4px;}
-.country-dropdown::-webkit-scrollbar-track{background:transparent;}
-.country-dropdown::-webkit-scrollbar-thumb{background:rgba(139,92,246,.25);border-radius:2px;}
-.country-opt{
-  display:flex;align-items:center;gap:.7rem;
-  padding:.7rem 1rem;cursor:pointer;
-  font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.04em;color:var(--muted);
-  transition:background .15s,color .15s;border-bottom:1px solid rgba(139,92,246,.06);
-}
-.country-opt:last-child{border-bottom:none;}
-.country-opt:hover{background:rgba(139,92,246,.1);color:var(--text);}
-.country-opt.selected{color:var(--a2);}
-.country-flag{font-size:1rem;width:1.4rem;text-align:center;}
-
-/* ── COLOR DOTS ── */
-#color-picker{padding:2.5vh 6%;text-align:center;position:relative;z-index:1;}
-.cdots{display:flex;gap:1rem;justify-content:center;flex-wrap:nowrap;margin:.8rem auto;}
-.cdot{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .3s;flex-shrink:0;box-shadow:0 0 8px currentColor;}
-.cdot:hover{transform:scale(1.35);box-shadow:0 0 20px currentColor;}
-.cdot.on{border-color:rgba(255,255,255,.55);transform:scale(1.22);box-shadow:0 0 26px currentColor;}
-.cdot-label{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,181,253,.35);display:block;margin-bottom:.6rem;}
+.calc-manual::-webkit-outer-spin-button,.calc-manual::-webkit-inner-spin-button{-webkit-appearance:none;}
+.calc-manual:focus{border-color:rgba(139,92,246,.5);}
+.calc-manual::placeholder{color:rgba(139,92,246,.25);font-size:.55rem;}
 
 /* RESPONSIVE */
 @media(max-width:700px){
   .comm-grid{grid-template-columns:1fr;}
+  .transp-grid{grid-template-columns:1fr;}
   .scenarios{grid-template-columns:1fr 1fr;}
   .hero-stats{gap:1.5rem;}
   #starCanvas{display:none;}
@@ -415,6 +385,7 @@ footer{padding:4vh 6%;text-align:center;position:relative;z-index:1;border-top:1
   .platform-grid{grid-template-columns:1fr;}
   .scenarios{grid-template-columns:1fr 1fr;}
   .send-btns{flex-direction:column;}
+  .nav-badge{display:none;}
 }
 </style>
 </head>
@@ -425,724 +396,857 @@ footer{padding:4vh 6%;text-align:center;position:relative;z-index:1;border-top:1
 <!-- NAV -->
 <nav id="nav">
   <a href="https://alinea.work" class="nav-logo">ALINEA</a>
-  <span class="nav-badge">Programa de Afiliados</span>
+  <div class="nav-right">
+    <span class="nav-badge" data-i18n="nav_badge">Programa de Afiliados</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">ES</button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-orb"></div>
-  <span class="hero-eyebrow">Acceso privado · Solo con invitación</span>
-  <h1 class="hero-hl">Tú pones la audiencia.<br><em>Nosotros ponemos los dólares.</em></h1>
-  <p class="hero-sub">El programa de afiliados más agresivo del software independiente de lectura. Sin agencias. Sin trabas. Directo a tu cuenta.</p>
+  <span class="hero-eyebrow" data-i18n="hero_eyebrow">Private access · By invitation only</span>
+  <h1 class="hero-hl" id="hero-hl-wrap">
+    <span class="hero-hl-line" id="hero-hl-text">Your audience discovers something they gonna love.</span>
+  </h1>
+  <p class="hero-sub" data-i18n="hero_sub">El programa de afiliados más agresivo del software independiente de lectura. Sin agencias. Sin trabas. Directo a tu cuenta.</p>
   <div class="hero-stats">
     <div class="stat-item">
+      <span class="stat-prefix" data-i18n="stat1_pre">hasta</span>
       <div class="stat-num">$15</div>
-      <span class="stat-label">USD por venta</span>
+      <span class="stat-label" data-i18n="stat1">USD por venta</span>
     </div>
     <div class="stat-item">
       <div class="stat-num">$69</div>
-      <span class="stat-label">Precio con tu código</span>
+      <span class="stat-label" data-i18n="stat2">Precio con tu código</span>
     </div>
     <div class="stat-item">
       <div class="stat-num">100%</div>
-      <span class="stat-label">Automático vía Lemon</span>
+      <span class="stat-label" data-i18n="stat3">Automático vía Lemon</span>
     </div>
   </div>
-  <a href="#apply" class="hero-cta">Quiero ser afiliado →</a>
-  <span class="hero-cta-note">Cuestionario de 5 preguntas · Sin compromiso</span>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-  </div>
+  <a href="#apply" class="hero-cta" data-i18n="hero_cta">Quiero ser afiliado →</a>
+  <span class="hero-cta-note" data-i18n="hero_cta_note">Cuestionario de 5 preguntas · Sin compromiso</span>
+  <div class="scroll-hint"><div class="scroll-line"></div></div>
 </section>
 
 <!-- COLOR PICKER -->
 <section id="color-picker">
-  <span class="cdot-label">Elige tu color</span>
+  <span class="cdot-label" data-i18n="color_label">Elige tu color</span>
   <div class="cdots">
-    <div class="cdot on" data-t="purple" style="background:#8b5cf6;color:#8b5cf6" onclick="setTheme('purple',this)"></div>
-    <div class="cdot" data-t="blue" style="background:#3b82f6;color:#3b82f6" onclick="setTheme('blue',this)"></div>
-    <div class="cdot" data-t="emerald" style="background:#10b981;color:#10b981" onclick="setTheme('emerald',this)"></div>
-    <div class="cdot" data-t="pink" style="background:#ec4899;color:#ec4899" onclick="setTheme('pink',this)"></div>
-    <div class="cdot" data-t="orange" style="background:#f97316;color:#f97316" onclick="setTheme('orange',this)"></div>
-    <div class="cdot" data-t="amber" style="background:#f59e0b;color:#f59e0b" onclick="setTheme('amber',this)"></div>
-    <div class="cdot" data-t="red" style="background:#ef4444;color:#ef4444" onclick="setTheme('red',this)"></div>
+    <div class="cdot on" style="background:#8b5cf6;color:#8b5cf6" onclick="setTheme('purple',this)"></div>
+    <div class="cdot" style="background:#3b82f6;color:#3b82f6" onclick="setTheme('blue',this)"></div>
+    <div class="cdot" style="background:#10b981;color:#10b981" onclick="setTheme('emerald',this)"></div>
+    <div class="cdot" style="background:#ec4899;color:#ec4899" onclick="setTheme('pink',this)"></div>
+    <div class="cdot" style="background:#f97316;color:#f97316" onclick="setTheme('orange',this)"></div>
+    <div class="cdot" style="background:#f59e0b;color:#f59e0b" onclick="setTheme('amber',this)"></div>
+    <div class="cdot" style="background:#ef4444;color:#ef4444" onclick="setTheme('red',this)"></div>
   </div>
 </section>
 
 <!-- COMMISSIONS -->
 <section id="commissions">
   <div class="comm-head">
-    <span class="eyebrow">Tabulador de comisiones</span>
-    <h2 class="section-head">Elige tu <em>nivel.</em><br>Escala cuando quieras.</h2>
+    <span class="eyebrow" data-i18n="comm_eyebrow">Tabulador de comisiones</span>
+    <h2 class="section-head" data-i18n="comm_head">Dos niveles.<br><em>Un solo objetivo.</em></h2>
   </div>
   <div class="comm-grid">
-    <div class="comm-card">
-      <span class="comm-tier">Nivel Inicial</span>
-      <div><span class="comm-currency">$</span><span class="comm-amount">5</span></div>
-      <span class="comm-per">USD por venta</span>
-      <div class="comm-reqs">
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Mínimo 3 videos al mes mencionando ALINEA</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Mostrar la interfaz de la app en al menos 1 video</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Link de afiliado en bio activo todo el mes</span></div>
-      </div>
-    </div>
     <div class="comm-card featured">
-      <span class="comm-badge">⭐ Más popular</span>
-      <span class="comm-tier">Nivel Intermedio</span>
+      <span class="comm-badge" data-i18n="comm1_badge">✦ Entrada</span>
+      <span class="comm-tier" data-i18n="comm1_tier">Nivel Intermedio</span>
       <div><span class="comm-currency">$</span><span class="comm-amount">10</span></div>
-      <span class="comm-per">USD por venta</span>
+      <span class="comm-per" data-i18n="comm_per">USD por venta</span>
       <div class="comm-reqs">
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Mínimo 5 videos al mes con contenido específico</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Al menos 2 videos mostrando las galaxias de conocimiento</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Compartir el flujo de trabajo: highlights → notas → conexiones</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Link de afiliado en bio + mención en cada video</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r1">Mínimo 5 videos al mes con ALINEA en uso real</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r2">Al menos 2 videos mostrando tu galaxia con libros, highlights y conexiones reales</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r3">Hablar de al menos una ventaja concreta: cómo guardas highlights, cómo conectas ideas</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r4">Mencionar el código de descuento en el video o caption</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r5">Compartir métricas de los videos ALINEA al cierre de cada mes</span></div>
       </div>
     </div>
     <div class="comm-card">
-      <span class="comm-badge" style="color:var(--a2);background:rgba(196,181,253,.08);border-color:rgba(196,181,253,.2);">🚀 Socio Alfa</span>
-      <span class="comm-tier">Nivel Premium</span>
+      <span class="comm-badge" style="color:var(--a2);background:rgba(196,181,253,.08);border-color:rgba(196,181,253,.2);" data-i18n="comm2_badge">🚀 Socio Alfa</span>
+      <span class="comm-tier" data-i18n="comm2_tier">Nivel Premium</span>
       <div><span class="comm-currency">$</span><span class="comm-amount">15</span></div>
-      <span class="comm-per">USD por venta</span>
+      <span class="comm-per" data-i18n="comm_per">USD por venta</span>
       <div class="comm-reqs">
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Entre 8 y 10 videos al mes con guion técnico ALINEA</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Hablar de galaxias, highlights y notas con detalle visual</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Cuidar la estética OLED en cada video (fondos oscuros)</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span>Contenido reutilizable por ALINEA para publicidad oficial</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c2r1">Mínimo 8 videos al mes — tu estilo, tus reglas</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c2r2">Galaxia viva: que se vea llenándose con el tiempo, progreso real</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c2r3">Al menos 2 videos tipo "así uso ALINEA en mi rutina" — auténtico, no guionado</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c2r4">Al menos 1 video mostrando ventajas vs cómo leías antes</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c2r5">Fondos oscuros — la estética OLED de ALINEA se tiene que ver bien</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c2r6">Link de afiliado en bio activo todo el mes</span></div>
+        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c2r7">Métricas mensuales + contenido reutilizable por ALINEA</span></div>
       </div>
     </div>
   </div>
-  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:.95rem;margin-top:2rem;line-height:1.72;">Todos comienzan en Nivel Intermedio ($10 USD). Después de los primeros 3 videos revisamos tu estética y te subimos a Socio Alfa si el contenido es sólido.</p>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:.95rem;margin-top:2rem;line-height:1.72;text-align:center;max-width:600px;margin-left:auto;margin-right:auto;" data-i18n="comm_footer">Todos comienzan en Nivel Intermedio. Después de tus primeros 3 videos evaluamos la estética y si el contenido es sólido, subimos a Socio Alfa automáticamente.</p>
 </section>
 
 <!-- HOW IT WORKS -->
 <section id="how">
   <div style="text-align:center;margin-bottom:4rem;">
-    <span class="eyebrow">Cómo funciona</span>
-    <h2 class="section-head">Simple.<br><em>Automático. Tuyo.</em></h2>
+    <span class="eyebrow" data-i18n="how_eyebrow">Cómo funciona</span>
+    <h2 class="section-head" data-i18n="how_head">Simple.<br><em>Automático. Tuyo.</em></h2>
   </div>
   <div class="how-steps">
-    <div class="how-step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <div class="step-title">Aplicas y te aprobamos</div>
-        <div class="step-desc">Llenas el cuestionario al final de esta página. Revisamos tu cuenta, tu estética y tu engagement. Si encajas con la vibra de ALINEA, te mandamos tu link personalizado y tu código de descuento exclusivo en menos de 48 horas.</div>
-      </div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <div class="step-title">Tu audiencia compra con descuento real</div>
-        <div class="step-desc">El precio oficial de ALINEA Pro es $89 USD. Con tu código, tu audiencia lo consigue por $69 USD — $20 de descuento real que tú les regalas. Ellos sienten que tienen un trato exclusivo gracias a ti. Tú construyes confianza y ventas al mismo tiempo.</div>
-      </div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <div class="step-title">Lemon Squeezy trackea todo</div>
-        <div class="step-desc">Nada manual. Lemon Squeezy tiene un panel donde ves en tiempo real: clics, conversiones, ventas y comisiones acumuladas. Tú mismo ingresas tu cuenta de PayPal o banco una sola vez. El sistema hace el resto.</div>
-      </div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <div class="step-title">Cobras al cierre de mes, automático</div>
-        <div class="step-desc">Al final de cada mes, Lemon calcula tu comisión y te deposita directo. No hay que pedirlo, no hay intermediarios, no hay esperas. El dinero cae solo.</div>
-      </div>
-    </div>
+    <div class="how-step"><div class="step-num">1</div><div class="step-body"><div class="step-title" data-i18n="s1t">Aplicas y te aprobamos en 48 horas</div><div class="step-desc" data-i18n="s1d">Llenas el cuestionario al final de esta página. Revisamos tu cuenta, tu estética y tu engagement. Si encajas con la vibra de ALINEA, te mandamos tu link y código de descuento personalizados — únicos para ti.</div></div></div>
+    <div class="how-step"><div class="step-num">2</div><div class="step-body"><div class="step-title" data-i18n="s2t">Tu audiencia compra con descuento real</div><div class="step-desc" data-i18n="s2d">El precio oficial de ALINEA Pro es $89 USD. Con tu código, tu audiencia lo consigue por $69 USD — $20 de descuento real que tú les regalas. Ellos sienten que tienen un trato exclusivo gracias a ti.</div></div></div>
+    <div class="how-step"><div class="step-num">3</div><div class="step-body"><div class="step-title" data-i18n="s3t">Lemon Squeezy trackea todo en tiempo real</div><div class="step-desc" data-i18n="s3d">Tienes tu propio panel de afiliado donde ves clics, conversiones, ventas y comisiones acumuladas en tiempo real. Tú mismo ingresas tu PayPal o banco una sola vez. El dinero nunca pasa por manos de nadie.</div></div></div>
+    <div class="how-step"><div class="step-num">4</div><div class="step-body"><div class="step-title" data-i18n="s4t">Cobras automático al cierre de mes</div><div class="step-desc" data-i18n="s4d">Sin pedirlo, sin esperar, sin intermediarios. Lo único que nos mandas al cierre de mes son capturas de métricas de tus videos de ALINEA — solo esos, nada más.</div></div></div>
+    <div class="how-step"><div class="step-num">5</div><div class="step-body"><div class="step-title" data-i18n="s5t">Compromiso mínimo de 3 meses</div><div class="step-desc" data-i18n="s5d">El acuerdo es por 3 meses mínimo. Después se renueva automáticamente mes a mes. Si alguno quiere salir, 15 días de aviso y todas las comisiones generadas se pagan completas. Sin letra chica.</div></div></div>
   </div>
 </section>
 
 <!-- PRICE ANCHOR -->
 <section id="anchor">
   <div class="anchor-box">
-    <span class="eyebrow">La magia del precio</span>
-    <h2 style="font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:.5rem;">Tú le das algo de valor real<br>a tu audiencia.</h2>
-    <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-bottom:1.5rem;">No es un link genérico. Es un descuento concreto que tu comunidad puede sentir.</p>
-    <div class="price-flow">
-      <div class="price-tag">
-        <span class="price-label">Precio oficial</span>
-        <span class="price-val strike">$89</span>
+    <span class="eyebrow" data-i18n="anchor_eyebrow">El valor del descuento</span>
+    <h2 style="font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:.5rem;" data-i18n="anchor_head">Tu comunidad recibe<br><em>algo concreto y real.</em></h2>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-bottom:1.5rem;" data-i18n="anchor_sub">No es un link genérico. Es un descuento de $20 que tú les regalas — y ellos lo sienten.</p>
+
+    <!-- CAROUSEL -->
+    <div class="price-carousel">
+      <button class="price-arrow-btn prev" onclick="goSlide((slideIdx+2)%3)" aria-label="anterior">‹</button>
+      <div class="price-carousel-track" id="price-track">
+        <!-- step 1 -->
+        <div class="price-slide">
+          <span class="price-label" data-i18n="price1">Precio oficial</span>
+          <span class="price-val strike">$89</span>
+          <span class="price-slide-hint" data-i18n="price1_hint">Lo que cuesta ALINEA Pro</span>
+        </div>
+        <!-- step 2 -->
+        <div class="price-slide">
+          <span class="price-label" data-i18n="price2">Tu descuento</span>
+          <span class="price-val" style="color:var(--a2);">-$20</span>
+          <span class="price-slide-hint" data-i18n="price2_hint">Lo que tú le regalas a tu comunidad</span>
+        </div>
+        <!-- step 3 -->
+        <div class="price-slide">
+          <span class="price-label" data-i18n="price3">Lo que paga tu comunidad</span>
+          <span class="price-val final">$69</span>
+          <span class="price-slide-hint" data-i18n="price3_hint">Un precio que se siente especial</span>
+        </div>
       </div>
-      <div class="price-arrow">→</div>
-      <div class="price-tag">
-        <span class="price-label">Descuento tu código</span>
-        <span class="price-val" style="color:var(--a2);">-$20</span>
-      </div>
-      <div class="price-arrow">→</div>
-      <div class="price-tag">
-        <span class="price-label">Precio final tu audiencia</span>
-        <span class="price-val final">$69</span>
+      <button class="price-arrow-btn next" onclick="goSlide((slideIdx+1)%3)" aria-label="siguiente">›</button>
+      <!-- dots -->
+      <div class="price-dots">
+        <div class="price-dot active" onclick="goSlide(0)"></div>
+        <div class="price-dot" onclick="goSlide(1)"></div>
+        <div class="price-dot" onclick="goSlide(2)"></div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:.5rem;">
-      <span class="price-code"><span class="price-code-icon">🔑</span> TUCREADOR20</span>
-    </div>
-    <p class="anchor-note">Cada afiliado tiene su propio código único. Tu audiencia lo ingresa al hacer checkout y el descuento se aplica al instante — sin fricciones, sin pasos extra.</p>
+
+    <div style="text-align:center;margin-top:1.2rem;"><span class="price-code"><span>🔑</span> TUCREADOR20</span></div>
+    <p class="anchor-note" data-i18n="anchor_note">Cada creador tiene su propio código único. Tu audiencia lo usa al hacer checkout y el precio baja al instante. Sin fricciones, sin pasos raros.</p>
+  </div>
+</section>
+
+<!-- LEMON TRANSPARENCY -->
+<section id="transparency" style="padding:8vh 6%;max-width:900px;margin:0 auto;text-align:center;">
+  <span class="eyebrow" data-i18n="transp_eyebrow">Transparencia total</span>
+  <h2 class="section-head" data-i18n="transp_head">Tu dinero es tuyo.<br><em>Siempre visible.</em></h2>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;margin-bottom:3.5rem;" data-i18n="transp_sub">No dependes de nuestra palabra. Lemon Squeezy te da acceso directo a todo.</p>
+  <div class="transp-grid">
+    <div class="transp-card"><div class="transp-icon">📊</div><div class="transp-title" data-i18n="t1t">Panel propio en tiempo real</div><div class="transp-desc" data-i18n="t1d">Tienes tu propio dashboard de afiliado en Lemon Squeezy. Ves cuántos clics trae tu link, cuántas personas abrieron el checkout, cuántas compraron y cuánto llevas acumulado — en tiempo real, sin pedírselo a nadie.</div></div>
+    <div class="transp-card"><div class="transp-icon">💸</div><div class="transp-title" data-i18n="t2t">Lemon te deposita directo</div><div class="transp-desc" data-i18n="t2d">Tu comisión nunca pasa por nuestras manos. Lemon calcula el monto exacto y lo deposita directo a tu PayPal o banco. Nosotros no tocamos tu dinero ni podemos retenerlo arbitrariamente.</div></div>
+    <div class="transp-card"><div class="transp-icon">🔍</div><div class="transp-title" data-i18n="t3t">Cada venta rastreada a tu nombre</div><div class="transp-desc" data-i18n="t3d">Cada compra que entra por tu link queda registrada en tu historial con fecha, monto y comisión generada. Puedes ver el detalle de cada transacción. No hay números redondos ni estimados.</div></div>
+    <div class="transp-card"><div class="transp-icon">📅</div><div class="transp-title" data-i18n="t4t">Historial mensual descargable</div><div class="transp-desc" data-i18n="t4d">Al cierre de cada mes puedes descargar tu reporte completo: cuánto generaste, cuándo se procesó el pago, qué tasa de conversión tuvo tu link. Información tuya, disponible cuando quieras.</div></div>
   </div>
 </section>
 
 <!-- CALCULATOR -->
 <section id="calculator">
-  <span class="eyebrow">Calculadora de ganancias</span>
-  <h2 class="section-head">¿Cuánto podrías<br><em>ganar al mes?</em></h2>
-  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;">Mueve los sliders con tus números reales. Los cuatro escenarios se calculan en automático.</p>
+  <span class="eyebrow" data-i18n="calc_eyebrow">Calculadora de ganancias</span>
+  <h2 class="section-head" data-i18n="calc_head">¿Cuánto podría<br><em>valer tu comunidad?</em></h2>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;" data-i18n="calc_sub">Mueve los sliders con tus números reales y ve cuánto podrías ganar al mes en cada escenario.</p>
 
+  <!-- toggle explain -->
+  <div class="calc-toggle-wrap">
+    <button class="calc-toggle-btn" onclick="toggleExplain(this)" data-i18n="calc_toggle_btn">¿Cómo se calcula el % de conversión? →</button>
+    <div class="calc-toggle-body" id="calc-explain-body">
+      <div class="calc-explain">
+        
+        <span data-i18n="calc_explain">El % de conversión se aplica sobre el <strong>alcance total de tus videos</strong> (vistas × videos al mes) — no sobre tus seguidores. Es el porcentaje de personas que ven el video y terminan comprando via tu link externo (Lemon). Modelo link-in-bio / link externo, <em>no</em> TikTok Shop nativo.</span>
+      </div>
+    </div>
+  </div>
   <div class="calc-box">
     <div class="calc-inputs">
       <div class="calc-field">
-        <span class="calc-field-label">Seguidores totales</span>
-        <span class="calc-field-value" id="val-followers">35,000</span>
+        <span class="calc-field-label" data-i18n="sl1_label">Seguidores actuales</span>
+        <div class="calc-field-row">
+          <span class="calc-field-value" id="val-followers">35,000</span>
+          <input type="number" class="calc-manual" id="in-followers" placeholder="+ de 200k?" oninput="manualInput('followers',this.value)" min="1000" max="9999999">
+        </div>
         <input type="range" class="calc-slider" id="sl-followers" min="5000" max="200000" step="1000" value="35000" oninput="updateCalc()">
       </div>
       <div class="calc-field">
-        <span class="calc-field-label">Vistas promedio por video</span>
-        <span class="calc-field-value" id="val-views">15,000</span>
-        <input type="range" class="calc-slider" id="sl-views" min="1000" max="150000" step="500" value="15000" oninput="updateCalc()">
+        <span class="calc-field-label" data-i18n="sl2_label">Vistas actuales promedio por video</span>
+        <div class="calc-field-row">
+          <span class="calc-field-value" id="val-views">15,000</span>
+          <input type="number" class="calc-manual" id="in-views" placeholder="+ de 20k?" oninput="manualInput('views',this.value)" min="100" max="9999999">
+        </div>
+        <input type="range" class="calc-slider" id="sl-views" min="1000" max="20000" step="100" value="15000" oninput="updateCalc()">
       </div>
       <div class="calc-field">
-        <span class="calc-field-label">Videos que publicarías al mes hablando de ALINEA</span>
+        <span class="calc-field-label" data-i18n="sl3_label">Videos al mes que hablarían de ALINEA</span>
         <span class="calc-field-value" id="val-videos">8 videos</span>
-        <input type="range" class="calc-slider" id="sl-videos" min="3" max="10" step="1" value="8" oninput="updateCalc()">
+        <input type="range" class="calc-slider" id="sl-videos" min="4" max="10" step="1" value="8" oninput="updateCalc()">
       </div>
     </div>
 
     <div class="calc-divider"></div>
-
-    <div class="scenarios">
-      <div class="scenario" id="sc-conservador">
-        <span class="sc-label">Conservador</span>
-        <span class="sc-copies" id="sc-c-copies">—</span>
-        <span class="sc-copies-label">ventas</span>
-        <span class="sc-earn" id="sc-c-earn">—</span>
-        <span class="sc-earn-label">USD / mes</span>
-        <span class="sc-rate">0.3% conversión</span>
-      </div>
-      <div class="scenario" id="sc-moderado">
-        <span class="sc-label">Moderado</span>
-        <span class="sc-copies" id="sc-m-copies">—</span>
-        <span class="sc-copies-label">ventas</span>
-        <span class="sc-earn" id="sc-m-earn">—</span>
-        <span class="sc-earn-label">USD / mes</span>
-        <span class="sc-rate">0.8% conversión</span>
-      </div>
-      <div class="scenario active" id="sc-grande">
-        <span class="sc-label">Grande</span>
-        <span class="sc-copies" id="sc-g-copies">—</span>
-        <span class="sc-copies-label">ventas</span>
-        <span class="sc-earn" id="sc-g-earn">—</span>
-        <span class="sc-earn-label">USD / mes</span>
-        <span class="sc-rate">1.5% conversión</span>
-      </div>
-      <div class="scenario" id="sc-explosivo">
-        <span class="sc-label">🚀 Explosivo</span>
-        <span class="sc-copies" id="sc-e-copies">—</span>
-        <span class="sc-copies-label">ventas</span>
-        <span class="sc-earn" id="sc-e-earn">—</span>
-        <span class="sc-earn-label">USD / mes</span>
-        <span class="sc-rate">3% conversión</span>
+    <div class="calc-level-wrap">
+      <span class="calc-level-label" data-i18n="level_label">Ver comisión con nivel:</span>
+      <div class="calc-level-toggle">
+        <button class="lvl-btn" id="lvl-10" onclick="setLevel(10)"><span class="lvl-btn-title" data-i18n="lvl10_title">Intermedio</span><span class="lvl-btn-price">$10 / venta</span></button>
+        <button class="lvl-btn active" id="lvl-15" onclick="setLevel(15)"><span class="lvl-btn-title" data-i18n="lvl15_title">🚀 Socio Alfa</span><span class="lvl-btn-price">$15 / venta</span></button>
       </div>
     </div>
 
-    <p class="calc-note">Comisión calculada al nivel Premium ($15 USD / venta). La audiencia base son tus seguidores totales multiplicados por el alcance de tus videos.</p>
+    <p style="font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(139,92,246,.35);text-align:center;margin-bottom:1.2rem;" data-i18n="sc_prompt">Toca un escenario para seleccionarlo</p>
+
+    <div class="scenarios">
+      <div class="scenario" id="sc-conservador" onclick="selectScenario('conservador')">
+        <div class="sc-rate-big">0.3%</div>
+        <span class="sc-label" data-i18n="sc1">Conservador</span>
+        <div class="sc-divider"></div>
+        <span class="sc-copies" id="sc-c-copies">—</span>
+        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
+        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-c-earn">—</span><span class="sc-earn-label">USD</span></div>
+        <span class="sc-mxn" id="sc-c-mxn">—</span>
+      </div>
+      <div class="scenario" id="sc-moderado" onclick="selectScenario('moderado')">
+        <div class="sc-rate-big">0.8%</div>
+        <span class="sc-label" data-i18n="sc2">Moderado</span>
+        <div class="sc-divider"></div>
+        <span class="sc-copies" id="sc-m-copies">—</span>
+        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
+        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-m-earn">—</span><span class="sc-earn-label">USD</span></div>
+        <span class="sc-mxn" id="sc-m-mxn">—</span>
+      </div>
+      <div class="scenario" id="sc-grande" onclick="selectScenario('grande')">
+        <div class="sc-rate-big">1.5%</div>
+        <span class="sc-label" data-i18n="sc3">Grande</span>
+        <div class="sc-divider"></div>
+        <span class="sc-copies" id="sc-g-copies">—</span>
+        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
+        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-g-earn">—</span><span class="sc-earn-label">USD</span></div>
+        <span class="sc-mxn" id="sc-g-mxn">—</span>
+      </div>
+      <div class="scenario" id="sc-explosivo" onclick="selectScenario('explosivo')">
+        <div class="sc-rate-big">3%</div>
+        <span class="sc-label" data-i18n="sc4">🚀 Explosivo</span>
+        <div class="sc-divider"></div>
+        <span class="sc-copies" id="sc-e-copies">—</span>
+        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
+        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-e-earn">—</span><span class="sc-earn-label">USD</span></div>
+        <span class="sc-mxn" id="sc-e-mxn">—</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- QUESTIONNAIRE -->
 <section id="apply">
-  <span class="eyebrow">Aplica al programa</span>
-  <h2 class="section-head">5 preguntas.<br><em>Sin rodeos.</em></h2>
-  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;">Solo necesitamos lo esencial para evaluar si somos un buen match.</p>
-
+  <span class="eyebrow" data-i18n="q_eyebrow">Aplica al programa</span>
+  <h2 class="section-head" data-i18n="q_head">5 preguntas.<br><em>Sin rodeos.</em></h2>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;" data-i18n="q_sub">Solo necesitamos lo esencial para evaluar si somos un buen match.</p>
   <div class="q-wrap">
-    <!-- PROGRESS -->
     <div class="q-progress-wrap">
-      <div class="q-progress-label">
-        <span class="q-progress-step" id="q-step-label">Pregunta 1 de 5</span>
-        <span class="q-progress-of" id="q-pct-label">20%</span>
-      </div>
+      <div class="q-progress-label"><span class="q-progress-step" id="q-step-label">Pregunta 1 de 5</span><span class="q-progress-of" id="q-pct-label">20%</span></div>
       <div class="q-progress-bar"><div class="q-progress-fill" id="q-fill" style="width:20%"></div></div>
     </div>
-
-    <!-- STEP 1 — Handle -->
+    <!-- Step 1 -->
     <div class="q-step active" id="step-1">
-      <div class="q-question">¿Cuál es tu usuario de <em>TikTok</em> (o plataforma principal)?</div>
-      <div class="q-hint">Solo el @usuario. Lo usaremos para revisar tu cuenta antes de aprobarte.</div>
+      <div class="q-question" data-i18n="q1_q">¿Cuál es tu usuario de <em>TikTok</em> (o plataforma principal)?</div>
+      <div class="q-hint" data-i18n="q1_h">Solo el @usuario. Lo usaremos para revisar tu cuenta antes de aprobarte.</div>
       <input type="text" class="q-input" id="q-handle" placeholder="@tucuenta" oninput="checkStep(1)">
-      <div class="q-nav">
-        <button class="q-btn-next" id="btn-1" onclick="goStep(2)" disabled>Siguiente →</button>
-      </div>
+      <div class="q-nav"><button class="q-btn-next" id="btn-1" onclick="goStep(2)" disabled data-i18n="btn_next">Siguiente →</button></div>
     </div>
-
-    <!-- STEP 2 — Platforms -->
+    <!-- Step 2 -->
     <div class="q-step" id="step-2">
-      <div class="q-question">¿En qué plataformas publicas contenido? <em>Selecciona todas las que uses.</em></div>
-      <div class="q-hint">Puedes elegir varias. Nos ayuda a entender tu alcance real.</div>
+      <div class="q-question" data-i18n="q2_q">¿En qué plataformas publicas contenido? <em>Selecciona todas las que uses.</em></div>
+      <div class="q-hint" data-i18n="q2_h">Puedes elegir varias. Nos ayuda a entender tu alcance real.</div>
       <div class="platform-grid">
-        <div class="platform-opt" data-platform="TikTok">
-          <span class="platform-icon">🎵</span>
-          <span class="platform-name">TikTok</span>
-          <div class="platform-check"><span class="platform-check-mark">✓</span></div>
-        </div>
-        <div class="platform-opt" data-platform="Instagram">
-          <span class="platform-icon">📸</span>
-          <span class="platform-name">Instagram Reels</span>
-          <div class="platform-check"><span class="platform-check-mark">✓</span></div>
-        </div>
-        <div class="platform-opt" data-platform="YouTube">
-          <span class="platform-icon">▶️</span>
-          <span class="platform-name">YouTube Shorts</span>
-          <div class="platform-check"><span class="platform-check-mark">✓</span></div>
-        </div>
-        <div class="platform-opt" data-platform="X">
-          <span class="platform-icon">✦</span>
-          <span class="platform-name">X / Twitter</span>
-          <div class="platform-check"><span class="platform-check-mark">✓</span></div>
-        </div>
+        <div class="platform-opt" data-platform="TikTok"><span class="platform-icon">🎵</span><span class="platform-name">TikTok</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
+        <div class="platform-opt" data-platform="Instagram"><span class="platform-icon">📸</span><span class="platform-name">Instagram Reels</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
+        <div class="platform-opt" data-platform="YouTube"><span class="platform-icon">▶️</span><span class="platform-name">YouTube Shorts</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
+        <div class="platform-opt" data-platform="X"><span class="platform-icon">✦</span><span class="platform-name">X / Twitter</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
       </div>
-      <div class="q-nav">
-        <button class="q-btn-back" onclick="goStep(1)">← Atrás</button>
-        <button class="q-btn-next" id="btn-2" onclick="goStep(3)" disabled>Siguiente →</button>
-      </div>
+      <div class="q-nav"><button class="q-btn-back" onclick="goStep(1)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-2" onclick="goStep(3)" disabled data-i18n="btn_next">Siguiente →</button></div>
     </div>
-
-    <!-- STEP 3 — Stats -->
+    <!-- Step 3 -->
     <div class="q-step" id="step-3">
-      <div class="q-question">Cuéntanos tus <em>métricas clave.</em></div>
-      <div class="q-hint">Números aproximados están bien. Los puedes ver en tu panel de Analytics.</div>
+      <div class="q-question" data-i18n="q3_q">Cuéntanos tus <em>métricas clave.</em></div>
+      <div class="q-hint" data-i18n="q3_h">Números aproximados están bien. Los puedes ver en tu panel de Analytics.</div>
       <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;">Seguidores totales</label>
-          <input type="number" class="q-input" id="q-followers" placeholder="ej. 35000" oninput="checkStep(3)">
-        </div>
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;">Vistas promedio por video (últimos 30 días)</label>
-          <input type="number" class="q-input" id="q-views" placeholder="ej. 15000" oninput="checkStep(3)">
-        </div>
-        <div style="position:relative;">
-          <label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;">País(es) top de tu audiencia</label>
-          <div class="country-picker">
-            <div class="country-search-wrap">
-              <input type="text" class="q-input" id="country-search" placeholder="Buscar país..." autocomplete="off" oninput="filterCountries(this.value)">
-              <div class="country-tags" id="country-tags"></div>
-            </div>
-            <div class="country-dropdown" id="country-dropdown"></div>
-          </div>
+        <div><label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;" data-i18n="q3_f">Seguidores totales</label><input type="number" class="q-input" id="q-followers" placeholder="ej. 35000" oninput="checkStep(3)"></div>
+        <div><label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;" data-i18n="q3_v">Vistas promedio por video (últimos 30 días)</label><input type="number" class="q-input" id="q-views" placeholder="ej. 15000" oninput="checkStep(3)"></div>
+        <div style="position:relative;"><label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;" data-i18n="q3_c">País(es) top de tu audiencia</label>
+          <div class="country-picker"><div class="country-search-wrap"><input type="text" class="q-input" id="country-search" autocomplete="off" oninput="filterCountries(this.value)"><div class="country-tags" id="country-tags"></div></div><div class="country-dropdown" id="country-dropdown"></div></div>
         </div>
       </div>
-      <div class="q-nav">
-        <button class="q-btn-back" onclick="goStep(2)">← Atrás</button>
-        <button class="q-btn-next" id="btn-3" onclick="goStep(4)" disabled>Siguiente →</button>
-      </div>
+      <div class="q-nav"><button class="q-btn-back" onclick="goStep(2)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-3" onclick="goStep(4)" disabled data-i18n="btn_next">Siguiente →</button></div>
     </div>
-
-    <!-- STEP 4 — Format -->
+    <!-- Step 4 -->
     <div class="q-step" id="step-4">
-      <div class="q-question">¿Cuál es tu formato de video que <em>más vistas</em> consigue?</div>
-      <div class="q-hint">Esto nos dice cómo sacarle más provecho a tu contenido con ALINEA.</div>
+      <div class="q-question" data-i18n="q4_q">¿Cuál es tu formato de video que <em>más vistas</em> consigue?</div>
+      <div class="q-hint" data-i18n="q4_h">Esto nos dice cómo sacarle más provecho a tu contenido con ALINEA.</div>
       <div class="format-opts">
-        <div class="format-opt" onclick="selectFormat(this, 'Aesthetic')">Aesthetic ✨</div>
-        <div class="format-opt" onclick="selectFormat(this, 'Reseña hablada')">Reseña hablada 🎙</div>
-        <div class="format-opt" onclick="selectFormat(this, 'Reto de lectura')">Reto de lectura 📚</div>
-        <div class="format-opt" onclick="selectFormat(this, 'Skit / humor')">Skit / humor 😂</div>
-        <div class="format-opt" onclick="selectFormat(this, 'Unboxing / haul')">Unboxing / haul 📦</div>
-        <div class="format-opt" onclick="selectFormat(this, 'Estudio conmigo')">Estudio conmigo 🌙</div>
+        <div class="format-opt" onclick="selectFormat(this,'Aesthetic')">Aesthetic ✨</div>
+        <div class="format-opt" onclick="selectFormat(this,'Book review')">Book review 🎙</div>
+        <div class="format-opt" onclick="selectFormat(this,'Book haul')">Book haul 📦</div>
+        <div class="format-opt" onclick="selectFormat(this,'Reading vlog')">Reading vlog 📖</div>
+        <div class="format-opt" onclick="selectFormat(this,'Recommendations')">Recommendations 🔥</div>
+        <div class="format-opt" onclick="selectFormat(this,'Reading challenge')">Reading challenge 🏆</div>
+        <div class="format-opt" onclick="selectFormat(this,'Study with me')">Study with me 🌙</div>
+        <div class="format-opt" onclick="selectFormat(this,'Skit / humor')">Skit / humor 😂</div>
+        <div class="format-opt" onclick="selectFormat(this,'Wrap-up')">Wrap-up 📅</div>
       </div>
-      <div class="q-nav">
-        <button class="q-btn-back" onclick="goStep(3)">← Atrás</button>
-        <button class="q-btn-next" id="btn-4" onclick="goStep(5)" disabled>Siguiente →</button>
-      </div>
+      <div class="q-nav"><button class="q-btn-back" onclick="goStep(3)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-4" onclick="goStep(5)" disabled data-i18n="btn_next">Siguiente →</button></div>
     </div>
-
-    <!-- STEP 5 — Email -->
+    <!-- Step 5 -->
     <div class="q-step" id="step-5">
-      <div class="q-question">¿A qué <em>correo</em> te mandamos la confirmación?</div>
-      <div class="q-hint">Solo para contactarte si eres aprobado. Sin spam, prometido.</div>
+      <div class="q-question" data-i18n="q5_q">¿A qué <em>correo</em> te mandamos la confirmación?</div>
+      <div class="q-hint" data-i18n="q5_h">Solo para contactarte si eres aprobado. Sin spam, prometido.</div>
       <input type="email" class="q-input" id="q-email" placeholder="tu@correo.com" oninput="checkStep(5)">
-      <div class="q-nav">
-        <button class="q-btn-back" onclick="goStep(4)">← Atrás</button>
-        <button class="q-btn-next" id="btn-5" onclick="goStep(6)" disabled>Ver resumen →</button>
-      </div>
+      <div class="q-nav"><button class="q-btn-back" onclick="goStep(4)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-5" onclick="goStep(6)" disabled data-i18n="btn_summary">Ver resumen →</button></div>
     </div>
-
-    <!-- STEP 6 — Summary + Send -->
+    <!-- Step 6 summary -->
     <div class="q-step" id="step-6">
-      <div class="q-question" style="margin-bottom:1.2rem;">Esto es lo que nos <em>dijiste.</em></div>
+      <div class="q-question" style="margin-bottom:1.2rem;" data-i18n="q6_q">Esto es lo que nos <em>dijiste.</em></div>
       <div class="q-summary" id="q-summary-box"></div>
-      <div class="send-question">¿Mandamos tus datos?</div>
-      <div class="send-sub">Si dices que sí, nuestro equipo los recibe y te contactamos en menos de 48 horas. Si prefieres no mandar nada, igual gracias por tomarte el tiempo.</div>
+      <div class="send-question" data-i18n="send_q">¿Mandamos tus datos?</div>
+      <div class="send-sub" data-i18n="send_sub">Si dices que sí, nuestro equipo los recibe y te contactamos en menos de 48 horas. Si prefieres no mandar nada, igual gracias por tomarte el tiempo.</div>
       <div class="send-btns">
-        <button class="btn-send" onclick="sendData()">Sí, quiero aplicar 🚀</button>
-        <button class="btn-skip" onclick="declineData()">No, mejor no</button>
+        <button class="btn-send" onclick="sendData()" data-i18n="btn_send">Sí, quiero aplicar 🚀</button>
+        <button class="btn-skip" onclick="declineData()" data-i18n="btn_decline">No, mejor no</button>
       </div>
     </div>
-
-    <!-- SUCCESS -->
-    <div class="q-success" id="q-success">
-      <div class="success-orb"></div>
-      <div class="success-title">¡Recibimos todo!</div>
-      <div class="success-sub">Te contactamos en menos de 48 horas para confirmar tu acceso al programa. Mientras tanto, puedes checar ALINEA en <a href="https://alinea.work" style="color:var(--a2);text-decoration:none;">alinea.work</a> para que vayas conociendo la app de cerca.</div>
-    </div>
-
-    <!-- DECLINED -->
-    <div class="q-declined" id="q-declined">
-      <div class="declined-title">Sin problema 🙌</div>
-      <div class="declined-sub">Aquí seguimos cuando estés listo. Si cambias de opinión, regresa cuando quieras — el programa estará esperándote.</div>
-    </div>
+    <!-- Success -->
+    <div class="q-success" id="q-success"><div class="success-orb"></div><div class="success-title" data-i18n="success_t">¡Recibimos todo!</div><div class="success-sub" data-i18n="success_s">Te contactamos en menos de 48 horas para confirmar tu acceso. Mientras tanto, puedes checar ALINEA en <a href="https://alinea.work" style="color:var(--a2);text-decoration:none;">alinea.work</a>.</div></div>
+    <!-- Declined -->
+    <div class="q-declined" id="q-declined"><div class="declined-title" data-i18n="declined_t">Sin problema 🙌</div><div class="declined-sub" data-i18n="declined_s">Aquí seguimos cuando estés listo. Si cambias de opinión, regresa cuando quieras.</div></div>
   </div>
 </section>
 
 <footer>
   <span class="f-logo">ALINEA</span>
-  <span class="f-note">Programa privado de afiliados · Solo acceso por link directo</span>
+  <span class="f-note" data-i18n="footer_note">Programa privado · Acceso por invitación directa</span>
+  <div class="f-sources">
+    <span class="f-sources-title" data-i18n="sources_title">📚 Fuentes de los porcentajes de conversión</span>
+    <div class="f-sources-list">
+      <a href="https://uppromote.com/blog/affiliate-marketing-statistics/" target="_blank" class="f-source-link">Impact · Affiliate B2C conversion rates 1–3% (UpperPromote, 2026)</a>
+      <a href="https://metricool.com/tiktok-affiliate-marketing/" target="_blank" class="f-source-link">Metricool · TikTok affiliate: 0.1% principiantes → +3% top creators (2025)</a>
+      <a href="https://influencerfee.com/post.php?slug=tiktok-influencer-statistics-2025" target="_blank" class="f-source-link">InfluencerFee · Instagram link-in-bio conversion 0.5–2% (2026)</a>
+      <a href="https://syncly.app/blog/tiktok-affiliate-marketing" target="_blank" class="f-source-link">Syncly · Link externo aumenta abandono 30–50% vs compra nativa (2025)</a>
+    </div>
+  </div>
 </footer>
 
 <script>
-/* ── COUNTRY PICKER ── */
-const COUNTRIES=[
-  {flag:'🇲🇽',name:'México'},
-  {flag:'🇪🇸',name:'España'},
-  {flag:'🇺🇸',name:'Estados Unidos'},
-  {flag:'🇦🇷',name:'Argentina'},
-  {flag:'🇨🇴',name:'Colombia'},
-  {flag:'🇨🇱',name:'Chile'},
-  {flag:'🇵🇪',name:'Perú'},
-  {flag:'🇻🇪',name:'Venezuela'},
-  {flag:'🇧🇷',name:'Brasil'},
-  {flag:'🇪🇨',name:'Ecuador'},
-  {flag:'🇬🇹',name:'Guatemala'},
-  {flag:'🇨🇺',name:'Cuba'},
-  {flag:'🇧🇴',name:'Bolivia'},
-  {flag:'🇩🇴',name:'República Dominicana'},
-  {flag:'🇭🇳',name:'Honduras'},
-  {flag:'🇵🇾',name:'Paraguay'},
-  {flag:'🇸🇻',name:'El Salvador'},
-  {flag:'🇳🇮',name:'Nicaragua'},
-  {flag:'🇨🇷',name:'Costa Rica'},
-  {flag:'🇵🇦',name:'Panamá'},
-  {flag:'🇺🇾',name:'Uruguay'},
-  {flag:'🇬🇧',name:'Reino Unido'},
-  {flag:'🇩🇪',name:'Alemania'},
-  {flag:'🇫🇷',name:'Francia'},
-  {flag:'🇮🇹',name:'Italia'},
-  {flag:'🇵🇹',name:'Portugal'},
-  {flag:'🇨🇦',name:'Canadá'},
-  {flag:'🇦🇺',name:'Australia'},
-  {flag:'🇯🇵',name:'Japón'},
-  {flag:'🇰🇷',name:'Corea del Sur'},
-  {flag:'🇮🇳',name:'India'},
-  {flag:'🇳🇱',name:'Países Bajos'},
-  {flag:'🇸🇪',name:'Suecia'},
-  {flag:'🇳🇴',name:'Noruega'},
-  {flag:'🇨🇭',name:'Suiza'},
-  {flag:'🇧🇪',name:'Bélgica'},
-  {flag:'🇦🇹',name:'Austria'},
-  {flag:'🇵🇱',name:'Polonia'},
-  {flag:'🇷🇺',name:'Rusia'},
-  {flag:'🇹🇷',name:'Turquía'},
-  {flag:'🇿🇦',name:'Sudáfrica'},
-  {flag:'🇳🇬',name:'Nigeria'},
-  {flag:'🇪🇬',name:'Egipto'},
-  {flag:'🇮🇩',name:'Indonesia'},
-  {flag:'🇵🇭',name:'Filipinas'},
-  {flag:'🇸🇬',name:'Singapur'},
-  {flag:'🇲🇾',name:'Malasia'},
-  {flag:'🇹🇭',name:'Tailandia'},
-  {flag:'🇮🇱',name:'Israel'},
-  {flag:'🇸🇦',name:'Arabia Saudita'},
-];
-let selectedCountries=[];
-
-function renderCountryTags(){
-  const tags=document.getElementById('country-tags');
-  if(!tags)return;
-  tags.innerHTML=selectedCountries.map(c=>`
-    <span class="country-tag">
-      ${c.flag} ${c.name}
-      <span class="country-tag-x" onclick="removeCountry('${c.name}')">✕</span>
-    </span>`).join('');
-  data.countries=selectedCountries.map(c=>c.name).join(', ');
-  const b=document.getElementById('btn-3');
-  const f=document.getElementById('q-followers').value;
-  const v=document.getElementById('q-views').value;
-  if(b)b.disabled=!(f&&v&&selectedCountries.length>0);
-}
-
-function removeCountry(name){
-  selectedCountries=selectedCountries.filter(c=>c.name!==name);
-  renderCountryTags();
-  renderDropdown(document.getElementById('country-search').value);
-}
-
-function renderDropdown(filter=''){
-  const dd=document.getElementById('country-dropdown');
-  if(!dd)return;
-  const q=filter.toLowerCase().trim();
-  const filtered=COUNTRIES.filter(c=>
-    c.name.toLowerCase().includes(q)&&!selectedCountries.find(s=>s.name===c.name)
-  );
-  if(filtered.length===0||q===''&&filter===''){
-    const show=q?filtered:COUNTRIES.filter(c=>!selectedCountries.find(s=>s.name===c.name));
-    dd.innerHTML=show.map(c=>`
-      <div class="country-opt" onclick="selectCountry('${c.name}')">
-        <span class="country-flag">${c.flag}</span>${c.name}
-      </div>`).join('');
-  } else {
-    dd.innerHTML=filtered.map(c=>`
-      <div class="country-opt" onclick="selectCountry('${c.name}')">
-        <span class="country-flag">${c.flag}</span>${c.name}
-      </div>`).join('');
+/* ── TRANSLATIONS ── */
+const i18n={
+  es:{
+    nav_badge:'Programa de Afiliados',
+    hero_eyebrow:'Acceso privado · Solo con invitación',
+    hero_hl:'Tu audiencia descubre algo que amará.<br><em>Tú ganas por mostrárselo.</em>',
+    hero_sub:'Un programa donde todos salen ganando — tu comunidad accede a una herramienta que transforma cómo leen, tú construyes ingresos reales, y ALINEA llega a más lectores que la merecen.',
+    stat1_pre:'hasta',stat1:'USD por venta',stat2:'Precio con tu código',stat3:'Automático vía Lemon',
+    hero_cta:'Quiero ser parte →',
+    hero_cta_note:'5 preguntas · Sin compromiso · Sin letra chica',
+    color_label:'Elige tu color',
+    comm_eyebrow:'Lo que ganas',
+    comm_head:'Dos niveles.<br><em>Tú decides cuánto.</em>',
+    comm1_badge:'✦ Para empezar',comm1_tier:'Nivel Intermedio',
+    comm2_badge:'🚀 Socio Alfa',comm2_tier:'Nivel Premium',
+    comm_per:'USD por cada venta',
+    c1r1:'Para que el algoritmo trabaje a tu favor, recomendamos al menos 4 videos al mes — ALINEA en uso real, que se vea la app',
+    c1r2:'Tu galaxia visible: libros y highlights reales, no screenshots vacíos',
+    c1r3:'Hablar de algo concreto que te cambió al usarla',
+    c1r4:'Mencionar tu código en el video o en el caption',
+    c1r5:'Enviarnos las métricas de esos videos al cierre del mes',
+    c2r1:'Para maximizar tus resultados, recomendamos al menos 8 videos al mes — todo lo del nivel anterior, con más profundidad',
+    c2r2:'Mostrar la galaxia llenándose con el tiempo — progreso real, no estático',
+    c2r3:'Un video de rutina auténtica: cómo usas ALINEA de verdad, sin guion',
+    c2r4:'Un video comparando cómo leías antes vs cómo lees ahora con ALINEA',
+    c2r5:'Fondos oscuros — la estética OLED de la app merece verse bien',
+    c2r6:'Tu link en bio activo durante el mes',
+    c2r7:'Métricas mensuales de esos videos + posibilidad de que ALINEA reutilice el contenido',
+    comm_footer:'Todos empiezan en Nivel Intermedio. Después de tus primeros 3 videos, si el contenido se siente auténtico, subimos a Socio Alfa juntos. El techo lo pones tú.',
+    how_eyebrow:'Cómo funciona',how_head:'Transparente.<br><em>Para todos.</em>',
+    s1t:'Aplicas, nos conocemos en 48 horas',s1d:'Llenas el cuestionario al final de esta página. Soy yo quien lo revisa — no un equipo, no una empresa. ALINEA es un proyecto personal que nació con un propósito claro: que más lectores encuentren esta herramienta. Si siento que hay buena energía entre tu forma de crear y eso, te escribo con tu link y código personalizados.',
+    s2t:'Tu comunidad accede a algo que vale',s2d:'El precio oficial de ALINEA Pro es $89 USD. Con tu código, tu audiencia lo consigue por $69 USD — un descuento real de $20 que tú les das. No es un truco de marketing. Es un beneficio genuino para las personas que te siguen.',
+    s3t:'Lemon Squeezy es el árbitro neutral',s3d:'Tú tienes tu propio panel donde ves todo: clics, conversiones, ventas y comisiones acumuladas. El dinero nunca pasa por nuestras manos — Lemon te deposita directo. Nadie depende de la palabra de nadie.',
+    s4t:'Cobras automático, sin pedirlo',s4d:'Al cierre de cada mes, Lemon procesa tu pago solo. Solo te pedimos que compartas las métricas de los videos donde aparece ALINEA — nada más, nada de tu cuenta completa ni de otros datos.',
+    s5t:'Un acuerdo de 3 meses, renovable',s5d:'Empezamos con 3 meses para que el algoritmo trabaje y veamos resultados reales. Después se renueva mes a mes. Si en algún momento sientes que no es para ti, 15 días de aviso y te pagamos todo lo que hayas generado. Sin presiones.',
+    anchor_eyebrow:'El valor del descuento',anchor_head:'Tu comunidad recibe<br><em>algo concreto y real.</em>',anchor_sub:'No es un link genérico. Es un descuento de $20 que tú les regalas — y ellos lo sienten.',
+    price1:'Precio oficial',price2:'Tu descuento',price3:'Lo que paga tu comunidad',
+    price1_hint:'Lo que cuesta ALINEA Pro',
+    price2_hint:'Lo que tú le regalas a tu comunidad',
+    price3_hint:'Un precio que se siente especial',
+    anchor_note:'Cada creador tiene su propio código único. Tu audiencia lo usa al hacer checkout y el precio baja al instante. Sin fricciones, sin pasos raros.',
+    transp_eyebrow:'Transparencia total',transp_head:'Ves todo lo que pasa.<br><em>Siempre.</em>',transp_sub:'No hay caja negra. Lemon Squeezy te da acceso directo a cada número, cada transacción, cada pago.',
+    t1t:'Tu propio panel en tiempo real',t1d:'Desde el día uno tienes acceso a tu dashboard de afiliado en Lemon Squeezy. Clics, personas que abrieron el checkout, compras completadas, comisiones acumuladas — todo visible en tiempo real, sin pedírselo a nadie.',
+    t2t:'Lemon te deposita directo a ti',t2d:'Tu comisión nunca toca nuestras manos. Lemon calcula el monto exacto y lo deposita directo a tu PayPal o cuenta bancaria. Nosotros no intermediamos tu dinero.',
+    t3t:'Cada venta lleva tu nombre',t3d:'Cada compra que entra por tu link queda registrada con fecha, monto y comisión. Ves el detalle de cada transacción. No hay estimados ni números redondeados.',
+    t4t:'Historial completo, descargable',t4d:'Al cierre de cada mes puedes descargar tu reporte completo — cuánto generaste, cuándo se procesó el pago, qué tasa de conversión tuvo tu link. Tu historial, disponible cuando quieras.',
+    calc_eyebrow:'Tu potencial de ingresos',calc_head:'¿Qué podría generar<br><em>tu contenido?</em>',calc_sub:'Mueve los sliders con tus números reales y ve cuánto podrías ganar al mes en cada escenario.',
+    sl1_label:'Seguidores actuales',sl2_label:'Vistas actuales promedio por video',sl3_label:'Videos al mes que hablarían de ALINEA',
+    level_label:'Calcular con nivel:',lvl10_title:'Intermedio',lvl15_title:'🚀 Socio Alfa',
+    sc_prompt:'Selecciona un escenario para verlo activo',
+    sc1:'Conservador',sc2:'Moderado',sc3:'Grande',sc4:'🚀 Explosivo',sc_sales:'ventas / mes',
+    sc1_desc:'Creadores nuevos en afiliados, link-in-bio reciente',
+    sc2_desc:'Promedio real B2C link externo · Impact 2026',
+    sc3_desc:'Link-in-bio Instagram bien optimizado · InfluencerFee',
+    sc4_desc:'Top creators TikTok · Metricool 2025',
+    calc_toggle_btn:'Como se calcula la conversion?',
+    calc_toggle_close:'Cerrar',
+    calc_explain:'La tasa de conversión (CVR) se aplica sobre el <strong>alcance total de tus videos</strong> (vistas x videos al mes) — no sobre tus seguidores. Representa el % de personas que hacen clic en tu link y completan una compra. Modelo link-in-bio externo, no TikTok Shop nativo.',
+    calc_note:'Tipo de cambio referencial $17.50 MXN / USD. Conversiones estimadas para modelo link externo — salir de la app reduce conversión 30–50% vs TikTok Shop nativo (Syncly, 2025).',
+    sources_title:'📚 Fuentes de los porcentajes',
+    videos_label:'videos',
+    q_eyebrow:'¿Hacemos equipo?',q_head:'Cuéntanos<br><em>un poco de ti.</em>',q_sub:'5 preguntas para entender cómo creas y si podemos construir algo juntos.',
+    q_step_of:'Pregunta {n} de 5',
+    q1_q:'¿Cuál es tu usuario de <em>TikTok</em> (o tu plataforma principal)?',q1_h:'Solo el @usuario. Lo usaremos para conocer tu trabajo antes de escribirte.',
+    q2_q:'¿En qué plataformas publicas contenido? <em>Puedes elegir varias.</em>',q2_h:'Nos ayuda a entender dónde vive tu comunidad.',
+    q3_q:'Comparte tus <em>métricas clave.</em>',q3_h:'Números aproximados están bien — los ves en tu panel de Analytics en segundos.',
+    q3_f:'Seguidores actuales',q3_v:'Vistas promedio por video (últimos 30 días)',q3_c:'Países principales de tu audiencia',
+    q4_q:'¿Qué formato de video conecta más<br><em>con tu comunidad?</em>',q4_h:'Nos ayuda a entender tu estilo para que el contenido sobre ALINEA se sienta natural, no forzado.',
+    q5_q:'¿A qué <em>correo</em> te escribimos si hay match?',q5_h:'Solo para escribirte si seguimos adelante. Sin spam, lo prometo.',
+    q6_q:'Esto es lo que<br><em>nos contaste.</em>',
+    send_q:'¿Compartimos esto con el equipo?',send_sub:'Si dices que sí, nos llega tu información y te escribimos en menos de 48 horas. Si prefieres no enviar nada por ahora, está completamente bien — sin presiones.',
+    btn_send:'Sí, enviar y seguir adelante 🚀',btn_decline:'Por ahora no, gracias',btn_next:'Siguiente →',btn_back:'← Atrás',btn_summary:'Ver resumen →',
+    success_t:'¡Llegó todo, gracias!',success_s:'Te escribimos en menos de 48 horas. Mientras tanto, si quieres conocer ALINEA de cerca, puedes explorarla en <a href="https://alinea.work" style="color:var(--a2);text-decoration:none;">alinea.work</a>.',
+    declined_t:'Totalmente válido 🙌',declined_s:'Si en algún momento quieres retomar la conversación, aquí estaremos. La puerta siempre está abierta.',
+    footer_note:'Programa privado · Acceso por invitación directa',
+    country_placeholder:'Buscar país...',
+    summary_keys:['Cuenta','Plataformas','Seguidores','Vistas promedio','Países top','Formato principal','Email de contacto'],
+  },
+  en:{
+    nav_badge:'Affiliate Program',
+    hero_eyebrow:'Private access · By invitation only',
+    hero_hl:'Your audience discovers something they gonna love.<br><em>You earn by showing them.</em>',
+    hero_sub:'A program where everyone wins — your community gets a tool that transforms how they read, you build real income, and ALINEA reaches the readers who deserve it.',
+    stat1_pre:'up to',stat1:'USD per sale',stat2:'Price with your code',stat3:'Automatic via Lemon',
+    hero_cta:'I want to be part of this →',
+    hero_cta_note:'5 questions · No commitment · No fine print',
+    color_label:'Pick your color',
+    comm_eyebrow:'What you earn',
+    comm_head:'Two levels.<br><em>You decide how much.</em>',
+    comm1_badge:'✦ To start',comm1_tier:'Intermediate Level',
+    comm2_badge:'🚀 Alpha Partner',comm2_tier:'Premium Level',
+    comm_per:'USD per sale',
+    c1r1:'To help the algorithm work in your favor, we recommend at least 4 videos a month — ALINEA in real use, the app actually visible',
+    c1r2:'Your galaxy showing: real books and real highlights, not empty screenshots',
+    c1r3:'Talk about something concrete that changed for you when using it',
+    c1r4:'Mention your code in the video or the caption',
+    c1r5:'Send us the metrics from those videos at the end of the month',
+    c2r1:'To maximize your results, we recommend at least 8 videos a month — everything from the previous level, with more depth',
+    c2r2:'Show the galaxy filling up over time — real progress, not static',
+    c2r3:'One authentic routine video: how you actually use ALINEA, no script',
+    c2r4:'One video comparing how you read before vs how you read now with ALINEA',
+    c2r5:'Dark backgrounds — the OLED aesthetic of the app deserves to look good',
+    c2r6:'Your affiliate link in bio active during the month',
+    c2r7:'Monthly metrics from those videos + the option for ALINEA to reuse the content',
+    comm_footer:'Everyone starts at Intermediate Level. After your first 3 videos, if the content feels authentic, we move to Alpha Partner together. The ceiling is yours to set.',
+    how_eyebrow:'How it works',how_head:'Transparent.<br><em>For everyone.</em>',
+    s1t:'Apply, we connect within 48 hours',s1d:'Fill out the questionnaire at the bottom of this page. I\'m the one who reviews it — not a team, not a company. ALINEA is a personal project built with one purpose: to help more readers find this tool. If I feel there\'s good energy between how you create and that mission, I\'ll reach out with your personalized link and code.',
+    s2t:'Your community gets access to something worth it',s2d:'The official price of ALINEA Pro is $89 USD. With your code, your audience gets it for $69 USD — a real $20 discount you give them. Not a marketing trick. A genuine benefit for the people who follow you.',
+    s3t:'Lemon Squeezy is the neutral referee',s3d:'You have your own dashboard where you see everything: clicks, conversions, sales and accumulated commissions. Money never passes through our hands — Lemon deposits directly to you. Nobody depends on anyone\'s word.',
+    s4t:'You get paid automatically, no asking needed',s4d:'At the end of each month, Lemon processes your payment on its own. We only ask you to share the metrics from the videos where ALINEA appears — nothing more, not your full account or any other data.',
+    s5t:'A 3-month agreement, renewable',s5d:'We start with 3 months so the algorithm can work and we can see real results. Then it renews month to month. If at any point it doesn\'t feel right for you, 15 days notice and we pay everything you\'ve generated. No pressure.',
+    anchor_eyebrow:'The value of the discount',anchor_head:'Your community receives<br><em>something concrete and real.</em>',anchor_sub:'Not a generic link. A $20 discount you give them — and they feel it.',
+    price1:'Official price',price2:'Your discount',price3:'What your community pays',
+    price1_hint:'What ALINEA Pro costs',
+    price2_hint:'What you give to your community',
+    price3_hint:'A price that feels special',
+    anchor_note:'Each creator has their own unique code. Your audience uses it at checkout and the price drops instantly. No friction, no weird steps.',
+    transp_eyebrow:'Full transparency',transp_head:'You see everything.<br><em>Always.</em>',transp_sub:'No black box. Lemon Squeezy gives you direct access to every number, every transaction, every payment.',
+    t1t:'Your own real-time dashboard',t1d:'From day one you have access to your affiliate dashboard on Lemon Squeezy. Clicks, people who opened checkout, completed purchases, accumulated commissions — all visible in real time, without asking anyone.',
+    t2t:'Lemon deposits directly to you',t2d:'Your commission never touches our hands. Lemon calculates the exact amount and deposits it directly to your PayPal or bank account. We don\'t intermediate your money.',
+    t3t:'Every sale carries your name',t3d:'Every purchase through your link is recorded with date, amount and commission. You see the detail of every transaction. No estimates, no rounded numbers.',
+    t4t:'Complete history, downloadable',t4d:'At the end of each month you can download your full report — how much you earned, when the payment was processed, what conversion rate your link had. Your history, available whenever you want.',
+    calc_eyebrow:'Your income potential',calc_head:'What could your<br><em>content generate?</em>',calc_sub:'Move the sliders with your real numbers and see how much you could earn per month in each scenario.',
+    sl1_label:'Current followers',sl2_label:'Current average views per video',sl3_label:'Videos per month that would talk about ALINEA',
+    level_label:'Calculate with level:',lvl10_title:'Intermediate',lvl15_title:'🚀 Alpha Partner',
+    sc_prompt:'Select a scenario to see it active',
+    sc1:'Conservative',sc2:'Moderate',sc3:'Big',sc4:'🚀 Explosive',sc_sales:'sales / month',
+    sc1_desc:'New affiliate creators, recent link-in-bio',
+    sc2_desc:'Real B2C external link average · Impact 2026',
+    sc3_desc:'Optimized Instagram link-in-bio · InfluencerFee',
+    sc4_desc:'Top TikTok creators · Metricool 2025',
+    calc_toggle_btn:'How is the conversion % calculated?',
+    calc_toggle_close:'Close',
+    calc_explain:'The conversion rate (CVR) is applied to your <strong>total video reach</strong> (views x videos per month) — not your followers. It represents the % of viewers who click your link and complete a purchase. External link-in-bio model, not native TikTok Shop.',
+    calc_note:'Reference exchange rate $17.50 MXN / USD. Estimates for external link model — leaving the app increases drop-off 30–50% vs native TikTok Shop purchase (Syncly, 2025).',
+    sources_title:'📚 Sources for the percentages',
+    videos_label:'videos',
+    q_eyebrow:'Shall we team up?',q_head:'Tell us<br><em>a little about yourself.</em>',q_sub:'5 questions to understand how you create and whether we can build something together.',
+    q_step_of:'Question {n} of 5',
+    q1_q:'What\'s your <em>TikTok</em> handle (or main platform)?',q1_h:'Just the @username. We\'ll use it to get to know your work before reaching out.',
+    q2_q:'What platforms do you post on? <em>You can choose several.</em>',q2_h:'Helps us understand where your community lives.',
+    q3_q:'Share your <em>key metrics.</em>',q3_h:'Approximate numbers are fine — you can see them in your Analytics panel in seconds.',
+    q3_f:'Current followers',q3_v:'Average views per video (last 30 days)',q3_c:'Main countries of your audience',
+    q4_q:'What video format connects most<br><em>with your community?</em>',q4_h:'Pick as many as you want — helps us understand how you create.',
+    q5_q:'What <em>email</em> should we write to if there\'s a match?',q5_h:'Only to reach out if we move forward. No spam, we promise.',
+    q6_q:'Here\'s what<br><em>you shared with us.</em>',
+    send_q:'Share this with our team?',send_sub:'If you say yes, we\'ll receive your info and reach out within 48 hours. If you\'d rather not send anything right now, that\'s completely fine — no pressure.',
+    btn_send:'Yes, send and move forward 🚀',btn_decline:'Not right now, thanks',btn_next:'Next →',btn_back:'← Back',btn_summary:'Review summary →',
+    success_t:'Got it, thank you!',success_s:'We\'ll write to you within 48 hours. In the meantime, if you want to explore ALINEA up close, you can find it at <a href="https://alinea.work" style="color:var(--a2);text-decoration:none;">alinea.work</a>.',
+    declined_t:'Completely valid 🙌',declined_s:'If you ever want to pick up the conversation, we\'ll be here. The door is always open.',
+    footer_note:'Private program · Access by direct invitation',
+    country_placeholder:'Search country...',
+    summary_keys:['Handle','Platforms','Followers','Avg. views','Top countries','Main format','Contact email'],
   }
-  dd.classList.toggle('open',dd.innerHTML!==''&&document.getElementById('country-search')===document.activeElement);
-}
-
-function selectCountry(name){
-  const c=COUNTRIES.find(c=>c.name===name);
-  if(c&&!selectedCountries.find(s=>s.name===name)){
-    selectedCountries.push(c);
-    renderCountryTags();
-  }
-  const search=document.getElementById('country-search');
-  if(search){search.value='';search.focus();}
-  renderDropdown('');
-}
-
-function filterCountries(val){
-  const dd=document.getElementById('country-dropdown');
-  if(!dd)return;
-  if(val.trim()===''){
-    const available=COUNTRIES.filter(c=>!selectedCountries.find(s=>s.name===c.name));
-    dd.innerHTML=available.map(c=>`
-      <div class="country-opt" onclick="selectCountry('${c.name}')">
-        <span class="country-flag">${c.flag}</span>${c.name}
-      </div>`).join('');
-    dd.classList.add('open');
-    return;
-  }
-  const q=val.toLowerCase();
-  const filtered=COUNTRIES.filter(c=>
-    c.name.toLowerCase().includes(q)&&!selectedCountries.find(s=>s.name===c.name)
-  );
-  dd.innerHTML=filtered.map(c=>`
-    <div class="country-opt" onclick="selectCountry('${c.name}')">
-      <span class="country-flag">${c.flag}</span>${c.name}
-    </div>`).join('');
-  dd.classList.toggle('open',filtered.length>0);
-}
-
-/* ── THEMES ── */
-const TH={
-  purple:{a:'#8b5cf6',a2:'#c4b5fd',a3:'#7c3aed',a4:'#4c1d95',rgb:[139,92,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%)',gs:'0 0 50px rgba(139,92,246,.6),0 0 120px rgba(109,40,217,.3),0 0 200px rgba(109,40,217,.12)'},
-  blue:{a:'#3b82f6',a2:'#93c5fd',a3:'#1d4ed8',a4:'#1e3a8a',rgb:[59,130,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#dbeafe 14%,#93c5fd 38%,#3b82f6 64%,#1e3a8a 100%)',gs:'0 0 50px rgba(59,130,246,.6),0 0 120px rgba(29,78,216,.3)'},
-  emerald:{a:'#10b981',a2:'#6ee7b7',a3:'#047857',a4:'#065f46',rgb:[16,185,129],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#d1fae5 14%,#6ee7b7 38%,#10b981 64%,#065f46 100%)',gs:'0 0 50px rgba(16,185,129,.6),0 0 120px rgba(4,120,87,.3)'},
-  pink:{a:'#ec4899',a2:'#f9a8d4',a3:'#be185d',a4:'#500724',rgb:[236,72,153],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fce7f3 14%,#f9a8d4 38%,#ec4899 64%,#be185d 100%)',gs:'0 0 50px rgba(236,72,153,.6),0 0 120px rgba(190,24,93,.3)'},
-  orange:{a:'#f97316',a2:'#fdba74',a3:'#c2410c',a4:'#431407',rgb:[249,115,22],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fff7ed 14%,#fdba74 38%,#f97316 64%,#c2410c 100%)',gs:'0 0 50px rgba(249,115,22,.6),0 0 120px rgba(194,65,12,.3)'},
-  amber:{a:'#f59e0b',a2:'#fde68a',a3:'#b45309',a4:'#451a03',rgb:[245,158,11],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fef3c7 14%,#fde68a 38%,#f59e0b 64%,#b45309 100%)',gs:'0 0 50px rgba(245,158,11,.6),0 0 120px rgba(180,83,9,.3)'},
-  red:{a:'#ef4444',a2:'#fca5a5',a3:'#b91c1c',a4:'#450a0a',rgb:[239,68,68],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fee2e2 14%,#fca5a5 38%,#ef4444 64%,#b91c1c 100%)',gs:'0 0 50px rgba(239,68,68,.6),0 0 120px rgba(185,28,28,.3)'},
 };
 
-function setTheme(name,dot){
-  const th=TH[name];if(!th)return;
-  const r=document.documentElement.style;
-  r.setProperty('--a',th.a);r.setProperty('--a2',th.a2);r.setProperty('--a3',th.a3);r.setProperty('--a4',th.a4);
-  // orb
-  const orb=document.querySelector('.hero-orb');
-  if(orb){orb.style.background=th.orb;orb.style.boxShadow=th.gs;}
-  // buttons
-  document.querySelectorAll('.hero-cta,.btn-send,.q-btn-next').forEach(b=>{
-    if(b){
-      b.style.background=`linear-gradient(135deg,${th.a4},${th.a3},${th.a})`;
-      b.style.boxShadow=`0 0 24px rgba(${th.rgb[0]},${th.rgb[1]},${th.rgb[2]},.35),0 4px 16px rgba(0,0,0,.4)`;
-    }
+let lang='en';
+function toggleLang(){
+  lang=lang==='es'?'en':'es';
+  document.getElementById('lang-btn').textContent=lang==='es'?'EN':'ES';
+  document.documentElement.lang=lang;
+  heroIdx=0;
+  const el=document.getElementById('hero-hl-text');
+  if(el)el.innerHTML=heroLines[lang][0];
+  startHeroRotation();
+  applyLang();
+}
+function t(key){return i18n[lang][key]||i18n['es'][key]||key;}
+function applyLang(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    const val=t(key);
+    if(val!==undefined)el.innerHTML=val;
   });
-  // slider fill
-  document.querySelectorAll('.calc-slider').forEach(sl=>{if(sl)updateSliderFill(sl);});
-  // dots
-  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));
-  if(dot)dot.classList.add('on');
+  // update country search placeholder
+  const cs=document.getElementById('country-search');
+  if(cs)cs.placeholder=t('country_placeholder');
+  // update progress label
+  updateProgressLabel();
 }
 
 /* ── STARS ── */
 (function(){
-  const c=document.getElementById('starCanvas');
-  if(!c)return;
-  const ctx=c.getContext('2d');
-  let W,H,stars=[];
+  const c=document.getElementById('starCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H,stars=[];
   function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-  function init(){
-    resize();stars=[];
-    for(let i=0;i<160;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*.9+.1,o:Math.random()*.5+.1,s:Math.random()*2+1});
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    stars.forEach(s=>{
-      s.o+=.003*s.s*(Math.random()>.5?1:-1);
-      s.o=Math.max(.05,Math.min(.7,s.o));
-      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(196,181,253,${s.o})`;ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',init);
-  init();draw();
+  function init(){resize();stars=[];for(let i=0;i<160;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*.9+.1,o:Math.random()*.5+.1,s:Math.random()*2+1});}
+  function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.o+=.003*s.s*(Math.random()>.5?1:-1);s.o=Math.max(.05,Math.min(.7,s.o));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(196,181,253,${s.o})`;ctx.fill();});requestAnimationFrame(draw);}
+  window.addEventListener('resize',init);init();draw();
 })();
 
 /* ── NAV ── */
-window.addEventListener('scroll',()=>{
-  const nav=document.getElementById('nav');
-  if(nav)nav.classList.toggle('solid',scrollY>40);
+window.addEventListener('scroll',()=>{const n=document.getElementById('nav');if(n)n.classList.toggle('solid',scrollY>40);});
+
+/* ── PRICE CAROUSEL ── */
+let slideIdx=0,slideTimer=null;
+function goSlide(n){
+  slideIdx=n;
+  const track=document.getElementById('price-track');
+  if(track)track.style.transform=`translateX(-${n*100}%)`;
+  document.querySelectorAll('.price-dot').forEach((d,i)=>d.classList.toggle('active',i===n));
+}
+function nextSlide(){goSlide((slideIdx+1)%3);}
+function startCarousel(){slideTimer=setInterval(nextSlide,2800);}
+function stopCarousel(){if(slideTimer)clearInterval(slideTimer);}
+document.addEventListener('DOMContentLoaded',()=>{
+  const carousel=document.querySelector('.price-carousel');
+  if(carousel){
+    startCarousel();
+    carousel.addEventListener('mouseenter',stopCarousel);
+    carousel.addEventListener('mouseleave',startCarousel);
+  }
 });
 
-/* ── SLIDER FILL ── */
-function updateSliderFill(sl){
-  if(!sl)return;
-  const pct=((sl.value-sl.min)/(sl.max-sl.min))*100;
-  sl.style.setProperty('--pct',pct+'%');
-}
+/* ── SLIDER ── */
+function updateSliderFill(sl){if(!sl)return;const pct=((sl.value-sl.min)/(sl.max-sl.min))*100;sl.style.setProperty('--pct',pct+'%');}
 
 /* ── CALCULATOR ── */
 function fmt(n){return n.toLocaleString('es-MX');}
-function updateCalc(){
-  const slF=document.getElementById('sl-followers');
-  const slV=document.getElementById('sl-views');
+let activeLevel=15;
+function manualInput(field, val){
+  const n=parseInt(val);
+  if(!n||n<1)return;
+  if(field==='followers'){
+    const sl=document.getElementById('sl-followers');
+    if(sl){sl.value=Math.min(n,200000);updateSliderFill(sl);}
+    document.getElementById('val-followers').textContent=fmt(n);
+  } else if(field==='views'){
+    const sl=document.getElementById('sl-views');
+    if(sl){sl.value=Math.min(n,20000);updateSliderFill(sl);}
+    document.getElementById('val-views').textContent=fmt(n);
+  }
+  // recalc with manual override
   const slVid=document.getElementById('sl-videos');
+  const followers=field==='followers'?n:+document.getElementById('sl-followers').value;
+  const views=field==='views'?n:+document.getElementById('sl-views').value;
+  const videos=slVid?+slVid.value:8;
+  document.getElementById('val-videos').textContent=videos+' '+(t('videos_label')||'videos');
+  const reach=Math.min(views*videos,followers*3);
+  const commission=activeLevel,TC=17.5;
+  const rates=[.003,.008,.015,.03],labels=['c','m','g','e'];
+  rates.forEach((r,i)=>{
+    const lbl=labels[i];
+    const sales=Math.round(reach*r),earnUSD=sales*commission,earnMXN=Math.round(earnUSD*TC);
+    const elC=document.getElementById('sc-'+lbl+'-copies'),elE=document.getElementById('sc-'+lbl+'-earn'),elM=document.getElementById('sc-'+lbl+'-mxn');
+    if(elC)elC.textContent=fmt(sales);
+    if(elE)elE.textContent='$'+fmt(earnUSD);
+    if(elM)elM.textContent='≈ $'+fmt(earnMXN)+' MXN';
+  });
+}
+function toggleExplain(btn){
+  const body=document.getElementById('calc-explain-body');
+  if(!body)return;
+  const open=body.classList.toggle('open');
+  if(open){
+    btn.textContent=t('calc_toggle_close')||'Cerrar';
+  } else {
+    btn.textContent=t('calc_toggle_btn')||'Como se calcula la conversion?';
+  }
+}
+function selectScenario(id){
+  document.querySelectorAll('.scenario').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById('sc-'+id);
+  if(el)el.classList.add('active');
+}
+function setLevel(n){
+  activeLevel=n;
+  document.getElementById('lvl-10').classList.toggle('active',n===10);
+  document.getElementById('lvl-15').classList.toggle('active',n===15);
+  updateCalc();
+}
+function updateCalc(){
+  const slF=document.getElementById('sl-followers'),slV=document.getElementById('sl-views'),slVid=document.getElementById('sl-videos');
   if(!slF||!slV||!slVid)return;
-  const followers=+slF.value;
-  const views=+slV.value;
-  const videos=+slVid.value;
+  const followers=+slF.value,views=+slV.value,videos=+slVid.value;
   document.getElementById('val-followers').textContent=fmt(followers);
   document.getElementById('val-views').textContent=fmt(views);
-  document.getElementById('val-videos').textContent=videos+' video'+(videos>1?'s':'');
+  document.getElementById('val-videos').textContent=videos+' '+(t('videos_label')||'videos');
   [slF,slV,slVid].forEach(updateSliderFill);
   const reach=Math.min(views*videos,followers*3);
-  const commission=15;
-  const rates=[.003,.008,.015,.03];
-  const labels=['c','m','g','e'];
+  const commission=activeLevel,TC=17.5;
+  const rates=[.003,.008,.015,.03],labels=['c','m','g','e'];
   rates.forEach((r,i)=>{
-    const sales=Math.round(reach*r);
-    const earn=sales*commission;
-    const elC=document.getElementById('sc-'+labels[i]+'-copies');
-    const elE=document.getElementById('sc-'+labels[i]+'-earn');
+    const lbl=labels[i];
+    const sales=Math.round(reach*r),earnUSD=sales*commission,earnMXN=Math.round(earnUSD*TC);
+    const elC=document.getElementById('sc-'+lbl+'-copies'),elE=document.getElementById('sc-'+lbl+'-earn'),elM=document.getElementById('sc-'+lbl+'-mxn');
     if(elC)elC.textContent=fmt(sales);
-    if(elE)elE.textContent='$'+fmt(earn);
+    if(elE)elE.textContent='$'+fmt(earnUSD);
+    if(elM)elM.textContent='≈ $'+fmt(earnMXN)+' MXN';
   });
 }
 
-/* ── QUESTIONNAIRE STATE ── */
+/* ── COUNTRY PICKER ── */
+const COUNTRIES=[
+  {flag:'🇲🇽',name:'México'},{flag:'🇪🇸',name:'España'},{flag:'🇺🇸',name:'Estados Unidos'},
+  {flag:'🇦🇷',name:'Argentina'},{flag:'🇨🇴',name:'Colombia'},{flag:'🇨🇱',name:'Chile'},
+  {flag:'🇵🇪',name:'Perú'},{flag:'🇻🇪',name:'Venezuela'},{flag:'🇧🇷',name:'Brasil'},
+  {flag:'🇪🇨',name:'Ecuador'},{flag:'🇬🇹',name:'Guatemala'},{flag:'🇨🇺',name:'Cuba'},
+  {flag:'🇧🇴',name:'Bolivia'},{flag:'🇩🇴',name:'República Dominicana'},{flag:'🇭🇳',name:'Honduras'},
+  {flag:'🇵🇾',name:'Paraguay'},{flag:'🇸🇻',name:'El Salvador'},{flag:'🇳🇮',name:'Nicaragua'},
+  {flag:'🇨🇷',name:'Costa Rica'},{flag:'🇵🇦',name:'Panamá'},{flag:'🇺🇾',name:'Uruguay'},
+  {flag:'🇬🇧',name:'Reino Unido'},{flag:'🇩🇪',name:'Alemania'},{flag:'🇫🇷',name:'Francia'},
+  {flag:'🇮🇹',name:'Italia'},{flag:'🇵🇹',name:'Portugal'},{flag:'🇨🇦',name:'Canadá'},
+  {flag:'🇦🇺',name:'Australia'},{flag:'🇯🇵',name:'Japón'},{flag:'🇰🇷',name:'Corea del Sur'},
+  {flag:'🇮🇳',name:'India'},{flag:'🇳🇱',name:'Países Bajos'},{flag:'🇸🇪',name:'Suecia'},
+  {flag:'🇳🇴',name:'Noruega'},{flag:'🇨🇭',name:'Suiza'},{flag:'🇧🇪',name:'Bélgica'},
+  {flag:'🇵🇱',name:'Polonia'},{flag:'🇹🇷',name:'Turquía'},{flag:'🇸🇦',name:'Arabia Saudita'},
+  {flag:'🇿🇦',name:'Sudáfrica'},{flag:'🇮🇩',name:'Indonesia'},{flag:'🇵🇭',name:'Filipinas'},
+  {flag:'🇸🇬',name:'Singapur'},{flag:'🇲🇾',name:'Malasia'},{flag:'🇹🇭',name:'Tailandia'},
+];
+let selectedCountries=[];
+function renderCountryTags(){
+  const tags=document.getElementById('country-tags');if(!tags)return;
+  tags.innerHTML=selectedCountries.map(c=>`<span class="country-tag">${c.flag} ${c.name}<span class="country-tag-x" onclick="removeCountry('${c.name}')">✕</span></span>`).join('');
+  data.countries=selectedCountries.map(c=>c.name).join(', ');
+  const b=document.getElementById('btn-3');
+  const f=document.getElementById('q-followers')?.value,v=document.getElementById('q-views')?.value;
+  if(b)b.disabled=!(f&&v&&selectedCountries.length>0);
+}
+function removeCountry(name){selectedCountries=selectedCountries.filter(c=>c.name!==name);renderCountryTags();renderDropdown(document.getElementById('country-search')?.value||'');}
+function renderDropdown(filter=''){
+  const dd=document.getElementById('country-dropdown');if(!dd)return;
+  const q=filter.toLowerCase().trim();
+  const list=COUNTRIES.filter(c=>(!q||c.name.toLowerCase().includes(q))&&!selectedCountries.find(s=>s.name===c.name));
+  dd.innerHTML=list.map(c=>`<div class="country-opt" onclick="selectCountry('${c.name}')"><span class="country-flag">${c.flag}</span>${c.name}</div>`).join('');
+  const cs=document.getElementById('country-search');
+  dd.classList.toggle('open',list.length>0&&cs===document.activeElement);
+}
+function selectCountry(name){
+  const c=COUNTRIES.find(c=>c.name===name);
+  if(c&&!selectedCountries.find(s=>s.name===name))selectedCountries.push(c);
+  renderCountryTags();
+  const cs=document.getElementById('country-search');if(cs){cs.value='';cs.focus();}
+  renderDropdown('');
+}
+function filterCountries(val){
+  const dd=document.getElementById('country-dropdown');if(!dd)return;
+  const q=val.toLowerCase().trim();
+  const list=COUNTRIES.filter(c=>(!q||c.name.toLowerCase().includes(q))&&!selectedCountries.find(s=>s.name===c.name));
+  dd.innerHTML=list.map(c=>`<div class="country-opt" onclick="selectCountry('${c.name}')"><span class="country-flag">${c.flag}</span>${c.name}</div>`).join('');
+  dd.classList.toggle('open',list.length>0);
+}
+
+/* ── HERO HEADLINE ROTATION ── */
+const heroLines={
+  en:[
+    'Your audience discovers something they gonna love.',
+    '<span class="hero-hl-accent">You earn by showing them.</span>'
+  ],
+  es:[
+    'Tu audiencia descubre algo que amará.',
+    '<span class="hero-hl-accent">Tú ganas por mostrárselo.</span>'
+  ]
+};
+let heroIdx=0,heroInterval=null;
+function rotateHero(){
+  const el=document.getElementById('hero-hl-text');
+  if(!el)return;
+  el.classList.add('fade-out');
+  setTimeout(()=>{
+    heroIdx=(heroIdx+1)%heroLines[lang].length;
+    el.innerHTML=heroLines[lang][heroIdx];
+    el.classList.remove('fade-out');
+    el.classList.add('fade-in');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.remove('fade-in')));
+  },1200);
+}
+function startHeroRotation(){
+  if(heroInterval)clearInterval(heroInterval);
+  heroInterval=setInterval(rotateHero,5500);
+}
+
+/* ── THEMES ── */
+const TH={
+  purple:{a:'#8b5cf6',a2:'#c4b5fd',a3:'#7c3aed',a4:'#4c1d95',rgb:[139,92,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%)',gs:'0 0 50px rgba(139,92,246,.6),0 0 120px rgba(109,40,217,.3)'},
+  blue:{a:'#3b82f6',a2:'#93c5fd',a3:'#1d4ed8',a4:'#1e3a8a',rgb:[59,130,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#dbeafe 14%,#93c5fd 38%,#3b82f6 64%,#1e3a8a 100%)',gs:'0 0 50px rgba(59,130,246,.6)'},
+  emerald:{a:'#10b981',a2:'#6ee7b7',a3:'#047857',a4:'#065f46',rgb:[16,185,129],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#d1fae5 14%,#6ee7b7 38%,#10b981 64%,#065f46 100%)',gs:'0 0 50px rgba(16,185,129,.6)'},
+  pink:{a:'#ec4899',a2:'#f9a8d4',a3:'#be185d',a4:'#500724',rgb:[236,72,153],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fce7f3 14%,#f9a8d4 38%,#ec4899 64%,#be185d 100%)',gs:'0 0 50px rgba(236,72,153,.6)'},
+  orange:{a:'#f97316',a2:'#fdba74',a3:'#c2410c',a4:'#431407',rgb:[249,115,22],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fff7ed 14%,#fdba74 38%,#f97316 64%,#c2410c 100%)',gs:'0 0 50px rgba(249,115,22,.6)'},
+  amber:{a:'#f59e0b',a2:'#fde68a',a3:'#b45309',a4:'#451a03',rgb:[245,158,11],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fef3c7 14%,#fde68a 38%,#f59e0b 64%,#b45309 100%)',gs:'0 0 50px rgba(245,158,11,.6)'},
+  red:{a:'#ef4444',a2:'#fca5a5',a3:'#b91c1c',a4:'#450a0a',rgb:[239,68,68],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fee2e2 14%,#fca5a5 38%,#ef4444 64%,#b91c1c 100%)',gs:'0 0 50px rgba(239,68,68,.6)'},
+};
+function setTheme(name,dot){
+  const th=TH[name];if(!th)return;
+  const r=document.documentElement.style;
+  r.setProperty('--a',th.a);r.setProperty('--a2',th.a2);r.setProperty('--a3',th.a3);r.setProperty('--a4',th.a4);
+  const orb=document.querySelector('.hero-orb');
+  if(orb){orb.style.background=th.orb;orb.style.boxShadow=th.gs;}
+  document.querySelectorAll('.hero-cta,.btn-send,.q-btn-next').forEach(b=>{
+    if(b){b.style.background=`linear-gradient(135deg,${th.a4},${th.a3},${th.a})`;b.style.boxShadow=`0 0 24px rgba(${th.rgb[0]},${th.rgb[1]},${th.rgb[2]},.35)`;}
+  });
+  // update hero accent glow with theme color
+  const style=document.getElementById('hero-accent-style')||document.createElement('style');
+  style.id='hero-accent-style';
+  style.textContent=`.hero-hl-accent{text-shadow:0 0 30px rgba(255,255,255,.4),0 0 80px rgba(${th.rgb[0]},${th.rgb[1]},${th.rgb[2]},.35);}`;
+  document.head.appendChild(style);
+  document.querySelectorAll('.calc-slider').forEach(sl=>{if(sl)updateSliderFill(sl);});
+  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));
+  if(dot)dot.classList.add('on');
+}
+
+/* ── QUESTIONNAIRE ── */
 let currentStep=1;
 const totalSteps=5;
 const data={handle:'',platforms:[],followers:'',views:'',countries:'',format:'',email:''};
 
+function updateProgressLabel(){
+  const sl=document.getElementById('q-step-label'),pl=document.getElementById('q-pct-label');
+  if(!sl||!pl)return;
+  const pct=Math.round((currentStep/totalSteps)*100);
+  sl.textContent=t('q_step_of').replace('{n}',currentStep);
+  pl.textContent=pct+'%';
+}
 function goStep(n){
   const prev=document.getElementById('step-'+currentStep);
   if(prev)prev.classList.remove('active');
   currentStep=n;
   const pw=document.getElementById('q-progress-wrap');
   if(n<=totalSteps){
-    const next=document.getElementById('step-'+n);
-    if(next)next.classList.add('active');
+    const next=document.getElementById('step-'+n);if(next)next.classList.add('active');
     const pct=Math.round((n/totalSteps)*100);
-    const fill=document.getElementById('q-fill');
-    const sl=document.getElementById('q-step-label');
-    const pctL=document.getElementById('q-pct-label');
-    if(fill)fill.style.width=pct+'%';
-    if(sl)sl.textContent='Pregunta '+n+' de '+totalSteps;
-    if(pctL)pctL.textContent=pct+'%';
+    const fill=document.getElementById('q-fill');if(fill)fill.style.width=pct+'%';
+    updateProgressLabel();
     if(pw)pw.style.display='';
   } else {
-    const s6=document.getElementById('step-6');
-    if(s6)s6.classList.add('active');
+    const s6=document.getElementById('step-6');if(s6)s6.classList.add('active');
     if(pw)pw.style.display='none';
     buildSummary();
   }
 }
-
 function checkStep(n){
-  if(n===1){
-    const v=document.getElementById('q-handle').value.trim();
-    data.handle=v;
-    const b=document.getElementById('btn-1');
-    if(b)b.disabled=v.length<2;
-  } else if(n===3){
-    const f=document.getElementById('q-followers').value;
-    const v=document.getElementById('q-views').value;
-    data.followers=f;data.views=v;
-    const b=document.getElementById('btn-3');
-    if(b)b.disabled=!(f&&v&&selectedCountries.length>0);
-  } else if(n===5){
-    const e=document.getElementById('q-email').value.trim();
-    data.email=e;
-    const b=document.getElementById('btn-5');
-    if(b)b.disabled=!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
-  }
+  if(n===1){const v=document.getElementById('q-handle').value.trim();data.handle=v;const b=document.getElementById('btn-1');if(b)b.disabled=v.length<2;}
+  else if(n===3){const f=document.getElementById('q-followers').value,v=document.getElementById('q-views').value;data.followers=f;data.views=v;const b=document.getElementById('btn-3');if(b)b.disabled=!(f&&v&&selectedCountries.length>0);}
+  else if(n===5){const e=document.getElementById('q-email').value.trim();data.email=e;const b=document.getElementById('btn-5');if(b)b.disabled=!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));}
 }
-
 function togglePlatform(el){
   el.classList.toggle('selected');
   const checked=document.querySelectorAll('.platform-opt.selected').length;
-  const b=document.getElementById('btn-2');
-  if(b)b.disabled=checked===0;
-  data.platforms=[...document.querySelectorAll('.platform-opt.selected')].map(el=>el.dataset.platform);
+  const b=document.getElementById('btn-2');if(b)b.disabled=checked===0;
+  data.platforms=[...document.querySelectorAll('.platform-opt.selected')].map(e=>e.dataset.platform);
 }
-
 function selectFormat(el,val){
-  document.querySelectorAll('.format-opt').forEach(f=>f.classList.remove('selected'));
-  el.classList.add('selected');
-  data.format=val;
+  el.classList.toggle('selected');
+  const selected=[...document.querySelectorAll('.format-opt.selected')].map(f=>f.getAttribute('onclick').match(/'([^']+)'\)$/)[1]);
+  data.format=selected.join(', ');
   const b=document.getElementById('btn-4');
-  if(b)b.disabled=false;
+  if(b)b.disabled=selected.length===0;
 }
-
 function buildSummary(){
-  const box=document.getElementById('q-summary-box');
-  if(!box)return;
-  const fVal=parseInt(data.followers)||0;
-  const vVal=parseInt(data.views)||0;
-  const rows=[
-    ['Cuenta',data.handle],
-    ['Plataformas',data.platforms.join(', ')||'—'],
-    ['Seguidores',fVal.toLocaleString('es-MX')],
-    ['Vistas promedio',vVal.toLocaleString('es-MX')],
-    ['Países top',data.countries],
-    ['Formato estrella',data.format],
-    ['Email de contacto',data.email],
-  ];
-  box.innerHTML=rows.map(([k,v])=>`
-    <div class="q-summary-row">
-      <span class="q-summary-key">${k}</span>
-      <span class="q-summary-val">${v||'—'}</span>
-    </div>`).join('');
+  const box=document.getElementById('q-summary-box');if(!box)return;
+  const keys=t('summary_keys');
+  const vals=[data.handle,data.platforms.join(', ')||'—',(parseInt(data.followers)||0).toLocaleString('es-MX'),(parseInt(data.views)||0).toLocaleString('es-MX'),data.countries,data.format,data.email];
+  box.innerHTML=keys.map((k,i)=>`<div class="q-summary-row"><span class="q-summary-key">${k}</span><span class="q-summary-val">${vals[i]||'—'}</span></div>`).join('');
 }
-
 function sendData(){
   console.log('ALINEA Affiliate Data:',data);
-  const s6=document.getElementById('step-6');
-  const ok=document.getElementById('q-success');
-  if(s6)s6.classList.remove('active');
-  if(ok)ok.style.display='block';
+  const s6=document.getElementById('step-6'),ok=document.getElementById('q-success');
+  if(s6)s6.classList.remove('active');if(ok)ok.style.display='block';
 }
-
 function declineData(){
-  const s6=document.getElementById('step-6');
-  const no=document.getElementById('q-declined');
-  if(s6)s6.classList.remove('active');
-  if(no)no.style.display='block';
+  const s6=document.getElementById('step-6'),no=document.getElementById('q-declined');
+  if(s6)s6.classList.remove('active');if(no)no.style.display='block';
 }
 
-/* ── INIT (after DOM ready) ── */
+/* ── INIT ── */
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.calc-slider').forEach(sl=>updateSliderFill(sl));
   updateCalc();
-  // platform selection
-  document.querySelectorAll('.platform-opt').forEach(el=>{
-    el.addEventListener('click',()=>togglePlatform(el));
-  });
-  // country search
-  const cs=document.getElementById('country-search');
-  const dd=document.getElementById('country-dropdown');
+  document.querySelectorAll('.platform-opt').forEach(el=>el.addEventListener('click',()=>togglePlatform(el)));
+  const cs=document.getElementById('country-search'),dd=document.getElementById('country-dropdown');
   if(cs&&dd){
-    cs.addEventListener('focus',()=>{ renderDropdown(cs.value); dd.classList.add('open'); });
-    cs.addEventListener('blur',()=>{ setTimeout(()=>dd.classList.remove('open'),180); });
+    cs.addEventListener('focus',()=>{renderDropdown(cs.value);dd.classList.add('open');});
+    cs.addEventListener('blur',()=>setTimeout(()=>dd.classList.remove('open'),180));
   }
+  startHeroRotation();
+  // staggered how-step reveal
+  const stepEls=document.querySelectorAll('.how-step');
+  const stepObs=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const idx=[...stepEls].indexOf(entry.target);
+        setTimeout(()=>entry.target.classList.add('visible'),idx*180);
+        stepObs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12});
+  stepEls.forEach(el=>stepObs.observe(el));
+  // staggered scenario reveal
+  const scEls=document.querySelectorAll('.scenario');
+  const scObs=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const idx=[...scEls].indexOf(entry.target);
+        setTimeout(()=>entry.target.classList.add('visible'),idx*150);
+        scObs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.1});
+  scEls.forEach(el=>scObs.observe(el));
+  applyLang();
 });
 </script>
 </body>
