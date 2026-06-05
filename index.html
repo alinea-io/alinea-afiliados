@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="theme-color" content="#06050f">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ALINEA — Affiliate Program</title>
-<meta name="robots" content="noindex, nofollow">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#06050f" id="metaThemeColor">
+<title>ALINEA — Creator Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#06050f;--surface:#0c0a18;--card:#121020;--card2:#1a1730;
@@ -16,461 +14,424 @@
   --glow:rgba(139,92,246,.15);--glow2:rgba(139,92,246,.07);
   --text:#f0eeff;--muted:#8b87b0;--dim:#332e52;
   --ok:#6ee7b7;--gold:#fbbf24;
+  --a-rgb:139,92,246;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;background:var(--bg);overflow-x:hidden;}
-body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 15%,rgba(139,92,246,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 75%,rgba(109,40,217,.06) 0%,transparent 60%),radial-gradient(ellipse 90% 40% at 50% 105%,rgba(67,20,128,.05) 0%,transparent 70%);}
+body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 50% at 15% 15%,rgba(var(--a-rgb),.07) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 70% at 85% 75%,rgba(var(--a-rgb),.05) 0%,transparent 60%),
+  radial-gradient(ellipse 90% 40% at 50% 105%,rgba(var(--a-rgb),.04) 0%,transparent 70%);}
 #starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(6,5,15,.0);transition:background .5s,backdrop-filter .5s;}
-nav.solid{background:rgba(6,5,15,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(139,92,246,.12);}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(6,5,15,0);transition:background .5s,backdrop-filter .5s;}
+nav.solid{background:rgba(6,5,15,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(var(--a-rgb),.12);}
 .nav-logo{font-family:'DM Mono',monospace;font-size:.9rem;letter-spacing:.34em;color:var(--a2);text-decoration:none;}
-.nav-right{display:flex;align-items:center;gap:1rem;}
-.nav-badge{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(139,92,246,.5);border:1px solid rgba(139,92,246,.2);border-radius:20px;padding:.22rem .7rem;}
-.lang-btn{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .9rem;border-radius:8px;border:1px solid rgba(139,92,246,.3);color:var(--a2);background:rgba(139,92,246,.06);cursor:pointer;transition:all .3s;}
-.lang-btn:hover{background:rgba(139,92,246,.14);border-color:rgba(139,92,246,.55);}
+.nav-r{display:flex;align-items:center;gap:.75rem;}
+.lsw{display:flex;border:1px solid var(--border);border-radius:7px;overflow:hidden;}
+.lsw button{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .62rem;background:none;border:none;color:var(--muted);cursor:pointer;transition:all .2s;}
+.lsw button.on{background:rgba(var(--a-rgb),.16);color:var(--a2);}
+.lsw .sp{width:1px;background:var(--border);}
+.nav-cta{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.52rem 1.3rem;border-radius:50px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;text-decoration:none;box-shadow:0 0 22px rgba(var(--a-rgb),.4);transition:all .3s;}
+.nav-cta:hover{box-shadow:0 0 38px rgba(var(--a-rgb),.65);transform:translateY(-1px);}
 
 /* ── SHARED ── */
 section{position:relative;z-index:1;}
-.eyebrow{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,181,253,.65);display:block;margin-bottom:.9rem;}
-.section-head{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.06;letter-spacing:-.02em;color:var(--text);}
-.section-head em{font-style:italic;font-weight:400;color:var(--a2);transition:color .5s;}
+.dv{height:1px;background:linear-gradient(90deg,transparent,rgba(var(--a-rgb),.1),transparent);max-width:960px;margin:2vh auto;}
+.ri{opacity:0;transform:translateY(36px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
+.ri.d1{transition-delay:.15s;}.ri.d2{transition-delay:.28s;}.ri.d3{transition-delay:.4s;}.ri.d4{transition-delay:.52s;}
+.ri.show{opacity:1;transform:translateY(0);}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(var(--a-rgb),.55);display:block;margin-bottom:.9rem;}
+.section-head{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.4rem,5vw,4rem);line-height:1.06;letter-spacing:-.02em;color:var(--text);}
+.section-head em{font-style:italic;font-weight:400;color:var(--a2);}
+.section-sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);line-height:1.82;}
+
+
+/* ── HERO CATS ── */
+.hero-cats{margin-top:2.5rem;text-align:center;}
+.hero-cats-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(var(--a-rgb),.5);display:block;margin-bottom:1rem;}
+.hero-cat-pills{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;}
+.hero-cat-pill{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:.9rem;
+  padding:.7rem 1.5rem;border-radius:50px;cursor:pointer;
+  background:rgba(12,10,24,.85);
+  border:1.5px solid rgba(var(--a-rgb),.2);
+  color:rgba(var(--a-rgb),.5);
+  transition:all .3s cubic-bezier(.16,1,.3,1);
+}
+.hero-cat-pill:hover{border-color:rgba(var(--a-rgb),.6);color:var(--text);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.hero-cat-pill.on{background:linear-gradient(135deg,rgba(var(--a-rgb),.18),rgba(76,29,149,.25));border-color:var(--a2);color:var(--text);box-shadow:0 0 20px rgba(var(--a-rgb),.2);transform:translateY(-2px);}
+
+/* Headline transition */
+.hero-hl-wrap{position:relative;width:100%;min-height:200px;margin-bottom:1rem;}
+.hero-pair{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);pointer-events:none;text-align:center;transform:translateY(12px);}
+.hero-pair.active-pair{opacity:1;transform:translateY(0);pointer-events:auto;}
 
 /* ── HERO ── */
-#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 6% 60px;position:relative;z-index:1;}
-.hero-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 50px rgba(139,92,246,.6),0 0 120px rgba(109,40,217,.3),0 0 200px rgba(109,40,217,.12);margin:0 auto 2rem;animation:orbFloat 7s ease-in-out infinite;}
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 6% 60px;}
+.hero-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 50px rgba(var(--a-rgb),.6),0 0 120px rgba(var(--a-rgb),.3);margin:0 auto 2rem;animation:orbFloat 7s ease-in-out infinite;}
 @keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(139,92,246,.5);margin-bottom:1.2rem;display:block;}
-.hero-hl{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.6rem,6vw,5.5rem);line-height:1.04;letter-spacing:-.025em;color:var(--text);margin-bottom:1.2rem;animation:hlIn 1.1s .1s cubic-bezier(.16,1,.3,1) both;min-height:2.2em;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.hero-hl-line{display:block;text-align:center;transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1);}
-.hero-hl-line.fade-out{opacity:0;transform:translateX(-80px);}
-.hero-hl-line.fade-in{opacity:0;transform:translateX(80px);}
-.hero-hl-line em{font-style:italic;font-weight:900;color:var(--a2);}
-.hero-hl-accent{
-  color:#fff;
-  font-style:italic;
-}
-@keyframes hlIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero-sub{font-family:'Lato',sans-serif;font-weight:300;font-size:clamp(.95rem,2.5vw,1rem);color:var(--muted);line-height:1.85;letter-spacing:.01em;max-width:560px;margin:0 auto 2.5rem;animation:hlIn 1.1s .4s cubic-bezier(.16,1,.3,1) both;opacity:0;}
-.stat-prefix{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,181,253,.35);display:block;margin-bottom:.1rem;}
-.hero-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;animation:hlIn 1.1s .6s cubic-bezier(.16,1,.3,1) both;opacity:0;}
-.stat-item{text-align:center;}
-.stat-num{font-family:'Playfair Display',serif;font-weight:900;font-size:2.2rem;color:var(--a2);line-height:1;}
-.stat-label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:.4rem;display:block;}
-.hero-cta{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;padding:1.1rem 3.2rem;border-radius:12px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;border:none;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 0 28px rgba(139,92,246,.35),0 4px 20px rgba(0,0,0,.4);transition:all .35s;animation:hlIn 1.1s .8s cubic-bezier(.16,1,.3,1) both;opacity:0;}
-.hero-cta:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(139,92,246,.55),0 8px 28px rgba(0,0,0,.5);}
-.hero-cta-note{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(139,92,246,.5);margin-top:.9rem;display:block;}
-.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);opacity:0;animation:fadeIn .8s 2s ease forwards;display:flex;flex-direction:column;align-items:center;gap:.5rem;}
-@keyframes fadeIn{to{opacity:1;}}
-.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(139,92,246,.45),transparent);animation:scrollPulse 2.2s ease-in-out infinite;}
-@keyframes scrollPulse{0%{opacity:0;transform:scaleY(0);transform-origin:top}55%{opacity:1;transform:scaleY(1)}100%{opacity:0;}}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--a2);border:1px solid rgba(var(--a-rgb),.25);padding:.38rem 1rem;border-radius:50px;background:rgba(var(--a-rgb),.07);margin-bottom:1.8rem;}
+.hero-badge span{color:var(--ok);}
 
-/* ── COLOR DOTS ── */
-#color-picker{padding:2.5vh 6%;text-align:center;position:relative;z-index:1;}
-.cdots{display:flex;gap:1rem;justify-content:center;flex-wrap:nowrap;margin:.8rem auto;}
-.cdot{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .3s;flex-shrink:0;box-shadow:0 0 8px currentColor;}
+/* Rotating headline */
+.hero-hl-wrap{position:relative;width:100%;min-height:200px;margin-bottom:1rem;}
+.hero-pair{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity 1.2s ease;pointer-events:none;text-align:center;}
+.hero-pair.active-pair{opacity:1;pointer-events:auto;}
+.hero-hl{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.06;letter-spacing:-.025em;color:var(--text);margin:0;}
+.hero-hl em{font-style:italic;font-weight:400;color:var(--a2);}
+.hero-pair .hero-sub-line{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(.95rem,1.4vw,1.25rem);color:var(--muted);line-height:1.7;max-width:520px;margin-top:.7rem;}
+.hero-micro{font-family:'Lato',sans-serif;font-style:italic;font-weight:300;font-size:clamp(.85rem,1.5vw,1rem);color:rgba(196,181,253,.4);margin:.5rem auto 2.2rem;max-width:460px;line-height:1.7;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.btn-primary{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;padding:1rem 2.4rem;border-radius:12px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;border:none;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 0 28px rgba(var(--a-rgb),.35),0 4px 20px rgba(0,0,0,.4);transition:all .35s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(var(--a-rgb),.55),0 8px 28px rgba(0,0,0,.5);}
+.hero-cta-note{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(var(--a-rgb),.3);margin-top:.9rem;display:block;}
+
+/* ── COLOR & CATEGORY PERSONALIZE ── */
+#personalize{padding:3vh 7%;max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.color-label{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(var(--a-rgb),.6);display:block;margin-bottom:.8rem;}
+.cdots{display:flex;gap:1rem;justify-content:center;flex-wrap:nowrap;margin:1rem auto;}
+.cdot{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .3s;flex-shrink:0;box-shadow:0 0 8px currentColor;}
 .cdot:hover{transform:scale(1.35);box-shadow:0 0 20px currentColor;}
 .cdot.on{border-color:rgba(255,255,255,.55);transform:scale(1.22);box-shadow:0 0 26px currentColor;}
-.cdot-label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,181,253,.35);display:block;margin-bottom:.6rem;}
+.cat-label{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(var(--a-rgb),.6);display:block;margin-bottom:1.2rem;margin-top:3rem;}
+.cat-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem;}
+.cat-pill{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;padding:.85rem 1.8rem;border-radius:50px;cursor:pointer;background:rgba(12,10,24,.85);border:1.5px solid rgba(var(--a-rgb),.18);color:rgba(var(--a-rgb),.55);transition:all .35s cubic-bezier(.16,1,.3,1);}
+.cat-pill:hover{border-color:rgba(var(--a-rgb),.55);color:var(--text);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.45);}
+.cat-pill.on{background:linear-gradient(135deg,rgba(var(--a-rgb),.2),rgba(76,29,149,.28));border-color:var(--a2);color:var(--text);box-shadow:0 0 26px rgba(var(--a-rgb),.22);transform:translateY(-2px);}
 
-/* ── COMMISSIONS ── */
-#commissions{padding:8vh 6%;max-width:1000px;margin:0 auto;text-align:center;}
-.comm-head{margin-bottom:4rem;}
-.comm-grid{display:flex;justify-content:center;margin:3rem auto 0;}
-.comm-card{background:rgba(12,10,24,.65);border:1.5px solid rgba(139,92,246,.18);border-radius:24px;padding:2rem 1.5rem;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;}
-.comm-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.08) 0%,transparent 70%);pointer-events:none;}
-.comm-card:hover{border-color:rgba(196,181,253,.45);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.45),0 0 30px rgba(139,92,246,.12);}
-.comm-card.featured{background:linear-gradient(160deg,rgba(20,14,42,.99),rgba(12,8,28,.99));border-color:rgba(139,92,246,.5);box-shadow:0 0 0 1px rgba(139,92,246,.25),0 0 50px rgba(109,40,217,.15),0 24px 50px rgba(0,0,0,.5);}
-.comm-tier{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;display:block;}
-.comm-amount{font-family:'Playfair Display',serif;font-weight:900;font-size:3rem;color:var(--a2);line-height:1;}
-.comm-currency{font-family:'DM Mono',monospace;font-size:.9rem;color:var(--muted);vertical-align:top;margin-top:.4rem;display:inline-block;}
-.comm-per{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;display:block;}
-.comm-reqs{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem;text-align:left;}
-.comm-req{display:flex;align-items:flex-start;gap:.6rem;font-family:'Lato',sans-serif;font-size:.85rem;color:var(--muted);line-height:1.5;}
-.comm-req-dot{width:4px;height:4px;border-radius:50%;background:var(--a);flex-shrink:0;margin-top:.45rem;}
-.comm-badge{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);border-radius:20px;padding:.2rem .6rem;display:inline-block;margin-bottom:1rem;}
+/* ── PRODUCT HORIZONTAL SCROLL MOSAIC ── */
+#product-shots{padding:5rem 0;}
+.shots-header{padding:0 6%;margin-bottom:2.5rem;}
+.shots-mosaic{
+  display:flex;
+  flex-direction:row;
+  gap:10px;
+  padding:0 6% 1.5rem;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  cursor:grab;
+  align-items:stretch;
+}
+.shots-mosaic:active{cursor:grabbing;}
+.shots-mosaic::-webkit-scrollbar{display:none;}
+/* groups */
+.mosaic-col{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
+.shot-frame{
+  border-radius:12px;overflow:hidden;
+  border:1px solid rgba(var(--a-rgb),.14);
+  background:var(--card);position:relative;
+  flex-shrink:0;
+  opacity:0;
+  transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s;
+}
+.shot-frame.from-left{transform:translateX(-28px);}
+.shot-frame.from-right{transform:translateX(28px);}
+.shot-frame.from-bottom{transform:translateY(28px);}
+.shot-frame.revealed{opacity:1;transform:none;}
+.shot-frame:hover{box-shadow:0 16px 48px rgba(0,0,0,.55),0 0 24px rgba(var(--a-rgb),.18);border-color:rgba(var(--a-rgb),.35);transform:scale(1.02);}
+.shot-frame.revealed:hover{transform:scale(1.02);}
+.shot-frame img{width:100%;height:100%;display:block;object-fit:cover;}
+.shot-frame .shot-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:.6rem .9rem;
+  font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+  background:linear-gradient(to top,rgba(6,5,15,.9),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.shot-frame:hover .shot-label{opacity:1;}
+.shots-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem;padding:0 6%;}
+.shots-arrow{font-size:1.1rem;background:rgba(var(--a-rgb),.08);border:1px solid rgba(var(--a-rgb),.2);color:var(--a2);width:36px;height:36px;border-radius:50%;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.shots-arrow:hover{background:rgba(var(--a-rgb),.2);border-color:var(--a2);}
 
-/* ── HOW IT WORKS ── */
-#how{padding:8vh 6%;max-width:900px;margin:0 auto;text-align:center;}
-.how-steps{display:flex;flex-direction:column;gap:0;margin-top:4rem;}
-.how-step{display:flex;gap:2rem;align-items:flex-start;text-align:left;padding:2rem 0;position:relative;opacity:0;transform:translateX(-24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
-.how-step.visible{opacity:1;transform:translateX(0);}
-.how-step:not(:last-child)::after{content:'';position:absolute;left:1.5rem;top:4rem;bottom:0;width:1px;background:linear-gradient(to bottom,rgba(139,92,246,.3),rgba(139,92,246,.05));}
-.step-num{width:3rem;height:3rem;border-radius:50%;flex-shrink:0;border:1px solid rgba(139,92,246,.35);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:1.1rem;color:var(--a2);background:rgba(139,92,246,.06);position:relative;z-index:1;}
-.step-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:var(--text);margin-bottom:.5rem;}
-.step-desc{font-family:'Lato',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.72;}
 
-/* ── PRICE CAROUSEL ── */
-#anchor{padding:6vh 6%;max-width:800px;margin:0 auto;text-align:center;}
-.anchor-box{background:rgba(12,10,24,.65);border:1px solid rgba(139,92,246,.2);border-radius:24px;padding:3rem 2.5rem;position:relative;overflow:hidden;}
-.anchor-box::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.07) 0%,transparent 70%);pointer-events:none;}
-.price-arrow-btn{
-  position:absolute;top:50%;transform:translateY(-60%);
-  background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);
-  color:var(--a2);border-radius:50%;width:36px;height:36px;
-  font-size:1.4rem;line-height:1;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .25s;z-index:2;
-}
-.price-arrow-btn:hover{background:rgba(139,92,246,.25);border-color:var(--a2);}
-.price-arrow-btn.prev{left:0;}
-.price-arrow-btn.next{right:0;}
-.price-carousel{position:relative;overflow:hidden;margin:2rem 2.5rem 1rem;}
-.price-carousel::before{
-  content:'';position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:320px;height:120px;border-radius:50%;
-  background:radial-gradient(ellipse,rgba(139,92,246,.12) 0%,transparent 70%);
-  pointer-events:none;z-index:0;
-  animation:carouselGlow 3s ease-in-out infinite;
-}
-@keyframes carouselGlow{
-  0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1);}
-  50%{opacity:1;transform:translate(-50%,-50%) scale(1.15);}
-}
-.price-carousel-track{
-  display:flex;transition:transform .6s cubic-bezier(.16,1,.3,1);
-  will-change:transform;position:relative;z-index:1;
-}
-.price-slide{
-  min-width:100%;display:flex;flex-direction:column;align-items:center;
-  gap:.5rem;padding:.5rem 0;
-}
-.price-slide-hint{
-  font-family:'Playfair Display',serif;font-style:italic;font-weight:300;
-  font-size:.95rem;color:rgba(139,92,246,.45);line-height:1.5;margin-top:.3rem;
-}
-.price-dots{display:flex;gap:.6rem;justify-content:center;margin-top:1.2rem;}
-.price-dot{
-  width:28px;height:3px;border-radius:2px;
-  background:rgba(139,92,246,.2);cursor:pointer;
-  transition:background .4s,width .4s;
-}
-.price-dot.active{background:var(--a2);width:40px;}
-.price-label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem;}
-.price-val{font-family:'Playfair Display',serif;font-weight:900;font-size:3.5rem;color:var(--text);line-height:1;}
-.price-val.strike{color:rgba(139,92,246,.3);text-decoration:line-through;font-size:2.8rem;}
-.price-val.final{color:var(--ok);}
-.price-code{display:inline-flex;align-items:center;gap:.6rem;font-family:'DM Mono',monospace;font-size:.8rem;letter-spacing:.08em;color:var(--a2);background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25);border-radius:8px;padding:.6rem 1.2rem;margin-top:.5rem;}
-.anchor-note{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:var(--muted);line-height:1.72;margin-top:1.5rem;}
+/* ── TRY & CONNECT SECTION ── */
+#try-connect{padding:5rem 6%;max-width:900px;margin:0 auto;text-align:center;}
+.try-connect-inner{background:var(--surface);border:1px solid rgba(var(--a-rgb),.18);border-radius:20px;padding:3.5rem 3rem;position:relative;overflow:hidden;}
+.try-connect-inner::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(var(--a-rgb),.08) 0%,transparent 70%);pointer-events:none;}
+.try-connect-inner::after{content:'';position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(var(--a-rgb),.05) 0%,transparent 70%);pointer-events:none;}
+.try-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(110,231,183,.25);padding:.35rem 1rem;border-radius:50px;background:rgba(110,231,183,.06);margin-bottom:1.5rem;}
+.try-head{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem;}
+.try-head em{font-style:italic;font-weight:400;color:var(--a2);}
+.try-sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(.95rem,1.6vw,1.15rem);color:var(--muted);line-height:1.8;max-width:580px;margin:0 auto 2.5rem;}
+.try-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem;}
+.btn-secondary{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 2rem;border-radius:50px;border:1px solid rgba(var(--a-rgb),.35);color:var(--a2);text-decoration:none;display:inline-block;transition:all .3s;background:rgba(var(--a-rgb),.06);}
+.btn-secondary:hover{border-color:var(--a2);background:rgba(var(--a-rgb),.14);transform:translateY(-1px);}
+.try-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--a-rgb),.3),transparent);margin:2rem auto;}
+.try-gift{background:rgba(var(--a-rgb),.06);border:1px solid rgba(var(--a-rgb),.15);border-radius:14px;padding:1.8rem 2rem;max-width:600px;margin:0 auto;}
+.try-gift-icon{font-size:1.8rem;margin-bottom:.8rem;}
+.try-gift-head{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;margin-bottom:.6rem;color:var(--text);}
+.try-gift-text{font-size:.82rem;color:var(--muted);line-height:1.78;margin-bottom:1.2rem;}
+.try-gift-text strong{color:var(--a2);font-weight:600;}
+.btn-message{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.8rem;border-radius:50px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;box-shadow:0 0 20px rgba(var(--a-rgb),.3);transition:all .3s;text-decoration:none;display:inline-block;}
+.btn-message:hover{box-shadow:0 0 35px rgba(var(--a-rgb),.55);transform:translateY(-1px);}
 
-/* ── TRANSPARENCY ── */
-.transp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;text-align:left;}
-.transp-card{background:rgba(12,10,24,.65);border:1px solid rgba(139,92,246,.15);border-radius:20px;padding:1.8rem 1.6rem;transition:all .4s cubic-bezier(.16,1,.3,1);}
-.transp-card:hover{border-color:rgba(139,92,246,.35);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
-.transp-icon{font-size:1.8rem;margin-bottom:.9rem;}
-.transp-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--text);margin-bottom:.6rem;line-height:1.3;}
-.transp-desc{font-family:'Lato',sans-serif;font-size:.88rem;color:var(--muted);line-height:1.72;}
 
-/* ── CALCULATOR ── */
-#calculator{padding:8vh 6%;max-width:800px;margin:0 auto;text-align:center;}
-.calc-box{background:rgba(12,10,24,.75);border:1.5px solid var(--a);border-radius:28px;padding:3rem 2.5rem;position:relative;overflow:hidden;margin-top:3rem;box-shadow:0 0 0 1px rgba(var(--a-rgb,139,92,246),.12),0 0 40px rgba(var(--a-rgb,139,92,246),.08),inset 0 0 60px rgba(var(--a-rgb,139,92,246),.03);transition:border-color .5s,box-shadow .5s;}
-.calc-inputs{display:flex;flex-direction:column;gap:2rem;margin-bottom:2.5rem;}
-.calc-field-label{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(196,181,253,.75);display:block;margin-bottom:.8rem;text-align:left;}
-.calc-field-value{font-family:'Playfair Display',serif;font-weight:700;font-size:2.4rem;color:var(--text);display:block;margin-bottom:.8rem;text-align:left;}
-.calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:linear-gradient(to right,var(--a) 0%,var(--a) var(--pct,50%),rgba(139,92,246,.15) var(--pct,50%),rgba(139,92,246,.15) 100%);outline:none;cursor:pointer;}
-.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0%,#c4b5fd 40%,#8b5cf6 100%);box-shadow:0 0 12px rgba(139,92,246,.6);cursor:pointer;}
-.calc-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;border:none;background:radial-gradient(circle at 35% 30%,#fff 0%,#c4b5fd 40%,#8b5cf6 100%);box-shadow:0 0 12px rgba(139,92,246,.6);cursor:pointer;}
-.calc-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,.15),transparent);margin:2rem 0;}
-.calc-level-wrap{display:flex;align-items:center;gap:1rem;justify-content:center;margin-bottom:1.8rem;flex-wrap:wrap;}
-.calc-level-label{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.calc-level-toggle{display:flex;gap:.5rem;background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.15);border-radius:12px;padding:.3rem;}
-.lvl-btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.6rem 1.4rem;border-radius:9px;border:none;cursor:pointer;background:none;transition:all .3s cubic-bezier(.16,1,.3,1);}
-.lvl-btn.active{background:linear-gradient(135deg,var(--a4),var(--a3));box-shadow:0 0 16px rgba(139,92,246,.25);}
-.lvl-btn-title{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
-.lvl-btn.active .lvl-btn-title{color:var(--a2);}
-.lvl-btn-price{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--text);line-height:1;}
-.calc-toggle-wrap{margin:.8rem auto 0;max-width:800px;text-align:center;}
-.calc-toggle-btn{
-  font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(139,92,246,.55);background:none;border:none;cursor:pointer;
-  transition:color .25s;padding:.4rem 0;
+/* ── CALC ENHANCEMENTS ── */
+.calc-views-wrap{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:1.2rem;}
+.calc-views{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2.5rem,5vw,4rem);color:var(--text);line-height:1;}
+.calc-views span{color:var(--a2);}
+.views-input{
+  font-family:'Playfair Display',serif;font-weight:900;font-style:italic;
+  font-size:clamp(2.5rem,5vw,4rem);color:var(--a2);
+  background:none;border:none;border-bottom:2px solid rgba(var(--a-rgb),.35);
+  outline:none;text-align:center;width:200px;
+  transition:border-color .2s;
 }
-.calc-toggle-btn:hover{color:var(--a2);}
-.calc-toggle-body{
+.views-input:focus{border-color:var(--a2);}
+.views-word-label{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);align-self:flex-end;padding-bottom:.6rem;}
+.calc-video-selector{margin-top:2rem;text-align:center;}
+.calc-video-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:1rem;}
+.video-pills{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;}
+.video-pill{
+  font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.1em;
+  padding:.5rem 1.2rem;border-radius:50px;cursor:pointer;
+  border:1px solid rgba(var(--a-rgb),.2);background:none;
+  color:var(--muted);transition:all .25s;
+}
+.video-pill:hover{border-color:rgba(var(--a-rgb),.5);color:var(--text);}
+.video-pill.on{background:rgba(var(--a-rgb),.12);border-color:var(--a2);color:var(--a2);}
+.calc-card-value{transition:all .3s cubic-bezier(.16,1,.3,1);}
+.calc-card-value.updating{transform:scale(.85);opacity:.4;}
+
+
+/* ── CVR EXPLAINER TOGGLE ── */
+.cvr-toggle-wrap{margin-top:1.2rem;text-align:center;}
+.cvr-toggle-btn{
+  font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(var(--a-rgb),.6);background:none;border:1px solid rgba(var(--a-rgb),.2);
+  padding:.45rem 1.1rem;border-radius:50px;cursor:pointer;transition:all .2s;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.cvr-toggle-btn:hover{border-color:var(--a2);color:var(--a2);}
+.cvr-toggle-btn .cvr-arrow{transition:transform .3s;display:inline-block;}
+.cvr-toggle-btn.open .cvr-arrow{transform:rotate(180deg);}
+.cvr-explainer{
   max-height:0;overflow:hidden;
-  transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .4s;
+  transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .4s ease;
   opacity:0;
 }
-.calc-toggle-body.open{max-height:200px;opacity:1;}background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.12);border-radius:12px;padding:1rem 1.2rem;margin-top:1.5rem;text-align:left;}
-.calc-explain-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem;}
-.calc-explain span{font-family:'Lato',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.7;}
-.calc-explain strong{color:rgba(196,181,253,.7);font-weight:700;}
-.scenarios{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;}
-.scenario{
-  border-radius:18px;padding:1.6rem 1rem 1.4rem;text-align:center;
-  border:1px solid rgba(139,92,246,.1);
-  background:rgba(8,6,18,.7);
-  transition:border-color .5s,box-shadow .5s,transform .5s,background .5s;
-  display:flex;flex-direction:column;align-items:center;
-  cursor:pointer;opacity:0;transform:translateY(12px);
-  position:relative;overflow:hidden;
+.cvr-explainer.open{max-height:600px;opacity:1;}
+.cvr-explainer-inner{
+  background:var(--card);border:1px solid rgba(var(--a-rgb),.14);
+  border-radius:12px;padding:1.8rem 2rem;margin-top:1rem;text-align:left;
 }
-.scenario::before{
+.cvr-explainer-title{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;
+  margin-bottom:1rem;color:var(--text);
+}
+.cvr-table{width:100%;border-collapse:collapse;margin-bottom:1rem;}
+.cvr-table th{
+  font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);padding:.5rem .8rem;border-bottom:1px solid var(--border);text-align:left;
+}
+.cvr-table td{
+  font-family:'DM Mono',monospace;font-size:.56rem;padding:.55rem .8rem;
+  border-bottom:1px solid rgba(var(--a-rgb),.06);color:rgba(240,238,255,.75);
+}
+.cvr-table tr:last-child td{border-bottom:none;}
+.cvr-table td.cvr-name{color:var(--a2);font-weight:500;}
+.cvr-table td.cvr-pct{color:var(--ok);}
+.cvr-source{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.06em;color:var(--dim);line-height:1.7;margin-top:.6rem;}
+.cvr-source a{color:rgba(var(--a-rgb),.5);text-decoration:none;}
+.cvr-source a:hover{color:var(--a2);}
+
+/* ── NUMBERS ── */
+#numbers{padding:5rem 6%;max-width:1100px;margin:0 auto;}
+.numbers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:transparent;border:none;margin-top:3rem;}
+.num-card{background:var(--surface);padding:2.5rem 2rem;border-radius:16px;border:1px solid rgba(var(--a-rgb),.12);transition:background .3s,border-color .3s,box-shadow .3s;}
+.num-card:hover{background:var(--card);border-color:rgba(var(--a-rgb),.28);box-shadow:0 8px 32px rgba(0,0,0,.3);}
+.num-value{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(3rem,5vw,4.5rem);line-height:1;color:var(--a2);margin-bottom:.4rem;}
+.num-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;}
+.num-desc{font-size:.82rem;color:rgba(240,238,255,.45);line-height:1.72;}
+
+/* ── CALCULATOR ── */
+#calculator{padding:5rem 6%;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.calc-inner{max-width:760px;margin:0 auto;text-align:center;}
+.calc-slider-wrap{margin:3rem 0 1rem;}
+.calc-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:1.2rem;}
+.calc-views{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2.5rem,5vw,4rem);color:var(--text);margin-bottom:1.2rem;}
+.calc-views span{color:var(--a2);}
+input[type=range]{-webkit-appearance:none;width:100%;height:2px;background:linear-gradient(90deg,var(--a3),var(--a));outline:none;border-radius:2px;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:radial-gradient(circle at 35% 35%,#fff,var(--a2) 40%,var(--a));border-radius:50%;cursor:pointer;box-shadow:0 0 14px rgba(var(--a-rgb),.6);}
+.calc-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:transparent;border:none;margin-top:2.5rem;}
+.calc-card{
+  background:rgba(var(--a-rgb),.08);padding:1.8rem 1.2rem;text-align:center;
+  border-radius:14px;border:1px solid rgba(var(--a-rgb),.25);
+  transition:border-color .4s,box-shadow .4s,transform .3s;
+  position:relative;overflow:hidden;cursor:default;
+}
+.calc-card::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(139,92,246,.04) 0%,transparent 70%);
-  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 110%,rgba(var(--a-rgb),.18) 0%,transparent 70%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
 }
-.scenario.visible{opacity:1;transform:translateY(0);transition:border-color .5s,box-shadow .5s,transform .6s cubic-bezier(.16,1,.3,1),background .5s,opacity .5s;}
-.scenario:hover{border-color:rgba(139,92,246,.25);background:rgba(12,9,24,.85);}
-.scenario.active{border-color:rgba(139,92,246,.55);background:rgba(12,8,26,.95);box-shadow:0 0 40px rgba(139,92,246,.15),0 0 0 1px rgba(139,92,246,.2);transform:translateY(-6px)!important;}
-
-/* % — big but subtle, top of card */
-.sc-rate-big{
-  font-family:'Playfair Display',serif;font-weight:400;font-style:italic;
-  font-size:2.2rem;color:rgba(196,181,253,.35);line-height:1;
-  margin-bottom:.3rem;
+.calc-card canvas.star-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  opacity:0;transition:opacity .5s;pointer-events:none;
 }
-.scenario.active .sc-rate-big{color:rgba(196,181,253,.55);}
-
-/* label — tiny mono above divider */
-.sc-label{
-  font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;
+.calc-card:hover{
+  border-color:rgba(var(--a-rgb),.55);
+  box-shadow:0 0 28px rgba(var(--a-rgb),.2),0 8px 32px rgba(0,0,0,.4);
+  transform:translateY(-3px) scale(1.01);
 }
-
-/* divider */
-.sc-divider{width:40px;height:1px;background:rgba(139,92,246,.15);margin:.5rem 0 .8rem;}
-.scenario.active .sc-divider{background:rgba(139,92,246,.4);width:60px;}
-
-/* sales count — medium, secondary */
-.sc-copies{
-  font-family:'Playfair Display',serif;font-weight:700;
-  font-size:1.5rem;color:rgba(240,238,255,.55);line-height:1;
+.calc-card:hover::before{opacity:1;}
+.calc-card:hover canvas.star-bg{opacity:1;}
+.calc-card .calc-card-value{position:relative;z-index:1;}
+.calc-card .calc-card-label{position:relative;z-index:1;}
+.calc-card .calc-card-sub{position:relative;z-index:1;}
+.calc-card.mid{
+  background:rgba(var(--a-rgb),.08);
+  border-radius:14px;border:1px solid rgba(var(--a-rgb),.3);
 }
-.scenario.active .sc-copies{color:var(--text);}
-.sc-copies-label{
-  font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.08em;
-  text-transform:uppercase;color:rgba(139,92,246,.3);margin-top:.2rem;margin-bottom:.6rem;
+.calc-card.mid:hover{
+  box-shadow:0 0 40px rgba(var(--a-rgb),.35),0 8px 32px rgba(0,0,0,.4);
 }
+.calc-card-label{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;}
+.calc-card.mid .calc-card-label{color:var(--a2);}
+.calc-card-value{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--a2);}
+.calc-card-sub{font-family:'DM Mono',monospace;font-size:.48rem;color:var(--dim);margin-top:.4rem;letter-spacing:.08em;}
 
-/* USD earn — THE hero number */
-.sc-earn-wrap{display:flex;align-items:baseline;gap:.2rem;}
-.sc-earn{
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:2rem;color:var(--a2);line-height:1;
-}
-.scenario.active .sc-earn{font-size:2.2rem;}
-.sc-earn-label{
-  font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.05em;
-  text-transform:uppercase;color:rgba(196,181,253,.6);
-}
+/* ── HOW IT WORKS ── */
+#how{padding:5rem 6%;max-width:1000px;margin:0 auto;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:3.5rem;}
+.step{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.step.show{opacity:1;transform:translateY(0);}
+.step-n{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:5rem;line-height:1;color:rgba(var(--a-rgb),.12);margin-bottom:.8rem;}
+.step h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.15rem;margin-bottom:.7rem;color:var(--text);}
+.step p{font-size:.85rem;color:var(--muted);line-height:1.78;}
 
-/* MXN — small, dimmed */
-.sc-mxn{
-  font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.03em;
-  color:rgba(139,92,246,.3);margin-top:.35rem;
-}
-.calc-note{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:rgba(196,181,253,.6);margin-top:1.5rem;line-height:1.7;text-align:center;}
-.calc-sources{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(139,92,246,.08);}
-.calc-sources-title{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(139,92,246,.35);display:block;margin-bottom:.7rem;}
-.calc-sources-list{display:flex;flex-direction:column;gap:.4rem;}
-.calc-source-link{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.03em;color:rgba(139,92,246,.35);text-decoration:none;transition:color .2s;line-height:1.6;}
-.calc-source-link:hover{color:var(--a2);text-decoration:underline;}
+/* ── MISSION ── */
+#mission{padding:6rem 6%;text-align:center;position:relative;overflow:hidden;}
+.mission-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(var(--a-rgb),.07) 0%,transparent 70%);pointer-events:none;}
+.mission-eyebrow{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(var(--a-rgb),.55);display:block;margin-bottom:1.5rem;}
+.mission-head{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,5vw,3.8rem);line-height:1.1;letter-spacing:-.02em;max-width:700px;margin:0 auto 1.5rem;}
+.mission-head em{font-style:italic;color:var(--a2);}
+.mission-sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);max-width:560px;margin:0 auto;line-height:1.82;}
 
-/* ── COUNTRY PICKER ── */
-.country-picker{position:relative;}
-.country-search-wrap{background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:.6rem .8rem;transition:border-color .3s,box-shadow .3s;cursor:text;}
-.country-search-wrap:focus-within{border-color:rgba(139,92,246,.5);box-shadow:0 0 0 3px rgba(139,92,246,.08);}
-.country-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.4rem;}
-.country-tag{display:inline-flex;align-items:center;gap:.35rem;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.04em;color:var(--a2);background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);border-radius:6px;padding:.25rem .55rem;}
-.country-tags:empty{margin-bottom:0;}
-.country-tag-x{cursor:pointer;opacity:.6;font-size:.7rem;line-height:1;transition:opacity .2s;}
-.country-tag-x:hover{opacity:1;}
-#country-search{background:none;border:none;outline:none;font-family:'DM Mono',monospace;font-size:.8rem;color:var(--text);width:100%;padding:.3rem .2rem;}
-#country-search::placeholder{color:rgba(139,92,246,.2);}
-.country-dropdown{position:absolute;left:0;right:0;top:calc(100% + 6px);background:rgba(10,8,22,.98);border:1px solid rgba(139,92,246,.25);border-radius:12px;max-height:200px;overflow-y:auto;z-index:50;display:none;box-shadow:0 16px 40px rgba(0,0,0,.7);}
-.country-dropdown.open{display:block;}
-.country-dropdown::-webkit-scrollbar{width:4px;}
-.country-dropdown::-webkit-scrollbar-track{background:transparent;}
-.country-dropdown::-webkit-scrollbar-thumb{background:rgba(139,92,246,.25);border-radius:2px;}
-.country-opt{display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;cursor:pointer;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.04em;color:var(--muted);transition:background .15s,color .15s;border-bottom:1px solid rgba(139,92,246,.06);}
-.country-opt:last-child{border-bottom:none;}
-.country-opt:hover{background:rgba(139,92,246,.1);color:var(--text);}
-.country-flag{font-size:1rem;width:1.4rem;text-align:center;}
+/* ── LEMON SQUEEZY ── */
+#payments{padding:4rem 6%;max-width:860px;margin:0 auto;}
+.ls-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem 2.5rem;display:flex;align-items:flex-start;gap:2rem;}
+.ls-icon{font-size:2.5rem;flex-shrink:0;margin-top:.2rem;}
+.ls-content h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;margin-bottom:.6rem;}
+.ls-content p{font-size:.82rem;color:var(--muted);line-height:1.78;margin-bottom:.8rem;}
+.ls-link{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--a2);text-decoration:none;border-bottom:1px solid rgba(var(--a-rgb),.3);padding-bottom:.1rem;transition:all .2s;}
+.ls-link:hover{color:var(--text);border-color:var(--a2);}
 
-/* ── QUESTIONNAIRE ── */
-#apply{padding:8vh 6%;max-width:700px;margin:0 auto;text-align:center;}
-.q-wrap{background:rgba(12,10,24,.8);border:1px solid rgba(139,92,246,.25);border-radius:28px;padding:3rem 2.5rem;margin-top:3rem;position:relative;overflow:hidden;}
-.q-progress-wrap{margin-bottom:2.5rem;}
-.q-progress-label{display:flex;justify-content:space-between;margin-bottom:.6rem;}
-.q-progress-step{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
-.q-progress-of{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(139,92,246,.4);}
-.q-progress-bar{height:2px;background:rgba(139,92,246,.1);border-radius:1px;overflow:hidden;}
-.q-progress-fill{height:100%;background:linear-gradient(90deg,var(--a3),var(--a2));border-radius:1px;transition:width .6s cubic-bezier(.16,1,.3,1);}
-.q-step{display:none;animation:stepIn .5s cubic-bezier(.16,1,.3,1) both;}
-.q-step.active{display:block;}
-@keyframes stepIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.q-question{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.2rem,2.5vw,1.6rem);color:var(--text);line-height:1.3;margin-bottom:.7rem;}
-.q-question em{font-style:italic;font-weight:400;color:var(--a2);}
-.q-hint{font-family:'Lato',sans-serif;font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:2rem;}
-.q-input{width:100%;background:rgba(6,5,15,.7);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:1rem 1.2rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;transition:border-color .3s,box-shadow .3s;}
-.q-input:focus{border-color:rgba(139,92,246,.5);box-shadow:0 0 0 3px rgba(139,92,246,.08);}
-.q-input::placeholder{color:rgba(139,92,246,.2);}
-.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.5rem;}
-.platform-opt{display:flex;align-items:center;gap:.8rem;background:rgba(6,5,15,.6);border:1px solid rgba(139,92,246,.15);border-radius:12px;padding:.9rem 1.1rem;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);user-select:none;}
-.platform-opt:hover{border-color:rgba(139,92,246,.35);}
-.platform-opt.selected{border-color:rgba(139,92,246,.55);background:rgba(139,92,246,.08);box-shadow:0 0 16px rgba(139,92,246,.1);}
-.platform-icon{font-size:1.3rem;}
-.platform-name{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
-.platform-opt.selected .platform-name{color:var(--a2);}
-.platform-check{width:16px;height:16px;border-radius:4px;border:1px solid rgba(139,92,246,.25);margin-left:auto;display:flex;align-items:center;justify-content:center;transition:all .25s;}
-.platform-opt.selected .platform-check{background:var(--a);border-color:var(--a);}
-.platform-check-mark{color:#fff;font-size:.65rem;opacity:0;transition:opacity .2s;}
-.platform-opt.selected .platform-check-mark{opacity:1;}
-.format-opts{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:1.5rem;}
-.format-opt{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;padding:.65rem 1.3rem;border-radius:50px;cursor:pointer;background:rgba(12,10,24,.85);border:1.5px solid rgba(139,92,246,.18);color:rgba(196,181,253,.45);transition:all .3s cubic-bezier(.16,1,.3,1);user-select:none;}
-.format-opt:hover{border-color:rgba(196,181,253,.45);color:var(--text);}
-.format-opt.selected{background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(76,29,149,.28));border-color:var(--a2);color:var(--text);box-shadow:0 0 20px rgba(139,92,246,.18);}
-.q-nav{display:flex;gap:1rem;justify-content:flex-end;margin-top:2rem;}
-.q-btn-back{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.5rem;border-radius:8px;background:none;border:1px solid rgba(139,92,246,.2);color:var(--muted);cursor:pointer;transition:all .3s;}
-.q-btn-back:hover{border-color:rgba(139,92,246,.4);color:var(--text);}
-.q-btn-next{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 2rem;border-radius:8px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;border:none;cursor:pointer;box-shadow:0 0 18px rgba(139,92,246,.3);transition:all .3s;}
-.q-btn-next:hover{box-shadow:0 0 30px rgba(139,92,246,.5);transform:translateY(-1px);}
-.q-btn-next:disabled{opacity:.3;cursor:not-allowed;transform:none;}
-.q-summary{background:rgba(6,5,15,.6);border:1px solid rgba(139,92,246,.15);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;}
-.q-summary-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(139,92,246,.08);}
-.q-summary-row:last-child{border-bottom:none;}
-.q-summary-key{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.q-summary-val{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--a2);}
-.send-question{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--text);margin-bottom:.6rem;}
-.send-sub{font-family:'Lato',sans-serif;font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:2rem;}
-.send-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.btn-send{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.5rem;border-radius:12px;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;border:none;cursor:pointer;box-shadow:0 0 28px rgba(139,92,246,.35);transition:all .35s;}
-.btn-send:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(139,92,246,.55);}
-.btn-skip{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2rem;border-radius:12px;background:none;border:1px solid rgba(139,92,246,.2);color:var(--muted);cursor:pointer;transition:all .3s;}
-.btn-skip:hover{border-color:rgba(139,92,246,.4);color:var(--text);}
-.q-success{text-align:center;padding:2rem 0;display:none;}
-.success-orb{width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,#6ee7b7 0%,#059669 60%,#064e3b 100%);box-shadow:0 0 40px rgba(110,231,183,.35);margin:0 auto 1.5rem;animation:orbFloat 4s ease-in-out infinite;}
-.success-title{font-family:'Playfair Display',serif;font-weight:900;font-size:2rem;color:var(--ok);margin-bottom:.8rem;}
-.success-sub{font-family:'Lato',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.72;}
-.q-declined{text-align:center;padding:2rem 0;display:none;}
-.declined-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.5rem;color:var(--text);margin-bottom:.8rem;}
-.declined-sub{font-family:'Lato',sans-serif;font-size:.9rem;color:var(--muted);line-height:1.7;}
+/* ── TESTIMONIALS ── */
+#voices{padding:5rem 6%;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.voices-inner{max-width:1100px;margin:0 auto;}
+.voices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:transparent;border:none;margin-top:3rem;}
+.voice-card{background:var(--surface);padding:2rem 1.8rem;border-radius:16px;border:1px solid rgba(var(--a-rgb),.12);transition:background .3s,border-color .3s;}
+.voice-card:hover{background:var(--card);border-color:rgba(var(--a-rgb),.28);}
+.voice-flag{font-size:1.3rem;margin-bottom:.8rem;}
+.voice-text{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1rem;line-height:1.7;color:rgba(240,238,255,.75);margin-bottom:1.2rem;}
+.voice-author{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.voice-author span{color:var(--a2);}
 
+/* ── FEATURES ── */
+#features{padding:5rem 6%;max-width:1000px;margin:0 auto;}
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;background:transparent;border:none;margin-top:3rem;}
+.feature-card{background:var(--surface);padding:2rem;border-radius:16px;border:1px solid rgba(var(--a-rgb),.12);transition:background .3s,border-color .3s,box-shadow .3s;}
+.feature-card:hover{background:var(--card);border-color:rgba(var(--a-rgb),.3);box-shadow:0 8px 32px rgba(0,0,0,.3);}
+.feature-icon{font-size:1.5rem;margin-bottom:.8rem;}
+.feature-card h4{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.6rem;}
+.feature-card p{font-size:.82rem;color:var(--muted);line-height:1.78;}
 
-/* ── ALINEA PRO GLOW TAG ── */
-.ap{
-  font-family:'DM Mono',monospace;
-  font-weight:500;
-  letter-spacing:.04em;
-  color:var(--a2);
-  text-shadow:0 0 12px rgba(var(--a-rgb,139,92,246),.7),0 0 28px rgba(var(--a-rgb,139,92,246),.35);
-  transition:text-shadow .5s,color .5s;
-  white-space:nowrap;
-}
+/* ── CTA ── */
+#cta{padding:7rem 6%;text-align:center;position:relative;overflow:hidden;}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(var(--a-rgb),.08) 0%,transparent 70%);pointer-events:none;}
+#cta h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.4rem,6vw,5rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:1.2rem;}
+#cta h2 em{font-style:italic;font-weight:400;color:var(--a2);}
+#cta p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--muted);margin-bottom:2.8rem;}
+
+/* ── FORM ── */
+#join{padding:2rem 6% 6rem;max-width:520px;margin:0 auto;}
+.form-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;}
+.form-title{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;text-align:center;margin-bottom:.3rem;}
+.form-sub{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:2rem;}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;}
+.form-group input,.form-group select{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:.78rem;padding:.85rem 1rem;outline:none;border-radius:8px;transition:border-color .2s;-webkit-appearance:none;}
+.form-group input:focus,.form-group select:focus{border-color:rgba(var(--a-rgb),.5);box-shadow:0 0 0 3px rgba(var(--a-rgb),.08);}
+.form-group select option{background:var(--card);}
+.form-submit{width:100%;margin-top:.8rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem;border-radius:50px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--a4),var(--a3),var(--a));color:#fff;box-shadow:0 0 28px rgba(var(--a-rgb),.4);transition:all .3s;}
+.form-submit:hover{box-shadow:0 0 45px rgba(var(--a-rgb),.65);transform:translateY(-1px);}
+.form-note{font-family:'DM Mono',monospace;font-size:.48rem;color:var(--dim);text-align:center;margin-top:.9rem;line-height:1.7;letter-spacing:.06em;}
 
 /* ── FOOTER ── */
-footer{padding:4vh 6%;text-align:center;position:relative;z-index:1;border-top:1px solid rgba(139,92,246,.06);}
-.f-logo{font-family:'DM Mono',monospace;font-size:.9rem;letter-spacing:.34em;color:rgba(196,181,253,.25);display:block;margin-bottom:.8rem;}
-.f-note{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(139,92,246,.2);}
-.f-sources{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(139,92,246,.06);}
-.f-sources-title{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(139,92,246,.25);display:block;margin-bottom:.7rem;}
-.f-sources-list{display:flex;flex-direction:column;gap:.35rem;}
-.f-source-link{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.03em;color:rgba(139,92,246,.2);text-decoration:none;transition:color .2s;line-height:1.6;}
-.f-source-link:hover{color:var(--a2);}
+footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.3em;color:var(--muted);}
+.footer-link{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;}
+.footer-link:hover{color:var(--a2);}
+.footer-tag{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.15em;color:var(--dim);}
 
-/* ── MANUAL INPUT ── */
-.calc-field-row{display:flex;align-items:baseline;gap:1rem;margin-bottom:.8rem;}
-.calc-manual{
-  background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.18);
-  border-radius:8px;padding:.3rem .7rem;
-  font-family:'DM Mono',monospace;font-size:.6rem;color:var(--a2);
-  outline:none;width:110px;transition:border-color .3s;
-  -moz-appearance:textfield;
-}
-.calc-manual::-webkit-outer-spin-button,.calc-manual::-webkit-inner-spin-button{-webkit-appearance:none;}
-.calc-manual:focus{border-color:rgba(139,92,246,.5);}
-.calc-manual::placeholder{color:rgba(139,92,246,.25);font-size:.55rem;}
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .numbers-grid,.calc-results,.voices-grid,.features-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;gap:2rem;}
 
-/* RESPONSIVE */
-@media(max-width:700px){
-  .comm-grid{padding:0 1rem;}
-  .transp-grid{grid-template-columns:1fr;}
-  .scenarios{grid-template-columns:1fr 1fr;}
-  .hero-stats{gap:1.5rem;}
-  #starCanvas{display:none;}
-  .calc-box,.q-wrap{padding:1.8rem 1.2rem;}
-  .comm-card{padding:1.8rem 1.4rem;}
-  .hero-hl{font-size:clamp(2.2rem,8vw,4rem);min-height:auto;}
-  .hero-stats{flex-wrap:wrap;gap:1.2rem;}
-  .stat-num{font-size:1.8rem;}
-  .price-val{font-size:2.8rem;}
-  .anchor-box{padding:2rem 1.4rem;}
-  .how-step{gap:1.2rem;}
-  .price-flow{gap:1rem;}
-  .calc-field-label{font-size:.7rem;}
-  .calc-field-value{font-size:2rem;}
-  .section-head{font-size:clamp(2rem,8vw,3rem);}
-  .eyebrow{font-size:.65rem;}
-  .sc-earn{font-size:1.6rem;}
-  .sc-copies{font-size:1.2rem;}
-}
-@media(max-width:480px){
-  .platform-grid{grid-template-columns:1fr;}
-  .scenarios{grid-template-columns:1fr 1fr;}
-  .send-btns{flex-direction:column;}
-  .nav-badge{display:none;}
-  .hero-hl{font-size:clamp(2rem,9vw,3rem);}
-  .section-head{font-size:clamp(1.8rem,8vw,2.6rem);}
-  .comm-amount{font-size:2.5rem;}
-  .calc-field-row{flex-direction:column;gap:.4rem;}
-  .calc-manual{width:100%;}
-  .lvl-btn{padding:.5rem 1rem;}
-  .format-opts{gap:.4rem;}
-  .format-opt{font-size:.8rem;padding:.5rem 1rem;}
-  .q-btn-next,.q-btn-back{padding:.65rem 1.2rem;font-size:.6rem;}
-  .hero-stats{gap:1rem;}
-  .transp-grid{gap:.8rem;}
+  .ls-card{flex-direction:column;gap:1rem;}
+  footer{flex-direction:column;gap:.8rem;text-align:center;}
+  #join{padding:2rem 4% 5rem;}
+  .hero-hl-wrap{min-height:160px;}
 }
 </style>
 </head>
 <body>
-
 <canvas id="starCanvas"></canvas>
 
 <!-- NAV -->
 <nav id="nav">
   <a href="https://alinea.work" class="nav-logo">ALINEA</a>
-  <div class="nav-right">
-    <span class="nav-badge" data-i18n="nav_badge">Programa de Afiliados</span>
-    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">ES</button>
+  <div class="nav-r">
+    <div class="lsw">
+      <button onclick="setLang('en',this)" class="on" id="btnEN">EN</button>
+      <div class="sp"></div>
+      <button onclick="setLang('es',this)" id="btnES">ES</button>
+    </div>
+    <a href="#join" class="nav-cta" id="navCta">Join Program</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-orb"></div>
-  <span class="hero-eyebrow" data-i18n="hero_eyebrow">Private access · By invitation only</span>
-  <h1 class="hero-hl" id="hero-hl-wrap">
-    <span class="hero-hl-line" id="hero-hl-text">Ayuda a ALINEA a hacer <em>visible lo invisible.</em></span>
-  </h1>
-  <p class="hero-sub" data-i18n="hero_sub">El programa de afiliados más agresivo del software independiente de lectura. Sin agencias. Sin trabas. Directo a tu cuenta.</p>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-prefix" data-i18n="stat1_pre">hasta</span>
-      <div class="stat-num">$15</div>
-      <span class="stat-label" data-i18n="stat1">USD por venta</span>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">$69</div>
-      <span class="stat-label" data-i18n="stat2">Precio con tu código</span>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">100%</div>
-      <span class="stat-label" data-i18n="stat3">Automático vía Lemon</span>
+  <div class="hero-orb" id="mainOrb"></div>
+  <div class="hero-badge ri show">✦ <span id="badgeTxt">Creator Affiliate Program</span> &nbsp;<span id="badgeDot" style="color:var(--ok);">● Now open</span></div>
+
+  <div class="hero-hl-wrap ri d1 show" id="heroHlWrap">
+    <!-- Pairs filled by JS -->
+  </div>
+
+  <p class="hero-micro ri d2 show" id="heroMicro">One video. Your style. $15 per sale — no contracts, no minimums.</p>
+  <div class="hero-ctas ri d3 show">
+    <a href="#join" class="btn-primary" id="heroCta">Apply now — it's free</a>
+  </div>
+  <span class="hero-cta-note" id="heroNote">No commitments · Your pace · Lifetime commissions</span>
+
+  <div class="hero-cats ri d4 show">
+    <span class="hero-cats-label" id="heroCatsLabel">What type of creator are you?</span>
+    <div class="hero-cat-pills">
+      <button class="hero-cat-pill on" onclick="setCat('booktok',this)" id="heroCatBooktok">📚 BookTok</button>
+      <button class="hero-cat-pill" onclick="setCat('lifestyle',this)" id="heroCatLifestyle">✨ Lifestyle</button>
+      <button class="hero-cat-pill" onclick="setCat('ugc',this)" id="heroCatUgc">🎬 UGC</button>
+      <button class="hero-cat-pill" onclick="setCat('students',this)" id="heroCatStudents">🎓 Students</button>
+      <button class="hero-cat-pill" onclick="setCat('productivity',this)" id="heroCatProductivity">⚡ Productivity</button>
     </div>
   </div>
-  <a href="#apply" class="hero-cta" data-i18n="hero_cta">Quiero ser afiliado →</a>
-  <span class="hero-cta-note" data-i18n="hero_cta_note">Cuestionario de 5 preguntas · Sin compromiso</span>
-  <div class="scroll-hint"><div class="scroll-line"></div></div>
 </section>
 
-<!-- COLOR PICKER -->
-<section id="color-picker">
-  <span class="cdot-label" data-i18n="color_label">Elige tu color</span>
+<div class="dv"></div>
+
+<!-- PERSONALIZE — color only -->
+<section id="personalize">
+  <span class="color-label" id="colorLabel">Personalize your galaxy</span>
   <div class="cdots">
     <div class="cdot on" style="background:#8b5cf6;color:#8b5cf6" onclick="setTheme('purple',this)"></div>
     <div class="cdot" style="background:#3b82f6;color:#3b82f6" onclick="setTheme('blue',this)"></div>
@@ -482,827 +443,928 @@ footer{padding:4vh 6%;text-align:center;position:relative;z-index:1;border-top:1
   </div>
 </section>
 
-<!-- COMMISSIONS -->
-<section id="commissions">
-  <div class="comm-head">
-    <span class="eyebrow" data-i18n="comm_eyebrow">Tu comisión · Hasta el 1 de julio</span>
-    <h2 class="section-head" data-i18n="comm_head">$15 por venta.<br><em>De por vida.</em><sup style="font-family:'DM Mono',monospace;font-size:.9rem;color:rgba(196,181,253,.4);font-weight:400;vertical-align:super;margin-left:2px;">*</sup></h2>
-  </div>
-  <div class="comm-grid">
-    <div class="comm-card featured" style="max-width:520px;width:100%;">
-      <span class="comm-badge" data-i18n="comm1_badge">✦ Lanzamiento · Jun 2026</span>
-      <span class="comm-tier" data-i18n="comm1_tier">Lo que pedimos de tu parte</span>
-      <div style="margin:.5rem 0;"><span class="comm-currency">$</span><span class="comm-amount">15</span></div>
-      <span class="comm-per" data-i18n="comm_per">USD por cada venta de <span class="ap">ALINEA Pro</span></span>
-      <div class="comm-reqs">
-        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r1">Al menos 4 videos al mes mostrando ALINEA Pro en uso real — que se vea la app, no solo mencionarla</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r2">Que se vea tu galaxia con libros e highlights de verdad — no capturas vacías</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r3">Contar algo concreto que te cambió al usarla — eso conecta más que cualquier guion</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r4">Mencionar tu código en el video o el caption para que tu comunidad lo use</span></div>
-        <div class="comm-req"><div class="comm-req-dot"></div><span data-i18n="c1r5">Compartir al cierre del mes las métricas de los videos donde hablas de ALINEA Pro — nada más</span></div>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top:2.5rem;max-width:580px;margin-left:auto;margin-right:auto;display:flex;align-items:flex-start;gap:.6rem;text-align:left;padding:1.2rem 1.4rem;background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.1);border-radius:12px;">
-    <span style="font-family:'DM Mono',monospace;font-size:.7rem;color:rgba(196,181,253,.35);flex-shrink:0;margin-top:2px;">*</span>
-    <p style="font-family:'Lato',sans-serif;font-weight:300;font-style:italic;color:rgba(196,181,253,.45);font-size:.88rem;line-height:1.8;letter-spacing:.01em;" data-i18n="comm_footer">Los primeros creadores que se unan durante junio entran con $15 por venta y lo conservan de por vida — sin importar cómo cambien las condiciones después del 1 de julio.</p>
-  </div>
-  <div style="margin-top:2rem;padding:1rem 1.5rem;background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.18);border-radius:14px;max-width:580px;margin-left:auto;margin-right:auto;text-align:center;">
-    <span style="font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(251,191,36,.8);">⏳ <span data-i18n="urgency_note">Comisión de lanzamiento · Tiempo limitado</span></span>
-    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(196,181,253,.55);margin-top:.5rem;line-height:1.6;" data-i18n="urgency_desc">Los primeros creadores en unirse amarran esta comisión. Una vez que cerremos el programa de lanzamiento, las condiciones pueden cambiar.</p>
-  </div>
-</section>
+<div class="dv"></div>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div style="text-align:center;margin-bottom:4rem;">
-    <span class="eyebrow" data-i18n="how_eyebrow">Cómo funciona</span>
-    <h2 class="section-head" data-i18n="how_head">Simple.<br><em>Automático. Tuyo.</em></h2>
+<!-- PRODUCT SHOTS -->
+<section id="product-shots">
+  <div class="shots-header" style="padding:0 6%;margin-bottom:2.5rem;">
+    <span class="eyebrow ri show">✦ <span id="shotsEye">The product</span></span>
+    <h2 class="section-head ri d1 show" id="shotsHead">A product your audience<br><em>will want to share.</em></h2>
   </div>
-  <div class="how-steps">
-    <div class="how-step"><div class="step-num">1</div><div class="step-body"><div class="step-title" data-i18n="s1t">Aplicas y te aprobamos en 48 horas</div><div class="step-desc" data-i18n="s1d">Llenas el cuestionario al final de esta página. Revisamos tu cuenta, tu estética y tu engagement. Si encajas con la vibra de ALINEA, te mandamos tu link y código de descuento personalizados — únicos para ti.</div></div></div>
-    <div class="how-step"><div class="step-num">2</div><div class="step-body"><div class="step-title" data-i18n="s2t">Tu audiencia compra con descuento real</div><div class="step-desc" data-i18n="s2d">El precio oficial de ALINEA Pro es $89 USD. Con tu código, tu audiencia lo consigue por $69 USD — $20 de descuento real que tú les regalas. Ellos sienten que tienen un trato exclusivo gracias a ti.</div></div></div>
-    <div class="how-step"><div class="step-num">3</div><div class="step-body"><div class="step-title" data-i18n="s3t">Lemon Squeezy trackea todo en tiempo real</div><div class="step-desc" data-i18n="s3d">Tienes tu propio panel de afiliado donde ves clics, conversiones, ventas y comisiones acumuladas en tiempo real. Tú mismo ingresas tu PayPal o banco una sola vez. El dinero nunca pasa por manos de nadie.</div></div></div>
-    <div class="how-step"><div class="step-num">4</div><div class="step-body"><div class="step-title" data-i18n="s4t">Cobras al cierre de mes, nosotros lo confirmamos</div><div class="step-desc" data-i18n="s4d">Al cierre de cada mes revisamos tus ventas y damos luz verde al pago. Solo te pedimos que compartas las métricas de los videos donde aparece ALINEA — nada más. Una vez confirmado, Lemon procesa el depósito directo a tu cuenta.</div></div></div>
-    <div class="how-step"><div class="step-num">5</div><div class="step-body"><div class="step-title" data-i18n="s5t">Compromiso mínimo de 3 meses</div><div class="step-desc" data-i18n="s5d">El acuerdo es por 3 meses mínimo. Después se renueva automáticamente mes a mes. Si alguno quiere salir, 15 días de aviso y todas las comisiones generadas se pagan completas. Sin letra chica.</div></div></div>
-  </div>
-</section>
+  <div class="shots-mosaic" id="shotsMosaic">
 
-<!-- PRICE ANCHOR -->
-<section id="anchor">
-  <div class="anchor-box">
-    <span class="eyebrow" data-i18n="anchor_eyebrow">El valor del descuento</span>
-    <h2 style="font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:.5rem;" data-i18n="anchor_head">Tu comunidad recibe<br><em style="font-style:italic;font-weight:400;color:var(--a2);">algo que vale de verdad.</em></h2>
-    <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-bottom:1.5rem;" data-i18n="anchor_sub">No es un link genérico. Es un descuento de $20 que tú les regalas — y ellos lo sienten.</p>
-
-    <!-- CAROUSEL -->
-    <div class="price-carousel">
-      <button class="price-arrow-btn prev" onclick="goSlide((slideIdx+2)%3)" aria-label="anterior">‹</button>
-      <div class="price-carousel-track" id="price-track">
-        <!-- step 1 -->
-        <div class="price-slide">
-          <span class="price-label" data-i18n="price1">Precio oficial</span>
-          <span class="price-val strike">$89</span>
-          <span class="price-slide-hint" data-i18n="price1_hint">Lo que cuesta <span class="ap">ALINEA Pro</span></span>
-        </div>
-        <!-- step 2 -->
-        <div class="price-slide">
-          <span class="price-label" data-i18n="price2">Tu descuento</span>
-          <span class="price-val" style="color:var(--a2);">-$20</span>
-          <span class="price-slide-hint" data-i18n="price2_hint">Lo que tú le regalas a tu comunidad</span>
-        </div>
-        <!-- step 3 -->
-        <div class="price-slide">
-          <span class="price-label" data-i18n="price3">Lo que paga tu comunidad</span>
-          <span class="price-val final">$69</span>
-          <span class="price-slide-hint" data-i18n="price3_hint">Un precio que se siente especial</span>
-        </div>
-      </div>
-      <button class="price-arrow-btn next" onclick="goSlide((slideIdx+1)%3)" aria-label="siguiente">›</button>
-      <!-- dots -->
-      <div class="price-dots">
-        <div class="price-dot active" onclick="goSlide(0)"></div>
-        <div class="price-dot" onclick="goSlide(1)"></div>
-        <div class="price-dot" onclick="goSlide(2)"></div>
+    <!-- Col 1: tall hero -->
+    <div class="mosaic-col">
+      <div class="shot-frame from-bottom" style="width:340px;height:460px;">
+        <img src="https://raw.githubusercontent.com/alinea-io/alinea-landing/main/asset-galaxy-mobile.jpg" alt="Galaxy" style="object-position:top center;">
+        <div class="shot-label" id="shot1Label">The galaxy — unique to every reader</div>
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:1.2rem;"><span class="price-code"><span>🔑</span> TUCREADOR20</span></div>
-    <p class="anchor-note" data-i18n="anchor_note">Cada creador tiene su propio código único. Tu audiencia lo usa al hacer checkout y el precio baja al instante. Sin fricciones, sin pasos raros.</p>
+    <!-- Col 2: two stacked -->
+    <div class="mosaic-col">
+      <div class="shot-frame from-right" style="width:260px;height:225px;transition-delay:.08s;">
+        <img src="https://raw.githubusercontent.com/alinea-io/alinea-landing/main/asset-book-detail.png" alt="Book detail" style="object-position:top center;">
+        <div class="shot-label" id="shot2Label">Book detail & connections</div>
+      </div>
+      <div class="shot-frame from-right" style="width:260px;height:225px;transition-delay:.16s;">
+        <img src="https://raw.githubusercontent.com/alinea-io/alinea-landing/main/asset-modal-mobile.jpg" alt="Notes" style="object-position:top center;">
+        <div class="shot-label" id="shot3Label">Notes & highlights</div>
+      </div>
+    </div>
+
+    <!-- Col 3: wide -->
+    <div class="mosaic-col">
+      <div class="shot-frame from-bottom" style="width:440px;height:460px;transition-delay:.1s;">
+        <img src="https://raw.githubusercontent.com/alinea-io/alinea-landing/main/asset-galaxy.jpg" alt="Full galaxy" style="object-position:center center;">
+        <div class="shot-label" id="shot6Label">Full galaxy view — your universe of ideas</div>
+      </div>
+    </div>
+
+    <!-- Col 4: two stacked -->
+    <div class="mosaic-col">
+      <div class="shot-frame from-left" style="width:260px;height:225px;transition-delay:.12s;">
+        <img src="https://raw.githubusercontent.com/alinea-io/alinea-landing/main/asset-bitacora-mobile.jpg" alt="Bitácora" style="object-position:top center;">
+        <div class="shot-label" id="shot4Label">Bitácora — stats & analytics</div>
+      </div>
+      <div class="shot-frame from-left" style="width:260px;height:225px;transition-delay:.2s;">
+        <img src="https://raw.githubusercontent.com/alinea-io/alinea-landing/main/asset-book.jpg" alt="Book story" style="object-position:center center;">
+        <div class="shot-label" id="shot5Label">Book story — shareable in one tap</div>
+      </div>
+    </div>
+
+    <!-- Col 5: tall -->
+    <div class="mosaic-col">
+      <div class="shot-frame from-right" style="width:300px;height:460px;transition-delay:.15s;">
+        <img src="https://raw.githubusercontent.com/alinea-io/alinea-landing/main/alinea-quote.PNG" alt="Quote story" style="object-position:center top;">
+        <div class="shot-label" id="shot7Label">Quote story — share what moves you</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="shots-nav">
+    <button class="shots-arrow" onclick="shotsMoveLeft()">‹</button>
+    <button class="shots-arrow" onclick="shotsMoveRight()">›</button>
   </div>
 </section>
 
-<!-- LEMON TRANSPARENCY -->
-<section id="transparency" style="padding:8vh 6%;max-width:900px;margin:0 auto;text-align:center;">
-  <span class="eyebrow" data-i18n="transp_eyebrow">Transparencia total</span>
-  <h2 class="section-head" data-i18n="transp_head">Tu dinero es tuyo.<br><em>Siempre visible.</em></h2>
-  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;margin-bottom:3.5rem;" data-i18n="transp_sub">No dependes de nuestra palabra. Lemon Squeezy te da acceso directo a todo.</p>
-  <div class="transp-grid">
-    <div class="transp-card"><div class="transp-icon">📊</div><div class="transp-title" data-i18n="t1t">Panel propio en tiempo real</div><div class="transp-desc" data-i18n="t1d">Tienes tu propio dashboard de afiliado en Lemon Squeezy. Ves cuántos clics trae tu link, cuántas personas abrieron el checkout, cuántas compraron y cuánto llevas acumulado — en tiempo real, sin pedírselo a nadie.</div></div>
-    <div class="transp-card"><div class="transp-icon">💸</div><div class="transp-title" data-i18n="t2t">Lemon te deposita directo</div><div class="transp-desc" data-i18n="t2d">Tu comisión nunca pasa por nuestras manos. Lemon calcula el monto exacto y lo deposita directo a tu PayPal o banco. Nosotros no tocamos tu dinero ni podemos retenerlo arbitrariamente.</div></div>
-    <div class="transp-card"><div class="transp-icon">🔍</div><div class="transp-title" data-i18n="t3t">Cada venta rastreada a tu nombre</div><div class="transp-desc" data-i18n="t3d">Cada compra que entra por tu link queda registrada en tu historial con fecha, monto y comisión generada. Puedes ver el detalle de cada transacción. No hay números redondos ni estimados.</div></div>
-    <div class="transp-card"><div class="transp-icon">📅</div><div class="transp-title" data-i18n="t4t">Historial mensual descargable</div><div class="transp-desc" data-i18n="t4d">Al cierre de cada mes puedes descargar tu reporte completo: cuánto generaste, cuándo se procesó el pago, qué tasa de conversión tuvo tu link. Información tuya, disponible cuando quieras.</div></div>
+<div class="dv"></div>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <span class="eyebrow ri">✦ <span id="numbersEye">The opportunity</span></span>
+  <h2 class="section-head ri d1" id="numbersHead">Simple math.<br><em>Real money.</em></h2>
+  <div class="numbers-grid">
+    <div class="num-card ri d1 show">
+      <div class="num-value">$15</div>
+      <div class="num-label" id="num1Label">Per sale generated</div>
+      <div class="num-desc" id="num1Desc">Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. No expiration.</div>
+    </div>
+    <div class="num-card ri d2 show">
+      <div class="num-value">$69</div>
+      <div class="num-label" id="num2Label">Price with your link</div>
+      <div class="num-desc" id="num2Desc">Your audience gets ALINEA Pro at $69 USD — $20 less than the public price of $89. Your link applies the discount automatically.</div>
+    </div>
+    <div class="num-card ri d3 show">
+      <div class="num-value">1</div>
+      <div class="num-label" id="num3Label">Video to start</div>
+      <div class="num-desc" id="num3Desc">No contracts. No exclusivity. No content schedules. One video at your pace. If it works for both of us, we grow together.</div>
+    </div>
   </div>
 </section>
+
+<div class="dv"></div>
 
 <!-- CALCULATOR -->
 <section id="calculator">
-  <span class="eyebrow" data-i18n="calc_eyebrow">Calculadora de ganancias</span>
-  <h2 class="section-head" data-i18n="calc_head">¿Cuánto podría<br><em>valer tu comunidad?</em></h2>
-  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;" data-i18n="calc_sub">Mueve los sliders con tus números reales y ve cuánto podrías ganar al mes en cada escenario.</p>
+  <div class="calc-inner">
+    <span class="eyebrow">✦ <span id="calcEye">Your potential</span></span>
+    <h2 class="section-head" style="font-size:clamp(2rem,4vw,3.2rem)" id="calcHead">How much could<br><em>you earn?</em></h2>
+    <p class="section-sub" style="margin-top:.8rem;" id="calcSub">Move the slider to match your average views per video.</p>
+    <div class="calc-slider-wrap">
+      <span class="calc-label" id="calcLabel">Average views per video</span>
+      <div class="calc-views-wrap">
+        <input class="views-input" id="viewsInput" type="text" value="17,500" oninput="onViewsInput(this)" onblur="onViewsBlur(this)">
+        <span class="views-word-label" id="viewsWord">views</span>
+      </div>
+      <input type="range" id="viewsSlider" min="1000" max="200000" step="500" value="17500" oninput="onSliderChange(this)">
+    </div>
+    <div class="calc-results">
+      <div class="calc-card">
+        <canvas class="star-bg" id="starBg1"></canvas>
+        <div class="calc-card-label" id="calcL1">Conservative · 0.3%</div>
+        <div class="calc-card-value" id="calcCon">$787</div>
+        <div class="calc-card-sub" id="calcConSales">~52 sales · 1 video</div>
+      </div>
+      <div class="calc-card mid">
+        <canvas class="star-bg" id="starBg2"></canvas>
+        <div class="calc-card-label" id="calcL2">Moderate · 0.8%</div>
+        <div class="calc-card-value" id="calcMod">$2,100</div>
+        <div class="calc-card-sub" id="calcModSales">~140 sales · 1 video</div>
+      </div>
+      <div class="calc-card">
+        <canvas class="star-bg" id="starBg3"></canvas>
+        <div class="calc-card-label" id="calcL3">Optimistic · 1.5%</div>
+        <div class="calc-card-value" id="calcOpt">$3,937</div>
+        <div class="calc-card-sub" id="calcOptSales">~262 sales · 1 video</div>
+      </div>
+    </div>
 
-  <!-- toggle explain -->
-  <div class="calc-toggle-wrap">
-    <button class="calc-toggle-btn" onclick="toggleExplain(this)" data-i18n="calc_toggle_btn">¿Cómo se calcula el % de conversión? →</button>
-    <div class="calc-toggle-body" id="calc-explain-body">
-      <div class="calc-explain">
+    <!-- Video selector -->
+    <div class="calc-video-selector">
+      <span class="calc-video-label" id="videoLabel">How many videos per month?</span>
+      <div class="video-pills">
+        <button class="video-pill on" onclick="setVideos(1,this)" id="vp1">1 video</button>
+        <button class="video-pill" onclick="setVideos(2,this)" id="vp2">2 videos</button>
+        <button class="video-pill" onclick="setVideos(4,this)" id="vp4">4 videos</button>
+        <button class="video-pill" onclick="setVideos(8,this)" id="vp8">8 videos</button>
         
-        <span data-i18n="calc_explain">El % de conversión se aplica sobre el <strong>alcance total de tus videos</strong> (vistas × videos al mes) — no sobre tus seguidores. Es el porcentaje de personas que ven el video y terminan comprando via tu link externo (Lemon). Modelo link-in-bio / link externo, <em>no</em> TikTok Shop nativo.</span>
-      </div>
-    </div>
-  </div>
-  <div class="calc-box">
-    <div class="calc-inputs">
-      <div class="calc-field">
-        <span class="calc-field-label" data-i18n="sl1_label">Seguidores actuales</span>
-        <div class="calc-field-row">
-          <span class="calc-field-value" id="val-followers">50,000</span>
-          <input type="number" class="calc-manual" id="in-followers" placeholder="+ de 200k?" oninput="manualInput('followers',this.value)" min="1000" max="9999999">
-        </div>
-        <input type="range" class="calc-slider" id="sl-followers" min="10000" max="200000" step="1000" value="50000" oninput="updateCalc()">
-      </div>
-      <div class="calc-field">
-        <span class="calc-field-label" data-i18n="sl2_label">Vistas actuales promedio por video</span>
-        <div class="calc-field-row">
-          <span class="calc-field-value" id="val-views">15,000</span>
-          <input type="number" class="calc-manual" id="in-views" placeholder="+ de 20k?" oninput="manualInput('views',this.value)" min="100" max="9999999">
-        </div>
-        <input type="range" class="calc-slider" id="sl-views" min="1000" max="20000" step="100" value="15000" oninput="updateCalc()">
-      </div>
-      <div class="calc-field">
-        <span class="calc-field-label" data-i18n="sl3_label">Videos al mes que hablarían de ALINEA</span>
-        <span class="calc-field-value" id="val-videos">8 videos</span>
-        <input type="range" class="calc-slider" id="sl-videos" min="4" max="10" step="1" value="8" oninput="updateCalc()">
       </div>
     </div>
 
-    <div class="calc-divider"></div>
-    <div class="calc-level-wrap" style="flex-direction:column;gap:.8rem;">
-      <div style="display:flex;align-items:center;gap:.8rem;justify-content:center;flex-wrap:wrap;">
-        <div style="display:inline-flex;align-items:center;gap:.7rem;background:linear-gradient(135deg,rgba(76,29,149,.5),rgba(139,92,246,.3));border:1.5px solid var(--a);border-radius:14px;padding:.75rem 1.6rem;box-shadow:0 0 24px rgba(139,92,246,.2);">
-          <span style="font-size:1.1rem;">🚀</span>
-          <div style="display:flex;flex-direction:column;gap:.1rem;">
-            <span style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--a2);" data-i18n="lvl15_title">Socio Alfa</span>
-            <span style="font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#fff;line-height:1;">$15 <span style="font-size:.75rem;font-weight:400;color:var(--a2);">/ venta</span></span>
-          </div>
-        </div>
-        <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(251,191,36,.7);background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);border-radius:8px;padding:.4rem .9rem;">
-          ⏳ <span data-i18n="limited_badge">Solo por lanzamiento</span>
-        </div>
-      </div>
-      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(196,181,253,.5);line-height:1.6;max-width:420px;margin:0 auto;text-align:center;" data-i18n="limited_note">Esta comisión está disponible para los primeros creadores que se unan. Puede cambiar sin previo aviso.</p>
-    </div>
+    <p style="font-family:'DM Mono',monospace;font-size:.46rem;color:var(--dim);margin-top:1.5rem;letter-spacing:.06em;text-align:center;" id="calcNote">Estimates based on average BookTok conversion rates. Results vary by audience quality and content authenticity.</p>
 
-    <p style="font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(139,92,246,.35);text-align:center;margin-bottom:1.2rem;" data-i18n="sc_prompt">Toca un escenario para seleccionarlo</p>
-
-    <div class="scenarios">
-      <div class="scenario" id="sc-conservador" onclick="selectScenario('conservador')">
-        <div class="sc-rate-big">0.3%</div>
-        <span class="sc-label" data-i18n="sc1">Conservador</span>
-        <div class="sc-divider"></div>
-        <span class="sc-copies" id="sc-c-copies">—</span>
-        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
-        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-c-earn">—</span><span class="sc-earn-label">USD</span></div>
-        <span class="sc-mxn" id="sc-c-mxn">—</span>
-      </div>
-      <div class="scenario" id="sc-moderado" onclick="selectScenario('moderado')">
-        <div class="sc-rate-big">0.8%</div>
-        <span class="sc-label" data-i18n="sc2">Moderado</span>
-        <div class="sc-divider"></div>
-        <span class="sc-copies" id="sc-m-copies">—</span>
-        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
-        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-m-earn">—</span><span class="sc-earn-label">USD</span></div>
-        <span class="sc-mxn" id="sc-m-mxn">—</span>
-      </div>
-      <div class="scenario" id="sc-grande" onclick="selectScenario('grande')">
-        <div class="sc-rate-big">1.5%</div>
-        <span class="sc-label" data-i18n="sc3">Grande</span>
-        <div class="sc-divider"></div>
-        <span class="sc-copies" id="sc-g-copies">—</span>
-        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
-        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-g-earn">—</span><span class="sc-earn-label">USD</span></div>
-        <span class="sc-mxn" id="sc-g-mxn">—</span>
-      </div>
-      <div class="scenario" id="sc-explosivo" onclick="selectScenario('explosivo')">
-        <div class="sc-rate-big">3%</div>
-        <span class="sc-label" data-i18n="sc4">🚀 Explosivo</span>
-        <div class="sc-divider"></div>
-        <span class="sc-copies" id="sc-e-copies">—</span>
-        <span class="sc-copies-label" data-i18n="sc_sales">ventas / mes</span>
-        <div class="sc-earn-wrap"><span class="sc-earn" id="sc-e-earn">—</span><span class="sc-earn-label">USD</span></div>
-        <span class="sc-mxn" id="sc-e-mxn">—</span>
+    <div class="cvr-toggle-wrap">
+      <button class="cvr-toggle-btn" id="cvrToggleBtn" onclick="toggleCVR()">
+        <span id="cvrToggleTxt">Where do these conversion rates come from?</span>
+        <span class="cvr-arrow">▾</span>
+      </button>
+      <div class="cvr-explainer" id="cvrExplainer">
+        <div class="cvr-explainer-inner">
+          <div class="cvr-explainer-title" id="cvrTitle">Understanding Conversion Rate (CVR)</div>
+          <p id="cvrIntro" style="font-size:.8rem;color:var(--muted);line-height:1.78;margin-bottom:1.2rem;">CVR (Conversion Rate) is the percentage of people who watch a video and end up making a purchase. These rates are based on observed industry benchmarks for digital product recommendations on TikTok and Instagram Reels.</p>
+          <table class="cvr-table">
+            <thead>
+              <tr>
+                <th id="cvrCol1">Scenario</th>
+                <th id="cvrCol2">CVR</th>
+                <th id="cvrCol3">Audience quality</th>
+                <th id="cvrCol4">Content type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cvr-name" id="cvr1name">Conservative</td>
+                <td class="cvr-pct">0.3%</td>
+                <td id="cvr1aud">Mixed audience, low engagement ratio</td>
+                <td id="cvr1cont">Generic or first-time affiliate video</td>
+              </tr>
+              <tr>
+                <td class="cvr-name" id="cvr2name">Moderate</td>
+                <td class="cvr-pct">0.8%</td>
+                <td id="cvr2aud">Active BookTok / niche audience</td>
+                <td id="cvr2cont">Authentic review, shows the product live</td>
+              </tr>
+              <tr>
+                <td class="cvr-name" id="cvr3name">Optimistic</td>
+                <td class="cvr-pct">1.5%</td>
+                <td id="cvr3aud">High-trust audience, 50%+ views/followers ratio</td>
+                <td id="cvr3cont">Galaxy reveal, emotional connection, strong CTA</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="cvr-source" id="cvrSource">Based on e-commerce conversion benchmarks for digital products on short-form video (TikTok / Reels). Industry average for affiliate digital products: 0.5–2%. Sources: <a href="https://influencermarketinghub.com" target="_blank">Influencer Marketing Hub</a>, <a href="https://later.com/blog" target="_blank">Later.com</a>. The moderate scenario (0.8%) is our working base for all projections.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BRIDGE QUOTE -->
-<section style="padding:6vh 6%;max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1;">
-  <div style="position:relative;padding:3rem 2.5rem;">
-    <!-- top line -->
-    <div style="width:1px;height:48px;background:linear-gradient(to bottom,transparent,rgba(139,92,246,.35));margin:0 auto 2.5rem;"></div>
-    <h2 style="font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4.5vw,3rem);line-height:1.1;letter-spacing:-.02em;color:var(--text);margin-bottom:.5rem;" data-i18n="bridge_line1">Your audience discovers something they gonna love.</h2>
-    <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;letter-spacing:-.02em;color:var(--a2);margin-bottom:2.5rem;" data-i18n="bridge_line2">You earn by showing them.</h2>
-    <!-- bottom line -->
-    <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(139,92,246,.35),transparent);margin:0 auto;"></div>
+<div class="dv"></div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-glow"></div>
+  <span class="mission-eyebrow ri show" id="missionEye">✦ Why this matters</span>
+  <h2 class="mission-head ri d1 show" id="missionHead">Help ALINEA make<br><em>visible the invisible.</em></h2>
+  <p class="mission-sub ri d2 show" id="missionSub">Every reader has ideas, connections, and insights scattered across dozens of books. ALINEA makes them visible for the first time. Your content helps readers find a home for their knowledge.</p>
+</section>
+
+<div class="dv"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <span class="eyebrow ri" id="howEye">✦ How it works</span>
+  <h2 class="section-head ri d1" id="howHead">Three steps.<br><em>That's it.</em></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">01</div>
+      <h3 id="step1h">Try ALINEA free</h3>
+      <p id="step1p">Download the Beta — no card, no sign-up. Add your books, build your galaxy. Let the product speak for itself before you say a single word about it.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">02</div>
+      <h3 id="step2h">Make your video</h3>
+      <p id="step2p">Show your galaxy to your audience. Your style, your books, your words. Authenticity converts — we never script anything. The galaxy does the work.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">03</div>
+      <h3 id="step3h">Earn $15 per sale</h3>
+      <p id="step3p">Your unique link goes in the bio. Every time someone buys through your link — today or three months from now — you earn your commission.</p>
+    </div>
   </div>
 </section>
 
-<!-- QUESTIONNAIRE -->
-<section id="apply">
-  <span class="eyebrow" data-i18n="q_eyebrow">Aplica al programa</span>
-  <h2 class="section-head" data-i18n="q_head">5 preguntas.<br><em>Sin rodeos.</em></h2>
-  <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.72;margin-top:1rem;" data-i18n="q_sub">Solo necesitamos lo esencial para evaluar si somos un buen match.</p>
-  <div class="q-wrap">
-    <div class="q-progress-wrap">
-      <div class="q-progress-label"><span class="q-progress-step" id="q-step-label">Pregunta 1 de 5</span><span class="q-progress-of" id="q-pct-label">20%</span></div>
-      <div class="q-progress-bar"><div class="q-progress-fill" id="q-fill" style="width:20%"></div></div>
+<div class="dv"></div>
+
+<!-- LEMON SQUEEZY -->
+<section id="payments">
+  <span class="eyebrow ri">✦ <span id="payEye">Powered by Lemon Squeezy</span></span>
+  <div class="ls-card ri d1 show">
+    <div class="ls-icon">🍋</div>
+    <div class="ls-content">
+      <h3 id="lsHead">Commissions paid via Lemon Squeezy</h3>
+      <p id="lsDesc">ALINEA uses Lemon Squeezy as its payment and affiliate platform — one of the most trusted merchant-of-record services for digital products. Your affiliate link is tracked automatically, and commissions are paid out directly to your account. Secure, transparent, instant.</p>
+      <a href="https://www.lemonsqueezy.com/marketing/affiliates" target="_blank" class="ls-link" id="lsLink">Learn how Lemon Squeezy affiliates work →</a>
     </div>
-    <!-- Step 1 -->
-    <div class="q-step active" id="step-1">
-      <div class="q-question" data-i18n="q1_q">¿Cuál es tu usuario de <em>TikTok</em> (o plataforma principal)?</div>
-      <div class="q-hint" data-i18n="q1_h">Solo el @usuario. Lo usaremos para revisar tu cuenta antes de aprobarte.</div>
-      <input type="text" class="q-input" id="q-handle" placeholder="@tucuenta" oninput="checkStep(1)">
-      <div class="q-nav"><button class="q-btn-next" id="btn-1" onclick="goStep(2)" disabled data-i18n="btn_next">Siguiente →</button></div>
-    </div>
-    <!-- Step 2 -->
-    <div class="q-step" id="step-2">
-      <div class="q-question" data-i18n="q2_q">¿En qué plataformas publicas contenido? <em>Selecciona todas las que uses.</em></div>
-      <div class="q-hint" data-i18n="q2_h">Puedes elegir varias. Nos ayuda a entender tu alcance real.</div>
-      <div class="platform-grid">
-        <div class="platform-opt" data-platform="TikTok"><span class="platform-icon">🎵</span><span class="platform-name">TikTok</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
-        <div class="platform-opt" data-platform="Instagram"><span class="platform-icon">📸</span><span class="platform-name">Instagram Reels</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
-        <div class="platform-opt" data-platform="YouTube"><span class="platform-icon">▶️</span><span class="platform-name">YouTube Shorts</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
-        <div class="platform-opt" data-platform="X"><span class="platform-icon">✦</span><span class="platform-name">X / Twitter</span><div class="platform-check"><span class="platform-check-mark">✓</span></div></div>
-      </div>
-      <div class="q-nav"><button class="q-btn-back" onclick="goStep(1)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-2" onclick="goStep(3)" disabled data-i18n="btn_next">Siguiente →</button></div>
-    </div>
-    <!-- Step 3 -->
-    <div class="q-step" id="step-3">
-      <div class="q-question" data-i18n="q3_q">Cuéntanos tus <em>métricas clave.</em></div>
-      <div class="q-hint" data-i18n="q3_h">Números aproximados están bien. Los puedes ver en tu panel de Analytics.</div>
-      <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
-        <div><label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;" data-i18n="q3_f">Seguidores totales</label><input type="number" class="q-input" id="q-followers" placeholder="ej. 35000" oninput="checkStep(3)"></div>
-        <div><label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;" data-i18n="q3_v">Vistas promedio por video (últimos 30 días)</label><input type="number" class="q-input" id="q-views" placeholder="ej. 15000" oninput="checkStep(3)"></div>
-        <div style="position:relative;"><label style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(139,92,246,.5);display:block;margin-bottom:.4rem;" data-i18n="q3_c">País(es) top de tu audiencia</label>
-          <div class="country-picker"><div class="country-search-wrap"><input type="text" class="q-input" id="country-search" autocomplete="off" oninput="filterCountries(this.value)"><div class="country-tags" id="country-tags"></div></div><div class="country-dropdown" id="country-dropdown"></div></div>
-        </div>
-      </div>
-      <div class="q-nav"><button class="q-btn-back" onclick="goStep(2)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-3" onclick="goStep(4)" disabled data-i18n="btn_next">Siguiente →</button></div>
-    </div>
-    <!-- Step 4 -->
-    <div class="q-step" id="step-4">
-      <div class="q-question" data-i18n="q4_q">¿Cuál es tu formato de video que <em>más vistas</em> consigue?</div>
-      <div class="q-hint" data-i18n="q4_h">Esto nos dice cómo sacarle más provecho a tu contenido con ALINEA.</div>
-      <div class="format-opts">
-        <div class="format-opt" onclick="selectFormat(this,'Aesthetic')">Aesthetic ✨</div>
-        <div class="format-opt" onclick="selectFormat(this,'Book review')">Book review 🎙</div>
-        <div class="format-opt" onclick="selectFormat(this,'Book haul')">Book haul 📦</div>
-        <div class="format-opt" onclick="selectFormat(this,'Reading vlog')">Reading vlog 📖</div>
-        <div class="format-opt" onclick="selectFormat(this,'Recommendations')">Recommendations 🔥</div>
-        <div class="format-opt" onclick="selectFormat(this,'Reading challenge')">Reading challenge 🏆</div>
-        <div class="format-opt" onclick="selectFormat(this,'Study with me')">Study with me 🌙</div>
-        <div class="format-opt" onclick="selectFormat(this,'Skit / humor')">Skit / humor 😂</div>
-        <div class="format-opt" onclick="selectFormat(this,'Wrap-up')">Wrap-up 📅</div>
-      </div>
-      <div class="q-nav"><button class="q-btn-back" onclick="goStep(3)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-4" onclick="goStep(5)" disabled data-i18n="btn_next">Siguiente →</button></div>
-    </div>
-    <!-- Step 5 -->
-    <div class="q-step" id="step-5">
-      <div class="q-question" data-i18n="q5_q">¿A qué <em>correo</em> te mandamos la confirmación?</div>
-      <div class="q-hint" data-i18n="q5_h">Solo para contactarte si eres aprobado. Sin spam, prometido.</div>
-      <input type="email" class="q-input" id="q-email" placeholder="tu@correo.com" oninput="checkStep(5)">
-      <div class="q-nav"><button class="q-btn-back" onclick="goStep(4)" data-i18n="btn_back">← Atrás</button><button class="q-btn-next" id="btn-5" onclick="goStep(6)" disabled data-i18n="btn_summary">Ver resumen →</button></div>
-    </div>
-    <!-- Step 6 summary -->
-    <div class="q-step" id="step-6">
-      <div class="q-question" style="margin-bottom:1.2rem;" data-i18n="q6_q">Esto es lo que nos <em>dijiste.</em></div>
-      <div class="q-summary" id="q-summary-box"></div>
-      <div class="send-question" data-i18n="send_q">¿Mandamos tus datos?</div>
-      <div class="send-sub" data-i18n="send_sub">Si dices que sí, nuestro equipo los recibe y te contactamos en menos de 48 horas. Si prefieres no mandar nada, igual gracias por tomarte el tiempo.</div>
-      <div class="send-btns">
-        <button class="btn-send" onclick="sendData()" data-i18n="btn_send">Sí, quiero aplicar 🚀</button>
-        <button class="btn-skip" onclick="declineData()" data-i18n="btn_decline">No, mejor no</button>
-      </div>
-    </div>
-    <!-- Success -->
-    <div class="q-success" id="q-success"><div class="success-orb"></div><div class="success-title" data-i18n="success_t">¡Recibimos todo!</div><div class="success-sub" data-i18n="success_s">Te contactamos en menos de 48 horas para confirmar tu acceso. Mientras tanto, puedes checar ALINEA en <a href="https://alinea.work" style="color:var(--a2);text-decoration:none;">alinea.work</a>.</div></div>
-    <!-- Declined -->
-    <div class="q-declined" id="q-declined"><div class="declined-title" data-i18n="declined_t">Sin problema 🙌</div><div class="declined-sub" data-i18n="declined_s">Aquí seguimos cuando estés listo. Si cambias de opinión, regresa cuando quieras.</div></div>
   </div>
 </section>
 
+<div class="dv"></div>
+
+<!-- TESTIMONIALS -->
+<section id="voices">
+  <div class="voices-inner">
+    <span class="eyebrow ri" id="voicesEye">✦ What readers say</span>
+    <h2 class="section-head ri d1" id="voicesHead">Your audience<br><em>will feel this.</em></h2>
+    <div class="voices-grid">
+      <div class="voice-card ri d1 show">
+        <div class="voice-flag">🇨🇱</div>
+        <p class="voice-text" id="v1">"OMG, I just explored it and it's absolutely epic. It feels very mystical. I've been changing the galaxy themes, playing with the canvas — I'm having so much fun. I love it!"</p>
+        <div class="voice-author">Jesu Tagle · <span>Chile · Early Explorer</span></div>
+      </div>
+      <div class="voice-card ri d2 show">
+        <div class="voice-flag">🇲🇽</div>
+        <p class="voice-text" id="v2">"It's not just about adding books — it's a complete database that maps the connections between them. From reader to reader, this is deeply appreciated."</p>
+        <div class="voice-author">Mariana Chávez · <span>Mexico · Early Explorer</span></div>
+      </div>
+      <div class="voice-card ri d3 show">
+        <div class="voice-flag">🇨🇭</div>
+        <p class="voice-text" id="v3">"The galaxy metaphor isn't just aesthetic — it reflects exactly what reading feels like. You never know which book will orbit another until you see them together."</p>
+        <div class="voice-author">Manon Ede · <span>Switzerland · Early Explorer</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- FEATURES -->
+<section id="features">
+  <span class="eyebrow ri" id="featEye">✦ Why your audience will love it</span>
+  <h2 class="section-head ri d1" id="featHead">A product worth<br><em>recommending.</em></h2>
+  <div class="features-grid">
+    <div class="feature-card ri d1 show">
+      <div class="feature-icon">🌌</div>
+      <h4 id="f1h">Visual galaxy — unique to each reader</h4>
+      <p id="f1p">No two galaxies are the same. Every reader builds a map of their own mind. That reveal moment — that's the content that stops the scroll.</p>
+    </div>
+    <div class="feature-card ri d2 show">
+      <div class="feature-icon">🔒</div>
+      <h4 id="f2h">100% private — no accounts, no servers</h4>
+      <p id="f2p">Everything lives on the reader's device. No tracking, no subscriptions, no data harvesting. In 2025, that privacy promise resonates deeply.</p>
+    </div>
+    <div class="feature-card ri d3 show">
+      <div class="feature-icon">∞</div>
+      <h4 id="f3h">One-time payment — lifetime access</h4>
+      <p id="f3p">$69 once. No renewals. Your audience knows exactly what they're getting and keeps it forever. Simple, honest, frictionless.</p>
+    </div>
+    <div class="feature-card ri d4 show">
+      <div class="feature-icon">📱</div>
+      <h4 id="f4h">Works on every device — no App Store needed</h4>
+      <p id="f4p">iPhone, Android, desktop. Installs as a PWA in seconds. No friction between watching your video and having ALINEA running on their phone.</p>
+    </div>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <h2 class="ri show" id="ctaHead">Your galaxy.<br><em>Their galaxy.</em><br>Your commission.</h2>
+  <p class="ri d1 show" id="ctaSub">Join the ALINEA Creator Program today.</p>
+  <a href="#join" class="btn-primary ri d2 show" style="font-size:.7rem;padding:.9rem 2.8rem;" id="ctaBtn">Apply now — it's free</a>
+</section>
+
+<!-- TRY & CONNECT -->
+<section id="try-connect">
+  <div class="try-connect-inner ri show">
+    <div class="try-badge" id="tryBadge">✦ Before you apply</div>
+    <h2 class="try-head" id="tryHead">First, <em>feel it yourself.</em></h2>
+    <p class="try-sub" id="trySub">The best content comes from genuine excitement. Try ALINEA Beta for free — build your own galaxy, explore your connections. Then decide if it's something you'd share.</p>
+    <div class="try-actions">
+      <a href="https://alinea.lemonsqueezy.com/checkout/buy/475bad81-f3c3-4938-85b9-12a2ef806932?embed=1" target="_blank" class="btn-primary lemonsqueezy-button" id="tryBetaBtn">Try Beta Free — no card needed</a>
+      <a href="https://alinea.work" target="_blank" class="btn-secondary" id="trySeeBtn">See the full product →</a>
+    </div>
+
+    <div class="try-divider"></div>
+
+    <div class="try-gift">
+      <div class="try-gift-icon">🎁</div>
+      <div class="try-gift-head" id="giftHead">Genuinely interested? Let's talk.</div>
+      <p class="try-gift-text" id="giftText">If you explore ALINEA and truly connect with it — if you see yourself making content about it — <strong>reach out to us directly.</strong> We want to give the best creators a <strong>free Pro license</strong> so you have the full experience before you share anything. Our goal is simple: give you the best tools to create the best possible content.</p>
+      <a href="https://www.instagram.com/alinea.work" target="_blank" class="btn-message" id="giftBtn">Message us on Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- FORM -->
+<section id="join">
+  <div class="form-wrap ri show">
+    <div class="form-title" id="formTitle">Join the Creator Program</div>
+    <div class="form-sub" id="formSub">We'll send your affiliate link within 48h</div>
+    <div class="form-group">
+      <label id="fName">Full name</label>
+      <input type="text" id="inputName" placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <label id="fEmail">Email</label>
+      <input type="email" id="inputEmail" placeholder="you@email.com">
+    </div>
+    <div class="form-group">
+      <label id="fPlatform">Main platform</label>
+      <select id="inputPlatform">
+        <option value="" disabled selected id="fPlatformDefault">Select your platform</option>
+        <option>TikTok</option>
+        <option>Instagram</option>
+        <option>Both — TikTok & Instagram</option>
+        <option>YouTube</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label id="fHandle">Your handle / profile URL</label>
+      <input type="text" id="inputHandle" placeholder="@yourusername">
+    </div>
+    <div class="form-group">
+      <label id="fFollowers">Approximate followers</label>
+      <select id="inputFollowers">
+        <option value="" disabled selected>—</option>
+        <option>1K – 10K</option>
+        <option>10K – 50K</option>
+        <option>50K – 100K</option>
+        <option>100K – 500K</option>
+        <option>500K+</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label id="fLang">Content language</label>
+      <select id="inputLang">
+        <option value="" disabled selected>—</option>
+        <option>English</option>
+        <option>Spanish / Español</option>
+        <option>Both</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <button class="form-submit" id="formSubmit" onclick="handleSubmit(this)">Apply to Creator Program →</button>
+    <p class="form-note" id="formNote">No commitments. No exclusivity. We'll reach out within 48h with your affiliate link and everything you need to get started. #MakingVisibleTheInvisible</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <span class="f-logo">ALINEA</span>
-  <span class="f-note" data-i18n="footer_note">Programa privado · Acceso por invitación directa</span>
-  <div class="f-sources">
-    <span class="f-sources-title" data-i18n="sources_title">📚 Fuentes de los porcentajes de conversión</span>
-    <div class="f-sources-list">
-      <a href="https://uppromote.com/blog/affiliate-marketing-statistics/" target="_blank" class="f-source-link">Impact · Affiliate B2C conversion rates 1–3% (UpperPromote, 2026)</a>
-      <a href="https://metricool.com/tiktok-affiliate-marketing/" target="_blank" class="f-source-link">Metricool · TikTok affiliate: 0.1% principiantes → +3% top creators (2025)</a>
-      <a href="https://influencerfee.com/post.php?slug=tiktok-influencer-statistics-2025" target="_blank" class="f-source-link">InfluencerFee · Instagram link-in-bio conversion 0.5–2% (2026)</a>
-      <a href="https://syncly.app/blog/tiktok-affiliate-marketing" target="_blank" class="f-source-link">Syncly · Link externo aumenta abandono 30–50% vs compra nativa (2025)</a>
-    </div>
-  </div>
+  <div class="footer-logo">ALINEA</div>
+  <a href="https://alinea.work" target="_blank" class="footer-link">alinea.work ↗</a>
+  <div class="footer-tag">#MakingVisibleTheInvisible</div>
 </footer>
 
 <script>
-/* ── TRANSLATIONS ── */
-const i18n={
-  es:{
-    nav_badge:'Programa de Afiliados',
-    hero_eyebrow:'Acceso privado · Solo con invitación',
-    hero_hl:'Ayuda a ALINEA a hacer <em>visible lo invisible.</em>',hero_hl2:'Tu audiencia descubre algo que amará.<br><em>Tú ganas por mostrárselo.</em>',
-    hero_sub:'Quiero que nos vaya bien a los tres — a tu comunidad, que encuentra algo que cambia cómo leen. A ti, que te llevas una comisión real por cada venta. Y a ALINEA, que llega a los lectores que la merecen.',
-    stat1_pre:'hasta',stat1:'USD por venta',stat2:'Precio con tu código',stat3:'Automático vía Lemon',
-    hero_cta:'Quiero ser parte →',
-    hero_cta_note:'5 preguntas · Sin compromiso · Te escribo yo directamente',
-    color_label:'Elige tu color',
-    comm_eyebrow:'Tu comisión · Hasta el 1 de julio',
-    comm_head:'$15 por venta.<br><em>De por vida.*</em>',
-    comm1_badge:'✦ Creador de lanzamiento',comm1_tier:'Lo que pedimos de tu parte',
-    comm2_badge:'⏳ A partir del 1 de julio',comm2_tier:'Por niveles (próximamente)',
-    comm2_title:'Las condiciones podrían cambiar.',comm2_desc:'Después del 1 de julio, el programa pasa a un sistema por niveles. Los creadores que entren ahora en junio no se verán afectados — su comisión de $15 por venta de <span class="ap">ALINEA Pro</span> se mantiene para siempre.',comm2_cta:'Entra en junio. Amarra el $15 por <span class="ap">ALINEA Pro</span> de por vida.',
-    urgency_note:'Comisión de lanzamiento · Tiempo limitado',urgency_desc:'Los primeros creadores en unirse amarran esta comisión por cada venta de <span class="ap">ALINEA Pro</span>. Una vez que cerremos el programa de lanzamiento, las condiciones pueden cambiar.',
-    limited_badge:'Solo por lanzamiento',limited_note:'Esta comisión por venta de <span class="ap">ALINEA Pro</span> está disponible para los primeros creadores que se unan. Puede cambiar sin previo aviso.',
-    comm_per:'USD por cada venta',
-    c1r1:'Al menos 4 videos al mes mostrando ALINEA Pro en uso real — que se vea la app, no solo mencionarla',
-    c1r2:'Que se vea tu galaxia con libros e highlights de verdad — no capturas vacías',
-    c1r3:'Contar algo concreto que te cambió al usarla — eso conecta más que cualquier guion',
-    c1r4:'Mencionar tu código en el video o el caption para que tu comunidad lo use',
-    c1r5:'Compartir al cierre del mes las métricas de los videos donde hablas de ALINEA Pro — nada más',
-    c2r1:'Para maximizar tus resultados, recomendamos al menos 8 videos al mes — todo lo del nivel anterior, con más profundidad',
-    c2r2:'Mostrar la galaxia llenándose con el tiempo — progreso real, no estático',
-    c2r3:'Un video de rutina auténtica: cómo usas ALINEA de verdad, sin guion',
-    c2r4:'Un video comparando cómo leías antes vs cómo lees ahora con ALINEA',
-    c2r5:'Fondos oscuros — la estética OLED de la app merece verse bien',
-    c2r6:'Tu link en bio activo durante el mes',
-    c2r7:'Métricas mensuales de esos videos + posibilidad de que ALINEA reutilice el contenido',
-    comm_footer:'Los primeros creadores que se unan durante junio entran con $15 por venta de <span class="ap">ALINEA Pro</span> y lo conservan de por vida — sin importar cómo cambien las condiciones después del 1 de julio.',
-    how_eyebrow:'Cómo funciona',how_head:'Sin letra chica.<br><em>Para los dos.</em>',
-    s1t:'Aplicas, nos conocemos en 48 horas',s1d:'Llenas el cuestionario al final de esta página. Soy yo quien lo revisa — no un equipo, no una empresa. <span class="ap">ALINEA Pro</span> es una herramienta personal que nació con un propósito claro: que más lectores encuentren este universo. Si siento que hay buena energía entre tu forma de crear y eso, te escribo con tu link y código personalizados.',
-    s2t:'Tu comunidad accede a algo que vale',s2d:'El precio oficial de <span class="ap">ALINEA Pro</span> es $89 USD. Con tu código, tu audiencia lo consigue por $69 USD — un descuento real de $20 que tú les das. No es un truco de marketing. Es un beneficio genuino para las personas que te siguen.',
-    s3t:'Lemon Squeezy es el árbitro neutral',s3d:'Tú tienes tu propio panel donde ves todo: clics, conversiones, ventas y comisiones acumuladas. El dinero nunca pasa por nuestras manos — Lemon te deposita directo. Nadie depende de la palabra de nadie.',
-    s4t:'Cobras al cierre de mes, nosotros lo confirmamos',s4d:'Al cierre de cada mes revisamos tus ventas y damos luz verde al pago. Solo te pedimos las métricas de los videos donde aparece ALINEA. Una vez confirmado, Lemon deposita directo a tu cuenta.',
-    s5t:'Un acuerdo de 3 meses, renovable',s5d:'Empezamos con 3 meses para que el algoritmo trabaje y veamos resultados reales. Después se renueva mes a mes. Si en algún momento sientes que no es para ti, 15 días de aviso y te pagamos todo lo que hayas generado. Sin presiones.',
-    anchor_eyebrow:'El valor del descuento',anchor_head:'Tu comunidad recibe<br><em>algo que vale de verdad.</em>',anchor_sub:'No es un link genérico. Es un descuento de $20 que tú les regalas — y ellos lo sienten.',
-    price1:'Precio oficial',price2:'Tu descuento',price3:'Lo que paga tu comunidad',
-    price1_hint:'Lo que cuesta <span class="ap">ALINEA Pro</span>',
-    price2_hint:'Lo que tú le regalas a tu comunidad',
-    price3_hint:'Un precio que se siente especial',
-    anchor_note:'Cada creador tiene su propio código único. Tu audiencia lo usa al hacer checkout y el precio baja al instante. Sin fricciones, sin pasos raros.',
-    transp_eyebrow:'Transparencia total',transp_head:'Ves todo lo que pasa.<br><em>En tiempo real.</em>',transp_sub:'No hay caja negra. Lemon Squeezy te da acceso directo a cada número, cada transacción, cada pago.',
-    t1t:'Tu propio panel en tiempo real',t1d:'Desde el día uno tienes acceso a tu dashboard de afiliado en Lemon Squeezy. Clics, personas que abrieron el checkout, compras completadas, comisiones acumuladas — todo visible en tiempo real, sin pedírselo a nadie.',
-    t2t:'Lemon te deposita directo a ti',t2d:'Tu comisión nunca toca nuestras manos. Lemon calcula el monto exacto y lo deposita directo a tu PayPal o cuenta bancaria. Nosotros no intermediamos tu dinero.',
-    t3t:'Cada venta lleva tu nombre',t3d:'Cada compra que entra por tu link queda registrada con fecha, monto y comisión. Ves el detalle de cada transacción. No hay estimados ni números redondeados.',
-    t4t:'Historial completo, descargable',t4d:'Al cierre de cada mes puedes descargar tu reporte completo — cuánto generaste, cuándo se procesó el pago, qué tasa de conversión tuvo tu link. Tu historial, disponible cuando quieras.',
-    calc_eyebrow:'Tu potencial de ingresos',calc_head:'¿Cuánto podría valer<br><em>tu comunidad?</em>',calc_sub:'Mueve los sliders con tus números reales y ve cuánto podrías ganar al mes en cada escenario.',
-    sl1_label:'Seguidores actuales',sl2_label:'Vistas actuales promedio por video',sl3_label:'Videos al mes que hablarían de <span class="ap">ALINEA Pro</span>',
-    level_label:'Calcular con nivel:',lvl10_title:'Intermedio',lvl15_title:'🚀 Socio Alfa',
-    sc_prompt:'Selecciona un escenario para verlo activo',
-    sc1:'Conservador',sc2:'Moderado',sc3:'Grande',sc4:'🚀 Explosivo',sc_sales:'ventas / mes',
-    sc1_desc:'Creadores nuevos en afiliados, link-in-bio reciente',
-    sc2_desc:'Promedio real B2C link externo · Impact 2026',
-    sc3_desc:'Link-in-bio Instagram bien optimizado · InfluencerFee',
-    sc4_desc:'Top creators TikTok · Metricool 2025',
-    calc_toggle_btn:'Como se calcula la conversion?',
-    calc_toggle_close:'Cerrar',
-    calc_explain:'La tasa de conversión (CVR) se aplica sobre el <strong>alcance total de tus videos</strong> (vistas x videos al mes) — no sobre tus seguidores. Representa el % de personas que hacen clic en tu link y completan una compra. Modelo link-in-bio externo, no TikTok Shop nativo.',
-    calc_note:'Tipo de cambio referencial $17.50 MXN / USD. Conversiones estimadas para modelo link externo — salir de la app reduce conversión 30–50% vs TikTok Shop nativo (Syncly, 2025).',
-    sources_title:'📚 Fuentes de los porcentajes',
-    videos_label:'videos',
-    bridge_line1:'Tu audiencia descubre algo que va a amar.',bridge_line2:'Tú ganas por mostrárselo.',q_eyebrow:'¿Hacemos equipo?',q_head:'Cuéntanos<br><em>un poco de ti.</em>',q_sub:'5 preguntas para entender cómo creas y si podemos construir algo juntos.',
-    q_step_of:'Pregunta {n} de 5',
-    q1_q:'¿Cuál es tu usuario de <em>TikTok</em> (o tu plataforma principal)?',q1_h:'Solo el @usuario. Lo usaremos para conocer tu trabajo antes de escribirte.',
-    q2_q:'¿En qué plataformas publicas contenido? <em>Puedes elegir varias.</em>',q2_h:'Nos ayuda a entender dónde vive tu comunidad.',
-    q3_q:'Comparte tus <em>métricas clave.</em>',q3_h:'Números aproximados están bien — los ves en tu panel de Analytics en segundos.',
-    q3_f:'Seguidores actuales',q3_v:'Vistas promedio por video (últimos 30 días)',q3_c:'Países principales de tu audiencia',
-    q4_q:'¿Qué formato de video conecta más<br><em>con tu comunidad?</em>',q4_h:'Nos ayuda a entender tu estilo para que el contenido sobre ALINEA se sienta natural, no forzado.',
-    q5_q:'¿A qué <em>correo</em> te escribimos si hay match?',q5_h:'Solo para escribirte si hay match. Nada más.',
-    q6_q:'Esto es lo que<br><em>nos contaste.</em>',
-    send_q:'¿Enviamos esto?',send_sub:'Si dices que sí, me llega tu información directamente a mí y te escribo en menos de 48 horas. Si prefieres no enviar nada por ahora, también está bien — sin presiones, sin spam.',
-    btn_send:'Sí, enviar y seguir adelante 🚀',btn_decline:'Por ahora no, gracias',btn_next:'Siguiente →',btn_back:'← Atrás',btn_summary:'Ver resumen →',
-    success_t:'¡Lo recibí, gracias de verdad!',success_s:'Te escribo yo directamente en menos de 48 horas. Mientras tanto, si quieres conocer ALINEA Pro de cerca, está en <a href="https://alinea.work" style="color:var(--a2);text-decoration:none;">alinea.work</a>.',
-    declined_t:'Totalmente válido 🙌',declined_s:'Si en algún momento quieres retomar la conversación, aquí estaremos. La puerta siempre está abierta.',
-    footer_note:'Programa de lanzamiento · Acceso directo · Junio 2026',
-    country_placeholder:'Buscar país...',
-    summary_keys:['Cuenta','Plataformas','Seguidores','Vistas promedio','Países top','Formato principal','Email de contacto'],
-  },
-  en:{
-    nav_badge:'Affiliate Program',
-    hero_eyebrow:'Private access · By invitation only',
-    hero_hl:'Help ALINEA make <em>the invisible visible.</em>',hero_hl2:'Your audience discovers something they gonna love.<br><em>You earn by showing them.</em>',
-    hero_sub:'I want us all to win — your community finds something that changes how they read. You earn a real commission on every sale. And ALINEA reaches the readers who deserve it.',
-    stat1_pre:'up to',stat1:'USD per sale',stat2:'Price with your code',stat3:'Automatic via Lemon',
-    hero_cta:'I want to be part of this →',
-    hero_cta_note:'5 questions · No commitment · I reply personally',
-    color_label:'Pick your color',
-    comm_eyebrow:'Your commission · Until July 1st',
-    comm_head:'$15 per sale.<br><em>For life.*</em>',
-    comm1_badge:'✦ Launch creator',comm1_tier:'What we ask from your side',
-    comm2_badge:'⏳ From July 1st',comm2_tier:'By levels (coming soon)',
-    comm2_title:'Conditions could change.',comm2_desc:'After July 1st, the program moves to a tiered system. Creators who join now in June are not affected — their $15 per <span class="ap">ALINEA Pro</span> sale commission is locked in forever.',comm2_cta:'Join in June. Lock in $15 per <span class="ap">ALINEA Pro</span> for life.',
-    urgency_note:'Launch commission · Limited time',urgency_desc:'The first creators to join lock in this rate per <span class="ap">ALINEA Pro</span> sale. Once we close the launch program, conditions may change.',
-    limited_badge:'Launch offer only',limited_note:'This commission per <span class="ap">ALINEA Pro</span> sale is available for the first creators who join. It may change without notice.',
-    comm_per:'USD per sale',
-    c1r1:'At least 4 videos a month showing ALINEA Pro in real use — the app actually visible, not just mentioned',
-    c1r2:'Show your galaxy with real books and highlights — not empty screenshots',
-    c1r3:'Share something concrete that changed for you when using it — that connects more than any script',
-    c1r4:'Mention your code in the video or caption so your community can use it',
-    c1r5:'Share the metrics from your ALINEA Pro videos at month end — nothing more',
-    c2r1:'To maximize your results, we recommend at least 8 videos a month — everything from the previous level, with more depth',
-    c2r2:'Show the galaxy filling up over time — real progress, not static',
-    c2r3:'One authentic routine video: how you actually use ALINEA, no script',
-    c2r4:'One video comparing how you read before vs how you read now with ALINEA',
-    c2r5:'Dark backgrounds — the OLED aesthetic of the app deserves to look good',
-    c2r6:'Your affiliate link in bio active during the month',
-    c2r7:'Monthly metrics from those videos + the option for ALINEA to reuse the content',
-    comm_footer:'The first creators who join during June get $15 per <span class="ap">ALINEA Pro</span> sale and keep it for life — regardless of how conditions change after July 1st.',
-    how_eyebrow:'How it works',how_head:'No fine print.<br><em>For both of us.</em>',
-    s1t:'Apply, we connect within 48 hours',s1d:'Fill out the questionnaire at the bottom of this page. I\'m the one who reviews it — not a team, not a company. <span class="ap">ALINEA Pro</span> is a personal tool built with one purpose: to help more readers find this universe. If I feel there\'s good energy between how you create and that mission, I\'ll reach out with your personalized link and code.',
-    s2t:'Your community gets access to something worth it',s2d:'The official price of <span class="ap">ALINEA Pro</span> is $89 USD. With your code, your audience gets it for $69 USD — a real $20 discount you give them. Not a marketing trick. A genuine benefit for the people who follow you.',
-    s3t:'Lemon Squeezy is the neutral referee',s3d:'You have your own dashboard where you see everything: clicks, conversions, sales and accumulated commissions. Money never passes through our hands — Lemon deposits directly to you. Nobody depends on anyone\'s word.',
-    s4t:'You get paid at month\'s end — we confirm first',s4d:'At the end of each month we review your sales and approve the payment. We only ask you to share the metrics from your ALINEA videos. Once confirmed, Lemon deposits directly to your account.',
-    s5t:'A 3-month agreement, renewable',s5d:'We start with 3 months so the algorithm can work and we can see real results. Then it renews month to month. If at any point it doesn\'t feel right for you, 15 days notice and we pay everything you\'ve generated. No pressure.',
-    anchor_eyebrow:'The value of the discount',anchor_head:'Your community receives<br><em>something truly worth it.</em>',anchor_sub:'Not a generic link. A $20 discount you give them — and they feel it.',
-    price1:'Official price',price2:'Your discount',price3:'What your community pays',
-    price1_hint:'What <span class="ap">ALINEA Pro</span> costs',
-    price2_hint:'What you give to your community',
-    price3_hint:'A price that feels special',
-    anchor_note:'Each creator has their own unique code. Your audience uses it at checkout and the price drops instantly. No friction, no weird steps.',
-    transp_eyebrow:'Full transparency',transp_head:'You see everything.<br><em>In real time.</em>',transp_sub:'No black box. Lemon Squeezy gives you direct access to every number, every transaction, every payment.',
-    t1t:'Your own real-time dashboard',t1d:'From day one you have access to your affiliate dashboard on Lemon Squeezy. Clicks, people who opened checkout, completed purchases, accumulated commissions — all visible in real time, without asking anyone.',
-    t2t:'Lemon deposits directly to you',t2d:'Your commission never touches our hands. Lemon calculates the exact amount and deposits it directly to your PayPal or bank account. We don\'t intermediate your money.',
-    t3t:'Every sale carries your name',t3d:'Every purchase through your link is recorded with date, amount and commission. You see the detail of every transaction. No estimates, no rounded numbers.',
-    t4t:'Complete history, downloadable',t4d:'At the end of each month you can download your full report — how much you earned, when the payment was processed, what conversion rate your link had. Your history, available whenever you want.',
-    calc_eyebrow:'Your income potential',calc_head:'How much could your<br><em>community be worth?</em>',calc_sub:'Move the sliders with your real numbers and see how much you could earn per month in each scenario.',
-    sl1_label:'Current followers',sl2_label:'Current average views per video',sl3_label:'Videos per month that would talk about <span class="ap">ALINEA Pro</span>',
-    level_label:'Calculate with level:',lvl10_title:'Intermediate',lvl15_title:'🚀 Alpha Partner',
-    sc_prompt:'Select a scenario to see it active',
-    sc1:'Conservative',sc2:'Moderate',sc3:'Big',sc4:'🚀 Explosive',sc_sales:'sales / month',
-    sc1_desc:'New affiliate creators, recent link-in-bio',
-    sc2_desc:'Real B2C external link average · Impact 2026',
-    sc3_desc:'Optimized Instagram link-in-bio · InfluencerFee',
-    sc4_desc:'Top TikTok creators · Metricool 2025',
-    calc_toggle_btn:'How is the conversion % calculated?',
-    calc_toggle_close:'Close',
-    calc_explain:'The conversion rate (CVR) is applied to your <strong>total video reach</strong> (views x videos per month) — not your followers. It represents the % of viewers who click your link and complete a purchase. External link-in-bio model, not native TikTok Shop.',
-    calc_note:'Reference exchange rate $17.50 MXN / USD. Estimates for external link model — leaving the app increases drop-off 30–50% vs native TikTok Shop purchase (Syncly, 2025).',
-    sources_title:'📚 Sources for the percentages',
-    videos_label:'videos',
-    bridge_line1:'Your audience discovers something they gonna love.',bridge_line2:'You earn by showing them.',q_eyebrow:'Shall we team up?',q_head:'Tell us<br><em>a little about yourself.</em>',q_sub:'5 questions to understand how you create and whether we can build something together.',
-    q_step_of:'Question {n} of 5',
-    q1_q:'What\'s your <em>TikTok</em> handle (or main platform)?',q1_h:'Just the @username. We\'ll use it to get to know your work before reaching out.',
-    q2_q:'What platforms do you post on? <em>You can choose several.</em>',q2_h:'Helps us understand where your community lives.',
-    q3_q:'Share your <em>key metrics.</em>',q3_h:'Approximate numbers are fine — you can see them in your Analytics panel in seconds.',
-    q3_f:'Current followers',q3_v:'Average views per video (last 30 days)',q3_c:'Main countries of your audience',
-    q4_q:'What video format connects most<br><em>with your community?</em>',q4_h:'Pick as many as you want — helps us understand how you create.',
-    q5_q:'What <em>email</em> should we write to if there\'s a match?',q5_h:'Only to reach out if there\'s a match. Nothing else.',
-    q6_q:'Here\'s what<br><em>you shared with us.</em>',
-    send_q:'Share this with our team?',send_sub:'If you say yes, we\'ll receive your info and reach out within 48 hours. If you\'d rather not send anything right now, that\'s completely fine — no pressure.',
-    btn_send:'Yes, send and move forward 🚀',btn_decline:'Not right now, thanks',btn_next:'Next →',btn_back:'← Back',btn_summary:'Review summary →',
-    success_t:'Got it, thank you!',success_s:'We\'ll write to you within 48 hours. In the meantime, if you want to explore ALINEA up close, you can find it at <a href="https://alinea.work" style="color:var(--a2);text-decoration:none;">alinea.work</a>.',
-    declined_t:'Completely valid 🙌',declined_s:'If you ever want to pick up the conversation, we\'ll be here. The door is always open.',
-    footer_note:'Private program · Access by direct invitation',
-    country_placeholder:'Search country...',
-    summary_keys:['Handle','Platforms','Followers','Avg. views','Top countries','Main format','Contact email'],
-  }
-};
-
-let lang='en';
-function toggleLang(){
-  lang=lang==='es'?'en':'es';
-  document.getElementById('lang-btn').textContent=lang==='es'?'EN':'ES';
-  document.documentElement.lang=lang;
-  heroIdx=0;
-  const el=document.getElementById('hero-hl-text');
-  if(el)el.innerHTML=heroLines[lang][0];
-  startHeroRotation();
-  applyLang();
-}
-function t(key){return i18n[lang][key]||i18n['es'][key]||key;}
-function applyLang(){
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key=el.getAttribute('data-i18n');
-    const val=t(key);
-    if(val!==undefined)el.innerHTML=val;
-  });
-  // update country search placeholder
-  const cs=document.getElementById('country-search');
-  if(cs)cs.placeholder=t('country_placeholder');
-  // update progress label
-  updateProgressLabel();
-}
-
-/* ── STARS ── */
+/* ═══ STAR CANVAS (exact from landing) ═══ */
 (function(){
-  const c=document.getElementById('starCanvas');if(!c)return;
-  const ctx=c.getContext('2d');let W,H,stars=[];
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-  function init(){resize();stars=[];for(let i=0;i<160;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*.9+.1,o:Math.random()*.5+.1,s:Math.random()*2+1});}
-  function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.o+=.003*s.s*(Math.random()>.5?1:-1);s.o=Math.max(.05,Math.min(.7,s.o));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(196,181,253,${s.o})`;ctx.fill();});requestAnimationFrame(draw);}
-  window.addEventListener('resize',init);init();draw();
+  const C=document.getElementById('starCanvas'),ctx=C.getContext('2d');
+  let W,H,stars=[],t=0,RGB=[139,92,246],rafId,lastTime=0;
+  const isMobile=innerWidth<600;
+  function resize(){W=C.width=innerWidth;H=C.height=innerHeight;}
+  resize();addEventListener('resize',resize);
+  const N=isMobile?90:Math.min(Math.floor(innerWidth*innerHeight/9000),120);
+  for(let i=0;i<N;i++)stars.push({x:Math.random()*1e4,y:Math.random()*1e4,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.08,r:Math.random()*1.6+.3,base:Math.random()*.3+.12,tp:Math.random()*Math.PI*2,ts:Math.random()*.018+.004});
+  function draw(ts){
+    if(isMobile&&ts-lastTime<33){rafId=requestAnimationFrame(draw);return;}
+    lastTime=ts;ctx.clearRect(0,0,W,H);t+=.004;
+    const cx=W/2,cy=H/2;
+    const g=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.55);
+    g.addColorStop(0,`rgba(${RGB[0]},${RGB[1]},${RGB[2]},.04)`);g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    stars.forEach(s=>{
+      const sx=((s.x+t*s.vx*50)%W+W)%W,sy=((s.y+t*s.vy*50)%H+H)%H;
+      s.tp+=s.ts;const a=s.base*(0.5+0.5*Math.sin(s.tp));
+      ctx.globalAlpha=a;ctx.fillStyle=`rgba(${RGB[0]},${RGB[1]},${RGB[2]},1)`;
+      if(s.r>1.2){ctx.shadowBlur=s.r*3;ctx.shadowColor=`rgba(${RGB[0]},${RGB[1]},${RGB[2]},1)`;}
+      ctx.beginPath();ctx.arc(sx,sy,s.r,0,Math.PI*2);ctx.fill();
+      ctx.shadowBlur=0;ctx.globalAlpha=1;
+    });
+    rafId=requestAnimationFrame(draw);
+  }
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(rafId);else rafId=requestAnimationFrame(draw);});
+  rafId=requestAnimationFrame(draw);
+  window._setRGB=(r,g,b)=>{RGB=[r,g,b];document.documentElement.style.setProperty('--a-rgb',`${r},${g},${b}`);};
 })();
 
-/* ── NAV ── */
-window.addEventListener('scroll',()=>{const n=document.getElementById('nav');if(n)n.classList.toggle('solid',scrollY>40);});
-
-/* ── PRICE CAROUSEL ── */
-let slideIdx=0,slideTimer=null;
-function goSlide(n){
-  slideIdx=n;
-  const track=document.getElementById('price-track');
-  if(track)track.style.transform=`translateX(-${n*100}%)`;
-  document.querySelectorAll('.price-dot').forEach((d,i)=>d.classList.toggle('active',i===n));
-}
-function nextSlide(){goSlide((slideIdx+1)%3);}
-function startCarousel(){slideTimer=setInterval(nextSlide,2800);}
-function stopCarousel(){if(slideTimer)clearInterval(slideTimer);}
-document.addEventListener('DOMContentLoaded',()=>{
-  const carousel=document.querySelector('.price-carousel');
-  if(carousel){
-    startCarousel();
-    carousel.addEventListener('mouseenter',stopCarousel);
-    carousel.addEventListener('mouseleave',startCarousel);
-  }
-});
-
-/* ── SLIDER ── */
-function updateSliderFill(sl){if(!sl)return;const pct=((sl.value-sl.min)/(sl.max-sl.min))*100;sl.style.setProperty('--pct',pct+'%');}
-
-/* ── CALCULATOR ── */
-function fmt(n){return n.toLocaleString('es-MX');}
-let activeLevel=15;
-function manualInput(field, val){
-  const n=parseInt(val);
-  if(!n||n<1)return;
-  if(field==='followers'){
-    const sl=document.getElementById('sl-followers');
-    if(sl){sl.value=Math.max(10000,Math.min(n,200000));updateSliderFill(sl);}
-    document.getElementById('val-followers').textContent=fmt(n);
-  } else if(field==='views'){
-    const sl=document.getElementById('sl-views');
-    if(sl){sl.value=Math.min(n,20000);updateSliderFill(sl);}
-    document.getElementById('val-views').textContent=fmt(n);
-  }
-  // recalc with manual override
-  const slVid=document.getElementById('sl-videos');
-  const followers=field==='followers'?n:+document.getElementById('sl-followers').value;
-  const views=field==='views'?n:+document.getElementById('sl-views').value;
-  const videos=slVid?+slVid.value:8;
-  document.getElementById('val-videos').textContent=videos+' '+(t('videos_label')||'videos');
-  const reach=Math.min(views*videos,followers*3);
-  const commission=activeLevel,TC=17.5;
-  const rates=[.003,.008,.015,.03],labels=['c','m','g','e'];
-  rates.forEach((r,i)=>{
-    const lbl=labels[i];
-    const sales=Math.round(reach*r),earnUSD=sales*commission,earnMXN=Math.round(earnUSD*TC);
-    const elC=document.getElementById('sc-'+lbl+'-copies'),elE=document.getElementById('sc-'+lbl+'-earn'),elM=document.getElementById('sc-'+lbl+'-mxn');
-    if(elC)elC.textContent=fmt(sales);
-    if(elE)elE.textContent='$'+fmt(earnUSD);
-    if(elM)elM.textContent='≈ $'+fmt(earnMXN)+' MXN';
-  });
-}
-function toggleExplain(btn){
-  const body=document.getElementById('calc-explain-body');
-  if(!body)return;
-  const open=body.classList.toggle('open');
-  if(open){
-    btn.textContent=t('calc_toggle_close')||'Cerrar';
-  } else {
-    btn.textContent=t('calc_toggle_btn')||'Como se calcula la conversion?';
-  }
-}
-function selectScenario(id){
-  document.querySelectorAll('.scenario').forEach(s=>s.classList.remove('active'));
-  const el=document.getElementById('sc-'+id);
-  if(el)el.classList.add('active');
-}
-function setLevel(n){n=15;
-  activeLevel=n;
-  document.getElementById('lvl-10').classList.toggle('active',n===10);
-  document.getElementById('lvl-15').classList.toggle('active',n===15);
-  updateCalc();
-}
-function updateCalc(){
-  const slF=document.getElementById('sl-followers'),slV=document.getElementById('sl-views'),slVid=document.getElementById('sl-videos');
-  if(!slF||!slV||!slVid)return;
-  const followers=+slF.value,views=+slV.value,videos=+slVid.value;
-  document.getElementById('val-followers').textContent=fmt(followers);
-  document.getElementById('val-views').textContent=fmt(views);
-  document.getElementById('val-videos').textContent=videos+' '+(t('videos_label')||'videos');
-  [slF,slV,slVid].forEach(updateSliderFill);
-  const reach=Math.min(views*videos,followers*3);
-  const commission=activeLevel,TC=17.5;
-  const rates=[.003,.008,.015,.03],labels=['c','m','g','e'];
-  rates.forEach((r,i)=>{
-    const lbl=labels[i];
-    const sales=Math.round(reach*r),earnUSD=sales*commission,earnMXN=Math.round(earnUSD*TC);
-    const elC=document.getElementById('sc-'+lbl+'-copies'),elE=document.getElementById('sc-'+lbl+'-earn'),elM=document.getElementById('sc-'+lbl+'-mxn');
-    if(elC)elC.textContent=fmt(sales);
-    if(elE)elE.textContent='$'+fmt(earnUSD);
-    if(elM)elM.textContent='≈ $'+fmt(earnMXN)+' MXN';
-  });
-}
-
-/* ── COUNTRY PICKER ── */
-const COUNTRIES=[
-  {flag:'🇲🇽',name:'México'},{flag:'🇪🇸',name:'España'},{flag:'🇺🇸',name:'Estados Unidos'},
-  {flag:'🇦🇷',name:'Argentina'},{flag:'🇨🇴',name:'Colombia'},{flag:'🇨🇱',name:'Chile'},
-  {flag:'🇵🇪',name:'Perú'},{flag:'🇻🇪',name:'Venezuela'},{flag:'🇧🇷',name:'Brasil'},
-  {flag:'🇪🇨',name:'Ecuador'},{flag:'🇬🇹',name:'Guatemala'},{flag:'🇨🇺',name:'Cuba'},
-  {flag:'🇧🇴',name:'Bolivia'},{flag:'🇩🇴',name:'República Dominicana'},{flag:'🇭🇳',name:'Honduras'},
-  {flag:'🇵🇾',name:'Paraguay'},{flag:'🇸🇻',name:'El Salvador'},{flag:'🇳🇮',name:'Nicaragua'},
-  {flag:'🇨🇷',name:'Costa Rica'},{flag:'🇵🇦',name:'Panamá'},{flag:'🇺🇾',name:'Uruguay'},
-  {flag:'🇬🇧',name:'Reino Unido'},{flag:'🇩🇪',name:'Alemania'},{flag:'🇫🇷',name:'Francia'},
-  {flag:'🇮🇹',name:'Italia'},{flag:'🇵🇹',name:'Portugal'},{flag:'🇨🇦',name:'Canadá'},
-  {flag:'🇦🇺',name:'Australia'},{flag:'🇯🇵',name:'Japón'},{flag:'🇰🇷',name:'Corea del Sur'},
-  {flag:'🇮🇳',name:'India'},{flag:'🇳🇱',name:'Países Bajos'},{flag:'🇸🇪',name:'Suecia'},
-  {flag:'🇳🇴',name:'Noruega'},{flag:'🇨🇭',name:'Suiza'},{flag:'🇧🇪',name:'Bélgica'},
-  {flag:'🇵🇱',name:'Polonia'},{flag:'🇹🇷',name:'Turquía'},{flag:'🇸🇦',name:'Arabia Saudita'},
-  {flag:'🇿🇦',name:'Sudáfrica'},{flag:'🇮🇩',name:'Indonesia'},{flag:'🇵🇭',name:'Filipinas'},
-  {flag:'🇸🇬',name:'Singapur'},{flag:'🇲🇾',name:'Malasia'},{flag:'🇹🇭',name:'Tailandia'},
-];
-let selectedCountries=[];
-function renderCountryTags(){
-  const tags=document.getElementById('country-tags');if(!tags)return;
-  tags.innerHTML=selectedCountries.map(c=>`<span class="country-tag">${c.flag} ${c.name}<span class="country-tag-x" onclick="removeCountry('${c.name}')">✕</span></span>`).join('');
-  data.countries=selectedCountries.map(c=>c.name).join(', ');
-  const b=document.getElementById('btn-3');
-  const f=document.getElementById('q-followers')?.value,v=document.getElementById('q-views')?.value;
-  if(b)b.disabled=!(f&&v&&selectedCountries.length>0);
-}
-function removeCountry(name){selectedCountries=selectedCountries.filter(c=>c.name!==name);renderCountryTags();renderDropdown(document.getElementById('country-search')?.value||'');}
-function renderDropdown(filter=''){
-  const dd=document.getElementById('country-dropdown');if(!dd)return;
-  const q=filter.toLowerCase().trim();
-  const list=COUNTRIES.filter(c=>(!q||c.name.toLowerCase().includes(q))&&!selectedCountries.find(s=>s.name===c.name));
-  dd.innerHTML=list.map(c=>`<div class="country-opt" onclick="selectCountry('${c.name}')"><span class="country-flag">${c.flag}</span>${c.name}</div>`).join('');
-  const cs=document.getElementById('country-search');
-  dd.classList.toggle('open',list.length>0&&cs===document.activeElement);
-}
-function selectCountry(name){
-  const c=COUNTRIES.find(c=>c.name===name);
-  if(c&&!selectedCountries.find(s=>s.name===name))selectedCountries.push(c);
-  renderCountryTags();
-  const cs=document.getElementById('country-search');if(cs){cs.value='';cs.focus();}
-  renderDropdown('');
-}
-function filterCountries(val){
-  const dd=document.getElementById('country-dropdown');if(!dd)return;
-  const q=val.toLowerCase().trim();
-  const list=COUNTRIES.filter(c=>(!q||c.name.toLowerCase().includes(q))&&!selectedCountries.find(s=>s.name===c.name));
-  dd.innerHTML=list.map(c=>`<div class="country-opt" onclick="selectCountry('${c.name}')"><span class="country-flag">${c.flag}</span>${c.name}</div>`).join('');
-  dd.classList.toggle('open',list.length>0);
-}
-
-/* ── HERO HEADLINE ROTATION ── */
-const heroLines={
-  en:[
-    'Your audience discovers something they gonna love.',
-    '<span class="hero-hl-accent">You earn by showing them.</span>'
-  ],
-  es:[
-    'Tu audiencia descubre algo que amará.',
-    '<span class="hero-hl-accent">Tú ganas por mostrárselo.</span>'
-  ]
-};
-let heroIdx=0,heroInterval=null;
-function rotateHero(){
-  const el=document.getElementById('hero-hl-text');
-  if(!el)return;
-  el.classList.add('fade-out');
-  setTimeout(()=>{
-    heroIdx=(heroIdx+1)%heroLines[lang].length;
-    el.innerHTML=heroLines[lang][heroIdx];
-    el.classList.remove('fade-out');
-    el.classList.add('fade-in');
-    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.remove('fade-in')));
-  },1200);
-}
-function startHeroRotation(){
-  if(heroInterval)clearInterval(heroInterval);
-  heroInterval=setInterval(rotateHero,5500);
-}
-
-/* ── THEMES ── */
+/* ═══ THEMES ═══ */
 const TH={
-  purple:{a:'#8b5cf6',a2:'#c4b5fd',a3:'#7c3aed',a4:'#4c1d95',rgb:[139,92,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%)',gs:'0 0 50px rgba(139,92,246,.6),0 0 120px rgba(109,40,217,.3)'},
-  blue:{a:'#3b82f6',a2:'#93c5fd',a3:'#1d4ed8',a4:'#1e3a8a',rgb:[59,130,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#dbeafe 14%,#93c5fd 38%,#3b82f6 64%,#1e3a8a 100%)',gs:'0 0 50px rgba(59,130,246,.6)'},
-  emerald:{a:'#10b981',a2:'#6ee7b7',a3:'#047857',a4:'#065f46',rgb:[16,185,129],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#d1fae5 14%,#6ee7b7 38%,#10b981 64%,#065f46 100%)',gs:'0 0 50px rgba(16,185,129,.6)'},
-  pink:{a:'#ec4899',a2:'#f9a8d4',a3:'#be185d',a4:'#500724',rgb:[236,72,153],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fce7f3 14%,#f9a8d4 38%,#ec4899 64%,#be185d 100%)',gs:'0 0 50px rgba(236,72,153,.6)'},
-  orange:{a:'#f97316',a2:'#fdba74',a3:'#c2410c',a4:'#431407',rgb:[249,115,22],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fff7ed 14%,#fdba74 38%,#f97316 64%,#c2410c 100%)',gs:'0 0 50px rgba(249,115,22,.6)'},
-  amber:{a:'#f59e0b',a2:'#fde68a',a3:'#b45309',a4:'#451a03',rgb:[245,158,11],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fef3c7 14%,#fde68a 38%,#f59e0b 64%,#b45309 100%)',gs:'0 0 50px rgba(245,158,11,.6)'},
-  red:{a:'#ef4444',a2:'#fca5a5',a3:'#b91c1c',a4:'#450a0a',rgb:[239,68,68],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fee2e2 14%,#fca5a5 38%,#ef4444 64%,#b91c1c 100%)',gs:'0 0 50px rgba(239,68,68,.6)'},
+  purple:{a:'#8b5cf6',a2:'#c4b5fd',a3:'#7c3aed',a4:'#4c1d95',rgb:[139,92,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%)',gs:'0 0 28px rgba(139,92,246,.4),0 0 70px rgba(109,40,217,.15)'},
+  blue:{a:'#3b82f6',a2:'#93c5fd',a3:'#1d4ed8',a4:'#1e3a8a',rgb:[59,130,246],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#dbeafe 14%,#93c5fd 38%,#3b82f6 64%,#1e3a8a 100%)',gs:'0 0 28px rgba(59,130,246,.4),0 0 70px rgba(29,78,216,.15)'},
+  emerald:{a:'#10b981',a2:'#6ee7b7',a3:'#047857',a4:'#065f46',rgb:[16,185,129],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#d1fae5 14%,#6ee7b7 38%,#10b981 64%,#065f46 100%)',gs:'0 0 28px rgba(16,185,129,.4),0 0 70px rgba(4,120,87,.15)'},
+  pink:{a:'#ec4899',a2:'#f9a8d4',a3:'#be185d',a4:'#500724',rgb:[236,72,153],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fce7f3 14%,#f9a8d4 38%,#ec4899 64%,#be185d 100%)',gs:'0 0 28px rgba(236,72,153,.4),0 0 70px rgba(190,24,93,.15)'},
+  orange:{a:'#f97316',a2:'#fdba74',a3:'#c2410c',a4:'#431407',rgb:[249,115,22],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fff7ed 14%,#fdba74 38%,#f97316 64%,#c2410c 100%)',gs:'0 0 28px rgba(249,115,22,.4),0 0 70px rgba(194,65,12,.15)'},
+  amber:{a:'#f59e0b',a2:'#fde68a',a3:'#b45309',a4:'#451a03',rgb:[245,158,11],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fef3c7 14%,#fde68a 38%,#f59e0b 64%,#b45309 100%)',gs:'0 0 28px rgba(245,158,11,.4),0 0 70px rgba(180,83,9,.15)'},
+  red:{a:'#ef4444',a2:'#fca5a5',a3:'#b91c1c',a4:'#450a0a',rgb:[239,68,68],orb:'radial-gradient(circle at 35% 30%,#ffffff 0%,#fee2e2 14%,#fca5a5 38%,#ef4444 64%,#b91c1c 100%)',gs:'0 0 28px rgba(239,68,68,.4),0 0 70px rgba(185,28,28,.15)'},
 };
+let curTheme='purple',curLang='en',curCat='booktok';
+
 function setTheme(name,dot){
-  const th=TH[name];if(!th)return;
+  const th=TH[name];if(!th)return;curTheme=name;
   const r=document.documentElement.style;
   r.setProperty('--a',th.a);r.setProperty('--a2',th.a2);r.setProperty('--a3',th.a3);r.setProperty('--a4',th.a4);
-  const orb=document.querySelector('.hero-orb');
-  if(orb){orb.style.background=th.orb;orb.style.boxShadow=th.gs;}
-  document.querySelectorAll('.hero-cta,.btn-send,.q-btn-next').forEach(b=>{
-    if(b){b.style.background=`linear-gradient(135deg,${th.a4},${th.a3},${th.a})`;b.style.boxShadow=`0 0 24px rgba(${th.rgb[0]},${th.rgb[1]},${th.rgb[2]},.35)`;}
-  });
-  // update hero accent glow with theme color
-  const style=document.getElementById('hero-accent-style')||document.createElement('style');
-  style.id='hero-accent-style';
-  style.textContent=`.hero-hl-accent{text-shadow:0 0 30px rgba(255,255,255,.4),0 0 80px rgba(${th.rgb[0]},${th.rgb[1]},${th.rgb[2]},.35);}`;
-  document.head.appendChild(style);
-  document.querySelectorAll('.calc-slider').forEach(sl=>{if(sl)updateSliderFill(sl);});
+  document.querySelectorAll('#mainOrb').forEach(o=>{o.style.background=th.orb;o.style.boxShadow=th.gs;});
+  document.querySelectorAll('.btn-primary,.nav-cta,.form-submit').forEach(b=>{b.style.background=`linear-gradient(135deg,${th.a4},${th.a3},${th.a})`;b.style.boxShadow=`0 0 24px rgba(${th.rgb[0]},${th.rgb[1]},${th.rgb[2]},.35),0 4px 16px rgba(0,0,0,.4)`;});
+  if(window._setRGB)window._setRGB(...th.rgb);
+  const mtc=document.getElementById('metaThemeColor');if(mtc)mtc.setAttribute('content',`rgb(${Math.round(th.rgb[0]*.18)},${Math.round(th.rgb[1]*.10)},${Math.round(th.rgb[2]*.22)})`);
   document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));
   if(dot)dot.classList.add('on');
 }
 
-/* ── QUESTIONNAIRE ── */
-let currentStep=1;
-const totalSteps=5;
-const data={handle:'',platforms:[],followers:'',views:'',countries:'',format:'',email:''};
+/* ═══ CATEGORIES ═══ */
+const CATS={
+  en:{
+    booktok:{hl:"Turn your <em>BookTok</em><br>content into real income.",sub:"Your book reviews already move people. ALINEA gives them something to buy."},
+    lifestyle:{hl:"Your aesthetic.<br><em>Their knowledge galaxy.</em>",sub:"The galaxy is visual, beautiful and shareable. Perfect for lifestyle content."},
+    ugc:{hl:"Authentic content.<br><em>Real commissions.</em>",sub:"UGC that converts — because the product sells itself on camera."},
+    students:{hl:"Students read.<br><em>Help them see the connections.</em>",sub:"Study smarter, connect ideas, build a galaxy of knowledge."},
+    productivity:{hl:"For the second-brain<br><em>community.</em>",sub:"ALINEA is the visual PKM tool your audience has been waiting for."},
+  },
+  es:{
+    booktok:{hl:"Convierte tu contenido de <em>BookTok</em><br>en ingresos reales.",sub:"Tus reseñas ya mueven a la gente. ALINEA les da algo que comprar."},
+    lifestyle:{hl:"Tu estética.<br><em>Su galaxia de conocimiento.</em>",sub:"La galaxia es visual, hermosa y perfecta para contenido de lifestyle."},
+    ugc:{hl:"Contenido auténtico.<br><em>Comisiones reales.</em>",sub:"UGC que convierte — porque el producto se vende solo en cámara."},
+    students:{hl:"Los estudiantes leen.<br><em>Ayúdalos a ver las conexiones.</em>",sub:"Estudia mejor, conecta ideas, construye una galaxia de conocimiento."},
+    productivity:{hl:"Para la comunidad<br><em>del segundo cerebro.</em>",sub:"ALINEA es la herramienta PKM visual que tu audiencia esperaba."},
+  }
+};
 
-function updateProgressLabel(){
-  const sl=document.getElementById('q-step-label'),pl=document.getElementById('q-pct-label');
-  if(!sl||!pl)return;
-  const pct=Math.round((currentStep/totalSteps)*100);
-  sl.textContent=t('q_step_of').replace('{n}',currentStep);
-  pl.textContent=pct+'%';
-}
-function goStep(n){
-  const prev=document.getElementById('step-'+currentStep);
-  if(prev)prev.classList.remove('active');
-  currentStep=n;
-  const pw=document.getElementById('q-progress-wrap');
-  if(n<=totalSteps){
-    const next=document.getElementById('step-'+n);if(next)next.classList.add('active');
-    const pct=Math.round((n/totalSteps)*100);
-    const fill=document.getElementById('q-fill');if(fill)fill.style.width=pct+'%';
-    updateProgressLabel();
-    if(pw)pw.style.display='';
+function setCat(key,btn){
+  curCat=key;
+  // sync all pill groups
+  document.querySelectorAll('.cat-pill,.hero-cat-pill').forEach(p=>p.classList.remove('on'));
+  // activate the clicked pill and its twin
+  const catMap={
+    booktok:['catBooktok','heroCatBooktok'],
+    lifestyle:['catLifestyle','heroCatLifestyle'],
+    ugc:['catUgc','heroCatUgc'],
+    students:['catStudents','heroCatStudents'],
+    productivity:['catProductivity','heroCatProductivity'],
+  };
+  const ids=catMap[key]||[];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('on');});
+  // animate headline out then in
+  const wrap=document.getElementById('heroHlWrap');
+  if(wrap){
+    const cur=wrap.querySelector('.active-pair');
+    if(cur){cur.style.opacity='0';cur.style.transform='translateY(-10px)';}
+    setTimeout(()=>{updateHero();},280);
   } else {
-    const s6=document.getElementById('step-6');if(s6)s6.classList.add('active');
-    if(pw)pw.style.display='none';
-    buildSummary();
+    updateHero();
   }
-}
-function checkStep(n){
-  if(n===1){const v=document.getElementById('q-handle').value.trim();data.handle=v;const b=document.getElementById('btn-1');if(b)b.disabled=v.length<2;}
-  else if(n===3){const f=document.getElementById('q-followers').value,v=document.getElementById('q-views').value;data.followers=f;data.views=v;const b=document.getElementById('btn-3');if(b)b.disabled=!(f&&v&&selectedCountries.length>0);}
-  else if(n===5){const e=document.getElementById('q-email').value.trim();data.email=e;const b=document.getElementById('btn-5');if(b)b.disabled=!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));}
-}
-function togglePlatform(el){
-  el.classList.toggle('selected');
-  const checked=document.querySelectorAll('.platform-opt.selected').length;
-  const b=document.getElementById('btn-2');if(b)b.disabled=checked===0;
-  data.platforms=[...document.querySelectorAll('.platform-opt.selected')].map(e=>e.dataset.platform);
-}
-function selectFormat(el,val){
-  el.classList.toggle('selected');
-  const selected=[...document.querySelectorAll('.format-opt.selected')].map(f=>f.getAttribute('onclick').match(/'([^']+)'\)$/)[1]);
-  data.format=selected.join(', ');
-  const b=document.getElementById('btn-4');
-  if(b)b.disabled=selected.length===0;
-}
-function buildSummary(){
-  const box=document.getElementById('q-summary-box');if(!box)return;
-  const keys=t('summary_keys');
-  const vals=[data.handle,data.platforms.join(', ')||'—',(parseInt(data.followers)||0).toLocaleString('es-MX'),(parseInt(data.views)||0).toLocaleString('es-MX'),data.countries,data.format,data.email];
-  box.innerHTML=keys.map((k,i)=>`<div class="q-summary-row"><span class="q-summary-key">${k}</span><span class="q-summary-val">${vals[i]||'—'}</span></div>`).join('');
-}
-function sendData(){
-  console.log('ALINEA Affiliate Data:',data);
-  const s6=document.getElementById('step-6'),ok=document.getElementById('q-success');
-  if(s6)s6.classList.remove('active');if(ok)ok.style.display='block';
-}
-function declineData(){
-  const s6=document.getElementById('step-6'),no=document.getElementById('q-declined');
-  if(s6)s6.classList.remove('active');if(no)no.style.display='block';
 }
 
-/* ── INIT ── */
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.calc-slider').forEach(sl=>updateSliderFill(sl));
-  updateCalc();
-  document.querySelectorAll('.platform-opt').forEach(el=>el.addEventListener('click',()=>togglePlatform(el)));
-  const cs=document.getElementById('country-search'),dd=document.getElementById('country-dropdown');
-  if(cs&&dd){
-    cs.addEventListener('focus',()=>{renderDropdown(cs.value);dd.classList.add('open');});
-    cs.addEventListener('blur',()=>setTimeout(()=>dd.classList.remove('open'),180));
+function updateHero(){
+  const cats=CATS[curLang]||CATS.en;
+  const cat=cats[curCat]||cats.booktok;
+  const wrap=document.getElementById('heroHlWrap');
+  if(!wrap)return;
+  wrap.innerHTML=`<div class="hero-pair active-pair"><h1 class="hero-hl">${cat.hl}</h1><p class="hero-sub-line">${cat.sub}</p></div>`;
+}
+
+/* ═══ LANGUAGE ═══ */
+const T={
+  en:{
+    navCta:'Join Program',
+    badgeTxt:'Creator Affiliate Program',
+    badgeDot:'● Now open',
+    heroMicro:'One video. Your style. $15 per sale — no contracts, no minimums.',
+    heroNote:'No commitments · Your pace · Lifetime commissions',
+    heroCta:'Apply now — it\'s free',
+    colorLabel:'Personalize your galaxy',
+    catLabel:'Choose your content category',
+    cats:['📚 BookTok','✨ Lifestyle','🎬 UGC','🎓 Students','⚡ Productivity'],
+    heroCatsLabel:'What type of creator are you?',
+    shotsEye:'The product',shotsHead:'A product your audience<br><em>will want to share.</em>',
+    shot1:'The galaxy — unique to every reader',shot2:'Book detail & connections',shot3:'Notes & highlights',shot4:'Bitácora — reading stats & analytics',shot5:'Book story — shareable in one tap',shot6:'Full galaxy view — your universe of ideas',shot7:'Quote story — share what moves you',
+    numbersEye:'The opportunity',numbersHead:'Simple math.<br><em>Real money.</em>',
+    num1L:'Per sale generated',num1D:'Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. No expiration.',
+    num2L:'Price with your link',num2D:'Your audience gets ALINEA Pro at $69 USD — $20 less than the public price of $89. Your link applies the discount automatically.',
+    num3L:'Video to start',num3D:'No contracts. No exclusivity. No content schedules. One video at your pace. If it works for both of us, we grow together.',
+    calcEye:'Your potential',calcHead:'How much could<br><em>you earn?</em>',calcSub:'Move the slider to match your average views per video.',
+    calcLabel:'Average views per video',viewsWord:'views',
+    calcL1:'Conservative · 0.3%',calcL2:'Moderate · 0.8%',calcL3:'Optimistic · 1.5%',
+    calcNote:'Estimates based on average BookTok conversion rates. Results vary by audience quality.',
+    cvrToggleTxt:'Where do these conversion rates come from?',
+    cvrTitle:'Understanding Conversion Rate (CVR)',
+    cvrIntro:'CVR (Conversion Rate) is the percentage of people who watch a video and end up making a purchase. These rates are based on observed industry benchmarks for digital product recommendations on TikTok and Instagram Reels.',
+    cvrCol1:'Scenario',cvrCol2:'CVR',cvrCol3:'Audience quality',cvrCol4:'Content type',
+    cvr1name:'Conservative',cvr1aud:'Mixed audience, low engagement ratio',cvr1cont:'Generic or first-time affiliate video',
+    cvr2name:'Moderate',cvr2aud:'Active BookTok / niche audience',cvr2cont:'Authentic review, shows the product live',
+    cvr3name:'Optimistic',cvr3aud:'High-trust audience, 50%+ views/followers ratio',cvr3cont:'Galaxy reveal, emotional connection, strong CTA',
+    cvrSource:'Based on e-commerce conversion benchmarks for digital products on short-form video (TikTok / Reels). Industry average for affiliate digital products: 0.5–2%. The moderate scenario (0.8%) is our working base for all projections.',
+    videoLabel:'How many videos per month?',
+    missionEye:'Why this matters',missionHead:'Help ALINEA make<br><em>visible the invisible.</em>',
+    missionSub:'Every reader has ideas, connections, and insights scattered across dozens of books. ALINEA makes them visible. Your content helps readers find a home for their knowledge.',
+    howEye:'How it works',howHead:'Three steps.<br><em>That\'s it.</em>',
+    step1h:'Try ALINEA free',step1p:'Download the Beta — no card, no sign-up. Add your books, build your galaxy. Let the product speak for itself.',
+    step2h:'Make your video',step2p:'Show your galaxy to your audience. Your style, your books, your words. Authenticity converts — we never script anything.',
+    step3h:'Earn $15 per sale',step3p:'Your unique link in the bio. Every time someone buys through your link — today or months from now — you earn.',
+    payEye:'Powered by Lemon Squeezy',lsHead:'Commissions paid via Lemon Squeezy',
+    lsDesc:'ALINEA uses Lemon Squeezy as its payment and affiliate platform — one of the most trusted merchant-of-record services for digital products. Your affiliate link is tracked automatically, and commissions are paid out directly to your account.',
+    lsLink:'Learn how Lemon Squeezy affiliates work →',
+    voicesEye:'What readers say',voicesHead:'Your audience<br><em>will feel this.</em>',
+    v1:'"OMG, I just explored it and it\'s absolutely epic. It feels very mystical. I\'ve been changing the galaxy themes — I\'m having so much fun. I love it!"',
+    v2:'"It\'s not just about adding books — it\'s a complete database that maps the connections between them. From reader to reader, this is deeply appreciated."',
+    v3:'"The galaxy metaphor isn\'t just aesthetic — it reflects exactly what reading feels like. You never know which book will orbit another until you see them together."',
+    featEye:'Why your audience will love it',featHead:'A product worth<br><em>recommending.</em>',
+    f1h:'Visual galaxy — unique to each reader',f1p:'No two galaxies are the same. Every reader builds a map of their own mind. That reveal moment stops the scroll.',
+    f2h:'100% private — no accounts, no servers',f2p:'Everything lives on the reader\'s device. No tracking, no subscriptions, no data harvesting.',
+    f3h:'One-time payment — lifetime access',f3p:'$69 once. No renewals. Your audience knows exactly what they\'re getting and keeps it forever.',
+    f4h:'Works on every device — no App Store needed',f4p:'iPhone, Android, desktop. Installs as a PWA in seconds. Zero friction between video and purchase.',
+    ctaHead:'Your galaxy.<br><em>Their galaxy.</em><br>Your commission.',ctaSub:'Join the ALINEA Creator Program today.',ctaBtn:'Apply now — it\'s free',
+    tryBadge:'✦ Before you apply',tryHead:'First, <em>feel it yourself.</em>',
+    trySub:'The best content comes from genuine excitement. Try ALINEA Beta for free — build your own galaxy, explore your connections. Then decide if it\'s something you\'d share.',
+    tryBetaBtn:'Try Beta Free — no card needed',trySeeBtn:'See the full product →',
+    giftHead:'Genuinely interested? Let\'s talk.',
+    giftText:'If you explore ALINEA and truly connect with it — if you see yourself making content about it — reach out to us directly. We want to give the best creators a free Pro license so you have the full experience before you share anything. Our goal is simple: give you the best tools to create the best possible content.',
+    giftBtn:'Message us on Instagram →',
+    formTitle:'Join the Creator Program',formSub:"We'll send your affiliate link within 48h",
+    fName:'Full name',fEmail:'Email',fPlatform:'Main platform',fHandle:'Your handle / profile URL',fFollowers:'Approximate followers',fLang:'Content language',
+    formSubmit:'Apply to Creator Program →',
+    formNote:'No commitments. No exclusivity. We\'ll reach out within 48h. #MakingVisibleTheInvisible',
+    formSuccess:'✓ Application received — we\'ll be in touch within 48h',
+  },
+  es:{
+    navCta:'Unirse al Programa',
+    badgeTxt:'Programa de Afiliados',
+    badgeDot:'● Abierto ahora',
+    heroMicro:'Un video. Tu estilo. $15 por venta — sin contratos, sin mínimos.',
+    heroNote:'Sin compromisos · A tu ritmo · Comisiones de por vida',
+    heroCta:'Aplica ahora — es gratis',
+    colorLabel:'Personaliza tu galaxia',
+    catLabel:'Elige tu categoría de contenido',
+    cats:['📚 BookTok','✨ Lifestyle','🎬 UGC','🎓 Estudiantes','⚡ Productividad'],
+    heroCatsLabel:'¿Qué tipo de creador eres?',
+    shotsEye:'El producto',shotsHead:'Un producto que tu audiencia<br><em>querrá compartir.</em>',
+    shot1:'La galaxia — única para cada lector',shot2:'Detalle de libro y conexiones',shot3:'Notas y subrayados',shot4:'Bitácora — estadísticas y analítica',shot5:'Story de libro — compartible en un tap',shot6:'Vista completa de la galaxia — tu universo de ideas',shot7:'Story de cita — comparte lo que te mueve',
+    numbersEye:'La oportunidad',numbersHead:'Matemática simple.<br><em>Dinero real.</em>',
+    num1L:'Por venta generada',num1D:'Comisión fija por cada copia de ALINEA Pro vendida mediante tu link de afiliado. Sin topes. Sin mínimos. Sin expiración.',
+    num2L:'Precio con tu link',num2D:'Tu audiencia obtiene ALINEA Pro a $69 USD — $20 menos que el precio público de $89. Tu link aplica el descuento automáticamente.',
+    num3L:'Video para empezar',num3D:'Sin contratos. Sin exclusividad. Sin calendarios de contenido. Un video a tu ritmo. Si funciona para ambos, crecemos juntos.',
+    calcEye:'Tu potencial',calcHead:'¿Cuánto podrías<br><em>ganar?</em>',calcSub:'Mueve el slider para coincidir con tus vistas promedio por video.',
+    calcLabel:'Vistas promedio por video',viewsWord:'vistas',
+    calcL1:'Conservador · 0.3%',calcL2:'Moderado · 0.8%',calcL3:'Optimista · 1.5%',
+    calcNote:'Estimaciones basadas en tasas de conversión promedio de BookTok. Los resultados varían.',
+    cvrToggleTxt:'¿De dónde vienen estas tasas de conversión?',
+    cvrTitle:'Entendiendo la Tasa de Conversión (CVR)',
+    cvrIntro:'El CVR (Conversion Rate) es el porcentaje de personas que ven un video y terminan haciendo una compra. Estas tasas están basadas en benchmarks de la industria para recomendaciones de productos digitales en TikTok e Instagram Reels.',
+    cvrCol1:'Escenario',cvrCol2:'CVR',cvrCol3:'Calidad de audiencia',cvrCol4:'Tipo de contenido',
+    cvr1name:'Conservador',cvr1aud:'Audiencia mixta, ratio de engagement bajo',cvr1cont:'Video genérico o primer video de afiliado',
+    cvr2name:'Moderado',cvr2aud:'Audiencia BookTok activa / nicho específico',cvr2cont:'Review auténtica, muestra el producto en vivo',
+    cvr3name:'Optimista',cvr3aud:'Audiencia de alta confianza, ratio views/seguidores >50%',cvr3cont:'Reveal de galaxia, conexión emocional, CTA fuerte',
+    cvrSource:'Basado en benchmarks de conversión para productos digitales en video de formato corto (TikTok / Reels). Promedio de la industria para afiliados de productos digitales: 0.5–2%. El escenario moderado (0.8%) es nuestra base de trabajo para todas las proyecciones.',
+    videoLabel:'¿Cuántos videos por mes?',
+    missionEye:'Por qué importa',missionHead:'Ayuda a ALINEA a hacer<br><em>visible lo invisible.</em>',
+    missionSub:'Cada lector tiene ideas, conexiones e insights dispersos en docenas de libros. ALINEA los hace visibles por primera vez. Tu contenido ayuda a los lectores a encontrar un hogar para su conocimiento.',
+    howEye:'Cómo funciona',howHead:'Tres pasos.<br><em>Eso es todo.</em>',
+    step1h:'Prueba ALINEA gratis',step1p:'Descarga la Beta — sin tarjeta, sin registro. Agrega tus libros, construye tu galaxia. Deja que el producto hable por sí solo.',
+    step2h:'Haz tu video',step2p:'Muestra tu galaxia a tu audiencia. Tu estilo, tus libros, tus palabras. La autenticidad convierte — nunca escribimos guiones.',
+    step3h:'Gana $15 por venta',step3p:'Tu link único va en la bio. Cada vez que alguien compre mediante tu link — hoy o meses después — ganas tu comisión.',
+    payEye:'Impulsado por Lemon Squeezy',lsHead:'Comisiones pagadas vía Lemon Squeezy',
+    lsDesc:'ALINEA usa Lemon Squeezy como plataforma de pagos y afiliados — uno de los servicios merchant-of-record más confiables para productos digitales. Tu link de afiliado se rastrea automáticamente y las comisiones se pagan directamente a tu cuenta.',
+    lsLink:'Conoce cómo funcionan los afiliados de Lemon Squeezy →',
+    voicesEye:'Lo que dicen los lectores',voicesHead:'Tu audiencia<br><em>lo va a sentir.</em>',
+    v1:'"OMG, lo acabo de explorar y está absolutamente épico. Se siente muy místico. He estado cambiando los temas de la galaxia — me estoy divirtiendo muchísimo. ¡Lo amo!"',
+    v2:'"No es solo poner tus libros — es una base de datos completa que mapea las conexiones entre ellos. De lector a lector, se agradece con el corazón."',
+    v3:'"La metáfora de la galaxia no es solo estética — refleja exactamente cómo se siente leer. Nunca sabes qué libro orbitará a otro hasta que los ves juntos."',
+    featEye:'Por qué tu audiencia lo amará',featHead:'Un producto que vale<br><em>la pena recomendar.</em>',
+    f1h:'Galaxia visual — única para cada lector',f1p:'No hay dos galaxias iguales. Cada lector construye un mapa de su propia mente. Ese momento de revelación detiene el scroll.',
+    f2h:'100% privado — sin cuentas, sin servidores',f2p:'Todo vive en el dispositivo del lector. Sin rastreo, sin suscripciones, sin data harvesting.',
+    f3h:'Pago único — acceso de por vida',f3p:'$69 una sola vez. Sin renovaciones. Tu audiencia sabe exactamente lo que obtiene y lo conserva para siempre.',
+    f4h:'Funciona en cualquier dispositivo — sin App Store',f4p:'iPhone, Android, escritorio. Se instala como PWA en segundos. Cero fricción entre el video y la compra.',
+    ctaHead:'Tu galaxia.<br><em>Su galaxia.</em><br>Tu comisión.',ctaSub:'Únete al Programa de Creadores de ALINEA hoy.',ctaBtn:'Aplica ahora — es gratis',
+    tryBadge:'✦ Antes de aplicar',tryHead:'Primero, <em>siéntelo tú mismo.</em>',
+    trySub:'El mejor contenido nace de la emoción genuina. Prueba la Beta de ALINEA gratis — construye tu galaxia, explora tus conexiones. Luego decide si es algo que querrías compartir.',
+    tryBetaBtn:'Prueba la Beta — sin tarjeta',trySeeBtn:'Ver el producto completo →',
+    giftHead:'¿Genuinamente interesado? Hablemos.',
+    giftText:'Si exploras ALINEA y realmente conectas con ella — si te ves creando contenido sobre ella — escríbenos directamente. Queremos darle a los mejores creadores una licencia Pro gratis para que tengan la experiencia completa antes de compartir nada. Nuestro objetivo es simple: darte las mejores herramientas para que crees el mejor contenido posible.',
+    giftBtn:'Escríbenos en Instagram →',
+    formTitle:'Únete al Programa de Creadores',formSub:'Te enviamos tu link de afiliado en 48h',
+    fName:'Nombre completo',fEmail:'Correo electrónico',fPlatform:'Plataforma principal',fHandle:'Tu usuario / URL de perfil',fFollowers:'Seguidores aproximados',fLang:'Idioma del contenido',
+    formSubmit:'Aplicar al Programa de Creadores →',
+    formNote:'Sin compromisos. Sin exclusividad. Te contactamos en 48h. #MakingVisibleTheInvisible',
+    formSuccess:'✓ Aplicación recibida — te escribimos en menos de 48h',
   }
-  startHeroRotation();
-  // staggered how-step reveal
-  const stepEls=document.querySelectorAll('.how-step');
-  const stepObs=new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const idx=[...stepEls].indexOf(entry.target);
-        setTimeout(()=>entry.target.classList.add('visible'),idx*180);
-        stepObs.unobserve(entry.target);
+};
+
+function setLang(l,btn){
+  curLang=l;
+  document.querySelectorAll('.lsw button').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  const d=T[l];
+  // nav
+  const nc=document.getElementById('navCta');if(nc)nc.textContent=d.navCta;
+  // hero
+  document.getElementById('badgeTxt').textContent=d.badgeTxt;
+  document.getElementById('badgeDot').textContent=d.badgeDot;
+  document.getElementById('heroMicro').textContent=d.heroMicro;
+  document.getElementById('heroNote').textContent=d.heroNote;
+  document.getElementById('heroCta').textContent=d.heroCta;
+  // personalize
+  const clEl=document.getElementById('colorLabel');if(clEl)clEl.textContent=d.colorLabel;
+  const catLEl=document.getElementById('catLabel');if(catLEl)catLEl.textContent=d.catLabel;
+  const catIds=['catBooktok','catLifestyle','catUgc','catStudents','catProductivity'];
+  catIds.forEach((id,i)=>{const el=document.getElementById(id);if(el&&d.cats[i])el.textContent=d.cats[i];});
+  const heroCatIds=['heroCatBooktok','heroCatLifestyle','heroCatUgc','heroCatStudents','heroCatProductivity'];
+  heroCatIds.forEach((id,i)=>{const el=document.getElementById(id);if(el&&d.cats[i])el.textContent=d.cats[i];});
+  const hcl=document.getElementById('heroCatsLabel');if(hcl&&d.heroCatsLabel)hcl.textContent=d.heroCatsLabel;
+  // shots
+  document.getElementById('shotsEye').textContent=d.shotsEye;
+  document.getElementById('shotsHead').innerHTML=d.shotsHead;
+  document.getElementById('shot1Label').textContent=d.shot1;
+  document.getElementById('shot2Label').textContent=d.shot2;
+  document.getElementById('shot3Label').textContent=d.shot3;
+  document.getElementById('shot4Label').textContent=d.shot4;
+  document.getElementById('shot5Label').textContent=d.shot5;
+  document.getElementById('shot6Label').textContent=d.shot6;
+  document.getElementById('shot7Label').textContent=d.shot7;
+  // numbers
+  document.getElementById('numbersEye').textContent=d.numbersEye;
+  document.getElementById('numbersHead').innerHTML=d.numbersHead;
+  document.getElementById('num1Label').textContent=d.num1L;document.getElementById('num1Desc').textContent=d.num1D;
+  document.getElementById('num2Label').textContent=d.num2L;document.getElementById('num2Desc').textContent=d.num2D;
+  document.getElementById('num3Label').textContent=d.num3L;document.getElementById('num3Desc').textContent=d.num3D;
+  // calc
+  document.getElementById('calcEye').textContent=d.calcEye;
+  document.getElementById('calcHead').innerHTML=d.calcHead;
+  document.getElementById('calcSub').textContent=d.calcSub;
+  document.getElementById('calcLabel').textContent=d.calcLabel;
+  document.getElementById('viewsWord').textContent=d.viewsWord;
+  document.getElementById('calcL1').textContent=d.calcL1;
+  document.getElementById('calcL2').textContent=d.calcL2;
+  document.getElementById('calcL3').textContent=d.calcL3;
+  document.getElementById('calcNote').textContent=d.calcNote;
+  const vlEl=document.getElementById('videoLabel');if(vlEl&&d.videoLabel)vlEl.textContent=d.videoLabel;
+  // CVR toggle
+  const cvrIDs=['cvrToggleTxt','cvrTitle','cvrIntro','cvrCol1','cvrCol2','cvrCol3','cvrCol4',
+    'cvr1name','cvr1aud','cvr1cont','cvr2name','cvr2aud','cvr2cont','cvr3name','cvr3aud','cvr3cont','cvrSource'];
+  cvrIDs.forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id];});
+  // mission
+  document.getElementById('missionEye').textContent=d.missionEye;
+  document.getElementById('missionHead').innerHTML=d.missionHead;
+  document.getElementById('missionSub').textContent=d.missionSub;
+  // how
+  document.getElementById('howEye').textContent=d.howEye;
+  document.getElementById('howHead').innerHTML=d.howHead;
+  document.getElementById('step1h').textContent=d.step1h;document.getElementById('step1p').textContent=d.step1p;
+  document.getElementById('step2h').textContent=d.step2h;document.getElementById('step2p').textContent=d.step2p;
+  document.getElementById('step3h').textContent=d.step3h;document.getElementById('step3p').textContent=d.step3p;
+  // payments
+  document.getElementById('payEye').textContent=d.payEye;
+  document.getElementById('lsHead').textContent=d.lsHead;
+  document.getElementById('lsDesc').textContent=d.lsDesc;
+  document.getElementById('lsLink').textContent=d.lsLink;
+  // voices
+  document.getElementById('voicesEye').textContent=d.voicesEye;
+  document.getElementById('voicesHead').innerHTML=d.voicesHead;
+  document.getElementById('v1').textContent=d.v1;
+  document.getElementById('v2').textContent=d.v2;
+  document.getElementById('v3').textContent=d.v3;
+  // features
+  document.getElementById('featEye').textContent=d.featEye;
+  document.getElementById('featHead').innerHTML=d.featHead;
+  document.getElementById('f1h').textContent=d.f1h;document.getElementById('f1p').textContent=d.f1p;
+  document.getElementById('f2h').textContent=d.f2h;document.getElementById('f2p').textContent=d.f2p;
+  document.getElementById('f3h').textContent=d.f3h;document.getElementById('f3p').textContent=d.f3p;
+  document.getElementById('f4h').textContent=d.f4h;document.getElementById('f4p').textContent=d.f4p;
+  // cta
+  // try-connect
+  const _s=(id,val,html=false)=>{const el=document.getElementById(id);if(el){if(html)el.innerHTML=val;else el.textContent=val;}};
+  if(d.tryBadge){
+    _s('tryBadge',d.tryBadge);
+    _s('tryHead',d.tryHead,true);
+    _s('trySub',d.trySub);
+    _s('tryBetaBtn',d.tryBetaBtn);
+    _s('trySeeBtn',d.trySeeBtn);
+    _s('giftHead',d.giftHead);
+    _s('giftText',d.giftText.replace('reach out to us directly','<strong>reach out to us directly</strong>').replace('free Pro license','<strong>free Pro license</strong>').replace('escríbenos directamente','<strong>escríbenos directamente</strong>').replace('licencia Pro gratis','<strong>licencia Pro gratis</strong>'),true);
+    _s('giftBtn',d.giftBtn);
+  }
+  document.getElementById('ctaHead').innerHTML=d.ctaHead;
+  document.getElementById('ctaSub').textContent=d.ctaSub;
+  document.getElementById('ctaBtn').textContent=d.ctaBtn;
+  // form
+  document.getElementById('formTitle').textContent=d.formTitle;
+  document.getElementById('formSub').textContent=d.formSub;
+  document.getElementById('fName').textContent=d.fName;
+  document.getElementById('fEmail').textContent=d.fEmail;
+  document.getElementById('fPlatform').textContent=d.fPlatform;
+  document.getElementById('fHandle').textContent=d.fHandle;
+  document.getElementById('fFollowers').textContent=d.fFollowers;
+  document.getElementById('fLang').textContent=d.fLang;
+  document.getElementById('formSubmit').textContent=d.formSubmit;
+  document.getElementById('formNote').textContent=d.formNote;
+  // update hero headline for current cat + new lang
+  updateHero();
+  updateCalc();
+}
+
+/* ═══ CALCULATOR ═══ */
+let calcVideos = 1;
+
+function setVideos(n, btn){
+  calcVideos = n;
+  document.querySelectorAll('.video-pill').forEach(p => p.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  updateCalc();
+}
+
+function onSliderChange(el){
+  const v = parseInt(el.value);
+  document.getElementById('viewsInput').value = v.toLocaleString();
+  updateCalc();
+}
+
+function onViewsInput(el){
+  // allow typing freely, sync slider if valid
+  const raw = el.value.replace(/[^0-9]/g,'');
+  const v = parseInt(raw);
+  if(!isNaN(v) && v >= 1000 && v <= 200000){
+    document.getElementById('viewsSlider').value = v;
+    updateCalc();
+  }
+}
+
+function onViewsBlur(el){
+  // on blur, clean and reformat
+  const raw = el.value.replace(/[^0-9]/g,'');
+  let v = parseInt(raw);
+  if(isNaN(v) || v < 1000) v = 1000;
+  if(v > 200000) v = 200000;
+  el.value = v.toLocaleString();
+  document.getElementById('viewsSlider').value = v;
+  updateCalc();
+}
+
+function updateCalc(){
+  const slider = document.getElementById('viewsSlider');
+  const v = parseInt(slider.value) || 17500;
+  const n = calcVideos;
+  const sc = Math.round(v * 0.003) * n;
+  const sm = Math.round(v * 0.008) * n;
+  const so = Math.round(v * 0.015) * n;
+  const sales = curLang==='es' ? 'ventas' : 'sales';
+  const perV = curLang==='es' ? (n===1?'por video':`por ${n} videos`) : (n===1?'per video':`per ${n} videos`);
+
+  // animate values
+  ['calcCon','calcMod','calcOpt'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.add('updating');
+    setTimeout(() => el.classList.remove('updating'), 150);
+  });
+
+  setTimeout(() => {
+    document.getElementById('calcCon').textContent = '$' + (sc * 15).toLocaleString();
+    document.getElementById('calcMod').textContent = '$' + (sm * 15).toLocaleString();
+    document.getElementById('calcOpt').textContent = '$' + (so * 15).toLocaleString();
+    document.getElementById('calcConSales').textContent = `~${sc} ${sales} · ${perV}`;
+    document.getElementById('calcModSales').textContent = `~${sm} ${sales} · ${perV}`;
+    document.getElementById('calcOptSales').textContent = `~${so} ${sales} · ${perV}`;
+  }, 150);
+}
+
+/* ═══ NAV SCROLL ═══ */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>40));
+
+/* ═══ SCROLL REVEAL ═══ */
+if(innerWidth>600){
+  const ob=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');ob.unobserve(e.target);}});},{threshold:.07});
+  document.querySelectorAll('.ri').forEach(el=>ob.observe(el));
+}else{document.querySelectorAll('.ri').forEach(el=>el.classList.add('show'));}
+
+/* Steps stagger */
+const stepObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.step').forEach((s,i)=>setTimeout(()=>s.classList.add('show'),i*180));}});
+},{threshold:.2});
+const stepsEl=document.querySelector('.steps');if(stepsEl)stepObs.observe(stepsEl);
+
+/* ═══ FORM ═══ */
+function handleSubmit(btn){
+  const d=T[curLang];
+  btn.textContent=d.formSuccess;
+  btn.style.background='rgba(110,231,183,.15)';btn.style.color='#6ee7b7';
+  btn.style.boxShadow='0 0 20px rgba(110,231,183,.2)';btn.disabled=true;
+}
+
+
+/* ═══ SHOTS MOSAIC ═══ */
+(function(){
+  const mosaic = document.getElementById('shotsMosaic');
+  if(!mosaic) return;
+
+  // Reveal on scroll into view
+  const frames = mosaic.querySelectorAll('.shot-frame');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); }});
+  }, {threshold:0.1, root:null});
+  frames.forEach(f => obs.observe(f));
+
+  // Drag to scroll
+  let isDown=false, startX, scrollLeft;
+  mosaic.addEventListener('mousedown', e=>{isDown=true;startX=e.pageX;scrollLeft=mosaic.scrollLeft;mosaic.style.cursor='grabbing';});
+  document.addEventListener('mouseup',()=>{isDown=false;if(mosaic)mosaic.style.cursor='grab';});
+  mosaic.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();mosaic.scrollLeft=scrollLeft-(e.pageX-startX)*1.2;});
+
+  window.shotsMoveLeft  = ()=>mosaic.scrollBy({left:-380,behavior:'smooth'});
+  window.shotsMoveRight = ()=>mosaic.scrollBy({left: 380,behavior:'smooth'});
+})();
+
+
+/* ═══ CALC CARD STARFIELDS ═══ */
+(function(){
+  function initCardStars(canvasId, cardEl){
+    const cv = document.getElementById(canvasId);
+    if(!cv) return;
+    const ctx = cv.getContext('2d');
+    let W, H, stars = [], raf, running = false;
+
+    function resize(){
+      const r = cardEl.getBoundingClientRect();
+      W = cv.width = r.width;
+      H = cv.height = r.height;
+    }
+
+    function buildStars(){
+      stars = [];
+      for(let i = 0; i < 55; i++){
+        stars.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.2 + .2,
+          vx: (Math.random() - .5) * .25,
+          vy: (Math.random() - .5) * .18,
+          a: Math.random() * .5 + .1,
+          tp: Math.random() * Math.PI * 2,
+          ts: Math.random() * .03 + .01,
+        });
       }
+    }
+
+    function draw(){
+      ctx.clearRect(0, 0, W, H);
+      stars.forEach(s => {
+        s.x = ((s.x + s.vx) % W + W) % W;
+        s.y = ((s.y + s.vy) % H + H) % H;
+        s.tp += s.ts;
+        const a = s.a * (0.5 + 0.5 * Math.sin(s.tp));
+        ctx.globalAlpha = a;
+        ctx.fillStyle = `rgba(196,181,253,1)`;
+        if(s.r > 1){ ctx.shadowBlur = s.r * 3; ctx.shadowColor = 'rgba(139,92,246,.8)'; }
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+        ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+      });
+      if(running) raf = requestAnimationFrame(draw);
+    }
+
+    cardEl.addEventListener('mouseenter', () => {
+      resize(); buildStars();
+      running = true;
+      raf = requestAnimationFrame(draw);
     });
-  },{threshold:0.12});
-  stepEls.forEach(el=>stepObs.observe(el));
-  // staggered scenario reveal
-  const scEls=document.querySelectorAll('.scenario');
-  const scObs=new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const idx=[...scEls].indexOf(entry.target);
-        setTimeout(()=>entry.target.classList.add('visible'),idx*150);
-        scObs.unobserve(entry.target);
-      }
+    cardEl.addEventListener('mouseleave', () => {
+      running = false;
+      cancelAnimationFrame(raf);
+      ctx.clearRect(0, 0, W, H);
     });
-  },{threshold:0.1});
-  scEls.forEach(el=>scObs.observe(el));
-  applyLang();
+  }
+
+  // init after DOM ready
+  const cards = document.querySelectorAll('.calc-card');
+  const ids = ['starBg1','starBg2','starBg3'];
+  cards.forEach((card, i) => initCardStars(ids[i], card));
+})();
+
+/* ═══ CVR TOGGLE ═══ */
+function toggleCVR(){
+  const btn = document.getElementById('cvrToggleBtn');
+  const box = document.getElementById('cvrExplainer');
+  btn.classList.toggle('open');
+  box.classList.toggle('open');
+}
+
+/* ═══ INIT ═══ */
+document.addEventListener('DOMContentLoaded',()=>{
+  setLang('en',document.getElementById('btnEN'));
+  setTheme('purple',document.querySelector('.cdot'));
+  setCat('booktok',document.getElementById('catBooktok'));
 });
 </script>
 </body>
