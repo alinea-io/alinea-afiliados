@@ -68,8 +68,6 @@ section{position:relative;z-index:1;}
 .hero-hl-wrap{position:relative;width:100%;min-height:200px;margin-bottom:1rem;}
 .hero-pair{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);pointer-events:none;text-align:center;transform:translateY(12px);}
 .hero-pair.active-pair{opacity:1;transform:translateY(0);pointer-events:auto;}
-
-/* ── HERO ── */
 #hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 6% 60px;}
 .hero-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 50px rgba(var(--a-rgb),.6),0 0 120px rgba(var(--a-rgb),.3);margin:0 auto 2rem;animation:orbFloat 7s ease-in-out infinite;}
 @keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
@@ -77,9 +75,6 @@ section{position:relative;z-index:1;}
 .hero-badge span{color:var(--ok);}
 
 /* Rotating headline */
-.hero-hl-wrap{position:relative;width:100%;min-height:200px;margin-bottom:1rem;}
-.hero-pair{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity 1.2s ease;pointer-events:none;text-align:center;}
-.hero-pair.active-pair{opacity:1;pointer-events:auto;}
 .hero-hl{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.06;letter-spacing:-.025em;color:var(--text);margin:0;}
 .hero-hl em{font-style:italic;font-weight:400;color:var(--a2);}
 .hero-pair .hero-sub-line{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(.95rem,1.4vw,1.25rem);color:var(--muted);line-height:1.7;max-width:520px;margin-top:.7rem;}
@@ -432,44 +427,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 
 <div class="dv"></div>
 
-<!-- MANIFESTO -->
-<section id="manifesto" style="padding:5rem 6%;max-width:860px;margin:0 auto;text-align:center;">
-  <span class="eyebrow ri show" style="margin-bottom:1.5rem;">✦ Why we built this program</span>
-
-  <h2 class="ri d1 show" style="font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:1.8rem;">
-    We don't need a channel.<br><em style="font-style:italic;color:var(--a2);">We need a creator.</em>
-  </h2>
-
-  <div class="ri d2 show" style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);line-height:1.9;max-width:680px;margin:0 auto 2.5rem;">
-    Your views didn't happen by accident. Your engagement didn't happen by luck. You built an audience that trusts you — because you know how to communicate, how to connect, how to make people feel something with a video.
-  </div>
-
-  <div class="ri d3 show" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2.5rem;max-width:700px;margin-left:auto;margin-right:auto;">
-    <div style="background:var(--surface);padding:1.8rem 1.2rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--a2);margin-bottom:.3rem;">You</div>
-      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">bring the creativity</div>
-    </div>
-    <div style="background:rgba(var(--a-rgb),.06);padding:1.8rem 1.2rem;border-left:1px solid var(--border);border-right:1px solid var(--border);">
-      <div style="font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--a2);margin-bottom:.3rem;">ALINEA</div>
-      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">brings the product</div>
-    </div>
-    <div style="background:var(--surface);padding:1.8rem 1.2rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--ok);margin-bottom:.3rem;">Both</div>
-      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">grow together</div>
-    </div>
-  </div>
-
-  <div class="ri d4 show" style="background:rgba(110,231,183,.05);border:1px solid rgba(110,231,183,.2);border-radius:14px;padding:2rem 2.5rem;max-width:680px;margin:0 auto;">
-    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,1.6vw,1.15rem);color:rgba(240,238,255,.8);line-height:1.85;margin-bottom:0;">
-      ALINEA will never ask you to compromise your essence, your style, or the quality of your content just to make a sale. We are not here to turn you into an ad. We are here because your creativity — your unique way of making videos — is exactly what can help other readers discover something that genuinely changes how they experience their books.<br><br>
-      <strong style="color:var(--ok);font-style:normal;">Your audience trusts you. We want to honor that trust, not exploit it.</strong>
-    </p>
-  </div>
-</section>
-
-<div class="dv"></div>
-
-<!-- PERSONALIZE — color only -->
+<!-- PERSONALIZE — color only (moved here, above manifesto) -->
 <section id="personalize">
   <span class="color-label" id="colorLabel">Personalize your galaxy</span>
   <div class="cdots">
@@ -482,6 +440,72 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div class="cdot" style="background:#ef4444;color:#ef4444" onclick="setTheme('red',this)"></div>
   </div>
 </section>
+
+<div class="dv"></div>
+
+<!-- MANIFESTO -->
+<section id="manifesto" style="padding:5rem 6%;max-width:860px;margin:0 auto;text-align:center;">
+  <span class="eyebrow ri show" style="margin-bottom:1.5rem;">✦ Why we built this program</span>
+
+  <style>
+    .manifesto-hl-wrap{position:relative;margin-bottom:.6rem;}
+    .manifesto-hl{
+      font-family:'Playfair Display',serif;font-weight:900;
+      font-size:clamp(2.2rem,5.5vw,4rem);
+      line-height:1.06;letter-spacing:-.025em;
+      background:linear-gradient(135deg,var(--a2) 0%,#fff 40%,var(--a2) 60%,var(--a) 100%);
+      background-size:300% auto;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:shimmer 14s ease-in-out infinite;
+      filter:drop-shadow(0 0 18px rgba(var(--a-rgb),.25));
+    }
+    @keyframes shimmer{0%,100%{background-position:0% center}50%{background-position:100% center}}
+    .manifesto-sub{
+      font-family:'Playfair Display',serif;font-style:italic;font-weight:300;
+      font-size:clamp(1.3rem,2.8vw,2rem);
+      color:var(--text);line-height:1.35;
+      letter-spacing:-.01em;
+      margin-bottom:3rem;
+      opacity:.9;
+    }
+  </style>
+
+  <div class="manifesto-hl-wrap ri d1 show">
+    <h2 class="manifesto-hl">You already light up the world.</h2>
+  </div>
+  <p class="manifesto-sub ri d2 show">
+    Now let them find something they'll love.
+  </p>
+
+  <!-- body copy -->
+  <p class="ri d2 show" style="font-family:'Lato',sans-serif;font-weight:300;font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--muted);line-height:2;max-width:580px;margin:0 auto 3rem;letter-spacing:.01em;">
+    Your views didn't happen by accident. Your engagement didn't happen by luck. You built something real — and with ALINEA, we want to amplify that reach and help you turn it into real income.
+  </p>
+
+  <!-- Promise overlay -->
+  <div id="promiseOverlay" onclick="if(event.target===this)togglePromise()" style="display:none;position:fixed;inset:0;z-index:900;background:rgba(6,5,15,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);align-items:center;justify-content:center;padding:2rem;">
+    <div style="max-width:580px;width:100%;text-align:center;position:relative;">
+      <button onclick="togglePromise()" style="position:absolute;top:-2rem;right:0;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(var(--a-rgb),.4);background:none;border:none;cursor:pointer;transition:color .2s;" onmouseenter="this.style.color='var(--a2)'" onmouseleave="this.style.color='rgba(var(--a-rgb),.4)'">✕ close</button>
+      <span style="font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(var(--a-rgb),.45);display:block;margin-bottom:2rem;">✦ Our promise</span>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(1.2rem,2.5vw,1.7rem);color:rgba(240,238,255,.88);line-height:1.75;margin-bottom:2rem;">
+        ALINEA will never ask you to compromise your essence, your style, or the quality of your content just to make a sale. We are not here to turn you into an ad.
+      </p>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(1rem,2vw,1.3rem);color:rgba(240,238,255,.5);line-height:1.75;margin-bottom:2.5rem;">
+        We are here because your creativity — your unique way of making videos — is exactly what can help other readers, productivity enthusiasts, or anyone who discovers ALINEA find something that genuinely changes how they experience books and knowledge.
+      </p>
+      <p style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ok);">
+        Your audience trusts you.<br>We want to honor that trust, not exploit it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #promiseOverlay.open{display:flex;animation:fadeOverlay .4s cubic-bezier(.16,1,.3,1);}
+  @keyframes fadeOverlay{from{opacity:0}to{opacity:1}}
+  #promiseOverlay .promise-inner{animation:scaleIn .4s cubic-bezier(.16,1,.3,1);}
+  @keyframes scaleIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
 
 <div class="dv"></div>
 
@@ -584,10 +608,10 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div class="calc-slider-wrap">
       <span class="calc-label" id="calcLabel">Average views per video</span>
       <div class="calc-views-wrap">
-        <input class="views-input" id="viewsInput" type="text" value="17,500" oninput="onViewsInput(this)" onblur="onViewsBlur(this)">
+        <input class="views-input" id="viewsInput" type="text" value="5,000" oninput="onViewsInput(this)" onblur="onViewsBlur(this)">
         <span class="views-word-label" id="viewsWord">views</span>
       </div>
-      <input type="range" id="viewsSlider" min="1000" max="200000" step="500" value="17500" oninput="onSliderChange(this)">
+      <input type="range" id="viewsSlider" min="1000" max="200000" step="500" value="5000" oninput="onSliderChange(this)">
     </div>
     <div class="calc-results">
       <div class="calc-card">
@@ -722,33 +746,6 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 
 <div class="dv"></div>
 
-<!-- TESTIMONIALS -->
-<section id="voices">
-  <div class="voices-inner">
-    <span class="eyebrow ri" id="voicesEye">✦ What readers say</span>
-    <h2 class="section-head ri d1" id="voicesHead">Your audience<br><em>will feel this.</em></h2>
-    <div class="voices-grid">
-      <div class="voice-card ri d1 show">
-        <div class="voice-flag">🇨🇱</div>
-        <p class="voice-text" id="v1">"OMG, I just explored it and it's absolutely epic. It feels very mystical. I've been changing the galaxy themes, playing with the canvas — I'm having so much fun. I love it!"</p>
-        <div class="voice-author">Jesu Tagle · <span>Chile · Early Explorer</span></div>
-      </div>
-      <div class="voice-card ri d2 show">
-        <div class="voice-flag">🇲🇽</div>
-        <p class="voice-text" id="v2">"It's not just about adding books — it's a complete database that maps the connections between them. From reader to reader, this is deeply appreciated."</p>
-        <div class="voice-author">Mariana Chávez · <span>Mexico · Early Explorer</span></div>
-      </div>
-      <div class="voice-card ri d3 show">
-        <div class="voice-flag">🇨🇭</div>
-        <p class="voice-text" id="v3">"The galaxy metaphor isn't just aesthetic — it reflects exactly what reading feels like. You never know which book will orbit another until you see them together."</p>
-        <div class="voice-author">Manon Ede · <span>Switzerland · Early Explorer</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="dv"></div>
-
 <!-- FEATURES -->
 <section id="features">
   <span class="eyebrow ri" id="featEye">✦ Why your audience will love it</span>
@@ -767,12 +764,12 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div class="feature-card ri d3 show">
       <div class="feature-icon">∞</div>
       <h4 id="f3h">Bitácora — your reading intelligence</h4>
-      <p id="f3p">$69 once. No renewals. Your audience knows exactly what they're getting and keeps it forever. Simple, honest, frictionless.</p>
+      <p id="f3p">Track books read, pages, time, streaks, and personal milestones. A living record of your reading life — visual, beautiful, and uniquely yours.</p>
     </div>
     <div class="feature-card ri d4 show">
-      <div class="feature-icon">📱</div>
-      <h4 id="f4h">One-time payment — every device</h4>
-      <p id="f4p">iPhone, Android, desktop. Installs as a PWA in seconds. No friction between watching your video and having ALINEA running on their phone.</p>
+      <div class="feature-icon">💳</div>
+      <h4 id="f4h">One-time payment — yours forever</h4>
+      <p id="f4p">$69 once. No renewals, no subscriptions. iPhone, Android, desktop — installs as a PWA in seconds. Your audience knows exactly what they're getting and keeps it forever.</p>
     </div>
   </div>
 </section>
@@ -794,7 +791,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <h2 class="try-head" id="tryHead">First, <em>feel it yourself.</em></h2>
     <p class="try-sub" id="trySub">The best content comes from genuine excitement. Try ALINEA Beta for free — build your own galaxy, explore your connections. Then decide if it's something you'd share.</p>
     <div class="try-actions">
-      <a href="https://alinea.lemonsqueezy.com/affiliates" target="_blank" target="_blank" class="btn-primary lemonsqueezy-button" id="tryBetaBtn">Try Beta Free — no card needed</a>
+      <a href="https://alinea.lemonsqueezy.com/checkout" target="_blank" class="btn-primary lemonsqueezy-button" id="tryBetaBtn">Try Beta Free — no card needed</a>
       <a href="https://alinea.work" target="_blank" class="btn-secondary" id="trySeeBtn">See the full product →</a>
     </div>
 
@@ -812,60 +809,106 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 <div class="dv"></div>
 
 <!-- FAQ -->
-<section id="faq" style="padding:5rem 6%;max-width:860px;margin:0 auto;">
+<section id="faq" style="padding:5rem 6%;max-width:760px;margin:0 auto;">
   <span class="eyebrow ri show">✦ FAQ</span>
-  <h2 class="section-head ri d1 show" style="margin-bottom:2.5rem;">Frequent questions.<br><em>Honest answers.</em></h2>
+  <h2 class="section-head ri d1 show" style="margin-bottom:3rem;">Frequent questions.<br><em>Honest answers.</em></h2>
 
-  <div style="display:flex;flex-direction:column;gap:.8rem;" id="faqList">
+  <style>
+    .faq-item{border-bottom:1px solid rgba(var(--a-rgb),.1);overflow:hidden;}
+    .faq-item:first-child{border-top:1px solid rgba(var(--a-rgb),.1);}
+    .faq-q{width:100%;background:none;border:none;cursor:pointer;padding:1.4rem 0;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;text-align:left;}
+    .faq-q-text{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--text);line-height:1.4;transition:color .2s;}
+    .faq-item.open .faq-q-text{color:var(--a2);}
+    .faq-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1px solid rgba(var(--a-rgb),.25);display:flex;align-items:center;justify-content:center;transition:all .3s;color:rgba(var(--a-rgb),.5);}
+    .faq-item.open .faq-icon{background:rgba(var(--a-rgb),.12);border-color:rgba(var(--a-rgb),.5);color:var(--a2);transform:rotate(45deg);}
+    .faq-icon svg{width:10px;height:10px;fill:currentColor;}
+    .faq-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1),opacity .3s ease;}
+    .faq-body-inner{font-family:'Lato',sans-serif;font-weight:300;font-size:.88rem;color:var(--muted);line-height:1.9;padding-bottom:1.4rem;}
+    .faq-body-inner a{color:var(--a2);text-decoration:none;border-bottom:1px solid rgba(var(--a-rgb),.25);transition:all .2s;}
+    .faq-body-inner a:hover{color:var(--text);border-color:var(--a2);}
+    .faq-item.open .faq-body{max-height:400px;}
+  </style>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">💸 When do I get paid?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Lemon Squeezy is the neutral intermediary between you and ALINEA — they handle all payments, track every sale, and deposit your commissions directly to your account. No middlemen, no delays, full transparency for both sides.</div>
+  <div id="faqList">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">💸 When do I get paid?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">Lemon Squeezy is the neutral intermediary between you and ALINEA — they handle all payments, track every sale, and deposit your commissions directly to your account. No middlemen, no delays, full transparency for both sides.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🍪 How does the 365-day tracking work?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Every time someone clicks your link, Lemon Squeezy creates an anonymous identifier — no cookies, completely privacy-friendly. That identifier stays active for 365 days, the maximum the platform allows. If someone clicks today and buys 11 months from now — you earn your $15. And your link never expires: every new click starts a fresh 365-day window. One video posted today can keep earning for years.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">🍪 How does the 365-day tracking work?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">Every time someone clicks your link, Lemon Squeezy creates an anonymous identifier — no cookies, completely privacy-friendly. That identifier stays active for 365 days, the maximum the platform allows. If someone clicks today and buys 11 months from now — you earn your $15. And your link never expires: every new click starts a fresh 365-day window. One video posted today can keep earning for years.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🌎 Can I make content in Spanish?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Absolutely. ALINEA has a full Spanish interface and a growing Latin American and Spanish-speaking audience. Spanish content is highly encouraged — and it converts.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">🌎 Can I make content in Spanish?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">Absolutely. ALINEA has a full Spanish interface and a growing Latin American and Spanish-speaking audience. Spanish content is highly encouraged — and it converts.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">📱 What platforms and niches work best?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">This program is designed for creators on TikTok, Instagram Reels, and YouTube — especially in niches like BookTok, Lifestyle, UGC, Students, and Productivity. If your audience reads, learns, or grows — ALINEA is for them.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">📱 What platforms and niches work best?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">This program is designed for creators on TikTok, Instagram Reels, and YouTube — especially in niches like BookTok, Lifestyle, UGC, Students, and Productivity. If your audience reads, learns, or grows — ALINEA is for them.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">📄 Do I need to invoice or register a company?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">No. Lemon Squeezy handles all payments directly to you as the neutral platform. No invoices, no paperwork, no company needed.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">📄 Do I need to invoice or register a company?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">No. Lemon Squeezy handles all payments directly to you as the neutral platform. No invoices, no paperwork, no company needed.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🎬 Can I make more than one video?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Yes — and we encourage it. More videos = more commissions. Your link never expires, so every video keeps earning as long as it stays live.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">🎬 Can I make more than one video?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">Yes — and we encourage it. More videos = more commissions. Your link never expires, so every video keeps earning as long as it stays live.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid rgba(var(--a-rgb),.3);border-radius:12px;padding:1.4rem 1.6rem;background:rgba(var(--a-rgb),.05);">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🧮 How much could I actually earn?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Scroll up and use the earnings calculator — enter your average views per video and see your projected commissions in conservative, moderate, and optimistic scenarios. The numbers are based on real BookTok conversion benchmarks, not wishful thinking. <a href="#calculator" style="color:var(--a2);text-decoration:none;">→ Go to calculator</a></div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">🧮 How much could I actually earn?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">Scroll up and use the earnings calculator — enter your average views per video and see your projected commissions in conservative, moderate, and optimistic scenarios. The numbers are based on real BookTok conversion benchmarks, not wishful thinking. <a href="#calculator">→ Go to calculator</a></div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🆓 Do I need to buy ALINEA Pro?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">No. Try the free beta first at alinea.work. If you genuinely connect with it, reach out and we'll talk about giving you full Pro access before you post anything.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">🆓 Do I need to buy ALINEA Pro?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">No. Try the free beta first at alinea.work. If you genuinely connect with it, reach out and we'll talk about giving you full Pro access before you post anything.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">⏱️ How long does approval take?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">We review applications within 48 hours. Once approved, your unique link with the SPARK69 discount is ready to share.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">⏱️ How long does approval take?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">We review applications within 48 hours. Once approved, your unique link with the SPARK69 discount is ready to share.</div></div>
     </div>
 
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
-      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🤔 What if my content doesn't sell?</div>
-      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">No risk, no penalty. You keep your affiliate account and can try again with a different format. We're here to help you find what resonates with your audience — not to pressure you.</div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">🤔 What if my content doesn't sell?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">No risk, no penalty. You keep your affiliate account and can try again with a different format. We're here to help you find what resonates with your audience — not to pressure you.</div></div>
     </div>
 
   </div>
@@ -1198,11 +1241,12 @@ function setLang(l,btn){
   document.getElementById('lsDesc').textContent=d.lsDesc;
   document.getElementById('lsLink').textContent=d.lsLink;
   // voices
-  document.getElementById('voicesEye').textContent=d.voicesEye;
-  document.getElementById('voicesHead').innerHTML=d.voicesHead;
-  document.getElementById('v1').textContent=d.v1;
-  document.getElementById('v2').textContent=d.v2;
-  document.getElementById('v3').textContent=d.v3;
+  const veEl=document.getElementById('voicesEye');if(veEl)veEl.textContent=d.voicesEye;
+  const voicesHead=document.getElementById('voicesHead');if(voicesHead)voicesHead.innerHTML=d.voicesHead||'';
+  const v1El=document.getElementById('v1');if(v1El)v1El.textContent=d.v1;
+  const v2El=document.getElementById('v2');if(v2El)v2El.textContent=d.v2;
+  const v3El=document.getElementById('v3');if(v3El)v3El.textContent=d.v3;
+
   // features
   document.getElementById('featEye').textContent=d.featEye;
   document.getElementById('featHead').innerHTML=d.featHead;
@@ -1298,6 +1342,65 @@ function updateCalc(){
     document.getElementById('calcModSales').textContent = `~${sm} ${sales} · ${perV}`;
     document.getElementById('calcOptSales').textContent = `~${so} ${sales} · ${perV}`;
   }, 150);
+}
+
+/* ═══ PROMISE BUTTON VISIBILITY ═══ */
+document.addEventListener('DOMContentLoaded', function(){
+  const btn = document.getElementById('promiseFloating');
+  if(!btn) return;
+
+  function setVisible(v){
+    btn.style.opacity = v ? '1' : '0';
+    btn.style.pointerEvents = v ? 'auto' : 'none';
+    btn.style.transform = v ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(12px)';
+  }
+
+  setVisible(false);
+
+  const manifesto = document.getElementById('manifesto');
+  const mission = document.getElementById('mission');
+  if(!manifesto || !mission) return;
+
+  let permanentlyVisible = false;
+
+  function onScroll(){
+    if(permanentlyVisible) return;
+
+    const mRect = manifesto.getBoundingClientRect();
+    const msRect = mission.getBoundingClientRect();
+
+    // once mission enters view, stay visible forever
+    if(msRect.top < window.innerHeight * 0.6){
+      permanentlyVisible = true;
+      setVisible(true);
+      return;
+    }
+
+    // only show while manifesto is on screen
+    const inManifesto = mRect.top < window.innerHeight && mRect.bottom > 0;
+    setVisible(inManifesto);
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+});
+
+/* ═══ PROMISE OVERLAY ═══ */
+function togglePromise(){
+  const ov = document.getElementById('promiseOverlay');
+  const isOpen = ov.style.display === 'flex';
+  ov.style.display = isOpen ? 'none' : 'flex';
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+
+/* ═══ FAQ ACCORDION ═══ */
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  // open this one if it wasn't open
+  if(!isOpen) item.classList.add('open');
 }
 
 /* ═══ NAV SCROLL ═══ */
@@ -1425,5 +1528,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   setTheme('purple',document.querySelector('.cdot'));
 });
 </script>
+<!-- FLOATING PROMISE BUTTON — outside all sections, true top layer -->
+<div id="promiseFloating" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(12px);z-index:9999;opacity:0;pointer-events:none;transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)">
+  <button onclick="togglePromise()" style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--a2);background:rgba(6,5,15,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(var(--a-rgb),.35);padding:.75rem 2rem;border-radius:50px;cursor:pointer;transition:all .35s;display:inline-flex;align-items:center;gap:.6rem;box-shadow:0 0 28px rgba(var(--a-rgb),.25),0 8px 32px rgba(0,0,0,.6);white-space:nowrap;">
+    <span style="opacity:.7;">✦</span> Our promise to you
+  </button>
+</div>
+
 </body>
 </html>
