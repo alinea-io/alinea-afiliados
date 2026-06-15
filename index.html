@@ -300,7 +300,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 /* ── HOW IT WORKS ── */
 #how{padding:5rem 6%;max-width:1000px;margin:0 auto;}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:3.5rem;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3.5rem;}
 .step{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
 .step.show{opacity:1;transform:translateY(0);}
 .step-n{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:5rem;line-height:1;color:rgba(var(--a-rgb),.12);margin-bottom:.8rem;}
@@ -374,7 +374,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 
 /* ── MOBILE ── */
 @media(max-width:768px){
-  .numbers-grid,.calc-results,.voices-grid,.features-grid{grid-template-columns:1fr;}
+  .numbers-grid,.calc-results,.voices-grid,.features-grid,.steps{grid-template-columns:1fr;}
   .steps{grid-template-columns:1fr;gap:2rem;}
 
   .ls-card{flex-direction:column;gap:1rem;}
@@ -383,6 +383,9 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
   .hero-hl-wrap{min-height:160px;}
 }
 </style>
+  <!-- Lemon Squeezy Affiliate Tracking -->
+  <script>window.lemonSqueezyAffiliateConfig = { store: "alinea" };</script>
+  <script src="https://lmsqueezy.com/affiliate.js" defer></script>
 </head>
 <body>
 <canvas id="starCanvas"></canvas>
@@ -396,7 +399,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
       <div class="sp"></div>
       <button onclick="setLang('es',this)" id="btnES">ES</button>
     </div>
-    <a href="#join" class="nav-cta" id="navCta">Join Program</a>
+    <a href="https://alinea.lemonsqueezy.com/affiliates" target="_blank" class="nav-cta" id="navCta">Join Program</a>
   </div>
 </nav>
 
@@ -409,9 +412,9 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <!-- Pairs filled by JS -->
   </div>
 
-  <p class="hero-micro ri d2 show" id="heroMicro">One video. Your style. $15 per sale — no contracts, no minimums.</p>
+  <p class="hero-micro ri d2 show" id="heroMicro">One video to start. More videos, more earnings. Your link never expires.</p>
   <div class="hero-ctas ri d3 show">
-    <a href="#join" class="btn-primary" id="heroCta">Apply now — it's free</a>
+    <a href="https://alinea.lemonsqueezy.com/affiliates" target="_blank" class="btn-primary" id="heroCta">Apply now — it's free</a>
   </div>
   <span class="hero-cta-note" id="heroNote">No commitments · Your pace · Lifetime commissions</span>
 
@@ -424,6 +427,43 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
       <button class="hero-cat-pill" onclick="setCat('students',this)" id="heroCatStudents">🎓 Students</button>
       <button class="hero-cat-pill" onclick="setCat('productivity',this)" id="heroCatProductivity">⚡ Productivity</button>
     </div>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- MANIFESTO -->
+<section id="manifesto" style="padding:5rem 6%;max-width:860px;margin:0 auto;text-align:center;">
+  <span class="eyebrow ri show" style="margin-bottom:1.5rem;">✦ Why we built this program</span>
+
+  <h2 class="ri d1 show" style="font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:1.8rem;">
+    We don't need a channel.<br><em style="font-style:italic;color:var(--a2);">We need a creator.</em>
+  </h2>
+
+  <div class="ri d2 show" style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);line-height:1.9;max-width:680px;margin:0 auto 2.5rem;">
+    Your views didn't happen by accident. Your engagement didn't happen by luck. You built an audience that trusts you — because you know how to communicate, how to connect, how to make people feel something with a video.
+  </div>
+
+  <div class="ri d3 show" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2.5rem;max-width:700px;margin-left:auto;margin-right:auto;">
+    <div style="background:var(--surface);padding:1.8rem 1.2rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--a2);margin-bottom:.3rem;">You</div>
+      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">bring the creativity</div>
+    </div>
+    <div style="background:rgba(var(--a-rgb),.06);padding:1.8rem 1.2rem;border-left:1px solid var(--border);border-right:1px solid var(--border);">
+      <div style="font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--a2);margin-bottom:.3rem;">ALINEA</div>
+      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">brings the product</div>
+    </div>
+    <div style="background:var(--surface);padding:1.8rem 1.2rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--ok);margin-bottom:.3rem;">Both</div>
+      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">grow together</div>
+    </div>
+  </div>
+
+  <div class="ri d4 show" style="background:rgba(110,231,183,.05);border:1px solid rgba(110,231,183,.2);border-radius:14px;padding:2rem 2.5rem;max-width:680px;margin:0 auto;">
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,1.6vw,1.15rem);color:rgba(240,238,255,.8);line-height:1.85;margin-bottom:0;">
+      ALINEA will never ask you to compromise your essence, your style, or the quality of your content just to make a sale. We are not here to turn you into an ad. We are here because your creativity — your unique way of making videos — is exactly what can help other readers discover something that genuinely changes how they experience their books.<br><br>
+      <strong style="color:var(--ok);font-style:normal;">Your audience trusts you. We want to honor that trust, not exploit it.</strong>
+    </p>
   </div>
 </section>
 
@@ -518,7 +558,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div class="num-card ri d1 show">
       <div class="num-value">$15</div>
       <div class="num-label" id="num1Label">Per sale generated</div>
-      <div class="num-desc" id="num1Desc">Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. No expiration.</div>
+      <div class="num-desc" id="num1Desc">Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. 365-day tracking.</div>
     </div>
     <div class="num-card ri d2 show">
       <div class="num-value">$69</div>
@@ -528,7 +568,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div class="num-card ri d3 show">
       <div class="num-value">1</div>
       <div class="num-label" id="num3Label">Video to start</div>
-      <div class="num-desc" id="num3Desc">No contracts. No exclusivity. No content schedules. One video at your pace. If it works for both of us, we grow together.</div>
+      <div class="num-desc" id="num3Desc">No contracts. No exclusivity. One video to start — the more you post, the more you earn. Your link never expires.</div>
     </div>
   </div>
 </section>
@@ -655,7 +695,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div class="step">
       <div class="step-n">02</div>
       <h3 id="step2h">Make your video</h3>
-      <p id="step2p">Show your galaxy to your audience. Your style, your books, your words. Authenticity converts — we never script anything. The galaxy does the work.</p>
+      <p id="step2p">Show your galaxy to your audience — your style, your books, your essence. Share the galaxy, the book connections, your Bitácora stats, or any moment that feels authentic. Not a commercial — real content from a real reader. Once published, share the link and metrics with us. We may repost it tagging you.</p>
     </div>
     <div class="step">
       <div class="step-n">03</div>
@@ -726,12 +766,12 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     </div>
     <div class="feature-card ri d3 show">
       <div class="feature-icon">∞</div>
-      <h4 id="f3h">One-time payment — lifetime access</h4>
+      <h4 id="f3h">Bitácora — your reading intelligence</h4>
       <p id="f3p">$69 once. No renewals. Your audience knows exactly what they're getting and keeps it forever. Simple, honest, frictionless.</p>
     </div>
     <div class="feature-card ri d4 show">
       <div class="feature-icon">📱</div>
-      <h4 id="f4h">Works on every device — no App Store needed</h4>
+      <h4 id="f4h">One-time payment — every device</h4>
       <p id="f4p">iPhone, Android, desktop. Installs as a PWA in seconds. No friction between watching your video and having ALINEA running on their phone.</p>
     </div>
   </div>
@@ -744,7 +784,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
   <div class="cta-glow"></div>
   <h2 class="ri show" id="ctaHead">Your galaxy.<br><em>Their galaxy.</em><br>Your commission.</h2>
   <p class="ri d1 show" id="ctaSub">Join the ALINEA Creator Program today.</p>
-  <a href="#join" class="btn-primary ri d2 show" style="font-size:.7rem;padding:.9rem 2.8rem;" id="ctaBtn">Apply now — it's free</a>
+  <a href="https://alinea.lemonsqueezy.com/affiliates" target="_blank" class="btn-primary ri d2 show" style="font-size:.7rem;padding:.9rem 2.8rem;" id="ctaBtn">Apply now — it's free</a>
 </section>
 
 <!-- TRY & CONNECT -->
@@ -754,7 +794,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <h2 class="try-head" id="tryHead">First, <em>feel it yourself.</em></h2>
     <p class="try-sub" id="trySub">The best content comes from genuine excitement. Try ALINEA Beta for free — build your own galaxy, explore your connections. Then decide if it's something you'd share.</p>
     <div class="try-actions">
-      <a href="https://alinea.lemonsqueezy.com/checkout/buy/475bad81-f3c3-4938-85b9-12a2ef806932?embed=1" target="_blank" class="btn-primary lemonsqueezy-button" id="tryBetaBtn">Try Beta Free — no card needed</a>
+      <a href="https://alinea.lemonsqueezy.com/affiliates" target="_blank" target="_blank" class="btn-primary lemonsqueezy-button" id="tryBetaBtn">Try Beta Free — no card needed</a>
       <a href="https://alinea.work" target="_blank" class="btn-secondary" id="trySeeBtn">See the full product →</a>
     </div>
 
@@ -771,57 +811,80 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 
 <div class="dv"></div>
 
-<!-- FORM -->
-<section id="join">
-  <div class="form-wrap ri show">
-    <div class="form-title" id="formTitle">Join the Creator Program</div>
-    <div class="form-sub" id="formSub">We'll send your affiliate link within 48h</div>
-    <div class="form-group">
-      <label id="fName">Full name</label>
-      <input type="text" id="inputName" placeholder="Your name">
+<!-- FAQ -->
+<section id="faq" style="padding:5rem 6%;max-width:860px;margin:0 auto;">
+  <span class="eyebrow ri show">✦ FAQ</span>
+  <h2 class="section-head ri d1 show" style="margin-bottom:2.5rem;">Frequent questions.<br><em>Honest answers.</em></h2>
+
+  <div style="display:flex;flex-direction:column;gap:.8rem;" id="faqList">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">💸 When do I get paid?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Lemon Squeezy is the neutral intermediary between you and ALINEA — they handle all payments, track every sale, and deposit your commissions directly to your account. No middlemen, no delays, full transparency for both sides.</div>
     </div>
-    <div class="form-group">
-      <label id="fEmail">Email</label>
-      <input type="email" id="inputEmail" placeholder="you@email.com">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🍪 How does the 365-day tracking work?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Every time someone clicks your link, Lemon Squeezy creates an anonymous identifier — no cookies, completely privacy-friendly. That identifier stays active for 365 days, the maximum the platform allows. If someone clicks today and buys 11 months from now — you earn your $15. And your link never expires: every new click starts a fresh 365-day window. One video posted today can keep earning for years.</div>
     </div>
-    <div class="form-group">
-      <label id="fPlatform">Main platform</label>
-      <select id="inputPlatform">
-        <option value="" disabled selected id="fPlatformDefault">Select your platform</option>
-        <option>TikTok</option>
-        <option>Instagram</option>
-        <option>Both — TikTok & Instagram</option>
-        <option>YouTube</option>
-        <option>Other</option>
-      </select>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🌎 Can I make content in Spanish?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Absolutely. ALINEA has a full Spanish interface and a growing Latin American and Spanish-speaking audience. Spanish content is highly encouraged — and it converts.</div>
     </div>
-    <div class="form-group">
-      <label id="fHandle">Your handle / profile URL</label>
-      <input type="text" id="inputHandle" placeholder="@yourusername">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">📱 What platforms and niches work best?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">This program is designed for creators on TikTok, Instagram Reels, and YouTube — especially in niches like BookTok, Lifestyle, UGC, Students, and Productivity. If your audience reads, learns, or grows — ALINEA is for them.</div>
     </div>
-    <div class="form-group">
-      <label id="fFollowers">Approximate followers</label>
-      <select id="inputFollowers">
-        <option value="" disabled selected>—</option>
-        <option>1K – 10K</option>
-        <option>10K – 50K</option>
-        <option>50K – 100K</option>
-        <option>100K – 500K</option>
-        <option>500K+</option>
-      </select>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">📄 Do I need to invoice or register a company?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">No. Lemon Squeezy handles all payments directly to you as the neutral platform. No invoices, no paperwork, no company needed.</div>
     </div>
-    <div class="form-group">
-      <label id="fLang">Content language</label>
-      <select id="inputLang">
-        <option value="" disabled selected>—</option>
-        <option>English</option>
-        <option>Spanish / Español</option>
-        <option>Both</option>
-        <option>Other</option>
-      </select>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🎬 Can I make more than one video?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Yes — and we encourage it. More videos = more commissions. Your link never expires, so every video keeps earning as long as it stays live.</div>
     </div>
-    <button class="form-submit" id="formSubmit" onclick="handleSubmit(this)">Apply to Creator Program →</button>
-    <p class="form-note" id="formNote">No commitments. No exclusivity. We'll reach out within 48h with your affiliate link and everything you need to get started. #MakingVisibleTheInvisible</p>
+
+    <div style="background:var(--surface);border:1px solid rgba(var(--a-rgb),.3);border-radius:12px;padding:1.4rem 1.6rem;background:rgba(var(--a-rgb),.05);">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🧮 How much could I actually earn?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">Scroll up and use the earnings calculator — enter your average views per video and see your projected commissions in conservative, moderate, and optimistic scenarios. The numbers are based on real BookTok conversion benchmarks, not wishful thinking. <a href="#calculator" style="color:var(--a2);text-decoration:none;">→ Go to calculator</a></div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🆓 Do I need to buy ALINEA Pro?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">No. Try the free beta first at alinea.work. If you genuinely connect with it, reach out and we'll talk about giving you full Pro access before you post anything.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">⏱️ How long does approval take?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">We review applications within 48 hours. Once approved, your unique link with the SPARK69 discount is ready to share.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;">🤔 What if my content doesn't sell?</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.78;">No risk, no penalty. You keep your affiliate account and can try again with a different format. We're here to help you find what resonates with your audience — not to pressure you.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- JOIN SECTION -->
+<section id="join" style="padding:2rem 6% 6rem;max-width:520px;margin:0 auto;text-align:center;">
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem 2rem;">
+    <div style="font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;margin-bottom:.4rem;" id="formTitle">Join the Creator Program</div>
+    <div style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;" id="formSub">Apply directly through Lemon Squeezy — instant setup</div>
+    <div style="font-size:.8rem;color:var(--muted);line-height:1.78;margin-bottom:1.8rem;" id="formDesc">Click below to apply to the ALINEA Creator Program. You'll create your affiliate account on Lemon Squeezy, get your unique link with the <strong style="color:var(--a2);">SPARK69</strong> discount code already applied, and start earning $15 per sale.</div>
+    <a href="https://alinea.lemonsqueezy.com/affiliates" target="_blank" class="btn-primary" style="font-size:.7rem;padding:1rem 2.5rem;display:inline-block;text-decoration:none;" id="formSubmit">Apply on Lemon Squeezy →</a>
+    <div style="font-family:'DM Mono',monospace;font-size:.48rem;color:var(--dim);margin-top:1.2rem;line-height:1.7;letter-spacing:.06em;" id="formNote">No commitments · No exclusivity · 365-day cookie tracking · Commissions paid automatically · #MakingVisibleTheInvisible</div>
+    <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(var(--a-rgb),.1);font-size:.75rem;color:rgba(240,238,255,.5);line-height:1.78;text-align:left;">
+      <div style="font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(var(--a-rgb),.4);margin-bottom:.5rem;">By joining you agree to</div>
+      Share the link to your video once published · Share basic metrics (views, likes) · Allow ALINEA to repost or share your content tagging your account for additional exposure.
+    </div>
   </div>
 </section>
 
@@ -945,7 +1008,7 @@ const T={
     navCta:'Join Program',
     badgeTxt:'Creator Affiliate Program',
     badgeDot:'● Now open',
-    heroMicro:'One video. Your style. $15 per sale — no contracts, no minimums.',
+    heroMicro:'One video to start. More videos, more earnings. Your link never expires.',
     heroNote:'No commitments · Your pace · Lifetime commissions',
     heroCta:'Apply now — it\'s free',
     colorLabel:'Personalize your galaxy',
@@ -955,9 +1018,9 @@ const T={
     shotsEye:'The product',shotsHead:'A product your audience<br><em>will want to share.</em>',
     shot1:'The galaxy — unique to every reader',shot2:'Book detail & connections',shot3:'Notes & highlights',shot4:'Bitácora — reading stats & analytics',shot5:'Book story — shareable in one tap',shot6:'Full galaxy view — your universe of ideas',shot7:'Quote story — share what moves you',
     numbersEye:'The opportunity',numbersHead:'Simple math.<br><em>Real money.</em>',
-    num1L:'Per sale generated',num1D:'Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. No expiration.',
+    num1L:'Per sale generated',num1D:'Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. 365-day tracking.',
     num2L:'Price with your link',num2D:'Your audience gets ALINEA Pro at $69 USD — $20 less than the public price of $89. Your link applies the discount automatically.',
-    num3L:'Video to start',num3D:'No contracts. No exclusivity. No content schedules. One video at your pace. If it works for both of us, we grow together.',
+    num3L:'Video to start',num3D:'No contracts. No exclusivity. One video to start — the more you post, the more you earn. Your link never expires.',
     calcEye:'Your potential',calcHead:'How much could<br><em>you earn?</em>',calcSub:'Move the slider to match your average views per video.',
     calcLabel:'Average views per video',viewsWord:'views',
     calcL1:'Conservative · 0.3%',calcL2:'Moderate · 0.8%',calcL3:'Optimistic · 1.5%',
@@ -1006,7 +1069,7 @@ const T={
     navCta:'Unirse al Programa',
     badgeTxt:'Programa de Afiliados',
     badgeDot:'● Abierto ahora',
-    heroMicro:'Un video. Tu estilo. $15 por venta — sin contratos, sin mínimos.',
+    heroMicro:'Un video para empezar. Más videos, más ganancias. Tu link nunca expira.',
     heroNote:'Sin compromisos · A tu ritmo · Comisiones de por vida',
     heroCta:'Aplica ahora — es gratis',
     colorLabel:'Personaliza tu galaxia',
@@ -1016,9 +1079,9 @@ const T={
     shotsEye:'El producto',shotsHead:'Un producto que tu audiencia<br><em>querrá compartir.</em>',
     shot1:'La galaxia — única para cada lector',shot2:'Detalle de libro y conexiones',shot3:'Notas y subrayados',shot4:'Bitácora — estadísticas y analítica',shot5:'Story de libro — compartible en un tap',shot6:'Vista completa de la galaxia — tu universo de ideas',shot7:'Story de cita — comparte lo que te mueve',
     numbersEye:'La oportunidad',numbersHead:'Matemática simple.<br><em>Dinero real.</em>',
-    num1L:'Por venta generada',num1D:'Comisión fija por cada copia de ALINEA Pro vendida mediante tu link de afiliado. Sin topes. Sin mínimos. Sin expiración.',
+    num1L:'Por venta generada',num1D:'Comisión fija por cada copia de ALINEA Pro vendida mediante tu link de afiliado. Sin topes. Sin mínimos. Tracking de 365 días.',
     num2L:'Precio con tu link',num2D:'Tu audiencia obtiene ALINEA Pro a $69 USD — $20 menos que el precio público de $89. Tu link aplica el descuento automáticamente.',
-    num3L:'Video para empezar',num3D:'Sin contratos. Sin exclusividad. Sin calendarios de contenido. Un video a tu ritmo. Si funciona para ambos, crecemos juntos.',
+    num3L:'Video para empezar',num3D:'Sin contratos. Sin exclusividad. Un video para empezar — entre más publicas, más ganas. Tu link nunca expira.',
     calcEye:'Tu potencial',calcHead:'¿Cuánto podrías<br><em>ganar?</em>',calcSub:'Mueve el slider para coincidir con tus vistas promedio por video.',
     calcLabel:'Vistas promedio por video',viewsWord:'vistas',
     calcL1:'Conservador · 0.3%',calcL2:'Moderado · 0.8%',calcL3:'Optimista · 1.5%',
@@ -1037,7 +1100,8 @@ const T={
     howEye:'Cómo funciona',howHead:'Tres pasos.<br><em>Eso es todo.</em>',
     step1h:'Prueba ALINEA gratis',step1p:'Descarga la Beta — sin tarjeta, sin registro. Agrega tus libros, construye tu galaxia. Deja que el producto hable por sí solo.',
     step2h:'Haz tu video',step2p:'Muestra tu galaxia a tu audiencia. Tu estilo, tus libros, tus palabras. La autenticidad convierte — nunca escribimos guiones.',
-    step3h:'Gana $15 por venta',step3p:'Tu link único va en la bio. Cada vez que alguien compre mediante tu link — hoy o meses después — ganas tu comisión.',
+    step3h:'Gana $15 por venta',step3p:'Tu link nunca expira. Cada click abre una ventana de 365 días — el máximo permitido. Publica una vez, gana para siempre. Pagado automáticamente por Lemon Squeezy.',
+    step4h:'Completa tu perfil en Lemon',step4p:'Al aplicar, Lemon te pedirá tu bio, redes sociales y views mensuales aproximados. Entre más completo, más rápido te aprobamos. Luego tu link con SPARK69 ya está listo.',
     payEye:'Impulsado por Lemon Squeezy',lsHead:'Comisiones pagadas vía Lemon Squeezy',
     lsDesc:'ALINEA usa Lemon Squeezy como plataforma de pagos y afiliados — uno de los servicios merchant-of-record más confiables para productos digitales. Tu link de afiliado se rastrea automáticamente y las comisiones se pagan directamente a tu cuenta.',
     lsLink:'Conoce cómo funcionan los afiliados de Lemon Squeezy →',
@@ -1080,7 +1144,6 @@ function setLang(l,btn){
   document.getElementById('heroCta').textContent=d.heroCta;
   // personalize
   const clEl=document.getElementById('colorLabel');if(clEl)clEl.textContent=d.colorLabel;
-  const catLEl=document.getElementById('catLabel');if(catLEl)catLEl.textContent=d.catLabel;
   const catIds=['catBooktok','catLifestyle','catUgc','catStudents','catProductivity'];
   catIds.forEach((id,i)=>{const el=document.getElementById(id);if(el&&d.cats[i])el.textContent=d.cats[i];});
   const heroCatIds=['heroCatBooktok','heroCatLifestyle','heroCatUgc','heroCatStudents','heroCatProductivity'];
@@ -1127,6 +1190,8 @@ function setLang(l,btn){
   document.getElementById('step1h').textContent=d.step1h;document.getElementById('step1p').textContent=d.step1p;
   document.getElementById('step2h').textContent=d.step2h;document.getElementById('step2p').textContent=d.step2p;
   document.getElementById('step3h').textContent=d.step3h;document.getElementById('step3p').textContent=d.step3p;
+  const s4h=document.getElementById('step4h');const s4p=document.getElementById('step4p');
+  if(s4h&&d.step4h)s4h.textContent=d.step4h;if(s4p&&d.step4p)s4p.textContent=d.step4p;
   // payments
   document.getElementById('payEye').textContent=d.payEye;
   document.getElementById('lsHead').textContent=d.lsHead;
@@ -1164,12 +1229,6 @@ function setLang(l,btn){
   // form
   document.getElementById('formTitle').textContent=d.formTitle;
   document.getElementById('formSub').textContent=d.formSub;
-  document.getElementById('fName').textContent=d.fName;
-  document.getElementById('fEmail').textContent=d.fEmail;
-  document.getElementById('fPlatform').textContent=d.fPlatform;
-  document.getElementById('fHandle').textContent=d.fHandle;
-  document.getElementById('fFollowers').textContent=d.fFollowers;
-  document.getElementById('fLang').textContent=d.fLang;
   document.getElementById('formSubmit').textContent=d.formSubmit;
   document.getElementById('formNote').textContent=d.formNote;
   // update hero headline for current cat + new lang
@@ -1364,7 +1423,6 @@ function toggleCVR(){
 document.addEventListener('DOMContentLoaded',()=>{
   setLang('en',document.getElementById('btnEN'));
   setTheme('purple',document.querySelector('.cdot'));
-  setCat('booktok',document.getElementById('catBooktok'));
 });
 </script>
 </body>
