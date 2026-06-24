@@ -76,8 +76,26 @@ section{position:relative;z-index:1;}
 .hero-hl-wrap{position:relative;width:100%;min-height:260px;margin-bottom:1rem;}
 .hero-pair{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);pointer-events:none;text-align:center;transform:translateY(12px);}
 .hero-pair.active-pair{opacity:1;transform:translateY(0);pointer-events:auto;}
-#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 6% 60px;}
-.hero-orb{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 50px rgba(var(--a-rgb),.6),0 0 120px rgba(var(--a-rgb),.3);margin:0 auto 2rem;animation:orbFloat 7s ease-in-out infinite;}
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 6% 60px;}
+.hero-orb{width:clamp(150px,13vw,230px);height:clamp(150px,13vw,230px);border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 70px rgba(var(--a-rgb),.6),0 0 160px rgba(var(--a-rgb),.3);margin:0 auto 2rem;animation:orbFloat 7s ease-in-out infinite;}
+
+#splash{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6%;transition:opacity .7s cubic-bezier(.16,1,.3,1),visibility .7s;}
+#splash.closing{opacity:0;pointer-events:none;}
+#splash.gone{display:none;}
+.splash-orb{width:130px;height:130px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 60px rgba(var(--a-rgb),.6),0 0 140px rgba(var(--a-rgb),.3);margin-bottom:2rem;animation:orbFloat 7s ease-in-out infinite;}
+.splash-word{font-family:'DM Mono',monospace;font-weight:500;font-size:1.8rem;letter-spacing:.38em;text-transform:uppercase;margin-bottom:.6rem;color:var(--a2);}
+.splash-sub{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:3.2rem;}
+.splash-personalize{display:flex;flex-direction:column;align-items:center;gap:1.1rem;max-width:520px;}
+.splash-step{display:flex;flex-direction:column;align-items:center;gap:1.1rem;opacity:1;transform:translateY(0);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
+.splash-step.leaving{opacity:0;transform:translateY(-10px);}
+.splash-step.entering{opacity:0;transform:translateY(10px);}
+.splash-skip{margin-top:.4rem;background:none;border:none;color:rgba(var(--a-rgb),.4);font-size:1.2rem;line-height:1;cursor:pointer;transition:all .3s ease;animation:bob 2s ease-in-out infinite;}
+.splash-skip:hover{color:var(--a2);transform:translateY(2px);}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(3px);}}
+.splash-lang-options{display:flex;gap:1rem;}
+.splash-lang-btn{background:none;border:1px solid rgba(var(--a-rgb),.25);border-radius:50px;padding:.7rem 1.8rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:rgba(240,238,255,.75);cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);}
+.splash-lang-btn:hover{border-color:var(--a2);color:var(--a2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35);}
+@media (max-width:600px){.splash-orb{width:96px;height:96px;}.splash-word{font-size:1.3rem;letter-spacing:.28em;}}
 @keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--a2);border:1px solid rgba(var(--a-rgb),.25);padding:.38rem 1rem;border-radius:50px;background:rgba(var(--a-rgb),.07);margin-bottom:1.8rem;}
 .hero-badge span{color:var(--ok);}
@@ -303,12 +321,43 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 /* ── HOW IT WORKS ── */
 #how{padding:5rem 6%;max-width:1000px;margin:0 auto;}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3.5rem;}
-.step{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
-.step.show{opacity:1;transform:translateY(0);}
-.step-n{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:5rem;line-height:1;color:rgba(var(--a-rgb),.12);margin-bottom:.8rem;}
-.step h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.15rem;margin-bottom:.7rem;color:var(--text);}
-.step p{font-size:.85rem;color:var(--muted);line-height:1.78;}
+.steps-carousel{display:flex;gap:3rem;margin-top:3.5rem;align-items:center;}
+.steps-track{position:relative;flex:1;min-height:280px;}
+.step{position:absolute;inset:0;opacity:0;transform:translateY(36px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+.step.active{opacity:1;transform:translateY(0);pointer-events:auto;}
+.step.exit-up{opacity:0;transform:translateY(-36px);}
+.step.exit-down{opacity:0;transform:translateY(36px);}
+.step-n{position:relative;display:inline-block;font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:5rem;line-height:1;color:rgba(var(--a-rgb),.85);margin-bottom:.8rem;text-shadow:0 0 10px rgba(var(--a-rgb),.35);}
+.step-n::after{content:'';position:absolute;inset:-2.5rem;background:radial-gradient(ellipse at 40% 45%,rgba(var(--a-rgb),.18),rgba(var(--a-rgb),.06) 45%,transparent 75%);filter:blur(6px);pointer-events:none;z-index:0;}
+.step-n::before{content:'';position:absolute;inset:-2.2rem -1.8rem;background-image:
+    radial-gradient(circle,#fff 1.8px,transparent 2.3px),
+    radial-gradient(circle,#fff 1.3px,transparent 1.8px),
+    radial-gradient(circle,#fff 1.6px,transparent 2.1px),
+    radial-gradient(circle,#fff 1px,transparent 1.4px),
+    radial-gradient(circle,#fff 1.4px,transparent 1.9px),
+    radial-gradient(circle,#fff .8px,transparent 1.2px),
+    radial-gradient(circle,#fff 1.1px,transparent 1.5px),
+    radial-gradient(circle,#fff .7px,transparent 1.1px),
+    radial-gradient(circle,#fff 1.2px,transparent 1.7px),
+    radial-gradient(circle,#fff .9px,transparent 1.3px);
+  background-position:6% 10%,92% 8%,16% 88%,84% 90%,48% 4%,2% 48%,96% 52%,32% 96%,68% 2%,98% 75%;
+  background-repeat:no-repeat;opacity:.6;filter:drop-shadow(0 0 2px rgba(255,255,255,.8));pointer-events:none;z-index:2;animation:twinkle 2.4s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.35;}50%{opacity:.85;}}
+.step h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;margin-bottom:.7rem;color:var(--a2);}
+.step p{font-size:.92rem;color:var(--muted);line-height:1.8;max-width:46ch;}
+.steps-nav{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:0;flex-shrink:0;position:relative;height:280px;padding:.5rem 0;}
+.steps-nav::before{content:'';position:absolute;top:14px;bottom:14px;left:50%;width:1px;background:linear-gradient(to bottom,transparent,rgba(var(--a-rgb),.25) 10%,rgba(var(--a-rgb),.25) 90%,transparent);}
+.steps-dot{background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:28px;height:28px;position:relative;z-index:1;}
+.steps-dot span{display:none;}
+.steps-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:rgba(var(--a-rgb),.3);transition:all .4s cubic-bezier(.16,1,.3,1);}
+.steps-dot:hover::before{background:rgba(var(--a-rgb),.7);transform:scale(1.3);}
+.steps-dot.active::before{width:10px;height:10px;background:var(--a2);box-shadow:0 0 10px rgba(var(--a-rgb),.9),0 0 22px rgba(var(--a-rgb),.5);}
+@media (max-width:760px){
+  .steps-carousel{flex-direction:column-reverse;gap:1.6rem;}
+  .steps-track{width:100%;min-height:260px;}
+  .steps-nav{flex-direction:row;height:auto;width:100%;max-width:280px;}
+  .steps-nav::before{top:50%;bottom:auto;left:14px;right:14px;width:auto;height:1px;background:linear-gradient(to right,transparent,rgba(var(--a-rgb),.25) 10%,rgba(var(--a-rgb),.25) 90%,transparent);}
+}
 
 /* ── MISSION ── */
 #mission{padding:6rem 6%;text-align:center;position:relative;overflow:hidden;}
@@ -396,6 +445,46 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
   <script src="https://lmsqueezy.com/affiliate.js" defer></script>
 </head>
 <body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-orb" id="splashOrb"></div>
+  <div class="splash-word">ALINEA</div>
+  <div class="splash-sub" id="splashSub">Affiliate Program</div>
+  <div class="splash-personalize">
+    <div class="splash-step" id="splashStepLang">
+      <span class="color-label" id="splashLangLabel" style="text-shadow:0 0 14px rgba(var(--a-rgb),.6),0 0 32px rgba(var(--a-rgb),.3);">Choose your language · Elige tu idioma</span>
+      <div class="splash-lang-options">
+        <button class="splash-lang-btn" onclick="splashSetLang('en',this)">English</button>
+        <button class="splash-lang-btn" onclick="splashSetLang('es',this)">Español</button>
+      </div>
+    </div>
+    <div class="splash-step" id="splashStepColor" style="display:none;">
+      <span class="color-label" id="splashColorLabel">Personalize your galaxy</span>
+      <div class="cdots">
+        <div class="cdot on" style="background:#8b5cf6;color:#8b5cf6" onclick="splashSetTheme('purple',this)"></div>
+        <div class="cdot" style="background:#3b82f6;color:#3b82f6" onclick="splashSetTheme('blue',this)"></div>
+        <div class="cdot" style="background:#10b981;color:#10b981" onclick="splashSetTheme('emerald',this)"></div>
+        <div class="cdot" style="background:#ec4899;color:#ec4899" onclick="splashSetTheme('pink',this)"></div>
+        <div class="cdot" style="background:#f97316;color:#f97316" onclick="splashSetTheme('orange',this)"></div>
+        <div class="cdot" style="background:#f59e0b;color:#f59e0b" onclick="splashSetTheme('amber',this)"></div>
+        <div class="cdot" style="background:#ef4444;color:#ef4444" onclick="splashSetTheme('red',this)"></div>
+      </div>
+      <button class="splash-skip" onclick="splashAdvance('splashStepColor','splashStepCat')" aria-label="Continue">⌄</button>
+    </div>
+    <div class="splash-step" id="splashStepCat" style="display:none;">
+      <span class="color-label" id="splashCatsLabel">What type of creator are you?</span>
+      <div class="hero-cat-pills">
+        <button class="hero-cat-pill on" onclick="splashSetCat('booktok',this)" id="splashCatBooktok">📚 BookTok</button>
+        <button class="hero-cat-pill" onclick="splashSetCat('lifestyle',this)" id="splashCatLifestyle">✨ Lifestyle</button>
+        <button class="hero-cat-pill" onclick="splashSetCat('ugc',this)" id="splashCatUgc">🎬 UGC</button>
+        <button class="hero-cat-pill" onclick="splashSetCat('students',this)" id="splashCatStudents">🎓 Students</button>
+        <button class="hero-cat-pill" onclick="splashSetCat('productivity',this)" id="splashCatProductivity">⚡ Productivity</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <canvas id="starCanvas"></canvas>
 
 <!-- NAV -->
@@ -706,27 +795,41 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 <!-- HOW IT WORKS -->
 <section id="how">
   <span class="eyebrow ri" id="howEye">✦ How it works</span>
-  <h2 class="section-head ri d1" id="howHead">Four steps.<br><em>That's it.</em></h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-n">01</div>
-      <h3 id="step1h">Try ALINEA free</h3>
-      <p id="step1p">Download the Beta — no card, no sign-up. Add your books, build your galaxy. Let the product speak for itself before you say a single word about it.</p>
+  <h2 class="section-head ri d1" id="howHead">Five steps.<br><em>That's it.</em></h2>
+  <div class="steps-carousel ri d1">
+    <div class="steps-track">
+      <div class="step active" data-step="1">
+        <div class="step-n">01</div>
+        <h3 id="step1h">Try ALINEA free</h3>
+        <p id="step1p">Download the Beta — no card, no sign-up. Add your books, build your galaxy. Let the product speak for itself. (Genuinely interested in Pro? Message us — we'll set you up free.)</p>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-n">02</div>
+        <h3 id="step2h">Apply to the program</h3>
+        <p id="step2p">Apply, complete your profile — bio, social links, monthly views — and Lemon approves you. Set your payout method; validating your bank account takes Lemon 1 day, 2 max.</p>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-n">03</div>
+        <h3 id="step3h">We send you your link</h3>
+        <p id="step3p">Once you're approved, we send you your personal link — your affiliate ID and the SPARK69 discount, already combined and ready to share.</p>
+      </div>
+      <div class="step" data-step="4">
+        <div class="step-n">04</div>
+        <h3 id="step4h">Make your video</h3>
+        <p id="step4p">Show your galaxy to your audience — your style, your books, your essence. Not a commercial — real content from a real reader. Work your link in creatively — caption, pinned comment, wherever feels natural — so people actually use it.</p>
+      </div>
+      <div class="step" data-step="5">
+        <div class="step-n">05</div>
+        <h3 id="step5h">Earn $15 per sale</h3>
+        <p id="step5p">Every sale through your link earns you $15 — today or months from now, tracked automatically and paid by Lemon Squeezy.</p>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-n">02</div>
-      <h3 id="step2h">Make your video</h3>
-      <p id="step2p">Show your galaxy to your audience — your style, your books, your essence. Share the galaxy, the book connections, your Bitácora stats, or any moment that feels authentic. Not a commercial — real content from a real reader. Once published, share the link and metrics with us. We may repost it tagging you.</p>
-    </div>
-    <div class="step">
-      <div class="step-n">03</div>
-      <h3 id="step3h">Earn $15 per sale</h3>
-      <p id="step3p">Your unique link goes in the bio. Every time someone buys through your link — today or three months from now — you earn your commission.</p>
-    </div>
-    <div class="step">
-      <div class="step-n">04</div>
-      <h3 id="step4h">Complete your Lemon profile</h3>
-      <p id="step4p">Apply, complete your profile — bio, social links, monthly views — and Lemon approves you. Set your payout method; validating your bank account takes Lemon 1 day, 2 max, then your link with SPARK69 is ready to share.</p>
+    <div class="steps-nav" id="stepsNav">
+      <button type="button" class="steps-dot active" data-goto="1" aria-label="Step 1"><span>01</span></button>
+      <button type="button" class="steps-dot" data-goto="2" aria-label="Step 2"><span>02</span></button>
+      <button type="button" class="steps-dot" data-goto="3" aria-label="Step 3"><span>03</span></button>
+      <button type="button" class="steps-dot" data-goto="4" aria-label="Step 4"><span>04</span></button>
+      <button type="button" class="steps-dot" data-goto="5" aria-label="Step 5"><span>05</span></button>
     </div>
   </div>
 </section>
@@ -828,6 +931,13 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     .faq-body-inner{font-family:'Lato',sans-serif;font-weight:300;font-size:.88rem;color:var(--muted);line-height:1.9;padding-bottom:1.4rem;}
     .faq-body-inner a{color:var(--a2);text-decoration:none;border-bottom:1px solid rgba(var(--a-rgb),.25);transition:all .2s;}
     .faq-body-inner a:hover{color:var(--text);border-color:var(--a2);}
+    .faq-toggle-more{display:flex;align-items:center;gap:.5rem;margin:1.6rem auto 0;background:none;border:1px solid rgba(var(--a-rgb),.2);border-radius:50px;padding:.7rem 1.6rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--a2);cursor:pointer;transition:all .3s ease;}
+    .faq-toggle-more:hover{border-color:var(--a2);background:rgba(var(--a-rgb),.08);}
+    .faq-toggle-arrow{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+    .faq-toggle-more.open .faq-toggle-arrow{transform:rotate(180deg);}
+    .terms-point-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--a2);margin:1.8rem 0 .5rem;line-height:1.3;}
+    #termsBody h4.terms-point-title:first-of-type,#termsBodyES h4.terms-point-title:first-of-type{margin-top:.4rem;}
+    .terms-key{color:var(--a2);font-weight:600;}
     .faq-item.open .faq-body{max-height:400px;}
   </style>
 
@@ -881,6 +991,11 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
       <div class="faq-body"><div class="faq-body-inner" id="faqA6">Yes — and we encourage it. More videos = more commissions. Your link never expires, so every video keeps earning as long as it stays live.</div></div>
     </div>
 
+  </div>
+
+  <div id="faqExtra" style="max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.16,1,.3,1);">
+  <div id="faqExtraList">
+
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
         <span class="faq-q-text" id="faqQ7">🧮 How much could I actually earn?</span>
@@ -913,7 +1028,28 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
       <div class="faq-body"><div class="faq-body-inner" id="faqA10">No risk, no penalty. You keep your affiliate account and can try again with a different format. We're here to help you find what resonates with your audience — not to pressure you.</div></div>
     </div>
 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text" id="faqQ11">🔗 What if someone buys without using my link?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner" id="faqA11">Commission is only attributed when someone buys through your unique link. If they mention your code but visit the site on their own, Lemon has no way of knowing it was you. That's why it's worth saying clearly in your video — "link in the description" — so no one gets lost along the way.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text" id="faqQ12">📎 Which link do I actually use?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner" id="faqA12">Use the link we send you directly, not the one shown in your Lemon Squeezy affiliate profile. Lemon's own link carries your affiliate ID but not the SPARK69 discount — the one we send you combines both, so your audience sees the discounted price and your commission still tracks correctly. Make it easy for them: a simple "link in bio" or "link in the description" while your video is live works better than expecting people to remember a code.</div></div>
+    </div>
+
   </div>
+  </div>
+
+  <button class="faq-toggle-more" onclick="toggleFaqExtra(this)" id="faqToggleMore">
+    <span id="faqToggleMoreTxt">Show more questions</span> <span class="faq-toggle-arrow">⌄</span>
+  </button>
 </section>
 
 <div class="dv"></div>
@@ -928,7 +1064,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div style="font-family:'DM Mono',monospace;font-size:.48rem;color:var(--dim);margin-top:1.2rem;line-height:1.7;letter-spacing:.06em;" id="formNote">No commitments · No exclusivity · 365-day cookie tracking · Commissions paid automatically · #MakingVisibleTheInvisible</div>
     <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(var(--a-rgb),.1);font-size:.75rem;color:rgba(240,238,255,.5);line-height:1.78;text-align:left;">
       <div style="font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(var(--a-rgb),.4);margin-bottom:.5rem;">By joining you agree to</div>
-      Share the link to your video once published · Share basic metrics (views, likes) · Allow ALINEA to repost or share your content tagging your account for additional exposure.
+      Share the link to your video once published · Share basic metrics (views, likes) · Allow ALINEA to repost or share your content tagging your account for additional exposure. <button onclick="toggleTerms()" style="background:none;border:none;cursor:pointer;color:var(--a2);text-decoration:underline;font-size:.75rem;padding:0;font-family:inherit;">Read the full terms →</button>
     </div>
   </div>
 </section>
@@ -936,11 +1072,31 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ALINEA</div>
-  <a href="https://alinea.work" target="_blank" class="footer-link">alinea.work ↗</a>
+  <div style="display:flex;gap:1.4rem;align-items:center;">
+    <a href="https://alinea.work" target="_blank" class="footer-link">alinea.work ↗</a>
+    <button onclick="toggleTerms()" class="footer-link" style="background:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;" id="footerTermsLink">Terms &amp; Conditions</button>
+  </div>
   <div class="footer-tag">#MakingVisibleTheInvisible</div>
 </footer>
 
 <script>
+/* ═══ SPLASH SCROLL LOCK ═══ */
+(function(){
+  const splash=document.getElementById('splash');
+  if(!splash) return;
+  function isSplashActive(){
+    return !splash.classList.contains('gone');
+  }
+  if(isSplashActive()){
+    document.documentElement.style.overflow='hidden';
+    document.body.style.overflow='hidden';
+  }
+  function blockScroll(e){
+    if(isSplashActive()) e.preventDefault();
+  }
+  document.addEventListener('wheel', blockScroll, {passive:false});
+  document.addEventListener('touchmove', blockScroll, {passive:false});
+})();
 /* ═══ STAR CANVAS (exact from landing) ═══ */
 (function(){
   const C=document.getElementById('starCanvas'),ctx=C.getContext('2d');
@@ -988,12 +1144,50 @@ function setTheme(name,dot){
   const th=TH[name];if(!th)return;curTheme=name;
   const r=document.documentElement.style;
   r.setProperty('--a',th.a);r.setProperty('--a2',th.a2);r.setProperty('--a3',th.a3);r.setProperty('--a4',th.a4);
-  document.querySelectorAll('#mainOrb').forEach(o=>{o.style.background=th.orb;o.style.boxShadow=th.gs;});
+  document.querySelectorAll('#mainOrb,#splashOrb').forEach(o=>{o.style.background=th.orb;o.style.boxShadow=th.gs;});
   document.querySelectorAll('.btn-primary,.nav-cta,.form-submit').forEach(b=>{b.style.background=`linear-gradient(135deg,${th.a4},${th.a3},${th.a})`;b.style.boxShadow=`0 0 24px rgba(${th.rgb[0]},${th.rgb[1]},${th.rgb[2]},.35),0 4px 16px rgba(0,0,0,.4)`;});
   if(window._setRGB)window._setRGB(...th.rgb);
   const mtc=document.getElementById('metaThemeColor');if(mtc)mtc.setAttribute('content',`rgb(${Math.round(th.rgb[0]*.18)},${Math.round(th.rgb[1]*.10)},${Math.round(th.rgb[2]*.22)})`);
   document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));
   if(dot)dot.classList.add('on');
+}
+function splashAdvance(fromId,toId){
+  fromId=fromId||'splashStepColor';toId=toId||'splashStepCat';
+  const stepFrom=document.getElementById(fromId);
+  const stepTo=document.getElementById(toId);
+  if(!stepFrom||!stepTo)return;
+  stepFrom.classList.add('leaving');
+  setTimeout(()=>{
+    stepFrom.style.display='none';
+    stepTo.style.display='flex';
+    stepTo.classList.add('entering');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>stepTo.classList.remove('entering')));
+  },380);
+}
+function splashSetLang(lang,btn){
+  const enBtn=document.querySelector('.splash-lang-btn:nth-child(1)');
+  const esBtn=document.querySelector('.splash-lang-btn:nth-child(2)');
+  if(enBtn)enBtn.classList.remove('on');
+  if(esBtn)esBtn.classList.remove('on');
+  if(btn)btn.classList.add('on');
+  setLang(lang, document.getElementById(lang==='es'?'btnES':'btnEN'));
+  splashAdvance('splashStepLang','splashStepColor');
+}
+function splashSetTheme(name,dot){
+  setTheme(name,dot);
+  splashAdvance('splashStepColor','splashStepCat');
+}
+function splashSetCat(key,btn){
+  setCat(key,btn);
+  const splash=document.getElementById('splash');if(!splash)return;
+  setTimeout(()=>{
+    splash.classList.add('closing');
+    setTimeout(()=>{
+      splash.classList.add('gone');
+      document.body.style.overflow='';
+      document.documentElement.style.overflow='';
+    },700);
+  },280);
 }
 
 /* ═══ CATEGORIES ═══ */
@@ -1001,16 +1195,16 @@ const CATS={
   en:{
     booktok:{hl:"Turn your <em>BookTok</em><br>content into real income.",sub:"Your book reviews already move people. ALINEA gives them something to buy."},
     lifestyle:{hl:"Your aesthetic.<br><em>Their knowledge galaxy.</em>",sub:"The galaxy is visual, beautiful and shareable. Perfect for lifestyle content."},
-    ugc:{hl:"Authentic content.<br><em>Real commissions.</em>",sub:"UGC that converts — because the product sells itself on camera."},
-    students:{hl:"Students read.<br><em>Help them see the connections.</em>",sub:"Study smarter, connect ideas, build a galaxy of knowledge."},
-    productivity:{hl:"For the second-brain<br><em>community.</em>",sub:"ALINEA is the visual PKM tool your audience has been waiting for."},
+    ugc:{hl:"Authentic content.<br><em>Real commissions.</em>",sub:"Real content that converts — because the product sells itself on camera."},
+    students:{hl:"Students read.<br><em>Help them see the connections.</em>",sub:"Help them study smarter, connect ideas, build their own galaxy of knowledge."},
+    productivity:{hl:"For the second-brain<br><em>community.</em>",sub:"ALINEA is the visual knowledge tool your audience has been waiting for."},
   },
   es:{
     booktok:{hl:"Convierte tu contenido de <em>BookTok</em><br>en ingresos reales.",sub:"Tus reseñas ya mueven a la gente. ALINEA les da algo que comprar."},
     lifestyle:{hl:"Tu estética.<br><em>Su galaxia de conocimiento.</em>",sub:"La galaxia es visual, hermosa y perfecta para contenido de lifestyle."},
-    ugc:{hl:"Contenido auténtico.<br><em>Comisiones reales.</em>",sub:"UGC que convierte — porque el producto se vende solo en cámara."},
-    students:{hl:"Los estudiantes leen.<br><em>Ayúdalos a ver las conexiones.</em>",sub:"Estudia mejor, conecta ideas, construye una galaxia de conocimiento."},
-    productivity:{hl:"Para la comunidad<br><em>del segundo cerebro.</em>",sub:"ALINEA es la herramienta PKM visual que tu audiencia esperaba."},
+    ugc:{hl:"Contenido auténtico.<br><em>Comisiones reales.</em>",sub:"Contenido real que convierte — porque el producto se vende solo en cámara."},
+    students:{hl:"Los estudiantes leen.<br><em>Ayúdalos a ver las conexiones.</em>",sub:"Ayuda a que estudien mejor, conecten ideas, construyan su galaxia de conocimiento."},
+    productivity:{hl:"Para la comunidad<br><em>del segundo cerebro.</em>",sub:"ALINEA es la herramienta visual de conocimiento que tu audiencia esperaba."},
   }
 };
 
@@ -1020,11 +1214,11 @@ function setCat(key,btn){
   document.querySelectorAll('.cat-pill,.hero-cat-pill').forEach(p=>p.classList.remove('on'));
   // activate the clicked pill and its twin
   const catMap={
-    booktok:['catBooktok','heroCatBooktok'],
-    lifestyle:['catLifestyle','heroCatLifestyle'],
-    ugc:['catUgc','heroCatUgc'],
-    students:['catStudents','heroCatStudents'],
-    productivity:['catProductivity','heroCatProductivity'],
+    booktok:['catBooktok','heroCatBooktok','splashCatBooktok'],
+    lifestyle:['catLifestyle','heroCatLifestyle','splashCatLifestyle'],
+    ugc:['catUgc','heroCatUgc','splashCatUgc'],
+    students:['catStudents','heroCatStudents','splashCatStudents'],
+    productivity:['catProductivity','heroCatProductivity','splashCatProductivity'],
   };
   const ids=catMap[key]||[];
   ids.forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('on');});
@@ -1081,11 +1275,12 @@ const T={
     videoLabel:'How many videos per month?',
     missionEye:'Why this matters',missionHead:'Help <span class="mission-alinea alinea-shimmer">ALINEA</span> make<br><em>visible the invisible.</em>',
     missionSub:'Every reader has ideas, connections, and insights scattered across dozens of books. ALINEA makes them visible. Your content helps readers find a home for their knowledge.',
-    howEye:'How it works',howHead:'Four steps.<br><em>That\'s it.</em>',
-    step1h:'Try ALINEA free',step1p:'Download the Beta — no card, no sign-up. Add your books, build your galaxy. Let the product speak for itself.',
-    step2h:'Make your video',step2p:'Show your galaxy to your audience. Your style, your books, your words. Authenticity converts — we never script anything.',
-    step3h:'Earn $15 per sale',step3p:'Your unique link in the bio. Every time someone buys through your link — today or months from now — you earn.',
-    step4h:'Complete your Lemon profile',step4p:"Apply, complete your profile — bio, social links, monthly views — and Lemon approves you. Set your payout method; validating your bank account takes Lemon 1 day, 2 max, then your link with SPARK69 is ready to share.",
+    howEye:'How it works',howHead:'Five steps.<br><em>That\'s it.</em>',
+    step1h:'Try ALINEA free',step1p:'Download the Beta — no card, no sign-up. Add your books, build your galaxy. Let the product speak for itself. (Genuinely interested in Pro? Message us — we\'ll set you up free.)',
+    step2h:'Apply to the program',step2p:'Apply, complete your profile — bio, social links, monthly views — and Lemon approves you. Set your payout method; validating your bank account takes Lemon 1 day, 2 max.',
+    step3h:'We send you your link',step3p:"Once you're approved, we send you your personal link — your affiliate ID and the SPARK69 discount, already combined and ready to share.",
+    step4h:'Make your video',step4p:"Show your galaxy to your audience — your style, your books, your essence. Not a commercial — real content from a real reader. Work your link in creatively — caption, pinned comment, wherever feels natural — so people actually use it.",
+    step5h:'Earn $15 per sale',step5p:'Every sale through your link earns you $15 — today or months from now, tracked automatically and paid by Lemon Squeezy.',
     payEye:'Powered by Lemon Squeezy',lsHead:'Commissions paid via Lemon Squeezy',
     lsDesc:'ALINEA uses Lemon Squeezy as its payment and affiliate platform — one of the most trusted merchant-of-record services for digital products. Your affiliate link is tracked automatically, and commissions are paid out directly to your account.',
     lsLink:'Learn how Lemon Squeezy affiliates work →',
@@ -1111,6 +1306,7 @@ const T={
     formNote:'No commitments. No exclusivity. We\'ll reach out within 48h. #MakingVisibleTheInvisible',
     formSuccess:'✓ Application received — we\'ll be in touch within 48h',
     faqEye:'✦ FAQ',faqHead:'Frequent questions.<br><em>Honest answers.</em>',
+    faqShowMore:'Show more questions',faqShowLess:'Show fewer questions',
     faqQ1:'💸 When do I get paid?',
     faqA1:"Lemon Squeezy is the neutral intermediary between you and ALINEA — they handle all payments, track every sale, and deposit your commissions directly to your account. No middlemen, no delays, full transparency for both sides.",
     faqQ2:'🍪 How does the 365-day tracking work?',
@@ -1131,7 +1327,12 @@ const T={
     faqA9:"Lemon takes 1 day, 2 max, to validate the bank account you set up for payouts. If it's been longer than that and you haven't heard back, it's worth resubmitting your application to the Creator Program. Once approved, your unique link with the SPARK69 discount is ready to share.",
     faqQ10:"🤔 What if my content doesn't sell?",
     faqA10:"No risk, no penalty. You keep your affiliate account and can try again with a different format. We're here to help you find what resonates with your audience — not to pressure you.",
+    faqQ11:"🔗 What if someone buys without using my link?",
+    faqA11:"Commission is only attributed when someone buys through your unique link. If they mention your code but visit the site on their own, Lemon has no way of knowing it was you. That's why it's worth saying clearly in your video — \"link in the description\" — so no one gets lost along the way.",
+    faqQ12:"📎 Which link do I actually use?",
+    faqA12:"Use the link we send you directly, not the one shown in your Lemon Squeezy affiliate profile. Lemon's own link carries your affiliate ID but not the SPARK69 discount — the one we send you combines both, so your audience sees the discounted price and your commission still tracks correctly. Make it easy for them: a simple \"link in bio\" or \"link in the description\" while your video is live works better than expecting people to remember a code.",
     promiseFloatTxt:'Our promise',promiseCloseTxt:'✕ close',promiseOverlayEye:'✦ Our promise',
+    footerTermsLink:'Terms & Conditions',termsOverlayEye:'✦ Terms & Conditions',termsHead:'ALINEA Creator Affiliate Program',termsCloseTxt:'✕ close',
     promiseP1:'ALINEA will never ask you to compromise your essence, your style, or the quality of your content just to make a sale. We are not here to turn you into an ad.',
     promiseP2:'We are here because your creativity — your unique way of making videos — is exactly what can help other readers, productivity enthusiasts, or anyone who discovers ALINEA find something that genuinely changes how they experience books and knowledge.',
     promiseP3:'Your audience trusts you.<br>We want to honor that trust, not exploit it.',
@@ -1172,11 +1373,12 @@ const T={
     videoLabel:'¿Cuántos videos por mes?',
     missionEye:'Por qué importa',missionHead:'Ayuda a <span class="mission-alinea alinea-shimmer">ALINEA</span> a hacer<br><em>visible lo invisible.</em>',
     missionSub:'Cada lector tiene ideas, conexiones e insights dispersos en docenas de libros. ALINEA los hace visibles por primera vez. Tu contenido ayuda a los lectores a encontrar un hogar para su conocimiento.',
-    howEye:'Cómo funciona',howHead:'Cuatro pasos.<br><em>Eso es todo.</em>',
-    step1h:'Prueba ALINEA gratis',step1p:'Descarga la Beta — sin tarjeta, sin registro. Agrega tus libros, construye tu galaxia. Deja que el producto hable por sí solo.',
-    step2h:'Haz tu video',step2p:'Muestra tu galaxia a tu audiencia. Tu estilo, tus libros, tus palabras. La autenticidad convierte — nunca escribimos guiones.',
-    step3h:'Gana $15 por venta',step3p:'Tu link nunca expira. Cada click abre una ventana de 365 días — el máximo permitido. Publica una vez, gana para siempre. Pagado automáticamente por Lemon Squeezy.',
-    step4h:'Completa tu perfil en Lemon',step4p:'Aplica, completa tu perfil — bio, redes y views mensuales — y Lemon te aprueba. Configura tu método de pago; validar tu cuenta bancaria le toma a Lemon 1 día, máximo 2, y luego tu link con SPARK69 queda listo.',
+    howEye:'Cómo funciona',howHead:'Cinco pasos.<br><em>Eso es todo.</em>',
+    step1h:'Prueba ALINEA gratis',step1p:'Descarga la Beta — sin tarjeta, sin registro. Agrega tus libros, construye tu galaxia. Deja que el producto hable por sí solo. (¿De verdad te late Pro? Escríbenos — te damos acceso gratis.)',
+    step2h:'Aplica al programa',step2p:'Aplica, completa tu perfil — bio, redes y views mensuales — y Lemon te aprueba. Configura tu método de pago; validar tu cuenta bancaria le toma a Lemon 1 día, máximo 2.',
+    step3h:'Te mandamos tu link',step3p:'Una vez aprobado, te mandamos tu link personal — tu ID de afiliado y el descuento SPARK69, ya combinados y listos para compartir.',
+    step4h:'Haz tu video',step4p:'Muestra tu galaxia a tu audiencia — tu estilo, tus libros, tu esencia. Nada de comercial — contenido real de un lector real. Mete tu link de forma creativa — descripción, comentario fijado, donde se sienta natural — para que la gente sí lo use.',
+    step5h:'Gana $15 por venta',step5p:'Cada venta a través de tu link te da $15 — hoy o meses después, rastreado automático y pagado por Lemon Squeezy.',
     payEye:'Impulsado por Lemon Squeezy',lsHead:'Comisiones pagadas vía Lemon Squeezy',
     lsDesc:'ALINEA usa Lemon Squeezy como plataforma de pagos y afiliados — uno de los servicios merchant-of-record más confiables para productos digitales. Tu link de afiliado se rastrea automáticamente y las comisiones se pagan directamente a tu cuenta.',
     lsLink:'Conoce cómo funcionan los afiliados de Lemon Squeezy →',
@@ -1202,6 +1404,7 @@ const T={
     formNote:'Sin compromisos. Sin exclusividad. Te contactamos en 48h. #MakingVisibleTheInvisible',
     formSuccess:'✓ Aplicación recibida — te escribimos en menos de 48h',
     faqEye:'✦ FAQ',faqHead:'Preguntas frecuentes.<br><em>Respuestas honestas.</em>',
+    faqShowMore:'Ver más preguntas',faqShowLess:'Ver menos preguntas',
     faqQ1:'💸 ¿Cuándo me pagan?',
     faqA1:"Lemon Squeezy es el intermediario neutral entre tú y ALINEA — ellos manejan todos los pagos, registran cada venta, y depositan tus comisiones directo a tu cuenta. Sin intermediarios extra, sin retrasos, total transparencia para ambos lados.",
     faqQ2:'🍪 ¿Cómo funciona el tracking de 365 días?',
@@ -1222,7 +1425,12 @@ const T={
     faqA9:"Lemon tarda 1 día, máximo 2, en validar la cuenta bancaria que configures para los pagos. Si pasó más tiempo que eso y no has recibido respuesta, vale la pena volver a mandar tu solicitud al programa de afiliados. Una vez aprobado, tu link único con el descuento SPARK69 está listo para compartir.",
     faqQ10:'🤔 ¿Qué pasa si mi contenido no vende?',
     faqA10:"Ningún riesgo, ninguna penalización. Conservas tu cuenta de afiliado y puedes intentar de nuevo con un formato diferente. Estamos aquí para ayudarte a encontrar lo que resuena con tu audiencia — no para presionarte.",
+    faqQ11:'🔗 ¿Qué pasa si alguien compra sin usar mi link?',
+    faqA11:"La comisión solo se atribuye cuando la persona compra a través de tu link único. Si mencionan tu código pero entran a la página por su cuenta, Lemon no puede saber que viniste tú. Por eso vale la pena decir claramente en tu video — \"el link está en la descripción\" — así nadie se pierde en el camino.",
+    faqQ12:'📎 ¿Qué link debo usar exactamente?',
+    faqA12:"Usa el link que te mandamos directamente, no el que aparece en tu perfil de afiliado de Lemon Squeezy. El de Lemon trae tu ID de afiliado pero no el código de descuento SPARK69 — el que te mandamos combina los dos, así tu audiencia ve el precio con descuento y a ti te sigue cayendo la comisión correctamente. Hazlo fácil para ellos: un simple \"link en mi bio\" o \"link en la descripción\" mientras tu video esté activo funciona mejor que esperar que la gente recuerde un código.",
     promiseFloatTxt:'Nuestra promesa',promiseCloseTxt:'✕ cerrar',promiseOverlayEye:'✦ Nuestra promesa',
+    footerTermsLink:'Términos y Condiciones',termsOverlayEye:'✦ Términos y Condiciones',termsHead:'Programa de Afiliados de ALINEA',termsCloseTxt:'✕ cerrar',
     promiseP1:'ALINEA nunca te pedirá comprometer tu esencia, tu estilo o la calidad de tu contenido solo para vender. No estamos aquí para convertirte en un anuncio.',
     promiseP2:'Estamos aquí porque tu creatividad — tu forma única de hacer videos — es exactamente lo que puede ayudar a otros lectores, entusiastas de la productividad, o a quien descubra ALINEA a encontrar algo que realmente cambia cómo viven los libros y el conocimiento.',
     promiseP3:'Tu audiencia confía en ti.<br>Queremos honrar esa confianza, no explotarla.',
@@ -1248,11 +1456,16 @@ function setLang(l,btn){
   document.getElementById('heroCta').textContent=d.heroCta;
   // personalize
   const clEl=document.getElementById('colorLabel');if(clEl)clEl.textContent=d.colorLabel;
+  const splCl=document.getElementById('splashColorLabel');if(splCl)splCl.textContent=d.colorLabel;
+  const splSub=document.getElementById('splashSub');if(splSub)splSub.textContent=d.badgeTxt;
   const catIds=['catBooktok','catLifestyle','catUgc','catStudents','catProductivity'];
   catIds.forEach((id,i)=>{const el=document.getElementById(id);if(el&&d.cats[i])el.textContent=d.cats[i];});
   const heroCatIds=['heroCatBooktok','heroCatLifestyle','heroCatUgc','heroCatStudents','heroCatProductivity'];
   heroCatIds.forEach((id,i)=>{const el=document.getElementById(id);if(el&&d.cats[i])el.textContent=d.cats[i];});
+  const splashCatIds=['splashCatBooktok','splashCatLifestyle','splashCatUgc','splashCatStudents','splashCatProductivity'];
+  splashCatIds.forEach((id,i)=>{const el=document.getElementById(id);if(el&&d.cats[i])el.textContent=d.cats[i];});
   const hcl=document.getElementById('heroCatsLabel');if(hcl&&d.heroCatsLabel)hcl.textContent=d.heroCatsLabel;
+  const splCatsLbl=document.getElementById('splashCatsLabel');if(splCatsLbl&&d.heroCatsLabel)splCatsLbl.textContent=d.heroCatsLabel;
   // shots
   document.getElementById('shotsEye').textContent=d.shotsEye;
   document.getElementById('shotsHead').innerHTML=d.shotsHead;
@@ -1296,6 +1509,8 @@ function setLang(l,btn){
   document.getElementById('step3h').textContent=d.step3h;document.getElementById('step3p').textContent=d.step3p;
   const s4h=document.getElementById('step4h');const s4p=document.getElementById('step4p');
   if(s4h&&d.step4h)s4h.textContent=d.step4h;if(s4p&&d.step4p)s4p.textContent=d.step4p;
+  const s5h=document.getElementById('step5h');const s5p=document.getElementById('step5p');
+  if(s5h&&d.step5h)s5h.textContent=d.step5h;if(s5p&&d.step5p)s5p.textContent=d.step5p;
   // payments
   document.getElementById('payEye').textContent=d.payEye;
   document.getElementById('lsHead').textContent=d.lsHead;
@@ -1334,13 +1549,25 @@ function setLang(l,btn){
   // faq
   const faqEl=document.getElementById('faqEye');if(faqEl)faqEl.textContent=d.faqEye;
   const faqHeadEl=document.getElementById('faqHead');if(faqHeadEl)faqHeadEl.innerHTML=d.faqHead;
-  for(let i=1;i<=10;i++){
+  const ftmTxt=document.getElementById('faqToggleMoreTxt');
+  if(ftmTxt&&d.faqShowMore&&d.faqShowLess){
+    ftmTxt.dataset.more=d.faqShowMore;ftmTxt.dataset.less=d.faqShowLess;
+    const ftmBtn=document.getElementById('faqToggleMore');
+    ftmTxt.textContent=(ftmBtn&&ftmBtn.classList.contains('open'))?d.faqShowLess:d.faqShowMore;
+  }
+  for(let i=1;i<=12;i++){
     const qEl=document.getElementById('faqQ'+i);if(qEl&&d['faqQ'+i])qEl.textContent=d['faqQ'+i];
     const aEl=document.getElementById('faqA'+i);if(aEl&&d['faqA'+i])aEl.innerHTML=d['faqA'+i];
   }
   // promise floating + overlay
   const pfEl=document.getElementById('promiseFloatTxt');if(pfEl&&d.promiseFloatTxt)pfEl.textContent=d.promiseFloatTxt;
   const pcEl=document.getElementById('promiseCloseTxt');if(pcEl&&d.promiseCloseTxt)pcEl.textContent=d.promiseCloseTxt;
+  const ftl=document.getElementById('footerTermsLink');if(ftl&&d.footerTermsLink)ftl.textContent=d.footerTermsLink;
+  const toe=document.getElementById('termsOverlayEye');if(toe&&d.termsOverlayEye)toe.textContent=d.termsOverlayEye;
+  const th2=document.getElementById('termsHead');if(th2&&d.termsHead)th2.textContent=d.termsHead;
+  const tct=document.getElementById('termsCloseTxt');if(tct&&d.termsCloseTxt)tct.textContent=d.termsCloseTxt;
+  const tEn=document.getElementById('termsBody'),tEs=document.getElementById('termsBodyES');
+  if(tEn&&tEs){tEn.style.display=l==='es'?'none':'block';tEs.style.display=l==='es'?'block':'none';}
   const poEl=document.getElementById('promiseOverlayEye');if(poEl&&d.promiseOverlayEye)poEl.textContent=d.promiseOverlayEye;
   const pp1=document.getElementById('promiseP1');if(pp1&&d.promiseP1)pp1.textContent=d.promiseP1;
   const pp2=document.getElementById('promiseP2');if(pp2&&d.promiseP2)pp2.textContent=d.promiseP2;
@@ -1434,6 +1661,7 @@ function styleAlineaWords(){
     if(!node.textContent.includes('ALINEA')) return;
     const parent = node.parentNode;
     if(!parent || parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE') return;
+    if(parent.closest('#termsBody,#termsBodyES,#termsHead')) return;
     const span = document.createElement('span');
     span.innerHTML = node.textContent.replace(/ALINEA/g, '<span class="alinea-shimmer">ALINEA</span>');
     parent.replaceChild(span, node);
@@ -1459,8 +1687,22 @@ document.addEventListener('DOMContentLoaded', function(){
   if(!manifesto || !mission) return;
 
   let permanentlyVisible = false;
+  const footerEl = document.querySelector('footer');
+  const BASE_BOTTOM = 32; // 2rem in px
+
+  function avoidFooter(){
+    if(!footerEl) return;
+    const fRect = footerEl.getBoundingClientRect();
+    const overlap = window.innerHeight - fRect.top;
+    if(overlap > 0){
+      btn.style.bottom = (overlap + 24) + 'px';
+    }else{
+      btn.style.bottom = BASE_BOTTOM + 'px';
+    }
+  }
 
   function onScroll(){
+    avoidFooter();
     if(permanentlyVisible) return;
 
     const mRect = manifesto.getBoundingClientRect();
@@ -1479,10 +1721,31 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', avoidFooter, {passive:true});
   onScroll();
 });
 
 /* ═══ PROMISE OVERLAY ═══ */
+function toggleTerms(){
+  const ov = document.getElementById('termsOverlay');
+  const isOpen = ov.style.display === 'flex';
+  if(!isOpen){
+    const en=document.getElementById('termsBody'),es=document.getElementById('termsBodyES');
+    if(en&&es){en.style.display = curLang==='es'?'none':'block'; es.style.display = curLang==='es'?'block':'none';}
+  }
+  ov.style.display = isOpen ? 'none' : 'flex';
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+  const canvas = document.querySelector('canvas');
+  const nav = document.querySelector('nav');
+  if(canvas) canvas.style.display = isOpen ? '' : 'none';
+  if(nav) nav.style.visibility = isOpen ? '' : 'hidden';
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    const tov=document.getElementById('termsOverlay');
+    if(tov && tov.style.display==='flex') toggleTerms();
+  }
+});
 function togglePromise(){
   const ov = document.getElementById('promiseOverlay');
   const isOpen = ov.style.display === 'flex';
@@ -1512,6 +1775,21 @@ function toggleFaq(btn){
   // open this one if it wasn't open
   if(!isOpen) item.classList.add('open');
 }
+function toggleFaqExtra(btn){
+  const extra=document.getElementById('faqExtra');
+  const list=document.getElementById('faqExtraList');
+  const txt=document.getElementById('faqToggleMoreTxt');
+  const isOpen=btn.classList.contains('open');
+  if(isOpen){
+    extra.style.maxHeight='0px';
+    btn.classList.remove('open');
+    txt.textContent=txt.dataset.more||'Show more questions';
+  }else{
+    extra.style.maxHeight=list.scrollHeight+'px';
+    btn.classList.add('open');
+    txt.textContent=txt.dataset.less||'Show fewer questions';
+  }
+}
 
 /* ═══ NAV SCROLL ═══ */
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>40));
@@ -1522,11 +1800,33 @@ if(innerWidth>600){
   document.querySelectorAll('.ri').forEach(el=>ob.observe(el));
 }else{document.querySelectorAll('.ri').forEach(el=>el.classList.add('show'));}
 
-/* Steps stagger */
-const stepObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.step').forEach((s,i)=>setTimeout(()=>s.classList.add('show'),i*180));}});
-},{threshold:.2});
-const stepsEl=document.querySelector('.steps');if(stepsEl)stepObs.observe(stepsEl);
+/* Steps carousel */
+(function(){
+  const track=document.querySelector('.steps-carousel');if(!track)return;
+  const slides=[...track.querySelectorAll('.step')];
+  const dots=[...track.querySelectorAll('.steps-dot')];
+  let current=1,timer=null,isHovering=false;
+  const FAST=4500,SLOW=35000;
+  function goTo(n){
+    if(n===current)return;
+    const dir=n>current?'up':'down';
+    slides.forEach(s=>{
+      const sn=+s.dataset.step;
+      if(sn===current){s.classList.remove('active');s.classList.add(dir==='up'?'exit-up':'exit-down');}
+      else if(sn===n){s.classList.remove('exit-up','exit-down');requestAnimationFrame(()=>s.classList.add('active'));}
+      else{s.classList.remove('active','exit-up','exit-down');}
+    });
+    dots.forEach(d=>d.classList.toggle('active',+d.dataset.goto===n));
+    current=n;
+  }
+  function next(){goTo(current>=5?1:current+1);}
+  function startAuto(){stopAuto();timer=setInterval(next,isHovering?SLOW:FAST);}
+  function stopAuto(){if(timer)clearInterval(timer);}
+  dots.forEach(d=>d.addEventListener('click',(e)=>{e.preventDefault();goTo(+d.dataset.goto);startAuto();d.blur();}));
+  track.addEventListener('mouseenter',()=>{isHovering=true;startAuto();});
+  track.addEventListener('mouseleave',()=>{isHovering=false;startAuto();});
+  startAuto();
+})();
 
 /* ═══ FORM ═══ */
 function handleSubmit(btn){
@@ -1643,6 +1943,96 @@ document.addEventListener('DOMContentLoaded',()=>{
   <button onclick="togglePromise()" style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--a2);background:rgba(6,5,15,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(var(--a-rgb),.35);padding:.75rem 2rem;border-radius:50px;cursor:pointer;transition:all .35s;display:inline-flex;align-items:center;gap:.6rem;box-shadow:0 0 28px rgba(var(--a-rgb),.25),0 8px 32px rgba(0,0,0,.6);white-space:nowrap;">
     <span style="opacity:.7;">✦</span> <span id="promiseFloatTxt">Our promise to you</span>
   </button>
+</div>
+
+<!-- TERMS OVERLAY -->
+<div id="termsOverlay" onclick="if(event.target===this)toggleTerms()" style="display:none;position:fixed;inset:0;z-index:2147483647;background:#06050f;align-items:center;justify-content:center;padding:2rem;">
+  <div style="max-width:680px;width:100%;max-height:84vh;overflow-y:auto;text-align:left;position:relative;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem 2.5rem 2.2rem;">
+    <button onclick="toggleTerms()" style="position:absolute;top:1.4rem;right:1.6rem;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(var(--a-rgb),.4);background:none;border:none;cursor:pointer;transition:color .2s;" onmouseenter="this.style.color='var(--a2)'" onmouseleave="this.style.color='rgba(var(--a-rgb),.4)'" id="termsCloseTxt">✕ close</button>
+    <span style="font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(var(--a-rgb),.45);display:block;margin-bottom:1rem;" id="termsOverlayEye">✦ Terms &amp; Conditions</span>
+    <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;margin-bottom:1.6rem;color:var(--text);" id="termsHead">ALINEA Creator Affiliate Program</h3>
+    <div style="font-size:.82rem;color:rgba(240,238,255,.72);line-height:1.85;" id="termsBody">
+
+      <p style="margin-bottom:1.2rem;"><strong style="color:var(--a2);">By applying to the Creator Affiliate Program through Lemon Squeezy, you confirm you've read this page and agree to the terms below.</strong> If anything here is unclear, message us before applying.</p>
+
+      <h4 class="terms-point-title">1. How commission is attributed.</h4>
+      <p style="margin-bottom:.6rem;"> You earn commission only when a sale happens through your unique affiliate link — the one tied to your account in Lemon Squeezy. Lemon Squeezy creates an anonymous tracking identifier when someone clicks your link, and that identifier stays active for <span class="terms-key">365 days</span>. Any sale made within that window, through that link, is yours.</p>
+
+      <p style="margin-bottom:1.2rem;">If someone hears about ALINEA from your video, your bio, or a code you mentioned, but enters the site on their own — without clicking your link — and completes a purchase, <span class="terms-key">no referral is created and no commission is owed to you</span>. This isn't unique to ALINEA: it's how affiliate tracking works everywhere. The best way to protect your commission is to make your link the easiest, most obvious thing to click — in your caption, your pinned comment, or your bio while your content is live.</p>
+
+      <h4 class="terms-point-title">2. The SPARK69 discount and your link are two different things.</h4>
+      <p style="margin-bottom:.6rem;"> The discount code gives buyers <span class="terms-key">$20 off</span>; your affiliate ID is what attributes the sale to you. Your personal link — sent to you once approved — combines both. Using a link that only carries the discount, or only your affiliate ID, will not give your audience the full experience: <span class="terms-key">always use the link we send you</span>.</p>
+
+      <h4 class="terms-point-title">3. Commission structure.</h4>
+      <p style="margin-bottom:.6rem;"> Standard commission is <span class="terms-key">$15 per sale — more than 20% of the product's price</span>. <span class="terms-key">There is no cap on total earnings</span> and no fine print beyond what's written here. Lemon Squeezy measures every sale automatically; we don't track it manually and we don't decide who gets paid — Lemon Squeezy does, based on its own referral data.</p>
+
+      <h4 class="terms-point-title">4. Approval and payout.</h4>
+      <p style="margin-bottom:.6rem;"> After applying, Lemon Squeezy reviews your profile (bio, social links, estimated monthly views). Validating the bank account or PayPal you register for payouts typically takes <span class="terms-key">1 day, 2 at most</span>. If significantly more time passes with no update, it's worth resubmitting your application. Once approved, we send you your combined link directly — it does not appear automatically inside your Lemon Squeezy dashboard.</p>
+
+      <h4 class="terms-point-title">5. What we expect from your content.</h4>
+      <p style="margin-bottom:.6rem;"> <span class="terms-key">One genuine video is enough to participate</span> — more is welcome, never required. Content should reflect your actual experience with ALINEA: your galaxy, your books, your way of creating. <span class="terms-key">It should not be scripted to feel like a commercial</span>, and it should not misrepresent what ALINEA does. ALINEA is a personal knowledge tool — your library, your highlights, and the connections between what you've read, kept locally on your device. It is not a marketplace for free or pirated books, and content suggesting otherwise is not permitted.</p>
+
+      <h4 class="terms-point-title">6. No risk, no penalty.</h4>
+      <p style="margin-bottom:.6rem;"> If your content doesn't generate sales, <span class="terms-key">nothing happens to your affiliate account or your standing with us</span>. You're welcome to try a different angle or format at your own pace.</p>
+
+      <h4 class="terms-point-title">7. Free Pro access.</h4>
+      <p style="margin-bottom:.6rem;"> If you want to try ALINEA Pro before posting anything, message us directly — on Instagram or by email — and, if it's a genuine fit, <span class="terms-key">we'll set you up with full access at no cost</span>. This is separate from, and does not require, your affiliate application.</p>
+
+      <h4 class="terms-point-title">8. Sharing your content with us.</h4>
+      <p style="margin-bottom:.6rem;"> Once your video is published, we ask that you share the link and basic metrics (views, likes) with us. <span class="terms-key">We may repost or share your content</span>, tagging your account, for additional exposure — we will not do this without the content being yours and public.</p>
+
+      <h4 class="terms-point-title">9. No exclusivity, no commitment.</h4>
+      <p style="margin-bottom:.6rem;"> Joining the program doesn't bind you to ALINEA exclusively, and <span class="terms-key">you can stop participating at any time</span>. There's no minimum activity required to keep your affiliate account active.</p>
+
+      <h4 class="terms-point-title">10. Payments and the role of Lemon Squeezy.</h4>
+      <p style="margin-bottom:.6rem;"> <span class="terms-key">All payments</span> — what your audience pays, and what you earn — <span class="terms-key">are processed by Lemon Squeezy</span>, acting as the payment platform for both sides. ALINEA does not handle, hold, or move your commission manually at any point.</p>
+
+      <h4 class="terms-point-title">11. The earnings calculator is a projection, not a guarantee.</h4>
+      <p style="margin-bottom:0;"> The numbers you see in the calculator are estimates based on general conversion benchmarks, not a real or guaranteed figure. Your actual results may land close to these projections, above them, or below them — <span class="terms-key">there is no assurance that your earnings will match what the calculator shows</span>. Use it as a planning reference, not as a promise.</p>
+
+    </div>
+
+    <div style="display:none;font-size:.82rem;color:rgba(240,238,255,.72);line-height:1.85;" id="termsBodyES">
+
+      <p style="margin-bottom:1.2rem;"><strong style="color:var(--a2);">Al aplicar al Programa de Afiliados a través de Lemon Squeezy, confirmas que leíste esta página y aceptas los términos de abajo.</strong> Si algo aquí no queda claro, escríbenos antes de aplicar.</p>
+
+      <h4 class="terms-point-title">1. Cómo se atribuye la comisión.</h4>
+      <p style="margin-bottom:.6rem;"> Ganas comisión únicamente cuando una venta sucede a través de tu link único de afiliado — el que está vinculado a tu cuenta en Lemon Squeezy. Lemon Squeezy crea un identificador anónimo de rastreo cuando alguien hace clic en tu link, y ese identificador permanece activo <span class="terms-key">365 días</span>. Cualquier venta dentro de esa ventana, a través de ese link, es tuya.</p>
+
+      <p style="margin-bottom:1.2rem;">Si alguien se entera de ALINEA por tu video, tu bio, o un código que mencionaste, pero entra al sitio por su cuenta — sin hacer clic en tu link — y completa una compra, <span class="terms-key">no se crea ningún referido y no se te debe ninguna comisión</span>. Esto no es exclusivo de ALINEA: así funciona el rastreo de afiliados en todas partes. La mejor forma de proteger tu comisión es hacer que tu link sea lo más fácil y obvio de encontrar — en tu descripción, tu comentario fijado, o tu bio mientras tu contenido esté activo.</p>
+
+      <h4 class="terms-point-title">2. El descuento SPARK69 y tu link son dos cosas distintas.</h4>
+      <p style="margin-bottom:.6rem;"> El código de descuento le da a quien compra <span class="terms-key">$20 de descuento</span>; tu ID de afiliado es lo que atribuye la venta a ti. Tu link personal — que te enviamos una vez aprobado — combina ambos. Usar un link que solo trae el descuento, o solo tu ID de afiliado, no le dará a tu audiencia la experiencia completa: <span class="terms-key">usa siempre el link que te mandamos</span>.</p>
+
+      <h4 class="terms-point-title">3. Estructura de comisión.</h4>
+      <p style="margin-bottom:.6rem;"> La comisión estándar es <span class="terms-key">$15 por venta — más del 20% del precio del producto</span>. <span class="terms-key">No hay tope en las ganancias totales</span> ni letra pequeña más allá de lo escrito aquí. Lemon Squeezy mide cada venta automáticamente; nosotros no lo rastreamos a mano ni decidimos quién recibe el pago — Lemon Squeezy lo hace, con base en sus propios datos de referidos.</p>
+
+      <h4 class="terms-point-title">4. Aprobación y pago.</h4>
+      <p style="margin-bottom:.6rem;"> Después de aplicar, Lemon Squeezy revisa tu perfil (bio, redes sociales, views mensuales estimados). Validar la cuenta bancaria o PayPal que registras para tus pagos normalmente toma <span class="terms-key">1 día, máximo 2</span>. Si pasa considerablemente más tiempo sin noticias, vale la pena volver a mandar tu solicitud. Una vez aprobado, te mandamos tu link combinado directamente — no aparece automático dentro de tu panel de Lemon Squeezy.</p>
+
+      <h4 class="terms-point-title">5. Qué esperamos de tu contenido.</h4>
+      <p style="margin-bottom:.6rem;"> <span class="terms-key">Un solo video genuino es suficiente para participar</span> — más es bienvenido, nunca obligatorio. El contenido debe reflejar tu experiencia real con ALINEA: tu galaxia, tus libros, tu forma de crear. <span class="terms-key">No debe sentirse como un comercial con guión</span>, ni debe representar mal lo que ALINEA hace. ALINEA es una herramienta personal de conocimiento — tu biblioteca, tus subrayados, y las conexiones entre lo que has leído, guardado localmente en tu dispositivo. No es un lugar para conseguir libros gratis o piratas, y contenido que sugiera lo contrario no está permitido.</p>
+
+      <h4 class="terms-point-title">6. Sin riesgo, sin penalización.</h4>
+      <p style="margin-bottom:.6rem;"> Si tu contenido no genera ventas, <span class="terms-key">no pasa nada con tu cuenta de afiliado ni con tu relación con nosotros</span>. Puedes probar otro ángulo o formato a tu propio ritmo.</p>
+
+      <h4 class="terms-point-title">7. Acceso Pro gratis.</h4>
+      <p style="margin-bottom:.6rem;"> Si quieres probar ALINEA Pro antes de publicar algo, escríbenos directamente — por Instagram o correo — y, si de verdad hay buen fit, <span class="terms-key">te damos acceso completo sin costo</span>. Esto es independiente de tu solicitud de afiliado y no la requiere.</p>
+
+      <h4 class="terms-point-title">8. Compartir tu contenido con nosotros.</h4>
+      <p style="margin-bottom:.6rem;"> Una vez que tu video esté publicado, te pedimos que nos compartas el link y métricas básicas (views, likes). <span class="terms-key">Podemos repostear o compartir tu contenido</span>, etiquetando tu cuenta, para darte más exposición — nunca haríamos esto sin que el contenido sea tuyo y público.</p>
+
+      <h4 class="terms-point-title">9. Sin exclusividad, sin compromiso.</h4>
+      <p style="margin-bottom:.6rem;"> Unirte al programa no te ata a ALINEA de forma exclusiva, y <span class="terms-key">puedes dejar de participar cuando quieras</span>. No hay actividad mínima requerida para mantener tu cuenta de afiliado activa.</p>
+
+      <h4 class="terms-point-title">10. Pagos y el rol de Lemon Squeezy.</h4>
+      <p style="margin-bottom:.6rem;"> <span class="terms-key">Todos los pagos</span> — lo que tu audiencia paga, y lo que tú ganas — <span class="terms-key">son procesados por Lemon Squeezy</span>, actuando como la plataforma de pago para ambos lados. ALINEA no maneja, retiene, ni mueve tu comisión manualmente en ningún momento.</p>
+
+      <h4 class="terms-point-title">11. La calculadora de ganancias es una proyección, no una garantía.</h4>
+      <p style="margin-bottom:0;"> Los números que ves en la calculadora son estimados basados en benchmarks generales de conversión, no una cifra real ni garantizada. Tus resultados reales pueden acercarse a estas proyecciones, superarlas, o quedarse por debajo — <span class="terms-key">no hay ninguna garantía de que tus ganancias coincidan con lo que muestra la calculadora</span>. Úsala como referencia para planear, no como una promesa.</p>
+
+    </div>
+  </div>
 </div>
 
 <!-- PROMISE OVERLAY — direct child of body, no stacking context parent -->
