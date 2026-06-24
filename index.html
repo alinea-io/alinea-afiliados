@@ -79,8 +79,8 @@ section{position:relative;z-index:1;}
 #hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 6% 60px;}
 .hero-orb{width:clamp(150px,13vw,230px);height:clamp(150px,13vw,230px);border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 70px rgba(var(--a-rgb),.6),0 0 160px rgba(var(--a-rgb),.3);margin:0 auto 2rem;animation:orbFloat 7s ease-in-out infinite;}
 
-#splash{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6%;transition:opacity .7s cubic-bezier(.16,1,.3,1),visibility .7s;}
-#splash.closing{opacity:0;pointer-events:none;}
+#splash{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6%;transition:opacity 1.1s cubic-bezier(.22,1,.36,1),filter 1.1s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.22,1,.36,1),visibility 1.1s;}
+#splash.closing{opacity:0;filter:blur(14px);transform:scale(1.05);pointer-events:none;}
 #splash.gone{display:none;}
 .splash-orb{width:130px;height:130px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#e0d4ff 14%,#a78bfa 38%,#7c3aed 64%,#3b0764 100%);box-shadow:0 0 60px rgba(var(--a-rgb),.6),0 0 140px rgba(var(--a-rgb),.3);margin-bottom:2rem;animation:orbFloat 7s ease-in-out infinite;}
 .splash-word{font-family:'DM Mono',monospace;font-weight:500;font-size:1.8rem;letter-spacing:.38em;text-transform:uppercase;margin-bottom:.6rem;color:var(--a2);}
@@ -1186,8 +1186,8 @@ function splashSetCat(key,btn){
       splash.classList.add('gone');
       document.body.style.overflow='';
       document.documentElement.style.overflow='';
-    },700);
-  },280);
+    },1150);
+  },420);
 }
 
 /* ═══ CATEGORIES ═══ */
@@ -1851,12 +1851,49 @@ function handleSubmit(btn){
 
   // Drag to scroll
   let isDown=false, startX, scrollLeft;
-  mosaic.addEventListener('mousedown', e=>{isDown=true;startX=e.pageX;scrollLeft=mosaic.scrollLeft;mosaic.style.cursor='grabbing';});
-  document.addEventListener('mouseup',()=>{isDown=false;if(mosaic)mosaic.style.cursor='grab';});
+  mosaic.addEventListener('mousedown', e=>{isDown=true;startX=e.pageX;scrollLeft=mosaic.scrollLeft;mosaic.style.cursor='grabbing';if(window._pauseShotsAuto)window._pauseShotsAuto();});
+  document.addEventListener('mouseup',()=>{isDown=false;if(mosaic)mosaic.style.cursor='grab';if(window._resumeShotsAutoSoon)window._resumeShotsAutoSoon();});
   mosaic.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();mosaic.scrollLeft=scrollLeft-(e.pageX-startX)*1.2;});
 
   window.shotsMoveLeft  = ()=>mosaic.scrollBy({left:-380,behavior:'smooth'});
   window.shotsMoveRight = ()=>mosaic.scrollBy({left: 380,behavior:'smooth'});
+
+  // Slow automatic left-to-right drift, pausing on any user interaction
+  let autoPaused=false, autoRaf=null;
+  let virtualScroll=mosaic.scrollLeft;
+  const AUTO_SPEED=0.4; // px per frame, slow and calm
+  function autoStep(){
+    if(!autoPaused && mosaic){
+      const maxScroll=mosaic.scrollWidth-mosaic.clientWidth;
+      if(maxScroll>0){
+        virtualScroll+=AUTO_SPEED;
+        if(virtualScroll>=maxScroll){
+          virtualScroll=0;
+        }
+        mosaic.scrollLeft=Math.round(virtualScroll);
+      }
+    }else{
+      virtualScroll=mosaic.scrollLeft;
+    }
+    autoRaf=requestAnimationFrame(autoStep);
+  }
+  function pauseAuto(){autoPaused=true;}
+  function resumeAutoSoon(){clearTimeout(mosaic._resumeT);mosaic._resumeT=setTimeout(()=>{autoPaused=false;},1800);}
+  window._pauseShotsAuto=pauseAuto;
+  window._resumeShotsAutoSoon=resumeAutoSoon;
+  mosaic.addEventListener('mouseenter',pauseAuto);
+  mosaic.addEventListener('mouseleave',resumeAutoSoon);
+  mosaic.addEventListener('touchstart',pauseAuto,{passive:true});
+  mosaic.addEventListener('touchend',resumeAutoSoon,{passive:true});
+  mosaic.addEventListener('wheel',()=>{pauseAuto();resumeAutoSoon();},{passive:true});
+  document.querySelectorAll('.shots-arrow').forEach(btn=>btn.addEventListener('click',()=>{pauseAuto();resumeAutoSoon();}));
+  const autoObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ if(!autoRaf) autoRaf=requestAnimationFrame(autoStep); }
+      else { if(autoRaf){cancelAnimationFrame(autoRaf);autoRaf=null;} }
+    });
+  },{threshold:.1});
+  autoObs.observe(mosaic);
 })();
 
 
