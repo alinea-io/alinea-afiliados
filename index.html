@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#06050f" id="metaThemeColor">
 <title>ALINEA — Creator Program</title>
+<meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -249,17 +250,17 @@ section{position:relative;z-index:1;}
 }
 .cvr-table{width:100%;border-collapse:collapse;margin-bottom:1rem;}
 .cvr-table th{
-  font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;
+  font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted);padding:.5rem .8rem;border-bottom:1px solid var(--border);text-align:left;
 }
 .cvr-table td{
-  font-family:'DM Mono',monospace;font-size:.56rem;padding:.55rem .8rem;
-  border-bottom:1px solid rgba(var(--a-rgb),.06);color:rgba(240,238,255,.75);
+  font-family:'DM Mono',monospace;font-size:.7rem;padding:.6rem .8rem;
+  border-bottom:1px solid rgba(var(--a-rgb),.06);color:rgba(240,238,255,.88);
 }
 .cvr-table tr:last-child td{border-bottom:none;}
 .cvr-table td.cvr-name{color:var(--a2);font-weight:500;}
 .cvr-table td.cvr-pct{color:var(--ok);}
-.cvr-source{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.06em;color:var(--dim);line-height:1.7;margin-top:.6rem;}
+.cvr-source{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.04em;color:var(--muted);line-height:1.8;margin-top:.6rem;}
 .cvr-source a{color:rgba(var(--a-rgb),.5);text-decoration:none;}
 .cvr-source a:hover{color:var(--a2);}
 
@@ -273,7 +274,10 @@ section{position:relative;z-index:1;}
 .num-desc{font-size:.82rem;color:rgba(240,238,255,.45);line-height:1.72;}
 
 /* ── CALCULATOR ── */
-#calculator{padding:5rem 6%;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+#calculator{padding:5rem 6%;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+#calcDragBg{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .6s ease;pointer-events:none;}
+#calcDragBg.active{opacity:1;}
+#calculator>*:not(#calcDragBg){position:relative;z-index:1;}
 .calc-inner{max-width:760px;margin:0 auto;text-align:center;}
 .calc-slider-wrap{margin:3rem 0 1rem;}
 .calc-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:1.2rem;}
@@ -293,7 +297,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   background:radial-gradient(ellipse at 50% 110%,rgba(var(--a-rgb),.18) 0%,transparent 70%);
   opacity:0;transition:opacity .4s;pointer-events:none;
 }
-.calc-card canvas.star-bg{
+.calc-card canvas.star-bg,.num-card canvas.star-bg{
   position:absolute;inset:0;width:100%;height:100%;
   opacity:0;transition:opacity .5s;pointer-events:none;
 }
@@ -303,7 +307,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   transform:translateY(-3px) scale(1.01);
 }
 .calc-card:hover::before{opacity:1;}
-.calc-card:hover canvas.star-bg{opacity:1;}
+.calc-card:hover canvas.star-bg,.num-card:hover canvas.star-bg{opacity:1;}
 .calc-card .calc-card-value{position:relative;z-index:1;}
 .calc-card .calc-card-label{position:relative;z-index:1;}
 .calc-card .calc-card-sub{position:relative;z-index:1;}
@@ -317,7 +321,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .calc-card-label{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;}
 .calc-card.mid .calc-card-label{color:var(--a2);}
 .calc-card-value{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:2rem;color:var(--a2);}
-.calc-card-sub{font-family:'DM Mono',monospace;font-size:.48rem;color:var(--dim);margin-top:.4rem;letter-spacing:.08em;}
+.calc-card-sub{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text);margin-top:.4rem;letter-spacing:.06em;font-weight:600;opacity:.92;}
 
 /* ── HOW IT WORKS ── */
 #how{padding:5rem 6%;max-width:1000px;margin:0 auto;}
@@ -347,11 +351,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .step p{font-size:.92rem;color:var(--muted);line-height:1.8;max-width:46ch;}
 .steps-nav{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:0;flex-shrink:0;position:relative;height:280px;padding:.5rem 0;}
 .steps-nav::before{content:'';position:absolute;top:14px;bottom:14px;left:50%;width:1px;background:linear-gradient(to bottom,transparent,rgba(var(--a-rgb),.25) 10%,rgba(var(--a-rgb),.25) 90%,transparent);}
-.steps-dot{background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:28px;height:28px;position:relative;z-index:1;}
-.steps-dot span{display:none;}
-.steps-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:rgba(var(--a-rgb),.3);transition:all .4s cubic-bezier(.16,1,.3,1);}
-.steps-dot:hover::before{background:rgba(var(--a-rgb),.7);transform:scale(1.3);}
-.steps-dot.active::before{width:10px;height:10px;background:var(--a2);box-shadow:0 0 10px rgba(var(--a-rgb),.9),0 0 22px rgba(var(--a-rgb),.5);}
+.steps-dot{background:rgba(var(--a-rgb),.06);border:1px solid rgba(var(--a-rgb),.25);cursor:pointer;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;position:relative;z-index:1;transition:all .3s cubic-bezier(.16,1,.3,1);}
+.steps-dot span{display:block;font-family:'DM Mono',monospace;font-size:.5rem;color:var(--muted);transition:color .3s;}
+.steps-dot:hover{border-color:var(--a2);}
+.steps-dot.active{background:rgba(var(--a-rgb),.16);border-color:var(--a2);box-shadow:0 0 10px rgba(var(--a-rgb),.6),0 0 20px rgba(var(--a-rgb),.35);}
+.steps-dot.active span{color:var(--a2);}
 @media (max-width:760px){
   .steps-carousel{flex-direction:column-reverse;gap:1.6rem;}
   .steps-track{width:100%;min-height:260px;}
@@ -363,9 +367,17 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 #mission{padding:6rem 6%;text-align:center;position:relative;overflow:hidden;}
 .mission-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(var(--a-rgb),.07) 0%,transparent 70%);pointer-events:none;}
 .mission-eyebrow{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(var(--a-rgb),.55);display:block;margin-bottom:1.5rem;}
-.mission-head{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.6rem,3.5vw,2.6rem);line-height:1.15;letter-spacing:-.01em;max-width:700px;margin:0 auto 1.5rem;color:var(--a2);}
-.mission-head em{font-style:italic;color:var(--a2);font-size:1.5em;line-height:1;display:block;margin-top:.1em;}
-.mission-sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);max-width:560px;margin:0 auto;line-height:1.82;}
+.mission-head{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.1;letter-spacing:-.025em;max-width:760px;margin:0 auto 1.5rem;color:var(--a2);
+  background:linear-gradient(135deg,var(--a2) 0%,#fff 40%,var(--a2) 60%,var(--a) 100%);
+  background-size:300% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:missionShimmer 14s ease-in-out infinite;
+  filter:drop-shadow(0 0 18px rgba(var(--a-rgb),.25));
+}
+@keyframes missionShimmer{0%,100%{background-position:0% center}50%{background-position:100% center}}
+.mission-head em{font-style:italic;font-size:1.5em;line-height:1;display:block;margin-top:.1em;}
+.mission-sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.8vw,2rem);color:var(--text);max-width:600px;margin:0 auto;line-height:1.5;opacity:.9;}
+.mission-alinea{-webkit-text-fill-color:initial;}
 .mission-alinea{
   font-family:'DM Mono',monospace;font-weight:500;letter-spacing:.18em;
   color:var(--a2);font-style:normal;
@@ -378,7 +390,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .ls-icon{font-size:2.5rem;flex-shrink:0;margin-top:.2rem;}
 .ls-content h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;margin-bottom:.6rem;}
 .ls-content p{font-size:.82rem;color:var(--muted);line-height:1.78;margin-bottom:.8rem;}
-.ls-link{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--a2);text-decoration:none;border-bottom:1px solid rgba(var(--a-rgb),.3);padding-bottom:.1rem;transition:all .2s;}
+.ls-link{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--a2);text-decoration:none;border-bottom:1px solid rgba(var(--a-rgb),.3);padding-bottom:.15rem;transition:all .2s;display:inline-block;margin-top:.3rem;}
 .ls-link:hover{color:var(--text);border-color:var(--a2);}
 
 /* ── TESTIMONIALS ── */
@@ -761,7 +773,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 
 <!-- MANIFESTO -->
 <section id="manifesto" style="padding:5rem 6%;max-width:860px;margin:0 auto;text-align:center;">
-  <span class="eyebrow ri show" style="margin-bottom:1.5rem;" id="manifestoEye">✦ Why we built this program</span>
+  <span class="eyebrow ri show" style="margin-bottom:1.5rem;" id="manifestoEye">✦ Why I built this program</span>
 
   <style>
     .manifesto-hl-wrap{position:relative;margin-bottom:.6rem;}
@@ -772,10 +784,11 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
       background:linear-gradient(135deg,var(--a2) 0%,#fff 40%,var(--a2) 60%,var(--a) 100%);
       background-size:300% auto;
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-      animation:shimmer 14s ease-in-out infinite;
+      animation:shimmer 6s ease-in-out infinite;
       filter:drop-shadow(0 0 18px rgba(var(--a-rgb),.25));
     }
     @keyframes shimmer{0%,100%{background-position:0% center}50%{background-position:100% center}}
+    .manifesto-hl.hovering{animation-play-state:paused;}
     .manifesto-sub{
       font-family:'Playfair Display',serif;font-style:italic;font-weight:300;
       font-size:clamp(1.3rem,2.8vw,2rem);
@@ -787,18 +800,21 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
   </style>
 
   <div class="manifesto-hl-wrap ri d1 show">
-    <h2 class="manifesto-hl" id="manifestoHl">You already light up the world.</h2>
+    <h2 class="manifesto-hl" id="manifestoHl">Help make the invisible<br>visible</h2>
   </div>
   <p class="manifesto-sub ri d2 show" id="manifestoSub">
-    Now let them find something they'll love.
+    Every book hides connections nobody has shown you.<br><span style="font-family:'DM Mono',monospace;font-size:.5rem;color:var(--muted);letter-spacing:.04em;font-style:normal;">(until now)</span>
   </p>
 
   <!-- body copy -->
-  <p class="ri d2 show" style="font-family:'Lato',sans-serif;font-weight:300;font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--muted);line-height:2;max-width:580px;margin:0 auto 3rem;letter-spacing:.01em;" id="manifestoBody">
-    Your views didn't happen by accident. Your engagement didn't happen by luck. You built something real — and with ALINEA, we want to amplify that reach and help you turn it into real income.
+  <p class="ri d2 show" style="font-family:'Lato',sans-serif;font-weight:300;font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--muted);line-height:2;max-width:580px;margin:0 auto 1.5rem;letter-spacing:.01em;" id="manifestoBody">
+    Your views didn't happen by accident. Your engagement didn't happen by luck. You built something real — and I want to help you turn that reach into real income, the same way ALINEA helped me turn a personal obsession into something other readers feel too.
   </p>
+  <button onclick="toggleFounder()" class="ri d2 show" style="background:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.06em;color:var(--a2);text-decoration:underline;padding:0;margin-bottom:3rem;" id="manifestoFounderLink">✦ Meet ALINEA's creator →</button>
 
 </section>
+
+<div class="dv"></div>
 
 <style>
   #promiseOverlay.open{display:flex;animation:fadeOverlay .4s cubic-bezier(.16,1,.3,1);}
@@ -836,8 +852,8 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
         </div>
         <div class="pda-grid">
           <div class="pda-book" style="--bd:.25s">
-            <div class="pda-cover"><img class="pda-cvimg" src="https://covers.openlibrary.org/b/isbn/9781101906118-L.jpg" alt="" loading="lazy" onerror="this.remove()"><i class="pda-spine"></i><b class="pda-nb">12</b><span class="pda-ci">📖</span><span class="pda-ct" id="pdBc0">La Vegetariana</span></div>
-            <div class="pda-bt" id="pdBt0">La Vegetariana</div><div class="pda-ba">Han Kang</div>
+            <div class="pda-cover"><img class="pda-cvimg" src="https://covers.openlibrary.org/b/isbn/9780439708180-L.jpg" alt="" loading="lazy" onerror="this.remove()"><i class="pda-spine"></i><b class="pda-nb">12</b><span class="pda-ci">📖</span><span class="pda-ct" id="pdBc0">Harry Potter</span></div>
+            <div class="pda-bt" id="pdBt0">Harry Potter</div><div class="pda-ba">J.K. Rowling</div>
           </div>
           <div class="pda-book" style="--bd:.55s">
             <div class="pda-cover"><img class="pda-cvimg" src="https://covers.openlibrary.org/b/isbn/9780593652886-L.jpg" alt="" loading="lazy" onerror="this.remove()"><i class="pda-spine"></i><b class="pda-nb">8</b><span class="pda-ci">📖</span><span class="pda-ct" id="pdBc1">The Creative Act</span></div>
@@ -848,8 +864,8 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
             <div class="pda-bt" id="pdBt2">Steve Jobs</div><div class="pda-ba">Walter Isaacson</div>
           </div>
           <div class="pda-book" style="--bd:1.15s">
-            <div class="pda-cover"><img class="pda-cvimg" src="https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg" alt="" loading="lazy" onerror="this.remove()"><i class="pda-spine"></i><b class="pda-nb">9</b><span class="pda-ci">📖</span><span class="pda-ct" id="pdBc3">Sapiens</span></div>
-            <div class="pda-bt" id="pdBt3">Sapiens</div><div class="pda-ba">Yuval Noah Harari</div>
+            <div class="pda-cover"><img class="pda-cvimg" src="https://covers.openlibrary.org/b/isbn/9780441013593-L.jpg" alt="" loading="lazy" onerror="this.remove()"><i class="pda-spine"></i><b class="pda-nb">9</b><span class="pda-ci">📖</span><span class="pda-ct" id="pdBc3">Dune</span></div>
+            <div class="pda-bt" id="pdBt3">Dune</div><div class="pda-ba">Frank Herbert</div>
           </div>
         </div>
         <div class="pd-fabwrap" id="pdFabWrap">
@@ -1094,28 +1110,33 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
   <span class="eyebrow ri">✦ <span id="numbersEye">The opportunity</span></span>
   <h2 class="section-head ri d1" id="numbersHead">Simple math.<br><em>Real money.</em></h2>
   <div class="numbers-grid">
-    <div class="num-card ri d1 show">
-      <div class="num-value">$15</div>
-      <div class="num-label" id="num1Label">Per sale generated</div>
-      <div class="num-desc" id="num1Desc">Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. 365-day tracking.</div>
+    <div class="num-card ri d1 show" style="position:relative;overflow:hidden;">
+      <canvas class="star-bg" id="numStarBg1"></canvas>
+      <div class="num-value" style="position:relative;z-index:1;">$15</div>
+      <div class="num-label" id="num1Label" style="position:relative;z-index:1;">Per sale generated</div>
+      <div class="num-desc" id="num1Desc" style="position:relative;z-index:1;">Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. 365-day tracking.</div>
     </div>
-    <div class="num-card ri d2 show">
-      <div class="num-value">$69</div>
-      <div class="num-label" id="num2Label">Price with your link</div>
-      <div class="num-desc" id="num2Desc">Your audience gets ALINEA Pro at $69 USD — $20 less than the public price of $89. Your link applies the discount automatically.</div>
+    <div class="num-card ri d2 show" style="position:relative;overflow:hidden;">
+      <canvas class="star-bg" id="numStarBg2"></canvas>
+      <div class="num-value" style="position:relative;z-index:1;">$69</div>
+      <div class="num-label" id="num2Label" style="position:relative;z-index:1;">Price with your link</div>
+      <div class="num-desc" id="num2Desc" style="position:relative;z-index:1;">Your audience gets ALINEA Pro at $69 USD — $20 less than the public price of $89. Your link applies the discount automatically.</div>
     </div>
-    <div class="num-card ri d3 show">
-      <div class="num-value">1</div>
-      <div class="num-label" id="num3Label">Video to start</div>
-      <div class="num-desc" id="num3Desc">No contracts. No exclusivity. One video to start — the more you post, the more you earn. Your link never expires.</div>
+    <div class="num-card ri d3 show" style="position:relative;overflow:hidden;">
+      <canvas class="star-bg" id="numStarBg3"></canvas>
+      <div class="num-value" style="position:relative;z-index:1;">1</div>
+      <div class="num-label" id="num3Label" style="position:relative;z-index:1;">Video to start</div>
+      <div class="num-desc" id="num3Desc" style="position:relative;z-index:1;">No contracts. No exclusivity. One video to start — the more you post, the more you earn. Your link never expires.</div>
     </div>
   </div>
+  <p style="text-align:center;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);margin:2.4rem auto 0;letter-spacing:.02em;max-width:520px;padding:1.1rem 1.6rem;background:rgba(var(--a-rgb),.08);border:1px solid rgba(var(--a-rgb),.28);border-radius:14px;line-height:1.6;" id="numbersFooter">✦ One video, shown to your audience, can already turn into real sales — see your own estimate below ↓</p>
 </section>
 
 <div class="dv"></div>
 
 <!-- CALCULATOR -->
 <section id="calculator">
+  <canvas id="calcDragBg"></canvas>
   <div class="calc-inner">
     <span class="eyebrow">✦ <span id="calcEye">Your potential</span></span>
     <h2 class="section-head" style="font-size:clamp(2rem,4vw,3.2rem)" id="calcHead">How much could<br><em>you earn?</em></h2>
@@ -1149,6 +1170,8 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
       </div>
     </div>
 
+    <p style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text);opacity:.85;margin-top:1.2rem;letter-spacing:.03em;line-height:1.8;text-align:center;max-width:480px;margin-left:auto;margin-right:auto;" id="calcExplain">With 5,000 views and a moderate 0.8% conversion, that's about 40 people buying ALINEA Pro per video.</p>
+
     <!-- Video selector -->
     <div class="calc-video-selector">
       <span class="calc-video-label" id="videoLabel">How many videos per month?</span>
@@ -1159,9 +1182,13 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
         <button class="video-pill" onclick="setVideos(8,this)" id="vp8">8 videos</button>
         
       </div>
+      <div style="margin-top:1.4rem;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.3rem;background:rgba(var(--a-rgb),.08);border:1px solid rgba(var(--a-rgb),.25);border-radius:30px;">
+        <span style="font-size:.85rem;color:var(--ok);">✓</span>
+        <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text);letter-spacing:.03em;" id="videoNote">One video is all it takes — no obligation to post more.</span>
+      </div>
     </div>
 
-    <p style="font-family:'DM Mono',monospace;font-size:.46rem;color:var(--dim);margin-top:1.5rem;letter-spacing:.06em;text-align:center;" id="calcNote">Estimates based on average BookTok conversion rates. Results vary by audience quality and content authenticity.</p>
+
 
     <div class="cvr-toggle-wrap">
       <button class="cvr-toggle-btn" id="cvrToggleBtn" onclick="toggleCVR()">
@@ -1202,7 +1229,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
               </tr>
             </tbody>
           </table>
-          <p class="cvr-source" id="cvrSource">Based on e-commerce conversion benchmarks for digital products on short-form video (TikTok / Reels). Industry average for affiliate digital products: 0.5–2%. Sources: <a href="https://influencermarketinghub.com" target="_blank">Influencer Marketing Hub</a>, <a href="https://later.com/blog" target="_blank">Later.com</a>. The moderate scenario (0.8%) is our working base for all projections.</p>
+          <p class="cvr-source" id="cvrSource">Estimate based on conversion benchmarks for mid-priced digital products ($50–90) sold via link-in-bio, without native shop checkout. Real conversion varies with audience trust and content authenticity. The moderate scenario (0.8%) is our working base for all projections.</p>
         </div>
       </div>
     </div>
@@ -1212,13 +1239,6 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 <div class="dv"></div>
 
 <!-- MISSION -->
-<section id="mission">
-  <div class="mission-glow"></div>
-  <span class="mission-eyebrow ri show" id="missionEye">✦ Why this matters</span>
-  <h2 class="mission-head ri d1 show" id="missionHead">Help <span class="mission-alinea alinea-shimmer">ALINEA</span> make<br><em>visible the invisible.</em></h2>
-  <p class="mission-sub ri d2 show" id="missionSub">Every reader has ideas, connections, and insights scattered across dozens of books. ALINEA makes them visible for the first time. Your content helps readers find a home for their knowledge.</p>
-</section>
-
 <div class="dv"></div>
 
 <!-- HOW IT WORKS -->
@@ -1272,7 +1292,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div class="ls-icon">🍋</div>
     <div class="ls-content">
       <h3 id="lsHead">Commissions paid via Lemon Squeezy</h3>
-      <p id="lsDesc">ALINEA uses Lemon Squeezy as its payment and affiliate platform — one of the most trusted merchant-of-record services for digital products. Your affiliate link is tracked automatically, and commissions are paid out directly to your account. Secure, transparent, instant.</p>
+      <p id="lsDesc">ALINEA uses Lemon Squeezy as its payment and affiliate platform — one of the most trusted merchant-of-record services for digital products. Your affiliate link is tracked automatically, and commissions are paid out directly to your account.</p>
       <a href="https://www.lemonsqueezy.com/marketing/affiliates" target="_blank" class="ls-link" id="lsLink">Learn how Lemon Squeezy affiliates work →</a>
     </div>
   </div>
@@ -1283,9 +1303,10 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 <!-- CTA -->
 <section id="cta">
   <div class="cta-glow"></div>
-  <h2 class="ri show" id="ctaHead">Your galaxy.<br><em>Their galaxy.</em><br>Your commission.</h2>
+  <h2 class="ri show" id="ctaHead">One video.<br><em>Your $15 USD commission.*</em></h2>
   <p class="ri d1 show" id="ctaSub">Join the ALINEA Creator Program today.</p>
   <a href="https://alinea.lemonsqueezy.com/affiliates" target="_blank" class="btn-primary ri d2 show" style="font-size:.7rem;padding:.9rem 2.8rem;" id="ctaBtn">Apply now — it's free</a>
+  <p class="ri d2 show" style="font-family:'DM Mono',monospace;font-size:.56rem;color:var(--muted);margin-top:1.2rem;letter-spacing:.03em;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.7;" id="ctaAsteriskNote">*The $15 commission applies when someone buys ALINEA Pro through your link — not just for publishing the video.</p>
 </section>
 
 <!-- FAQ -->
@@ -1310,7 +1331,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     .faq-toggle-more:hover{border-color:var(--a2);background:rgba(var(--a-rgb),.08);}
     .faq-toggle-arrow{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1);}
     .faq-toggle-more.open .faq-toggle-arrow{transform:rotate(180deg);}
-    .terms-point-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--a2);margin:1.8rem 0 .5rem;line-height:1.3;}
+    .terms-point-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--text);margin:1.8rem 0 .5rem;line-height:1.3;}
     #termsBody h4.terms-point-title:first-of-type,#termsBodyES h4.terms-point-title:first-of-type{margin-top:.4rem;}
     .terms-key{color:var(--a2);font-weight:600;}
     .faq-item.open .faq-body{max-height:400px;}
@@ -1323,7 +1344,7 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
         <span class="faq-q-text" id="faqQ1">💸 When do I get paid?</span>
         <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
       </button>
-      <div class="faq-body"><div class="faq-body-inner" id="faqA1">Lemon Squeezy is the neutral intermediary between you and ALINEA — they handle all payments, track every sale, and deposit your commissions directly to your account. No middlemen, no delays, full transparency for both sides.</div></div>
+      <div class="faq-body"><div class="faq-body-inner" id="faqA1">Payment follows Lemon Squeezy's standard payout schedule, and only applies to commissions on completed ALINEA Pro sales made through your unique link — not simply for posting a video. Lemon Squeezy handles all payments, tracks every sale, and deposits your commissions directly to your account. No middlemen, no manual invoicing on your side.</div></div>
     </div>
 
     <div class="faq-item">
@@ -1419,6 +1440,22 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
       <div class="faq-body"><div class="faq-body-inner" id="faqA12">Use the link we send you directly, not the one shown in your Lemon Squeezy affiliate profile. Lemon's own link carries your affiliate ID but not the SPARK69 discount — the one we send you combines both, so your audience sees the discounted price and your commission still tracks correctly. Make it easy for them: a simple "link in bio" or "link in the description" while your video is live works better than expecting people to remember a code.</div></div>
     </div>
 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text" id="faqQ13">🌍 Can I apply if I don't live in Mexico?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner" id="faqA13">Yes — this program is open to creators anywhere. Payments are processed through Lemon Squeezy, which supports international payouts.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text" id="faqQ14">👥 Do I need a minimum number of followers?</span>
+        <span class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 1v8M1 5h8"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner" id="faqA14">There's no fixed follower minimum. We reach out directly when we see content we believe is a genuine fit — it's not about the number, it's about the connection between your audience and the product.</div></div>
+    </div>
+
   </div>
   </div>
 
@@ -1429,11 +1466,15 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
 
 <div class="dv"></div>
 
+<div class="dv"></div>
+
+<div class="dv"></div>
+
 <!-- JOIN SECTION -->
 <section id="join" style="padding:2rem 6% 6rem;max-width:580px;margin:0 auto;text-align:center;">
   <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem 2rem;">
     <div style="font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;margin-bottom:.4rem;" id="formTitle">Join the Creator Program</div>
-    <div style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;" id="formSub">Apply directly through Lemon Squeezy — instant setup</div>
+    <div style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;" id="formSub">We'll send your affiliate link within 48h</div>
     <div style="margin-bottom:1.7rem;padding:1.2rem 1.1rem;background:rgba(var(--a-rgb),.05);border:1px dashed rgba(var(--a-rgb),.3);border-radius:10px;text-align:left;">
       <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:.98rem;margin-bottom:.4rem;" id="tryHead">Try it <em>yourself first.</em></div>
       <p style="font-size:.73rem;color:var(--muted);line-height:1.72;margin-bottom:.9rem;" id="trySub">The best content comes from genuine excitement. Try ALINEA Beta for free — build your own galaxy, explore your connections. Then decide if it's something you'd share.</p>
@@ -1446,17 +1487,21 @@ footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-c
     <div style="font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.06em;color:var(--ok);margin-top:1.1rem;line-height:1.8;" id="joinEta">Aplicas hoy → en máximo 48h recibes tu link personal por correo, listo para compartir.</div>
     <div style="font-family:'DM Mono',monospace;font-size:.48rem;color:var(--dim);margin-top:1.2rem;line-height:1.7;letter-spacing:.06em;" id="formNote">No commitments · No exclusivity · 365-day cookie tracking · Commissions paid automatically · #MakingVisibleTheInvisible</div>
     <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(var(--a-rgb),.1);font-size:.75rem;color:rgba(240,238,255,.5);line-height:1.78;text-align:left;">
-      <div style="font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(var(--a-rgb),.4);margin-bottom:.5rem;">By joining you agree to</div>
-      Share the link to your video once published · Share basic metrics (views, likes) · Allow ALINEA to repost or share your content tagging your account for additional exposure. <button onclick="toggleTerms()" style="background:none;border:none;cursor:pointer;color:var(--a2);text-decoration:underline;font-size:.75rem;padding:0;font-family:inherit;">Read the full terms →</button>
+      <div style="font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(var(--a-rgb),.4);margin-bottom:.5rem;" id="agreeLabel">By joining you agree to</div>
+      <span id="agreeBody">Share the link to your video once published · Share basic metrics (views, likes) · Allow ALINEA to repost or share your content tagging your account for additional exposure.</span> <button onclick="toggleTerms()" style="background:none;border:none;cursor:pointer;color:var(--a2);text-decoration:underline;font-size:.75rem;padding:0;font-family:inherit;" id="readTermsBtn">Read the full terms →</button>
     </div>
+    <a href="https://www.instagram.com/alinea.work" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.6rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.04em;color:var(--a2);text-decoration:none;border:1px solid rgba(var(--a-rgb),.3);padding:.7rem 1.3rem;border-radius:30px;background:rgba(var(--a-rgb),.06);" id="questionsIgLink">
+      <span>💬</span> <span id="questionsIgTxt">Questions? Message us on Instagram →</span>
+    </a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">ALINEA</div>
+  <a href="https://alinea.work" class="footer-logo" style="text-decoration:none;">ALINEA</a>
   <div style="display:flex;gap:1.4rem;align-items:center;">
     <a href="https://alinea.work" target="_blank" class="footer-link">alinea.work ↗</a>
+    <button onclick="toggleFounder()" class="footer-link" style="background:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;" id="footerFounderLink">Meet ALINEA's creator</button>
     <button onclick="toggleTerms()" class="footer-link" style="background:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;" id="footerTermsLink">Terms &amp; Conditions</button>
   </div>
   <div class="footer-tag">#MakingVisibleTheInvisible</div>
@@ -1640,11 +1685,13 @@ const T={
     shotsEye:'The product',shotsHead:'A product your audience<br><em>will want to share.</em>',
     shot1:'The galaxy — unique to every reader',shot2:'Book detail & connections',shot3:'Notes & highlights',shot4:'Bitácora — reading stats & analytics',shot5:'Book story — shareable in one tap',shot6:'Full galaxy view — your universe of ideas',shot7:'Quote story — share what moves you',
     numbersEye:'The opportunity',numbersHead:'Simple math.<br><em>Real money.</em>',
+    numbersFooter:'✦ One video, shown to your audience, can already turn into real sales — see your own estimate below ↓',
     num1L:'Per sale generated',num1D:'Fixed commission for every copy of ALINEA Pro sold through your unique affiliate link. No caps. No minimums. 365-day tracking.',
     num2L:'Price with your link',num2D:'Your audience gets ALINEA Pro at $69 USD — $20 less than the public price of $89. Your link applies the discount automatically.',
     num3L:'Video to start',num3D:'No contracts. No exclusivity. One video to start — the more you post, the more you earn. Your link never expires.',
     calcEye:'Your potential',calcHead:'How much could<br><em>you earn?</em>',calcSub:'Move the slider to match your average views per video.',
     calcLabel:'Average views per video',viewsWord:'views',
+    videoNote:"One video is all it takes — no obligation to post more.",
     calcL1:'Conservative · 0.3%',calcL2:'Moderate · 0.8%',calcL3:'Optimistic · 1.5%',
     calcNote:'Estimates based on average BookTok conversion rates. Results vary by audience quality.',
     cvrToggleTxt:'Where do these conversion rates come from?',
@@ -1654,7 +1701,7 @@ const T={
     cvr1name:'Conservative',cvr1aud:'Mixed audience, low engagement ratio',cvr1cont:'Generic or first-time affiliate video',
     cvr2name:'Moderate',cvr2aud:'Active BookTok / niche audience',cvr2cont:'Authentic review, shows the product live',
     cvr3name:'Optimistic',cvr3aud:'High-trust audience, 50%+ views/followers ratio',cvr3cont:'Galaxy reveal, emotional connection, strong CTA',
-    cvrSource:'Based on e-commerce conversion benchmarks for digital products on short-form video (TikTok / Reels). Industry average for affiliate digital products: 0.5–2%. The moderate scenario (0.8%) is our working base for all projections.',
+    cvrSource:'Estimate based on conversion benchmarks for mid-priced digital products ($50–90) sold via link-in-bio, without native shop checkout. Real conversion varies with audience trust and content authenticity. The moderate scenario (0.8%) is our working base for all projections.',
     videoLabel:'How many videos per month?',
     missionEye:'Why this matters',missionHead:'Help <span class="mission-alinea alinea-shimmer">ALINEA</span> make<br><em>visible the invisible.</em>',
     missionSub:'Every reader has ideas, connections, and insights scattered across dozens of books. ALINEA makes them visible. Your content helps readers find a home for their knowledge.',
@@ -1676,7 +1723,7 @@ const T={
     f2h:'100% private — no accounts, no servers',f2p:'Everything lives on the reader\'s device. No tracking, no subscriptions, no data harvesting.',
     f3h:'One-time payment — lifetime access',f3p:'$69 with your link — once. No renewals. Your audience knows exactly what they\'re getting and keeps it forever.',
     f4h:'Works on every device — no App Store needed',f4p:'iPhone, Android, desktop. Installs as a PWA in seconds. Zero friction between video and purchase.',
-    ctaHead:'Your galaxy.<br><em>Their galaxy.</em><br>Your commission.',ctaSub:'Join the ALINEA Creator Program today.',ctaBtn:'Apply now — it\'s free',
+    ctaHead:'One video.<br><em>Your $15 USD commission.*</em>',ctaAsteriskNote:'*The $15 commission applies when someone buys ALINEA Pro through your link — not just for publishing the video.',ctaSub:'Join the ALINEA Creator Program today.',ctaBtn:'Apply now — it\'s free',
     tryBadge:'✦ Before you apply',tryHead:'Try it <em>yourself first.</em>',
     trySub:'The best content comes from genuine excitement. Try ALINEA Beta for free — build your own galaxy, explore your connections. Then decide if it\'s something you\'d share.',
     tryBetaBtn:'Try Beta Free — no card needed',trySeeBtn:'See the full product →',
@@ -1687,11 +1734,16 @@ const T={
     fName:'Full name',fEmail:'Email',fPlatform:'Main platform',fHandle:'Your handle / profile URL',fFollowers:'Approximate followers',fLang:'Content language',
     formSubmit:'Apply to Creator Program →',
     formNote:'No commitments. No exclusivity. We\'ll reach out within 48h. #MakingVisibleTheInvisible',
+    formDesc:'Click below to apply to the ALINEA Creator Program. You\'ll create your affiliate account on Lemon Squeezy, get your unique link with the <strong style="color:var(--a2);">SPARK69</strong> discount code already applied, and start earning $15 per sale.',
+    agreeLabel:'By joining you agree to',
+    agreeBody:'Share the link to your video once published · Share basic metrics (views, likes) · Allow ALINEA to repost or share your content tagging your account for additional exposure.',
+    readTermsBtn:'Read the full terms →',
+    questionsIgTxt:'Questions? Message us on Instagram →',
     formSuccess:'✓ Application received — we\'ll be in touch within 48h',
     faqEye:'✦ FAQ',faqHead:'Frequent questions.<br><em>Honest answers.</em>',
     faqShowMore:'Show more questions',faqShowLess:'Show fewer questions',
     faqQ1:'💸 When do I get paid?',
-    faqA1:"Lemon Squeezy is the neutral intermediary between you and ALINEA — they handle all payments, track every sale, and deposit your commissions directly to your account. No middlemen, no delays, full transparency for both sides.",
+    faqA1:"Payment follows Lemon Squeezy's standard payout schedule, and only applies to commissions on completed ALINEA Pro sales made through your unique link — not simply for posting a video. Lemon Squeezy handles all payments, tracks every sale, and deposits your commissions directly to your account. No middlemen, no manual invoicing on your side.",
     faqQ2:'🍪 How does the 365-day tracking work?',
     faqA2:"Every time someone clicks your link, Lemon Squeezy creates an anonymous identifier — no cookies, completely privacy-friendly. That identifier stays active for 365 days, the maximum the platform allows. If someone clicks today and buys 11 months from now — you earn your $15. And your link never expires: every new click starts a fresh 365-day window. One video posted today can keep earning for years.",
     faqQ3:'🌎 Can I make content in Spanish?',
@@ -1713,16 +1765,27 @@ const T={
     faqQ11:"🔗 What if someone buys without using my link?",
     faqA11:"Commission is only attributed when someone buys through your unique link. If they mention your code but visit the site on their own, Lemon has no way of knowing it was you. That's why it's worth saying clearly in your video — \"link in the description\" — so no one gets lost along the way.",
     faqQ12:"📎 Which link do I actually use?",
+    faqQ13:"🌍 Can I apply if I don't live in Mexico?",
+    faqA13:"Yes — this program is open to creators anywhere. Payments are processed through Lemon Squeezy, which supports international payouts.",
+    faqQ14:"👥 Do I need a minimum number of followers?",
+    faqA14:"There's no fixed follower minimum. We reach out directly when we see content we believe is a genuine fit — it's not about the number, it's about the connection between your audience and the product.",
     faqA12:"Use the link we send you directly, not the one shown in your Lemon Squeezy affiliate profile. Lemon's own link carries your affiliate ID but not the SPARK69 discount — the one we send you combines both, so your audience sees the discounted price and your commission still tracks correctly. Make it easy for them: a simple \"link in bio\" or \"link in the description\" while your video is live works better than expecting people to remember a code.",
-    promiseFloatTxt:'Our promise',promiseCloseTxt:'✕ close',promiseOverlayEye:'✦ Our promise',
-    footerTermsLink:'Terms & Conditions',termsOverlayEye:'✦ Terms & Conditions',termsHead:'ALINEA Creator Affiliate Program',termsCloseTxt:'✕ close',
+    promiseFloatTxt:'Our promise',promiseCloseTxt:'✕ close',promiseOverlayEye:'✦ Our promise',calcFloatTxt:'How much could I earn?',
+    footerTermsLink:'Terms & Conditions',footerFounderLink:"Meet ALINEA's creator",termsOverlayEye:'✦ Terms & Conditions',termsHead:'ALINEA Creator Affiliate Program',termsCloseTxt:'✕ close',
     promiseP1:'ALINEA will never ask you to compromise your essence, your style, or the quality of your content just to make a sale. We are not here to turn you into an ad.',
     promiseP2:'We are here because your creativity — your unique way of making videos — is exactly what can help other readers, productivity enthusiasts, or anyone who discovers ALINEA find something that genuinely changes how they experience books and knowledge.',
     promiseP3:'Your audience trusts you.<br>We want to honor that trust, not exploit it.',
-    manifestoEye:'✦ Why we built this program',
-    manifestoHl:'You already light up the world.',
-    manifestoSub:"Now let them find something they'll love.",
-    manifestoBody:"Your views didn't happen by accident. Your engagement didn't happen by luck. You built something real — and with ALINEA, we want to amplify that reach and help you turn it into real income.",
+    manifestoEye:'✦ Why I built this program',
+    manifestoHl:'Help make the invisible<br>visible',
+    manifestoSub:'Every book hides connections nobody has shown you.<br><span style="font-family:\'DM Mono\',monospace;font-size:.5rem;color:var(--muted);letter-spacing:.04em;font-style:normal;">(until now)</span>',
+    manifestoBody:"Your views didn't happen by accident. Your engagement didn't happen by luck. You built something real — and I want to help you turn that reach into real income, the same way ALINEA helped me turn a personal obsession into something other readers feel too.",
+    manifestoFounderLink:"✦ Meet ALINEA's creator →",
+    founderEye:"✦ Meet ALINEA's creator",
+    founderTeaserTxt:"✦ Curious who's behind ALINEA? →",
+    founderBody:"<p>I'm Miguel — there's no big team behind ALINEA, just me and a couple of close friends who help me out with their opinion, their feedback, and their support.</p><p>It's just me, in my room, with my laptop and good music — and sometimes at a public library. There are no investors, no office. ALINEA exists because a while back an injury kept me out of commission for a couple of months. So instead of doing nothing, I picked back up a project I'd already had in mind and partly built years earlier, and finally made <em>the app I'd always wanted as a reader</em> — and that's what you're looking at. ALINEA came about almost by coincidence, honestly, but I'm genuinely happy with everything I've built and with how close I've been able to get to more people. I never thought this could become something bigger — only time will tell, and <span class=\"fb-underline\">I hope that, with your help, a lot more people get to know this product.</span></p><p>I've always had too many books — on my desk, scattered everywhere, and wherever I go, I bring one with me. I always felt there was something there we couldn't fully see — not hidden, just invisible to us because we're human. With ALINEA I finally found something I could make visible: starting with <span class=\"fb-underline\">the connections between books</span> — between lines, between paragraphs, between ideas we didn't even know were connected.</p><p>I have an MBA and I'm finishing a second degree in finance (that's why you'll find real numbers and more honest estimates of what you could earn) — and ALINEA is one of several projects I've built. But this one's different: it combines two things I genuinely love, reading and space — my favorite movie is Interstellar, and that's where the idea came from to represent those connections as a galaxy. <em>Of everything I've made, this is the one I've connected with the most.</em></p><p><em>If you're seeing this page, it's because I saw your content, I liked it, and I thought maybe you'd want to help me out.</em> There's something I can't help but feel — that intuition that things happen for a reason. And it's a good feeling that made me reach out to you: <em>I think this can work for both of us.</em> You share something you believe will be useful to your audience, and I'll gladly give you, through Lemon Squeezy, your commission for helping more people discover ALINEA.</p>",
+    founderTag:"#MakeVisibleTheInvisible",
+    founderDeal:"Deal?",
+    founderSig:"— Miguel Valdez, ALINEA's creator",
   },
   es:{
     navCta:'Unirse al Programa',
@@ -1738,11 +1801,13 @@ const T={
     shotsEye:'El producto',shotsHead:'Un producto que tu audiencia<br><em>querrá compartir.</em>',
     shot1:'La galaxia — única para cada lector',shot2:'Detalle de libro y conexiones',shot3:'Notas y subrayados',shot4:'Bitácora — estadísticas y analítica',shot5:'Story de libro — compartible en un tap',shot6:'Vista completa de la galaxia — tu universo de ideas',shot7:'Story de cita — comparte lo que te mueve',
     numbersEye:'La oportunidad',numbersHead:'Matemática simple.<br><em>Dinero real.</em>',
+    numbersFooter:'✦ Un solo video, mostrado a tu audiencia, ya puede convertirse en ventas reales — mira tu estimado abajo ↓',
     num1L:'Por venta generada',num1D:'Comisión fija por cada copia de ALINEA Pro vendida mediante tu link de afiliado. Sin topes. Sin mínimos. Tracking de 365 días.',
     num2L:'Precio con tu link',num2D:'Tu audiencia obtiene ALINEA Pro a $69 USD — $20 menos que el precio público de $89. Tu link aplica el descuento automáticamente.',
     num3L:'Video para empezar',num3D:'Sin contratos. Sin exclusividad. Un video para empezar — entre más publicas, más ganas. Tu link nunca expira.',
     calcEye:'Tu potencial',calcHead:'¿Cuánto podrías<br><em>ganar?</em>',calcSub:'Mueve el slider para coincidir con tus vistas promedio por video.',
     calcLabel:'Vistas promedio por video',viewsWord:'vistas',
+    videoNote:'Con un video ya nos ayudas — no hay obligación de subir más.',
     calcL1:'Conservador · 0.3%',calcL2:'Moderado · 0.8%',calcL3:'Optimista · 1.5%',
     calcNote:'Estimaciones basadas en tasas de conversión promedio de BookTok. Los resultados varían.',
     cvrToggleTxt:'¿De dónde vienen estas tasas de conversión?',
@@ -1752,7 +1817,7 @@ const T={
     cvr1name:'Conservador',cvr1aud:'Audiencia mixta, ratio de engagement bajo',cvr1cont:'Video genérico o primer video de afiliado',
     cvr2name:'Moderado',cvr2aud:'Audiencia BookTok activa / nicho específico',cvr2cont:'Review auténtica, muestra el producto en vivo',
     cvr3name:'Optimista',cvr3aud:'Audiencia de alta confianza, ratio views/seguidores >50%',cvr3cont:'Reveal de galaxia, conexión emocional, CTA fuerte',
-    cvrSource:'Basado en benchmarks de conversión para productos digitales en video de formato corto (TikTok / Reels). Promedio de la industria para afiliados de productos digitales: 0.5–2%. El escenario moderado (0.8%) es nuestra base de trabajo para todas las proyecciones.',
+    cvrSource:'Estimación basada en benchmarks de conversión para productos digitales de precio medio ($50–90) vendidos vía link-in-bio, sin checkout nativo. La conversión real varía según la confianza de tu audiencia y la autenticidad del contenido. El escenario moderado (0.8%) es nuestra base de trabajo para todas las proyecciones.',
     videoLabel:'¿Cuántos videos por mes?',
     missionEye:'Por qué importa',missionHead:'Ayuda a <span class="mission-alinea alinea-shimmer">ALINEA</span> a hacer<br><em>visible lo invisible.</em>',
     missionSub:'Cada lector tiene ideas, conexiones e insights dispersos en docenas de libros. ALINEA los hace visibles por primera vez. Tu contenido ayuda a los lectores a encontrar un hogar para su conocimiento.',
@@ -1774,7 +1839,7 @@ const T={
     f2h:'100% privado — sin cuentas, sin servidores',f2p:'Todo vive en el dispositivo del lector. Sin rastreo, sin suscripciones, sin data harvesting.',
     f3h:'Pago único — acceso de por vida',f3p:'$69 con tu link — una sola vez. Sin renovaciones. Tu audiencia sabe exactamente lo que obtiene y lo conserva para siempre.',
     f4h:'Funciona en cualquier dispositivo — sin App Store',f4p:'iPhone, Android, escritorio. Se instala como PWA en segundos. Cero fricción entre el video y la compra.',
-    ctaHead:'Tu galaxia.<br><em>Su galaxia.</em><br>Tu comisión.',ctaSub:'Únete al Programa de Creadores de ALINEA hoy.',ctaBtn:'Aplica ahora — es gratis',
+    ctaHead:'Solo un video.<br><em>Tus $15 USD de comisión.*</em>',ctaAsteriskNote:'*Los $15 de comisión aplican cuando alguien compra ALINEA Pro a través de tu link — no solo por publicar el video.',ctaSub:'Únete al Programa de Creadores de ALINEA hoy.',ctaBtn:'Aplica ahora — es gratis',
     tryBadge:'✦ Antes de aplicar',tryHead:'Pruébalo <em>tú mismo.</em>',
     trySub:'El mejor contenido nace de la emoción genuina. Prueba la Beta de ALINEA gratis — construye tu galaxia, explora tus conexiones. Luego decide si es algo que querrías compartir.',
     tryBetaBtn:'Prueba la Beta — sin tarjeta',trySeeBtn:'Ver el producto completo →',
@@ -1785,11 +1850,16 @@ const T={
     fName:'Nombre completo',fEmail:'Correo electrónico',fPlatform:'Plataforma principal',fHandle:'Tu usuario / URL de perfil',fFollowers:'Seguidores aproximados',fLang:'Idioma del contenido',
     formSubmit:'Aplicar al Programa de Creadores →',
     formNote:'Sin compromisos. Sin exclusividad. Te contactamos en 48h. #MakingVisibleTheInvisible',
+    formDesc:'Da clic abajo para aplicar al Programa de Creadores de ALINEA. Vas a crear tu cuenta de afiliado en Lemon Squeezy, obtener tu link único con el código de descuento <strong style="color:var(--a2);">SPARK69</strong> ya aplicado, y empezar a ganar $15 por venta.',
+    agreeLabel:'Al unirte aceptas',
+    agreeBody:'Compartir el link de tu video una vez publicado · Compartir métricas básicas (vistas, likes) · Permitir que ALINEA republique o comparta tu contenido etiquetando tu cuenta para exposición adicional.',
+    readTermsBtn:'Lee los términos completos →',
+    questionsIgTxt:'¿Dudas? Escríbenos a Instagram →',
     formSuccess:'✓ Aplicación recibida — te escribimos en menos de 48h',
     faqEye:'✦ FAQ',faqHead:'Preguntas frecuentes.<br><em>Respuestas honestas.</em>',
     faqShowMore:'Ver más preguntas',faqShowLess:'Ver menos preguntas',
     faqQ1:'💸 ¿Cuándo me pagan?',
-    faqA1:"Lemon Squeezy es el intermediario neutral entre tú y ALINEA — ellos manejan todos los pagos, registran cada venta, y depositan tus comisiones directo a tu cuenta. Sin intermediarios extra, sin retrasos, total transparencia para ambos lados.",
+    faqA1:"El pago sigue el calendario estándar de pagos de Lemon Squeezy, y solo aplica a las comisiones de ventas de ALINEA Pro completadas a través de tu link único — no simplemente por publicar el video. Lemon Squeezy maneja todos los pagos, registra cada venta, y deposita tus comisiones directo a tu cuenta. Sin intermediarios extra, sin facturación manual de tu parte.",
     faqQ2:'🍪 ¿Cómo funciona el tracking de 365 días?',
     faqA2:"Cada vez que alguien hace click en tu link, Lemon Squeezy crea un identificador anónimo — sin cookies, completamente respetuoso de la privacidad. Ese identificador permanece activo 365 días, el máximo que permite la plataforma. Si alguien hace click hoy y compra 11 meses después — tú ganas tus $15. Y tu link nunca expira: cada nuevo click abre una ventana fresca de 365 días. Un video publicado hoy puede seguir generando comisiones por años.",
     faqQ3:'🌎 ¿Puedo hacer contenido en español?',
@@ -1811,16 +1881,27 @@ const T={
     faqQ11:'🔗 ¿Qué pasa si alguien compra sin usar mi link?',
     faqA11:"La comisión solo se atribuye cuando la persona compra a través de tu link único. Si mencionan tu código pero entran a la página por su cuenta, Lemon no puede saber que viniste tú. Por eso vale la pena decir claramente en tu video — \"el link está en la descripción\" — así nadie se pierde en el camino.",
     faqQ12:'📎 ¿Qué link debo usar exactamente?',
+    faqQ13:'🌍 ¿Puedo aplicar si no vivo en México?',
+    faqA13:'Sí — el programa está abierto a creadores de cualquier país. Los pagos se procesan vía Lemon Squeezy, que soporta payouts internacionales.',
+    faqQ14:'👥 ¿Necesito un mínimo de seguidores?',
+    faqA14:'No hay un mínimo fijo de seguidores. Te contactamos directamente cuando vemos contenido que creemos que es un buen fit — no es sobre el número, es sobre la conexión entre tu audiencia y el producto.',
     faqA12:"Usa el link que te mandamos directamente, no el que aparece en tu perfil de afiliado de Lemon Squeezy. El de Lemon trae tu ID de afiliado pero no el código de descuento SPARK69 — el que te mandamos combina los dos, así tu audiencia ve el precio con descuento y a ti te sigue cayendo la comisión correctamente. Hazlo fácil para ellos: un simple \"link en mi bio\" o \"link en la descripción\" mientras tu video esté activo funciona mejor que esperar que la gente recuerde un código.",
-    promiseFloatTxt:'Nuestra promesa',promiseCloseTxt:'✕ cerrar',promiseOverlayEye:'✦ Nuestra promesa',
-    footerTermsLink:'Términos y Condiciones',termsOverlayEye:'✦ Términos y Condiciones',termsHead:'Programa de Afiliados de ALINEA',termsCloseTxt:'✕ cerrar',
+    promiseFloatTxt:'Nuestra promesa',promiseCloseTxt:'✕ cerrar',promiseOverlayEye:'✦ Nuestra promesa',calcFloatTxt:'¿Cuánto podría ganar?',
+    footerTermsLink:'Términos y Condiciones',footerFounderLink:'Conoce al creador de ALINEA',termsOverlayEye:'✦ Términos y Condiciones',termsHead:'Programa de Afiliados de ALINEA',termsCloseTxt:'✕ cerrar',
     promiseP1:'ALINEA nunca te pedirá comprometer tu esencia, tu estilo o la calidad de tu contenido solo para vender. No estamos aquí para convertirte en un anuncio.',
     promiseP2:'Estamos aquí porque tu creatividad — tu forma única de hacer videos — es exactamente lo que puede ayudar a otros lectores, entusiastas de la productividad, o a quien descubra ALINEA a encontrar algo que realmente cambia cómo viven los libros y el conocimiento.',
     promiseP3:'Tu audiencia confía en ti.<br>Queremos honrar esa confianza, no explotarla.',
-    manifestoEye:'✦ Por qué construimos este programa',
-    manifestoHl:'Ya iluminas el mundo.',
-    manifestoSub:'Ahora deja que encuentren algo que van a amar.',
-    manifestoBody:'Tus views no pasaron por accidente. Tu engagement no fue suerte. Construiste algo real — y con ALINEA, queremos amplificar ese alcance y ayudarte a convertirlo en ingresos reales.',
+    manifestoEye:'✦ Por qué construí este programa',
+    manifestoHl:'Ayúdanos a<br>hacer visible lo invisible',
+    manifestoSub:'Cada libro esconde conexiones que nadie ha mostrado.<br><span style="font-family:\'DM Mono\',monospace;font-size:.5rem;color:var(--muted);letter-spacing:.04em;font-style:normal;">(hasta ahora)</span>',
+    manifestoBody:'Tus views no pasaron por accidente. Tu engagement no fue suerte. Construiste algo real — y quiero ayudarte a convertir ese alcance en ingresos reales, tal como ALINEA me ayudó a mí a convertir una obsesión personal en algo que otros lectores también sienten.',
+    manifestoFounderLink:'✦ Conoce al creador de ALINEA →',
+    founderEye:'✦ Conoce al creador de ALINEA',
+    founderTeaserTxt:'✦ ¿Curiosidad por saber quién hizo ALINEA? →',
+    founderBody:'<p>Soy Miguel — no hay un equipo grande detrás de ALINEA, solo yo y un par de amigos que me ayudan dándome su opinión, su feedback y su apoyo.</p><p>Soy solo yo, en mi cuarto, con mi computadora y buena música — y a veces en alguna biblioteca pública. No hay inversionistas, no hay oficina. ALINEA existe porque hace un tiempo tuve una lesión que me mantuvo fuera de circulación un par de meses. Así que, en vez de quedarme sin hacer nada, retomé un proyecto que ya tenía en mente y algo avanzado desde hacía unos años atrás, y por fin pude construir <em>la app que siempre quise tener como lector</em> — y es lo que estás viendo. ALINEA nació casi por coincidencia, la verdad no lo sé bien, pero estoy realmente a gusto con todo lo que he trabajado y con lo cerca que he podido conectar con más personas. Jamás pensé que esto podría llegar a ser algo más grande — solo el tiempo lo dirá, y <span class="fb-underline">espero que, con tu ayuda, muchas más personas puedan conocer este producto.</span></p><p>Siempre he tenido demasiados libros — en mi escritorio, regados por todas partes, y donde sea que salga, siempre llevo uno conmigo. Toda mi vida sentí que había algo ahí que no podíamos ver del todo — no oculto, solo invisible para nosotros por ser humanos. Con ALINEA por fin encontré algo que sí podía hacer visible: empezando por <span class="fb-underline">las conexiones que hay entre los libros</span> — entre líneas, entre párrafos, entre ideas que ni sabíamos que estaban conectadas.</p><p>Tengo un MBA y estoy terminando una segunda carrera en finanzas (por eso vas a encontrar números más reales y estimaciones más certeras de cuánto podrías ganar) — y ALINEA es uno de varios proyectos que he llevado a cabo. Pero este es distinto: combina dos cosas que me apasionan de verdad, la lectura y el espacio — mi película favorita es Interestelar, y de ahí nació la idea de representar esas conexiones como una galaxia. <em>De todos los proyectos que he hecho, este es con el que más me he conectado.</em></p><p><em>Si estás viendo esta página es porque vi tu contenido, me gustó, y pensé que tal vez te gustaría ayudarme.</em> Hay algo que no puedo evitar sentir — esa intuición de que las cosas pasan por algo. Y es un presentimiento positivo el que me hizo escribirte: <em>creo que esto puede funcionar para los dos.</em> Tú compartes algo que crees que le va a servir a tu audiencia, y yo con gusto te doy, a través de Lemon Squeezy, tu comisión por ayudarme a que más gente conozca ALINEA.</p>',
+    founderTag:'#MakeVisibleTheInvisible',
+    founderDeal:'¿Trato hecho?',
+    founderSig:'— Miguel Valdez, creador de ALINEA',
   }
 };
 
@@ -1865,6 +1946,7 @@ function setLang(l,btn){
   document.getElementById('num1Label').textContent=d.num1L;document.getElementById('num1Desc').textContent=d.num1D;
   document.getElementById('num2Label').textContent=d.num2L;document.getElementById('num2Desc').textContent=d.num2D;
   document.getElementById('num3Label').textContent=d.num3L;document.getElementById('num3Desc').textContent=d.num3D;
+  const nf=document.getElementById('numbersFooter');if(nf&&d.numbersFooter)nf.textContent=d.numbersFooter;
   // calc
   document.getElementById('calcEye').textContent=d.calcEye;
   document.getElementById('calcHead').innerHTML=d.calcHead;
@@ -1874,16 +1956,17 @@ function setLang(l,btn){
   document.getElementById('calcL1').textContent=d.calcL1;
   document.getElementById('calcL2').textContent=d.calcL2;
   document.getElementById('calcL3').textContent=d.calcL3;
-  document.getElementById('calcNote').textContent=d.calcNote;
+  const cnEl=document.getElementById('calcNote');if(cnEl)cnEl.textContent=d.calcNote;
   const vlEl=document.getElementById('videoLabel');if(vlEl&&d.videoLabel)vlEl.textContent=d.videoLabel;
+  const vnEl=document.getElementById('videoNote');if(vnEl&&d.videoNote)vnEl.textContent=d.videoNote;
   // CVR toggle
   const cvrIDs=['cvrToggleTxt','cvrTitle','cvrIntro','cvrCol1','cvrCol2','cvrCol3','cvrCol4',
     'cvr1name','cvr1aud','cvr1cont','cvr2name','cvr2aud','cvr2cont','cvr3name','cvr3aud','cvr3cont','cvrSource'];
   cvrIDs.forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id];});
   // mission
-  document.getElementById('missionEye').textContent=d.missionEye;
-  document.getElementById('missionHead').innerHTML=d.missionHead;
-  document.getElementById('missionSub').textContent=d.missionSub;
+  const mE=document.getElementById('missionEye');if(mE)mE.textContent=d.missionEye;
+  const mH=document.getElementById('missionHead');if(mH)mH.innerHTML=d.missionHead;
+  const mS=document.getElementById('missionSub');if(mS)mS.textContent=d.missionSub;
   // how
   document.getElementById('howEye').textContent=d.howEye;
   document.getElementById('howHead').innerHTML=d.howHead;
@@ -1924,6 +2007,7 @@ function setLang(l,btn){
   document.getElementById('ctaHead').innerHTML=d.ctaHead;
   document.getElementById('ctaSub').textContent=d.ctaSub;
   document.getElementById('ctaBtn').textContent=d.ctaBtn;
+  const canEl=document.getElementById('ctaAsteriskNote');if(canEl&&d.ctaAsteriskNote)canEl.textContent=d.ctaAsteriskNote;
   // faq
   const faqEl=document.getElementById('faqEye');if(faqEl)faqEl.textContent=d.faqEye;
   const faqHeadEl=document.getElementById('faqHead');if(faqHeadEl)faqHeadEl.innerHTML=d.faqHead;
@@ -1933,14 +2017,16 @@ function setLang(l,btn){
     const ftmBtn=document.getElementById('faqToggleMore');
     ftmTxt.textContent=(ftmBtn&&ftmBtn.classList.contains('open'))?d.faqShowLess:d.faqShowMore;
   }
-  for(let i=1;i<=12;i++){
+  for(let i=1;i<=14;i++){
     const qEl=document.getElementById('faqQ'+i);if(qEl&&d['faqQ'+i])qEl.textContent=d['faqQ'+i];
     const aEl=document.getElementById('faqA'+i);if(aEl&&d['faqA'+i])aEl.innerHTML=d['faqA'+i];
   }
   // promise floating + overlay
   const pfEl=document.getElementById('promiseFloatTxt');if(pfEl&&d.promiseFloatTxt)pfEl.textContent=d.promiseFloatTxt;
+  const cfEl=document.getElementById('calcFloatTxt');if(cfEl&&d.calcFloatTxt)cfEl.textContent=d.calcFloatTxt;
   const pcEl=document.getElementById('promiseCloseTxt');if(pcEl&&d.promiseCloseTxt)pcEl.textContent=d.promiseCloseTxt;
   const ftl=document.getElementById('footerTermsLink');if(ftl&&d.footerTermsLink)ftl.textContent=d.footerTermsLink;
+  const ffl=document.getElementById('footerFounderLink');if(ffl&&d.footerFounderLink)ffl.textContent=d.footerFounderLink;
   const toe=document.getElementById('termsOverlayEye');if(toe&&d.termsOverlayEye)toe.textContent=d.termsOverlayEye;
   const th2=document.getElementById('termsHead');if(th2&&d.termsHead)th2.textContent=d.termsHead;
   const tct=document.getElementById('termsCloseTxt');if(tct&&d.termsCloseTxt)tct.textContent=d.termsCloseTxt;
@@ -1952,14 +2038,26 @@ function setLang(l,btn){
   const pp3=document.getElementById('promiseP3');if(pp3&&d.promiseP3)pp3.innerHTML=d.promiseP3;
   // manifesto
   const mEye=document.getElementById('manifestoEye');if(mEye&&d.manifestoEye)mEye.textContent=d.manifestoEye;
-  const mHl=document.getElementById('manifestoHl');if(mHl&&d.manifestoHl)mHl.textContent=d.manifestoHl;
-  const mSub=document.getElementById('manifestoSub');if(mSub&&d.manifestoSub)mSub.textContent=d.manifestoSub;
+  const mHl=document.getElementById('manifestoHl');if(mHl&&d.manifestoHl)mHl.innerHTML=d.manifestoHl;
+  const mSub=document.getElementById('manifestoSub');if(mSub&&d.manifestoSub)mSub.innerHTML=d.manifestoSub;
   const mBody=document.getElementById('manifestoBody');if(mBody&&d.manifestoBody)mBody.textContent=d.manifestoBody;
+  const mfl=document.getElementById('manifestoFounderLink');if(mfl&&d.manifestoFounderLink)mfl.textContent=d.manifestoFounderLink;
+  const fEye=document.getElementById('founderEye');if(fEye&&d.founderEye)fEye.textContent=d.founderEye;
+  const fBody=document.getElementById('founderBody');if(fBody&&d.founderBody)fBody.innerHTML=d.founderBody;
+  const fTag=document.getElementById('founderTag');if(fTag&&d.founderTag)fTag.textContent=d.founderTag;
+  const fDeal=document.getElementById('founderDeal');if(fDeal&&d.founderDeal)fDeal.textContent=d.founderDeal;
+  const fTeaser=document.getElementById('founderTeaserTxt');if(fTeaser&&d.founderTeaserTxt)fTeaser.textContent=d.founderTeaserTxt;
+  const fSig=document.getElementById('founderSig');if(fSig&&d.founderSig)fSig.textContent=d.founderSig;
   // form
   document.getElementById('formTitle').textContent=d.formTitle;
   document.getElementById('formSub').textContent=d.formSub;
   document.getElementById('formSubmit').textContent=d.formSubmit;
   document.getElementById('formNote').textContent=d.formNote;
+  const fd=document.getElementById('formDesc');if(fd&&d.formDesc)fd.innerHTML=d.formDesc;
+  const al=document.getElementById('agreeLabel');if(al&&d.agreeLabel)al.textContent=d.agreeLabel;
+  const ab=document.getElementById('agreeBody');if(ab&&d.agreeBody)ab.textContent=d.agreeBody;
+  const rtb=document.getElementById('readTermsBtn');if(rtb&&d.readTermsBtn)rtb.textContent=d.readTermsBtn;
+  const qig=document.getElementById('questionsIgTxt');if(qig&&d.questionsIgTxt)qig.textContent=d.questionsIgTxt;
   // update hero headline for current cat + new lang
   updateHero();
   updateCalc();
@@ -1980,7 +2078,70 @@ function onSliderChange(el){
   const v = parseInt(el.value);
   document.getElementById('viewsInput').value = v.toLocaleString();
   updateCalc();
+  pulseCalcDragBg();
 }
+
+/* ═══ CALCULATOR DRAG STARFIELD ═══ */
+(function(){
+  const cv = document.getElementById('calcDragBg');
+  const sec = document.getElementById('calculator');
+  if(!cv || !sec) return;
+  const ctx = cv.getContext('2d');
+  let W, H, stars = [], raf, running = false, fadeTimer = null;
+
+  function resize(){
+    const r = sec.getBoundingClientRect();
+    W = cv.width = r.width;
+    H = cv.height = r.height;
+  }
+  function buildStars(){
+    stars = [];
+    const count = Math.floor((W * H) / 9000);
+    for(let i = 0; i < count; i++){
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.6 + .3,
+        vx: (Math.random() - .5) * .6,
+        vy: (Math.random() - .5) * .4,
+        a: Math.random() * .6 + .15,
+        tp: Math.random() * Math.PI * 2,
+        ts: Math.random() * .04 + .015,
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    stars.forEach(s => {
+      s.x = ((s.x + s.vx) % W + W) % W;
+      s.y = ((s.y + s.vy) % H + H) % H;
+      s.tp += s.ts;
+      const a = s.a * (0.5 + 0.5 * Math.sin(s.tp));
+      ctx.globalAlpha = a;
+      ctx.fillStyle = 'rgba(196,181,253,1)';
+      if(s.r > 1){ ctx.shadowBlur = s.r * 4; ctx.shadowColor = 'rgba(139,92,246,.85)'; }
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+      ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+    });
+    if(running) raf = requestAnimationFrame(draw);
+  }
+  window.pulseCalcDragBg = function(){
+    if(!running){
+      resize(); buildStars();
+      running = true;
+      cv.classList.add('active');
+      raf = requestAnimationFrame(draw);
+    }
+    clearTimeout(fadeTimer);
+    fadeTimer = setTimeout(() => {
+      running = false;
+      cancelAnimationFrame(raf);
+      cv.classList.remove('active');
+      setTimeout(() => ctx.clearRect(0, 0, W, H), 650);
+    }, 5000);
+  };
+  window.addEventListener('resize', () => { if(running) resize(); }, {passive:true});
+})();
 
 function onViewsInput(el){
   // allow typing freely, sync slider if valid
@@ -2027,6 +2188,25 @@ function updateCalc(){
     document.getElementById('calcConSales').textContent = `~${sc} ${sales} · ${perV}`;
     document.getElementById('calcModSales').textContent = `~${sm} ${sales} · ${perV}`;
     document.getElementById('calcOptSales').textContent = `~${so} ${sales} · ${perV}`;
+    const perVideoMod = Math.round(v * 0.008);
+    const explainEl = document.getElementById('calcExplain');
+    if(explainEl){
+      explainEl.textContent = curLang==='es'
+        ? `Con ${v.toLocaleString()} vistas y una conversión moderada de 0.8%, hablamos de unas ${perVideoMod} personas comprando ALINEA Pro por video.`
+        : `With ${v.toLocaleString()} views and a moderate 0.8% conversion, that's about ${perVideoMod} people buying ALINEA Pro per video.`;
+    }
+    const vnEl2 = document.getElementById('videoNote');
+    if(vnEl2){
+      if(calcVideos===1){
+        vnEl2.textContent = curLang==='es'
+          ? 'Con un video ya nos ayudas — no hay obligación de subir más.'
+          : 'One video is all it takes — no obligation to post more.';
+      }else{
+        vnEl2.textContent = curLang==='es'
+          ? 'Recuerda: no hay contratos, no hay obligación — con un video basta. Si quieres subir más, sin problema.'
+          : "Remember: no contracts, no obligation — one video is enough. If you'd like to post more, go for it.";
+      }
+    }
   }, 150);
 }
 
@@ -2061,7 +2241,7 @@ document.addEventListener('DOMContentLoaded', function(){
   setVisible(false);
 
   const manifesto = document.getElementById('manifesto');
-  const mission = document.getElementById('mission');
+  const mission = document.getElementById('product-shots');
   if(!manifesto || !mission) return;
 
   let permanentlyVisible = false;
@@ -2100,6 +2280,35 @@ document.addEventListener('DOMContentLoaded', function(){
 
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', avoidFooter, {passive:true});
+  onScroll();
+});
+
+/* ═══ FLOATING CALCULATOR BUTTON VISIBILITY ═══ */
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('calcFloating');
+  if(!btn) return;
+  const calcSection = document.getElementById('calculator');
+  const personalizeSection = document.getElementById('personalize');
+  if(!calcSection || !personalizeSection) return;
+
+  function setVisible(v){
+    btn.style.opacity = v ? '1' : '0';
+    btn.style.pointerEvents = v ? 'auto' : 'none';
+  }
+
+  function onScroll(){
+    // stay hidden through the onboarding area (hero + personalize)
+    const psRect = personalizeSection.getBoundingClientRect();
+    const pastOnboarding = psRect.bottom < window.innerHeight * 0.7;
+    if(!pastOnboarding){ setVisible(false); return; }
+
+    // hide only while the calculator section itself is substantially on screen
+    const rect = calcSection.getBoundingClientRect();
+    const calcInView = rect.top < window.innerHeight * 0.7 && rect.bottom > window.innerHeight * 0.2;
+    setVisible(!calcInView);
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 });
 
@@ -2143,6 +2352,64 @@ document.addEventListener('keydown',(e)=>{
     if(ov && ov.style.display==='flex') togglePromise();
   }
 });
+function toggleFounder(){
+  const ov = document.getElementById('founderOverlay');
+  const isOpen = ov.style.display === 'flex';
+  ov.style.display = isOpen ? 'none' : 'flex';
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+  const canvas = document.querySelector('canvas');
+  const nav = document.querySelector('nav');
+  if(canvas) canvas.style.display = isOpen ? '' : 'none';
+  if(nav) nav.style.visibility = isOpen ? '' : 'hidden';
+  if(isOpen){ stopFounderStars(); } else { startFounderStars(); }
+}
+let founderStarsRaf = null, founderStarsRunning = false;
+function startFounderStars(){
+  const cv = document.getElementById('founderStars');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width = window.innerWidth;
+  const H = cv.height = window.innerHeight;
+  const stars = [];
+  const count = Math.floor((W * H) / 7000);
+  for(let i = 0; i < count; i++){
+    stars.push({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.4 + .3,
+      vx: (Math.random() - .5) * .15, vy: (Math.random() - .5) * .1,
+      a: Math.random() * .6 + .15, tp: Math.random() * Math.PI * 2, ts: Math.random() * .025 + .008,
+    });
+  }
+  founderStarsRunning = true;
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    stars.forEach(s => {
+      s.x = ((s.x + s.vx) % W + W) % W;
+      s.y = ((s.y + s.vy) % H + H) % H;
+      s.tp += s.ts;
+      const a = s.a * (0.5 + 0.5 * Math.sin(s.tp));
+      ctx.globalAlpha = a;
+      ctx.fillStyle = 'rgba(196,181,253,1)';
+      if(s.r > 1){ ctx.shadowBlur = s.r * 3; ctx.shadowColor = 'rgba(139,92,246,.8)'; }
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+      ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+    });
+    if(founderStarsRunning) founderStarsRaf = requestAnimationFrame(draw);
+  }
+  draw();
+}
+function stopFounderStars(){
+  founderStarsRunning = false;
+  if(founderStarsRaf) cancelAnimationFrame(founderStarsRaf);
+  const cv = document.getElementById('founderStars');
+  if(cv){ const ctx = cv.getContext('2d'); ctx.clearRect(0, 0, cv.width, cv.height); }
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    const ov=document.getElementById('founderOverlay');
+    if(ov && ov.style.display==='flex') toggleFounder();
+  }
+});
 
 /* ═══ FAQ ACCORDION ═══ */
 function toggleFaq(btn){
@@ -2178,6 +2445,22 @@ if(innerWidth>600){
   document.querySelectorAll('.ri').forEach(el=>ob.observe(el));
 }else{document.querySelectorAll('.ri').forEach(el=>el.classList.add('show'));}
 
+/* Manifesto headline — interactive shimmer follows cursor on hover */
+(function(){
+  const hl = document.getElementById('manifestoHl');
+  if(!hl) return;
+  hl.addEventListener('mousemove', (e) => {
+    const r = hl.getBoundingClientRect();
+    const pct = 100 - Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100));
+    hl.style.animation = 'none';
+    hl.style.backgroundPosition = pct + '% center';
+  });
+  hl.addEventListener('mouseleave', () => {
+    hl.style.animation = '';
+    hl.style.backgroundPosition = '';
+  });
+})();
+
 /* Steps carousel */
 (function(){
   const track=document.querySelector('.steps-carousel');if(!track)return;
@@ -2203,6 +2486,25 @@ if(innerWidth>600){
   dots.forEach(d=>d.addEventListener('click',(e)=>{e.preventDefault();goTo(+d.dataset.goto);startAuto();d.blur();}));
   track.addEventListener('mouseenter',()=>{isHovering=true;startAuto();});
   track.addEventListener('mouseleave',()=>{isHovering=false;startAuto();});
+
+  // swipe support
+  const stepsTrack=track.querySelector('.steps-track');
+  if(stepsTrack){
+    let touchStartX=0,touchStartY=0;
+    stepsTrack.addEventListener('touchstart',(e)=>{
+      touchStartX=e.touches[0].clientX;
+      touchStartY=e.touches[0].clientY;
+    },{passive:true});
+    stepsTrack.addEventListener('touchend',(e)=>{
+      const dx=e.changedTouches[0].clientX-touchStartX;
+      const dy=e.changedTouches[0].clientY-touchStartY;
+      if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy))return;
+      if(dx<0){goTo(current>=5?1:current+1);}
+      else{goTo(current<=1?5:current-1);}
+      startAuto();
+    },{passive:true});
+  }
+
   startAuto();
 })();
 
@@ -2337,6 +2639,10 @@ function handleSubmit(btn){
   const cards = document.querySelectorAll('.calc-card');
   const ids = ['starBg1','starBg2','starBg3'];
   cards.forEach((card, i) => initCardStars(ids[i], card));
+
+  const numCards = document.querySelectorAll('#numbers .num-card');
+  const numIds = ['numStarBg1','numStarBg2','numStarBg3'];
+  numCards.forEach((card, i) => initCardStars(numIds[i], card));
 })();
 
 /* ═══ CVR TOGGLE ═══ */
@@ -2359,8 +2665,54 @@ document.addEventListener('DOMContentLoaded',()=>{
 <!-- FLOATING PROMISE BUTTON — outside all sections, true top layer -->
 <div id="promiseFloating" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(12px);z-index:9999;opacity:0;pointer-events:none;transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)">
   <button onclick="togglePromise()" style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--a2);background:rgba(6,5,15,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(var(--a-rgb),.35);padding:.75rem 2rem;border-radius:50px;cursor:pointer;transition:all .35s;display:inline-flex;align-items:center;gap:.6rem;box-shadow:0 0 28px rgba(var(--a-rgb),.25),0 8px 32px rgba(0,0,0,.6);white-space:nowrap;">
-    <span style="opacity:.7;">✦</span> <span id="promiseFloatTxt">Our promise to you</span>
+    <span style="opacity:.7;">✦</span> <span id="promiseFloatTxt">Our promise</span>
   </button>
+</div>
+
+<!-- FLOATING CALCULATOR CTA -->
+<style>
+  #calcFloating{position:fixed;right:1.4rem;top:50%;transform:translateY(-50%);z-index:9998;opacity:0;pointer-events:none;transition:opacity .4s cubic-bezier(.16,1,.3,1);}
+  #calcFloating button{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.03em;text-transform:uppercase;color:var(--a2);background:rgba(6,5,15,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(var(--a-rgb),.3);padding:.85rem .8rem;border-radius:12px;cursor:pointer;transition:all .35s;display:flex;flex-direction:column;align-items:center;gap:.35rem;box-shadow:0 0 20px rgba(var(--a-rgb),.18),0 6px 24px rgba(0,0,0,.5);max-width:88px;text-align:center;line-height:1.35;}
+  #calcFloating button:hover{border-color:var(--a2);transform:scale(1.04);}
+  #calcFloating span.emoji{font-size:.9rem;}
+  @media (max-width:720px){
+    #calcFloating{right:1rem;top:auto;bottom:6.5rem;transform:none;}
+  }
+</style>
+<div id="calcFloating">
+  <button onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth',block:'start'})">
+    <span class="emoji">💰</span> <span id="calcFloatTxt">How much could I earn?</span>
+  </button>
+</div>
+
+<!-- FOUNDER OVERLAY (medium modal) -->
+<style>
+  .founder-body{font-family:'Lato',sans-serif;font-weight:300;font-size:.85rem;color:rgba(240,238,255,.78);line-height:1.9;letter-spacing:.01em;}
+  .founder-body p{margin-bottom:1.1rem;}
+  .founder-body p:last-child{margin-bottom:0;}
+  .founder-body em{font-style:normal;color:var(--a2);font-weight:500;}
+  .founder-body .fb-underline{font-style:normal;color:var(--a2);font-weight:500;text-decoration:underline;text-decoration-color:rgba(var(--a-rgb),.5);text-underline-offset:3px;}
+  .founder-photo{float:left;width:150px;height:auto;border-radius:9px;margin:0 1.2rem 1rem 0;border:1px solid rgba(var(--a-rgb),.3);box-shadow:0 4px 20px rgba(0,0,0,.45);}
+  .founder-tag{display:block;clear:both;margin-top:1.4rem;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);}
+  .founder-sig{display:block;margin-top:.5rem;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.04em;color:rgba(240,238,255,.55);}
+</style>
+<div id="founderOverlay" onclick="if(event.target===this)toggleFounder()" style="display:none;position:fixed;inset:0;z-index:2147483647;background:rgba(6,5,15,.94);align-items:center;justify-content:center;padding:2rem;">
+  <canvas id="founderStars" style="position:fixed;inset:0;pointer-events:none;z-index:0;"></canvas>
+  <div style="max-width:560px;width:100%;max-height:84vh;overflow-y:auto;text-align:left;position:relative;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem 2.5rem 2.2rem;">
+    <button onclick="toggleFounder()" style="position:absolute;top:1.4rem;right:1.6rem;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(var(--a-rgb),.4);background:none;border:none;cursor:pointer;transition:color .2s;" onmouseenter="this.style.color='var(--a2)'" onmouseleave="this.style.color='rgba(var(--a-rgb),.4)'" id="founderCloseTxt">✕ close</button>
+    <span style="font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(var(--a-rgb),.45);display:block;margin-bottom:1rem;" id="founderEye">✦ Meet ALINEA's creator</span>
+    <img class="founder-photo" id="founderPhoto" src="data:image/jpeg;base64,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" alt="Miguel, ALINEA founder">
+    <div class="founder-body" id="founderBody">
+      <p>I'm Miguel — there's no big team behind ALINEA, just me and a couple of close friends who help me out with their opinion, their feedback, and their support.</p>
+      <p>It's just me, in my room, with my laptop and good music — and sometimes at a public library. There are no investors, no office. ALINEA exists because a while back an injury kept me out of commission for a couple of months. So instead of doing nothing, I picked back up a project I'd already had in mind and partly built years earlier, and finally made <em>the app I'd always wanted as a reader</em> — and that's what you're looking at. ALINEA came about almost by coincidence, honestly, but I'm genuinely happy with everything I've built and with how close I've been able to get to more people. I never thought this could become something bigger — only time will tell, and <span class="fb-underline">I hope that, with your help, a lot more people get to know this product.</span></p>
+      <p>I've always had too many books — on my desk, scattered everywhere, and wherever I go, I bring one with me. I always felt there was something there we couldn't fully see — not hidden, just invisible to us because we're human. With ALINEA I finally found something I could make visible: starting with <span class="fb-underline">the connections between books</span> — between lines, between paragraphs, between ideas we didn't even know were connected.</p>
+      <p>I have an MBA and I'm finishing a second degree in finance (that's why you'll find real numbers and more honest estimates of what you could earn) — and ALINEA is one of several projects I've built. But this one's different: it combines two things I genuinely love, reading and space — my favorite movie is Interstellar, and that's where the idea came from to represent those connections as a galaxy. <em>Of everything I've made, this is the one I've connected with the most.</em></p>
+      <p><em>If you're seeing this page, it's because I saw your content, I liked it, and I thought maybe you'd want to help me out.</em> There's something I can't help but feel — that intuition that things happen for a reason. And it's a good feeling that made me reach out to you: <em>I think this can work for both of us.</em> You share something you believe will be useful to your audience, and I'll gladly give you, through Lemon Squeezy, your commission for helping more people discover ALINEA.</p>
+    </div>
+    <p style="font-family:'Lato',sans-serif;font-weight:300;font-size:.85rem;color:rgba(240,238,255,.78);line-height:1.9;margin-top:1.1rem;clear:both;" id="founderDeal">Deal?</p>
+    <span class="founder-tag" id="founderTag">#MakeVisibleTheInvisible</span>
+    <span class="founder-sig" id="founderSig">— Miguel Valdez, ALINEA's creator</span>
+  </div>
 </div>
 
 <!-- TERMS OVERLAY -->
@@ -2497,7 +2849,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     quote:'"La creatividad no es una habilidad rara. Es un aspecto fundamental del ser humano."',
     btnBase:'＋ Nota',btnActive:'✦ Guardar',
     main:'Mi Biblioteca',cats:['Personal','Literatura','Negocios','Filosofía','Ciencia'],kws:['disciplina','presente'],expKw:'disciplina',dlExp:'2.4 MB · Exportando…',dlDone:'2.4 MB · Descargado',wlAdded:'🚀 1 libro en camino a tu galaxia…',
-    planets:[['La Vegetariana','Creative Act'],['Cien Años','Steve Jobs'],['Psic. del Dinero','Zero to One']]
+    planets:[['Harry Potter','Creative Act'],['Cien Años','Steve Jobs'],['Psic. del Dinero','Zero to One']]
   };}
 
   // ── fase 2: escritura + botón que se activa como en la app real ──
@@ -2904,7 +3256,7 @@ window._pdApplyLang=function(curLang){
     ?{eyebrow:'Míralo en acción',head:'Así se ve<br><em>tu conocimiento.</em>',
       steps:[['Agrega tus libros','Tu biblioteca con portadas, ratings y notas.'],['Escribe lo que te marca','Subrayados, citas y keywords en cada libro.'],['Tu galaxia se forma sola','Observa cómo tus libros llevaban años hablando entre sí — conexiones que nunca habías visto.'],['Explora tus ideas','Recuerda y encuentra cualquier concepto, frase o palabra clave en todo lo que has leído.'],['Tu bitácora de vuelo','El resumen de toda tu vida lectora: tu sistema más denso, tu top 5 y reportes.'],['Hazla tuya','Colores, nombre de tu biblioteca y respaldo en un archivo.']],
       count:'libros',search:'Buscar libros, autores, keywords…',f0:'Todos ▾',f1:'↓ Más reciente ▾',
-      books:['La Vegetariana','The Creative Act','Steve Jobs','Sapiens'],
+      books:['Harry Potter','The Creative Act','Steve Jobs','Dune'],
       sec:'Notas & Subrayados',cat:'Personal',pg:'Pág.',cmt:'Comentario (opcional)',dict:'Dictar',cam:'Cámara',
       bmT:'The Creative Act',
       tags:['#creatividad','#arte','#presencia'],kw:'→ Conecta con Steve Jobs y La Psicología del Dinero',
@@ -2923,7 +3275,7 @@ window._pdApplyLang=function(curLang){
     :{eyebrow:'See it in action',head:'This is what<br><em>your knowledge looks like.</em>',
       steps:[['Add your books','Your library with covers, ratings and notes.'],['Write what moves you','Highlights, quotes and keywords in every book.'],['Your galaxy forms itself','Watch your books talk to each other — connections you had never seen.'],['Explore your ideas','Remember and find any concept, quote or keyword across everything you have read.'],['Your flight log','A summary of your entire reading life: your densest system, your top 5 and reports.'],['Make it yours','Colors, your library name and a one-file backup.']],
       count:'books',search:'Search books, authors, keywords…',f0:'All ▾',f1:'↓ Most recent ▾',
-      books:['The Vegetarian','The Creative Act','Steve Jobs','Sapiens'],
+      books:['Harry Potter','The Creative Act','Steve Jobs','Dune'],
       sec:'Notes & Highlights',cat:'Personal',pg:'Page',cmt:'Comment (optional)',dict:'Dictate',cam:'Camera',
       bmT:'The Creative Act',
       tags:['#creativity','#art','#presence'],kw:'→ Connects with Steve Jobs & The Psychology of Money',
@@ -2942,10 +3294,10 @@ window._pdApplyLang=function(curLang){
   window._pdI18n=pdES
     ?{quote:'"La creatividad no es una habilidad rara. Es un aspecto fundamental del ser humano."',btnBase:'＋ Nota',btnActive:'✦ Guardar',
       main:'Mi Biblioteca',cats:['Personal','Literatura','Negocios','Filosofía','Ciencia'],kws:['disciplina','presente'],expKw:'disciplina',dlExp:'2.4 MB · Exportando…',dlDone:'2.4 MB · Descargado',wlAdded:'🚀 1 libro en camino a tu galaxia…',
-      planets:[['La Vegetariana','Creative Act'],['Cien Años','Steve Jobs'],['Psic. del Dinero','Zero to One']]}
+      planets:[['Harry Potter','Creative Act'],['Cien Años','Steve Jobs'],['Psic. del Dinero','Zero to One']]}
     :{quote:'"Creativity is not a rare ability. It is a fundamental aspect of being human."',btnBase:'+ Note',btnActive:'✦ Save',
       main:'My Library',cats:['Personal','Literature','Business','Philosophy','Science'],kws:['discipline','present'],expKw:'discipline',dlExp:'2.4 MB · Exporting…',dlDone:'2.4 MB · Downloaded',wlAdded:'🚀 1 book traveling to your galaxy…',
-      planets:[['The Vegetarian','Creative Act'],['100 Years','Steve Jobs'],['Money Psych.','Zero to One']]};
+      planets:[['Harry Potter','Creative Act'],['100 Years','Steve Jobs'],['Money Psych.','Zero to One']]};
   const pdSet=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
   const pdE=document.getElementById('pdEyebrow');if(pdE)pdE.textContent=pdT.eyebrow;
   const pdHd=document.getElementById('pdHead');if(pdHd)pdHd.innerHTML=pdT.head;
